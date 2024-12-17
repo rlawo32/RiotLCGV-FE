@@ -5,7 +5,7 @@ import supabase from "@/app/supabase";
 
 // import * as Styled from "./page.style";
 
-const ListMatch = () => {
+const MatchList = () => {
     const client:any = supabase();
 
     const [locationData, setLocationData] = useState<string>("");
@@ -32,4 +32,4 @@ const ListMatch = () => {
     )
 }
 
-export default ListMatch;
+export default MatchList;
