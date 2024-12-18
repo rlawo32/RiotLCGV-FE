@@ -5,7 +5,7 @@ import ListMatch from "./component/match_list";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div>
       <ListMatch />
     </div>
   );
