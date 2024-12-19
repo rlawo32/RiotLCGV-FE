@@ -67,6 +67,7 @@ const MatchList = () => {
                 </div>
                 <div className="item_body">
                     <div className="item_player body_left">
+                        {testList[i].win === 100 ? <div className="item_win">WIN</div> : <div className="item_win" />} 
                         {testList[i].arr1[0]} / {testList[i].arr1[1]} / {testList[i].arr1[2]} / {testList[i].arr1[3]} / {testList[i].arr1[4]}
                     </div>
                     <div className="body_center">
@@ -75,6 +76,7 @@ const MatchList = () => {
                     </div>
                     <div className="item_player body_right">
                         {testList[i].arr2[0]} / {testList[i].arr2[1]} / {testList[i].arr2[2]} / {testList[i].arr2[3]} / {testList[i].arr2[4]}
+                        {testList[i].win === 200 ? <div className="item_win">WIN</div> : <div className="item_win" />} 
                     </div>
                 </div>
                 <div className="item_foot">

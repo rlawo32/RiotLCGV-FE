@@ -37,8 +37,14 @@ export const ListItem = styled('div')`
         margin: 0 0 10px;
 
         .item_player {
+            position: relative;
             padding-top: 7px;
             font-size: 18px;
+
+            .item_win {
+                position: absolute;
+                left: 0;
+            }
         }
 
         .body_center {
