@@ -18,7 +18,7 @@ export const ListItem = styled('div')`
     border: none;
     border-radius: 10px;
     background: linear-gradient(to right, 
-    rgba(50,10,245,0.8) 15%, 
-    rgba(20,20,20,0.8) 50%, 
-    rgba(245,10,50,0.8) 85%);
+    rgba(50,10,245,0.8) 5%, 
+    rgba(240,240,240,0.8) 50%, 
+    rgba(245,10,50,0.8) 95%);
 `;
