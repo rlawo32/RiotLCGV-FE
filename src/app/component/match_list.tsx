@@ -9,10 +9,10 @@ import * as Style from "./match_list.style";
 const MatchList = () => {
     const client:any = supabase();
 
-    const [testList, setTestList] = useState<{key:number, id:string, win:number, 
+    const [testList, setTestList] = useState<{key:number, id:number, win:number, 
         time:number, date:string, ver:string, arr1:string[], arr2:string[]}[]>([{
         key: 1001,
-        id: '12345',
+        id: 7389173588,
         win: 200,
         time: 1412,
         date: '2024-11-28/11:28:39',
@@ -21,7 +21,7 @@ const MatchList = () => {
         arr2: ['해용', '문석', '재섭', '대훈', '현석'],
     }, {
         key: 1002,
-        id: '54321',
+        id: 7389173588,
         win: 100,
         time: 1742,
         date: '2024-11-28/12:22:41',
@@ -30,7 +30,7 @@ const MatchList = () => {
         arr2: ['해용', '문석', '재섭', '대훈', '현석'],
     }, {
         key: 1003,
-        id: '67890',
+        id: 7389173588,
         win: 200,
         time: 1851,
         date: '2024-11-29/10:18:38',
@@ -39,7 +39,7 @@ const MatchList = () => {
         arr2: ['해용', '문석', '재섭', '대훈', '현석'],
     }, {
         key: 1004,
-        id: '09876',
+        id: 7389173588,
         win: 100,
         time: 1527,
         date: '2024-11-29/11:31:02',
@@ -48,7 +48,7 @@ const MatchList = () => {
         arr2: ['해용', '문석', '재섭', '대훈', '현석'],
     }, {
         key: 1005,
-        id: '13579',
+        id: 7389173588,
         win: 100,
         time: 2006,
         date: '2024-12-01/09:07:53',
@@ -56,12 +56,16 @@ const MatchList = () => {
         arr1: ['광호', '성재', '승준', '지훈', '인석'],
         arr2: ['해용', '문석', '재섭', '대훈', '현석'],
     },]);
+    const [selectGameId, setSelectGameId] = useState<number>();
     
     const testListActive = ():any[] => {
         let result:any[] = []
 
         for(let i=0; i<testList.length; i++) {
-            result.push(<Style.ListItem key={testList[i].key}>
+            result.push(
+            <>
+
+            <Style.ListItem key={testList[i].key} onClick={() => setSelectGameId(testList[i].id)}>
                 <div className="item_head">
                     {(testList[i].date).substring(0, 10)}
                 </div>
@@ -86,7 +90,9 @@ const MatchList = () => {
                 <div className="item_foot">
                     Ver. {testList[i].ver}
                 </div>
-            </Style.ListItem>)
+            </Style.ListItem>
+            <div><h1>HELLO</h1></div>
+            </>)
         }
 
         return result;
