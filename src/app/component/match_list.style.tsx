@@ -9,15 +9,16 @@ export const MatchList = styled('div')`
 `;
 
 export const ListItem = styled('div')`
-    height: 120px;
+    height: 125px;
     width: 850px;
     margin: 10px;
-    padding: 7px 7px 0;
+    padding: 8px;
     border: none;
     border-radius: 10px;
     color: black;
     font-weight: bold;
-    background: linear-gradient(to right, 
+    background-color: grey;
+    // background: linear-gradient(to right, 
     rgba(50,10,245,0.8) 5%, 
     rgba(240,240,240,0.8) 50%, 
     rgba(245,10,50,0.8) 95%);
@@ -30,20 +31,30 @@ export const ListItem = styled('div')`
 
     .item_body {
         position: relative;
-        top: -5px;
+        top: -3px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 0 10px;
+        margin: 0 0 12px;
 
         .item_player {
             position: relative;
+            display: flex;
+            align-items: center;
             padding-top: 7px;
             font-size: 18px;
 
             .item_win {
                 position: absolute;
-                left: 0;
+                top: -45px;
+            }
+
+            .left_icon {
+                right: 85px;
+            }
+
+            .right_icon {
+                left: 85px;
             }
         }
 
