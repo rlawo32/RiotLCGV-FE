@@ -134,20 +134,48 @@ const MatchHistory = () => {
                                             <div className="lcg_minion">
                                             </div>
                                             <div className="lcg_item">
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
-                                                alt={"item1"} height={50} width={50} className="lcg_image" />
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
-                                                alt={"item2"} height={50} width={50} className="lcg_image" />
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
-                                                alt={"item3"} height={50} width={50} className="lcg_image" />
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
-                                                alt={"item4"} height={50} width={50} className="lcg_image" />
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
-                                                alt={"item5"} height={50} width={50} className="lcg_image" />
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
-                                                alt={"item6"} height={50} width={50} className="lcg_image" />
-                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
-                                                alt={"item7"} height={50} width={50} className="lcg_image" />
+                                                {
+                                                    lcgMain.lcg_item_id_1 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
+                                                        alt={"item1"} height={50} width={50} className="lcg_image" />
+                                                        : <></>
+                                                }
+                                                {
+                                                    lcgMain.lcg_item_id_2 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
+                                                        alt={"item2"} height={50} width={50} className="lcg_image" />
+                                                        :<></>
+                                                }
+                                                {
+                                                    lcgMain.lcg_item_id_3 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
+                                                        alt={"item3"} height={50} width={50} className="lcg_image" />
+                                                        :<></>
+                                                }
+                                                {
+                                                    lcgMain.lcg_item_id_4 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
+                                                        alt={"item4"} height={50} width={50} className="lcg_image" />
+                                                        :<></>
+                                                }
+                                                {
+                                                    lcgMain.lcg_item_id_5 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
+                                                        alt={"item5"} height={50} width={50} className="lcg_image" />
+                                                        :<></>
+                                                }
+                                                {
+                                                    lcgMain.lcg_item_id_6 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
+                                                        alt={"item6"} height={50} width={50} className="lcg_image" />
+                                                        :<></>
+                                                }
+                                                {
+                                                    lcgMain.lcg_item_id_7 !== 0 ?
+                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
+                                                        alt={"item7"} height={50} width={50} className="lcg_image" />
+                                                        :<></>
+                                                }
                                             </div>
                                         </div>
                                     )
