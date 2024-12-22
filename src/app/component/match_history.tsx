@@ -9,6 +9,8 @@ import * as Style from "./match_history.style";
 const MatchHistory = () => {
     const client:any = supabase();
 
+    const [imageUrl1, setImageUrl1] = useState<string>("");
+    const [imageUrl2, setImageUrl2] = useState<string>("");
     const [lcgMatchInfo, setLcgMatchInfo] = useState<{
         lcg_game_id:number, lcg_ver_main:string, lcg_ver_cdn:string, lcg_ver_lang:string
     }[]>([]);
@@ -16,7 +18,7 @@ const MatchHistory = () => {
     const [lcgMatchMain, setLcgMatchMain] = useState<{
         lcg_row_num:number, lcg_game_id:number, lcg_participant_id:number, lcg_team_id:number, lcg_summoner_id:number,
         lcg_summoner_name:string, lcg_summoner_tag:string, lcg_champion_id:number, lcg_champion_name:string,
-        lcg_championLevel:number, lcg_spell_name_1:string, lcg_spell_name_2:string, lcg_perkName1:string,
+        lcg_championLevel:number, lcg_spell_name_1:string, lcg_spell_name_2:string, lcg_perk_name_1:string,
         lcg_perk_name_2:string, lcg_item_id_1:number, lcg_item_id_2:number, lcg_item_id_3:number, 
         lcg_item_id_4:number,lcg_item_id_5:number, lcg_item_id_6:number, lcg_item_id_7:number, 
         lcg_kill_count:number, lcg_death_count:number,lcg_assist_count:number, lcg_damage_total:number, 
@@ -76,7 +78,8 @@ const MatchHistory = () => {
         }
 
         lcgMatchInfoQuery().then((data) => {
-            console.log(data);
+            setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
+            setImageUrl2(data[0].lcg_ver_cdn + "/img/");
             setLcgMatchInfo(data);
         });
 
@@ -105,17 +108,20 @@ const MatchHistory = () => {
                                     return (
                                         <div key={"lcg" + idx} className="lcg_main">
                                             <div className="lcg_champion">
-                                                <Image src={lcgMatchInfo[0]?.lcg_ver_cdn + "/" + lcgMatchInfo[0]?.lcg_ver_main + "/img/champion/" + lcgMain.lcg_champion_name + ".png"} 
+                                                <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
                                                 alt={"champion"} height={50} width={50} className="lcg_image" />
-                                                {lcgMatchInfo[0]?.lcg_ver_cdn + "/" + lcgMatchInfo[0]?.lcg_ver_main + "/img/champion/" + lcgMain.lcg_champion_name}
                                             </div>
                                             <div className="lcg_spell">
-                                                <Image src={"/vs_image.png"} alt={"champion"} height={50} width={50} className="lcg_image" />
-                                                <Image src={"/vs_image.png"} alt={"champion"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
+                                                alt={"spell1"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
+                                                alt={"spell2"} height={50} width={50} className="lcg_image" />
                                             </div>
                                             <div className="lcg_perk">
-                                                <Image src={"/vs_image.png"} alt={"champion"} height={50} width={50} className="lcg_image" />
-                                                <Image src={"/vs_image.png"} alt={"champion"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl2 + lcgMain.lcg_perk_name_1} 
+                                                alt={"perk1"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
+                                                alt={"perk2"} height={50} width={50} className="lcg_image" />
                                             </div>
                                             <div className="lcg_kda">
                                             </div>
@@ -128,6 +134,20 @@ const MatchHistory = () => {
                                             <div className="lcg_minion">
                                             </div>
                                             <div className="lcg_item">
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
+                                                alt={"item1"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
+                                                alt={"item2"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
+                                                alt={"item3"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
+                                                alt={"item4"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
+                                                alt={"item5"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
+                                                alt={"item6"} height={50} width={50} className="lcg_image" />
+                                                <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
+                                                alt={"item7"} height={50} width={50} className="lcg_image" />
                                             </div>
                                         </div>
                                     )
