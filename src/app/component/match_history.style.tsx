@@ -3,79 +3,51 @@ import styled from "styled-components";
 export const MatchHistory = styled('div')`
     display: flex;
     align-items: center;
-    width: 1000px;
+    width: 1440px;
     margin: auto;
-`;
 
-export const MatchHistoryTeam = styled('div')`
-    display: flex;
-    flex-direction: column;
-    
-`;
+    table {
 
-export const MatchHistoryMain = styled('div')`
-    display: flex;
-    flex-wrap: wrap;
-    height: 87px;
-    width: 500px;
-    margin: 10px;
+        td {
+            text-align: center;
+        }
 
-    .lcg_image {
-        margin: 2px;
-        border-radius: 10px;
-    }
-
-    .perk_image {
-    
-    }
-
-    .item_image {
-    }
-
-    .empty_image {
-        height: 40px;
-        width: 40px;
-        border: 1px solid black;
-    }
-
-    .lcg_champion {
-        display: flex;
-        align-items: center;
-        justify-contents: center;
-    }
-    
-    .lcg_spell {
-        display: flex;   
-        flex-direction: column;
-    }
-
-    .lcg_perk {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .lcg_kda {
-        display: flex;
-        align-items: center;
-        margin: 0 20px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    
-    .lcg_item {
-        display: flex;
-        flex-wrap: wrap;
-
-        .item_main {
+        .lcg_item {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            width: 134px;
+        }
+        
+        .lcg_image {
+            margin: 1px;
+            border-radius: 10px;
         }
 
-        .item_sub {
-            display: flex;
-            align-items: center;
+        .empty_image {
+            height: 30px;
+            width: 30px;
+            border: 1px solid black;
+        }
+
+        .champion_image {
+            margin: 0 3px 0 0;
+        }
+
+        .spell_image {
+            margin: 0;
+        }
+
+        .perk_image {
+            margin: 0 0 4px 0;
         }
     }
+`;
+
+export const MatchHistoryTeam = styled('table')`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const MatchHistoryMain = styled('tr')`
+
+    
 `;
