@@ -16,7 +16,7 @@ const MatchHistory = () => {
     }[]>([]);
 
     const [lcgMatchMain, setLcgMatchMain] = useState<{
-        lcg_row_num:number, lcg_game_id:number, lcg_participant_id:number, lcg_team_id:number, lcg_summoner_id:number,
+        lcg_game_id:number, lcg_participant_id:number, lcg_team_id:number, lcg_summoner_id:number,
         lcg_summoner_name:string, lcg_summoner_tag:string, lcg_champion_id:number, lcg_champion_name:string,
         lcg_championLevel:number, lcg_spell_name_1:string, lcg_spell_name_2:string, lcg_perk_name_1:string,
         lcg_perk_name_2:string, lcg_item_id_1:number, lcg_item_id_2:number, lcg_item_id_3:number, 
@@ -99,31 +99,35 @@ const MatchHistory = () => {
     return (
         <Style.MatchHistory>
             <h1>HELLO</h1>
+            <table>
+                
+            </table>
             {
                 lcgMatchTeam?.map((lcgTeam) => {
                     return (
-                        <div key={lcgTeam.lcg_team_id} className="lcg_team">
+                        <Style.MatchHistoryTeam key={"lcgTeam" + lcgTeam.lcg_team_id}>
                             {
-                                lcgMatchMain?.map((lcgMain, idx) => {
+                                lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
                                     return (
-                                        <div key={"lcg" + idx} className="lcg_main">
+                                        <Style.MatchHistoryMain key={"lcgMain" + idx}>
                                             <div className="lcg_champion">
                                                 <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
-                                                alt={"champion"} height={50} width={50} className="lcg_image" />
+                                                alt={"champion"} height={80} width={80} className="lcg_image" />
                                             </div>
                                             <div className="lcg_spell">
                                                 <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
-                                                alt={"spell1"} height={50} width={50} className="lcg_image" />
+                                                alt={"spell1"} height={40} width={40} className="lcg_image" />
                                                 <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
-                                                alt={"spell2"} height={50} width={50} className="lcg_image" />
+                                                alt={"spell2"} height={40} width={40} className="lcg_image" />
                                             </div>
                                             <div className="lcg_perk">
                                                 <Image src={imageUrl2 + lcgMain.lcg_perk_name_1} 
-                                                alt={"perk1"} height={50} width={50} className="lcg_image" />
+                                                alt={"perk1"} height={40} width={40} className="lcg_image" />
                                                 <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
-                                                alt={"perk2"} height={50} width={50} className="lcg_image" />
+                                                alt={"perk2"} height={40} width={40} className="lcg_image" />
                                             </div>
                                             <div className="lcg_kda">
+                                                {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
                                             </div>
                                             <div className="lcg_damage">
                                             </div>
@@ -134,54 +138,58 @@ const MatchHistory = () => {
                                             <div className="lcg_minion">
                                             </div>
                                             <div className="lcg_item">
-                                                {
-                                                    lcgMain.lcg_item_id_1 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
-                                                        alt={"item1"} height={50} width={50} className="lcg_image" />
-                                                        : <></>
-                                                }
-                                                {
-                                                    lcgMain.lcg_item_id_2 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
-                                                        alt={"item2"} height={50} width={50} className="lcg_image" />
-                                                        :<></>
-                                                }
-                                                {
-                                                    lcgMain.lcg_item_id_3 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
-                                                        alt={"item3"} height={50} width={50} className="lcg_image" />
-                                                        :<></>
-                                                }
-                                                {
-                                                    lcgMain.lcg_item_id_4 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
-                                                        alt={"item4"} height={50} width={50} className="lcg_image" />
-                                                        :<></>
-                                                }
-                                                {
-                                                    lcgMain.lcg_item_id_5 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
-                                                        alt={"item5"} height={50} width={50} className="lcg_image" />
-                                                        :<></>
-                                                }
-                                                {
-                                                    lcgMain.lcg_item_id_6 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
-                                                        alt={"item6"} height={50} width={50} className="lcg_image" />
-                                                        :<></>
-                                                }
-                                                {
-                                                    lcgMain.lcg_item_id_7 !== 0 ?
-                                                        <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
-                                                        alt={"item7"} height={50} width={50} className="lcg_image" />
-                                                        :<></>
-                                                }
+                                                <div className="item_main">
+                                                    {
+                                                        lcgMain.lcg_item_id_1 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
+                                                            alt={"item1"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                    {
+                                                        lcgMain.lcg_item_id_2 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
+                                                            alt={"item2"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                    {
+                                                        lcgMain.lcg_item_id_3 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
+                                                            alt={"item3"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                    {
+                                                        lcgMain.lcg_item_id_4 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
+                                                            alt={"item4"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                    {
+                                                        lcgMain.lcg_item_id_5 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
+                                                            alt={"item5"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                    {
+                                                        lcgMain.lcg_item_id_6 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
+                                                            alt={"item6"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                </div>
+                                                <div className="item_sub">
+                                                    {
+                                                        lcgMain.lcg_item_id_7 !== 0 ?
+                                                            <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
+                                                            alt={"item7"} height={40} width={40} className="lcg_image" />
+                                                            :<div className="lcg_image empty_image"/>
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Style.MatchHistoryMain>
                                     )
                                 })
                             }
-                        </div>
+                        </Style.MatchHistoryTeam>
                     )
                 })
             }
