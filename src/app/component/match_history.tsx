@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import supabase from "@/app/supabase";
 import Image from "next/image";
 
+import DamageGraph  from "./damage_graph";
 import * as Style from "./match_history.style";
 
 const MatchHistory = () => {
@@ -102,12 +103,12 @@ const MatchHistory = () => {
             {
                 lcgMatchTeam?.map((lcgTeam) => {
                     return (
-                        <table key={"lcgTeam" + lcgTeam.lcg_team_id} >
+                        <table key={"lcgTeam" + lcgTeam.lcg_team_id} border={1}>
                             <thead>
                                 <tr>
                                     <th style={{width: '120px'}} colSpan={3}>캐릭터</th>
                                     <th style={{width: '70px'}} >KDA</th>
-                                    <th style={{width: '500px'}} colSpan={2}>피해량</th>
+                                    <th style={{width: '100px'}} colSpan={2}>피해량</th>
                                     <th style={{width: '60px'}} >와드</th>
                                     <th style={{width: '60px'}} >CS</th>
                                     <th style={{width: '80px'}} colSpan={2}>아이템</th>
@@ -134,12 +135,14 @@ const MatchHistory = () => {
                                                     <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
                                                     alt={"perk2"} height={20} width={20} className="lcg_image perk_image" />
                                                 </td>
-                                                <td className="lcg_kda">
+                                                <td className="lcg_kda" style={{width: '100px'}}>
                                                     {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
                                                 </td>
-                                                <td className="lcg_damage">
+                                                <td className="lcg_damage" style={{width: '70px'}}>
+                                                    <DamageGraph standard={60000} target={lcgMain.lcg_damage_total} flag={"D"}/>
                                                 </td>
-                                                <td className="lcg_taken">
+                                                <td className="lcg_taken" style={{width: '70px'}}>
+                                                    <DamageGraph standard={30000} target={lcgMain.lcg_damage_taken} flag={"T"}/>
                                                 </td>
                                                 <td className="lcg_ward">
                                                 </td>
