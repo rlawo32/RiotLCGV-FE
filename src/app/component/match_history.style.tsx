@@ -7,24 +7,40 @@ export const MatchHistory = styled('div')`
     margin: auto;
 
     table {
+        margin: 5px;
+        border-collapse: collapse;
+        background-color: indigo;
+
+        tr {
+            border: 1px solid white;
+        }
 
         td {
             text-align: center;
+        }
+        
+        .lcg_kda {
+            font-size: 14px;
         }
 
         .lcg_item {
             display: flex;
             flex-wrap: wrap;
         }
-        
+
         .lcg_image {
+            margin: 1px;
+            border-radius: 10px;
+        }
+        
+        .item_image {
             margin: 1px;
             border-radius: 10px;
         }
 
         .empty_image {
-            height: 30px;
-            width: 30px;
+            height: 25px;
+            width: 25px;
             border: 1px solid black;
         }
 
@@ -36,8 +52,12 @@ export const MatchHistory = styled('div')`
             margin: 0;
         }
 
-        .perk_image {
-            margin: 0 0 4px 0;
+        .perk_image1 {
+            margin-top: 4px;
+        }
+
+        .perk_image2 {
+            margin: 2px 0 4px;
         }
     }
 `;
