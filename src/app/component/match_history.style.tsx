@@ -70,7 +70,7 @@ export const MatchHistory = styled('div')`
         .empty_image {
             height: 28px;
             width: 28px;
-            border: 1px solid black;
+            border: 1px solid grey;
         }
 
         .champion_image {
