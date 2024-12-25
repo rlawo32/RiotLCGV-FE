@@ -9,18 +9,47 @@ export const MatchHistory = styled('div')`
     table {
         margin: 5px;
         border-collapse: collapse;
+        table-layout: fixed
         background-color: indigo;
 
         tr {
-            border: 1px solid white;
+            border-bottom: 1px solid white;
         }
 
         td {
+            padding: 3px 2px;
             text-align: center;
         }
-        
-        .lcg_kda {
+
+        th {
+            padding: 4px;
             font-size: 14px;
+        }
+
+        .lcg_common {
+            font-size: 14px;
+        }
+
+        .lcg_champion {
+            position: relative;
+        }
+
+        .lcg_level {
+            position: absolute;
+            bottom: 18px;
+            left: 3px;
+            padding: 2px 4px 2px 2px;
+            font-size: 10px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .lcg_summoner_name {
+            width: 65px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 12px;
         }
 
         .lcg_item {
@@ -34,13 +63,13 @@ export const MatchHistory = styled('div')`
         }
         
         .item_image {
-            margin: 1px;
+            margin: 3px;
             border-radius: 10px;
         }
 
         .empty_image {
-            height: 25px;
-            width: 25px;
+            height: 28px;
+            width: 28px;
             border: 1px solid black;
         }
 
@@ -53,11 +82,16 @@ export const MatchHistory = styled('div')`
         }
 
         .perk_image1 {
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .perk_image2 {
-            margin: 2px 0 4px;
+            margin: 2px 0 5px;
+        }
+
+        .lcg_minute_cs {
+            margin: 2px 0;
+            font-size: 10px;        
         }
     }
 `;
