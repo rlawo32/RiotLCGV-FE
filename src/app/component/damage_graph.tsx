@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const GraphTotal = styled('div')`
     height: 10px;
-    width: 60px;
+    width: 50px;
     margin: 5px auto;
     background-color: #31313C;
     border: 1px solid white;
