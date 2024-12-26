@@ -112,7 +112,6 @@ const MatchHistory = () => {
     
     return (
         <Style.MatchHistory>
-            <h1>HELLO</h1>
             {
                 lcgMatchInfoYn ?
                 lcgMatchTeam?.map((lcgTeam) => {
@@ -133,38 +132,38 @@ const MatchHistory = () => {
                                     lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
                                         return (
                                             <tr key={"lcgMain" + idx} className="lcg_main">
-                                                <td className="lcg_common lcg_champion" style={{width:'20px'}}>
+                                                <td className="lcg_common lcg_champion" style={{width:'15px'}}>
                                                     <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
                                                     alt={"champion"} height={45} width={45} className="lcg_image champion_image" />
                                                     <div className="lcg_level">
                                                         {lcgMain.lcg_champion_level}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_spell" style={{width:'20px'}}>
+                                                <td className="lcg_spell" style={{width:'15px'}}>
                                                     <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
                                                     alt={"spell1"} height={24} width={24} className="lcg_image spell_image" />
                                                     <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
                                                     alt={"spell2"} height={24} width={24} className="lcg_image spell_image" />
                                                 </td>
-                                                <td className="lcg_perk" style={{width:'20px'}}>
+                                                <td className="lcg_perk" style={{width:'15px'}}>
                                                     <Image src={imageUrl2 + lcgMain.lcg_perk_name_1} 
                                                     alt={"perk1"} height={24} width={24} className="lcg_image perk_image1" />
                                                     <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
                                                     alt={"perk2"} height={16} width={16} className="lcg_image perk_image2" />
                                                 </td>
-                                                <td className="lcg_summoner_name" style={{width:'65px'}}>
+                                                <td className="lcg_summoner_name" style={{width:'60px'}}>
                                                     <div className="lcg_summoner_name">
                                                         {lcgMain.lcg_summoner_name}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_common lcg_kda" style={{width:'70px'}}>
+                                                <td className="lcg_common lcg_kda" style={{width:'60px'}}>
                                                     {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
                                                 </td>
-                                                <td className="lcg_common lcg_damage" style={{width:'70px'}}>
+                                                <td className="lcg_common lcg_damage" style={{width:'60px'}}>
                                                     {lcgMain.lcg_damage_total.toLocaleString()}
                                                     <DamageGraph standard={lcgMaxDamageTotal} target={lcgMain.lcg_damage_total} flag={"D"}/>
                                                 </td>
-                                                <td className="lcg_common lcg_taken" style={{width:'70px'}}>
+                                                <td className="lcg_common lcg_taken" style={{width:'60px'}}>
                                                     {lcgMain.lcg_damage_taken.toLocaleString()}
                                                     <DamageGraph standard={lcgMaxDamageTaken} target={lcgMain.lcg_damage_taken} flag={"T"}/>
                                                 </td>
@@ -179,49 +178,49 @@ const MatchHistory = () => {
                                                         분당 {((lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count) / lcgGameDuration).toFixed(1)}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_item" style={{width:'106px'}}>
+                                                <td className="lcg_item" style={{width:'88px'}}>
                                                     {
                                                         lcgMain.lcg_item_id_1 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
-                                                            alt={"item1"} height={28} width={28} className="item_image" />
+                                                            alt={"item1"} height={24} width={24} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_2 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
-                                                            alt={"item2"} height={28} width={28} className="item_image" />
+                                                            alt={"item2"} height={24} width={24} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_3 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
-                                                            alt={"item3"} height={28} width={28} className="item_image" />
+                                                            alt={"item3"} height={24} width={24} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_4 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
-                                                            alt={"item4"} height={28} width={28} className="item_image" />
+                                                            alt={"item4"} height={24} width={24} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_5 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
-                                                            alt={"item5"} height={28} width={28} className="item_image" />
+                                                            alt={"item5"} height={24} width={24} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_6 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
-                                                            alt={"item6"} height={28} width={28} className="item_image" />
+                                                            alt={"item6"} height={24} width={24} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                 </td>
-                                                <td>
+                                                <td style={{width:'20px'}}>
                                                     {
                                                         lcgMain.lcg_item_id_7 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
-                                                            alt={"item7"} height={28} width={28} className="item_image" />
+                                                            alt={"item7"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                 </td>

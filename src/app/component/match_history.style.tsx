@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const MatchHistory = styled('div')`
     display: flex;
     align-items: center;
-    width: 1440px;
-    margin: auto;
+    width: 1100px;
 
     table {
         margin: 5px;
@@ -27,7 +26,7 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_common {
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .lcg_champion {
@@ -45,7 +44,7 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_summoner_name {
-            width: 65px;
+            width: 60px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -58,18 +57,18 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_image {
-            margin: 1px;
+            margin: 1px 0;
             border-radius: 10px;
         }
         
         .item_image {
-            margin: 3px;
+            margin: 2px;
             border-radius: 10px;
         }
 
         .empty_image {
-            height: 28px;
-            width: 28px;
+            height: 24px;
+            width: 24px;
             border: 1px solid grey;
         }
 
