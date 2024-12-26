@@ -29,7 +29,7 @@ const Reference = styled('div')`
 const Reference = () => {
   const testRef:any = useRef<any>([]);
   
-  const testClick = (flag:boolean, target:number) => {
+  const testClick = (target:number) => {
 
         if(!testRef.current[target].className.includes('sizeUp')) {
             testRef.current[target].className += ' sizeUp';
@@ -42,18 +42,17 @@ const Reference = () => {
                 testRef.current[i].className = testRef.current[i].className.replace(' sizeUp', '');
             }
         }
-        setTestYn(!flag);
   }
 
   return (
     <Reference>
-      <div className="test_btn" onClick={() => testClick(testYn, 0)}> 
+      <div className="test_btn" onClick={() => testClick(0)}> 
         TEST1
       </div>
       <div className="test_box" ref={(li:any) => (testRef.current[0] = li)}>
         HELLO1
       </div>   
-      <div className="test_btn" onClick={() => testClick(testYn, 1)}>
+      <div className="test_btn" onClick={() => testClick(1)}>
         TEST2
       </div>
       <div className="test_box" ref={(li:any) => (testRef.current[1] = li)}>
