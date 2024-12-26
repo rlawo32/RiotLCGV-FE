@@ -3,10 +3,17 @@ import styled from "styled-components";
 export const MatchList = styled('div')`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 1000px;
+    justify-content: center;
+    width: 1100px;
     margin: auto;
 `;
+
+export const ListContainer = styled('div')`
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
 
 export const ListItem = styled('div')`
     height: 125px;

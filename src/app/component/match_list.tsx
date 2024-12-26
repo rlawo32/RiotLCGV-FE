@@ -6,97 +6,80 @@ import Image from "next/image";
 
 import * as Style from "./match_list.style";
 
+import MatchHistory from "./match_history";
+
 const MatchList = () => {
     const client:any = supabase();
 
-    const [testList, setTestList] = useState<{key:number, id:number, win:number, 
-        time:number, date:string, ver:string, arr1:string[], arr2:string[]}[]>([{
-        key: 1001,
-        id: 7389173588,
-        win: 200,
-        time: 1412,
-        date: '2024-11-28/11:28:39',
-        ver: '14.24.1',
-        arr1: ['광호', '성재', '승준', '지훈', '인석'],
-        arr2: ['해용', '문석', '재섭', '대훈', '현석'],
-    }, {
-        key: 1002,
-        id: 7389173588,
-        win: 100,
-        time: 1742,
-        date: '2024-11-28/12:22:41',
-        ver: '14.24.1',
-        arr1: ['광호', '성재', '승준', '지훈', '인석'],
-        arr2: ['해용', '문석', '재섭', '대훈', '현석'],
-    }, {
-        key: 1003,
-        id: 7389173588,
-        win: 200,
-        time: 1851,
-        date: '2024-11-29/10:18:38',
-        ver: '14.24.1',
-        arr1: ['광호', '성재', '승준', '지훈', '인석'],
-        arr2: ['해용', '문석', '재섭', '대훈', '현석'],
-    }, {
-        key: 1004,
-        id: 7389173588,
-        win: 100,
-        time: 1527,
-        date: '2024-11-29/11:31:02',
-        ver: '14.24.1',
-        arr1: ['광호', '성재', '승준', '지훈', '인석'],
-        arr2: ['해용', '문석', '재섭', '대훈', '현석'],
-    }, {
-        key: 1005,
-        id: 7389173588,
-        win: 100,
-        time: 2006,
-        date: '2024-12-01/09:07:53',
-        ver: '14.24.1',
-        arr1: ['광호', '성재', '승준', '지훈', '인석'],
-        arr2: ['해용', '문석', '재섭', '대훈', '현석'],
-    },]);
     const [selectGameId, setSelectGameId] = useState<number>();
+    const [lcgMatchLog, setLcgMatchLog] = useState<{
+        lcg_game_id:number, lcg_game_win:number, lcg_game_date:string, lcg_game_ver:string, lcg_game_duration:number,
+        team_a_name_1:string, team_a_name_2:string, team_a_name_3:string, team_a_name_4:string, team_a_name_5:string,
+        team_b_name_1:string, team_b_name_2:string, team_b_name_3:string, team_b_name_4:string, team_b_name_5:string
+    }[]>([]);
     
     const testListActive = ():any[] => {
         let result:any[] = []
 
-        for(let i=0; i<testList.length; i++) {
+        for(let i=0; i<lcgMatchLog.length; i++) {
             result.push(
-            <>
-
-            <Style.ListItem key={testList[i].key} onClick={() => setSelectGameId(testList[i].id)}>
-                <div className="item_head">
-                    {(testList[i].date).substring(0, 10)}
-                </div>
-                <div className="item_body">
-                    <div className="item_player body_left">
-                        {testList[i].win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="item_win left_icon" /> : <div className="item_win" />} 
-                        <div>
-                            {testList[i].arr1[0]} / {testList[i].arr1[1]} / {testList[i].arr1[2]} / {testList[i].arr1[3]} / {testList[i].arr1[4]}
-                        </div>                        
+            <Style.ListContainer key={lcgMatchLog[i].lcg_game_id}>
+                <Style.ListItem onClick={() => setSelectGameId(lcgMatchLog[i].lcg_game_id)}>
+                    <div className="item_head">
+                        {(lcgMatchLog[i].lcg_game_date).substring(0, 10)}
                     </div>
-                    <div className="body_center">
-                        <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
-                        <div className="item_time">{Math.floor(testList[i].time / 60)}:{String(testList[i].time % 60).padStart(2, '0')}</div>
-                    </div>
-                    <div className="item_player body_right">
-                        <div>
-                            {testList[i].arr2[0]} / {testList[i].arr2[1]} / {testList[i].arr2[2]} / {testList[i].arr2[3]} / {testList[i].arr2[4]}
+                    <div className="item_body">
+                        <div className="item_player body_left">
+                            {lcgMatchLog[i].lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="item_win left_icon" /> : <div className="item_win" />} 
+                            <div>
+                                {lcgMatchLog[i].team_a_name_1}&nbsp;/&nbsp;
+                                {lcgMatchLog[i].team_a_name_2}&nbsp;/&nbsp; 
+                                {lcgMatchLog[i].team_a_name_3}&nbsp;/&nbsp; 
+                                {lcgMatchLog[i].team_a_name_4}&nbsp;/&nbsp; 
+                                {lcgMatchLog[i].team_a_name_5}
+                            </div>                        
                         </div>
-                        {testList[i].win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="item_win right_icon" />  : <div className="item_win" />} 
+                        <div className="body_center">
+                            <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
+                            <div className="item_time">
+                                {Math.floor(lcgMatchLog[i].lcg_game_duration / 60)}:{String(lcgMatchLog[i].lcg_game_duration % 60).padStart(2, '0')}
+                            </div>
+                        </div>
+                        <div className="item_player body_right">
+                            <div>
+                                {lcgMatchLog[i].team_b_name_1}&nbsp;/&nbsp;
+                                {lcgMatchLog[i].team_b_name_2}&nbsp;/&nbsp;
+                                {lcgMatchLog[i].team_b_name_3}&nbsp;/&nbsp;
+                                {lcgMatchLog[i].team_b_name_4}&nbsp;/&nbsp;
+                                {lcgMatchLog[i].team_b_name_5}
+                            </div>
+                            {lcgMatchLog[i].lcg_game_win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="item_win right_icon" />  : <div className="item_win" />} 
+                        </div>
                     </div>
-                </div>
-                <div className="item_foot">
-                    Ver. {testList[i].ver}
-                </div>
-            </Style.ListItem>
-            <div><h1>HELLO</h1></div>
-            </>)
+                    <div className="item_foot">
+                        Ver. {lcgMatchLog[i].lcg_game_ver}
+                    </div>
+                </Style.ListItem>
+                <MatchHistory />
+            </Style.ListContainer>)
         }
 
         return result;
     }
+
+    useEffect(() => {
+        const lcgTeamLogQuery = async():Promise<any> => {
+            let {data:lcg_team_log, error} = await client
+                .from("lcg_team_log")
+                .select("*")
+
+            return lcg_team_log;
+        }
+
+        lcgTeamLogQuery().then((data) => {
+            setLcgMatchLog(data);
+        });
+    }, [])
 
     return (
         <Style.MatchList>
