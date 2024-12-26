@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import styled from "styled-components";
 
-const Reference = styled('div')`
+const ReferenceStyle = styled('div')`
     .test_btn {
       height: 50px;
       width: 100px;
@@ -45,7 +45,7 @@ const Reference = () => {
   }
 
   return (
-    <Reference>
+    <ReferenceStyle>
       <div className="test_btn" onClick={() => testClick(0)}> 
         TEST1
       </div>
@@ -58,6 +58,8 @@ const Reference = () => {
       <div className="test_box" ref={(li:any) => (testRef.current[1] = li)}>
         HELLO2
       </div>
-    </Reference>
+    </ReferenceStyle>
   )
 }
+
+export default Reference;
