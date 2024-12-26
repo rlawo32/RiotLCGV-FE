@@ -7,7 +7,7 @@ import ListHistory from "./component/match_history";
 export default function Home() {
   return (
     <div>
-      <ListHistory />
+      <ListMatch />
     </div>
   );
 }
