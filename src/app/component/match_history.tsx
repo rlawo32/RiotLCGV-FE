@@ -82,7 +82,6 @@ const MatchHistory = (props : {gameId:number}) => {
         }
 
         lcgMatchInfoQuery().then((data) => {
-            console.log(data)
             if(data[0] !== undefined) {
                 setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
                 setImageUrl2(data[0].lcg_ver_cdn + "/img/");

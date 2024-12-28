@@ -47,7 +47,7 @@ const MatchList = () => {
                     </div>
                     <div className="box_body">
                         <div className="box_player body_left">
-                            {lcgMatchLog[i].lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="item_win left_icon" /> : <div className="item_win" />} 
+                            {lcgMatchLog[i].lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
                             <div>
                                 {lcgMatchLog[i].team_a_name_1}&nbsp;/&nbsp;
                                 {lcgMatchLog[i].team_a_name_2}&nbsp;/&nbsp; 
@@ -91,6 +91,7 @@ const MatchList = () => {
             let {data:lcg_team_log, error} = await client
                 .from("lcg_team_log")
                 .select("*")
+                .order("lcg_game_id", { ascending: false })
 
             return lcg_team_log;
         }
