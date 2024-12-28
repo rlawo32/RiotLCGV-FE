@@ -11,7 +11,7 @@ import MatchHistory from "./match_history";
 const MatchList = () => {
     const client:any = supabase();
 
-    const [selectGameId, setSelectGameId] = useState<number>();
+    const [selectGameId, setSelectGameId] = useState<number>(0);
     const [lcgMatchLog, setLcgMatchLog] = useState<{
         lcg_game_id:number, lcg_game_win:number, lcg_game_date:string, lcg_game_ver:string, lcg_game_duration:number,
         team_a_name_1:string, team_a_name_2:string, team_a_name_3:string, team_a_name_4:string, team_a_name_5:string,
@@ -23,7 +23,7 @@ const MatchList = () => {
 
         for(let i=0; i<lcgMatchLog.length; i++) {
             result.push(
-            <Style.ListContainer key={lcgMatchLog[i].lcg_game_id}>
+            <Style.ListContainer key={lcgMatchLog[i].lcg_game_id} onClick={() => setSelectGameId(lcgMatchLog[i].lcg_game_id)}>
                 <Style.ListItem onClick={() => setSelectGameId(lcgMatchLog[i].lcg_game_id)}>
                     <div className="item_head">
                         {(lcgMatchLog[i].lcg_game_date).substring(0, 10)}
@@ -60,7 +60,7 @@ const MatchList = () => {
                         Ver. {lcgMatchLog[i].lcg_game_ver}
                     </div>
                 </Style.ListItem>
-                <MatchHistory />
+                <MatchHistory gameId={selectGameId} />
             </Style.ListContainer>)
         }
 
