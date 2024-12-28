@@ -42,43 +42,49 @@ const MatchList = () => {
             result.push(
             <Style.ListContainer key={lcgMatchLog[i].lcg_game_id} onClick={() => setSelectGameId(lcgMatchLog[i].lcg_game_id)}>
                 <Style.ListBox onClick={() => matchListBoxClick(lcgMatchLog[i].lcg_game_id, i)}>
-                    <div className="box_head">
-                        {(lcgMatchLog[i].lcg_game_date).substring(0, 10)}
-                    </div>
-                    <div className="box_body">
-                        <div className="box_player body_left">
-                            {lcgMatchLog[i].lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
-                            <div>
-                                {lcgMatchLog[i].team_a_name_1}&nbsp;/&nbsp;
-                                {lcgMatchLog[i].team_a_name_2}&nbsp;/&nbsp; 
-                                {lcgMatchLog[i].team_a_name_3}&nbsp;/&nbsp; 
-                                {lcgMatchLog[i].team_a_name_4}&nbsp;/&nbsp; 
-                                {lcgMatchLog[i].team_a_name_5}
-                            </div>                        
+                    <div className="box_inner">
+                        <div className="box_head">
+                            {(lcgMatchLog[i].lcg_game_date).substring(0, 10)}
                         </div>
-                        <div className="body_center">
-                            <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
-                            <div className="box_time">
-                                {Math.floor(lcgMatchLog[i].lcg_game_duration / 60)}:{String(lcgMatchLog[i].lcg_game_duration % 60).padStart(2, '0')}
+                        <div className="box_body">
+                            <div className="box_player body_left">
+                                {lcgMatchLog[i].lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
+                                <div>
+                                    {lcgMatchLog[i].team_a_name_1}&nbsp;/&nbsp;
+                                    {lcgMatchLog[i].team_a_name_2}&nbsp;/&nbsp; 
+                                    {lcgMatchLog[i].team_a_name_3}&nbsp;/&nbsp; 
+                                    {lcgMatchLog[i].team_a_name_4}&nbsp;/&nbsp; 
+                                    {lcgMatchLog[i].team_a_name_5}
+                                </div>                        
+                            </div>
+                            <div className="body_center">
+                                <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
+                                <div className="box_time">
+                                    {Math.floor(lcgMatchLog[i].lcg_game_duration / 60)}:{String(lcgMatchLog[i].lcg_game_duration % 60).padStart(2, '0')}
+                                </div>
+                            </div>
+                            <div className="box_player body_right">
+                                <div>
+                                    {lcgMatchLog[i].team_b_name_1}&nbsp;/&nbsp;
+                                    {lcgMatchLog[i].team_b_name_2}&nbsp;/&nbsp;
+                                    {lcgMatchLog[i].team_b_name_3}&nbsp;/&nbsp;
+                                    {lcgMatchLog[i].team_b_name_4}&nbsp;/&nbsp;
+                                    {lcgMatchLog[i].team_b_name_5}
+                                </div>
+                                {lcgMatchLog[i].lcg_game_win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win right_icon" />  : <div className="item_win" />} 
                             </div>
                         </div>
-                        <div className="box_player body_right">
-                            <div>
-                                {lcgMatchLog[i].team_b_name_1}&nbsp;/&nbsp;
-                                {lcgMatchLog[i].team_b_name_2}&nbsp;/&nbsp;
-                                {lcgMatchLog[i].team_b_name_3}&nbsp;/&nbsp;
-                                {lcgMatchLog[i].team_b_name_4}&nbsp;/&nbsp;
-                                {lcgMatchLog[i].team_b_name_5}
-                            </div>
-                            {lcgMatchLog[i].lcg_game_win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win right_icon" />  : <div className="item_win" />} 
+                        <div className="box_foot">
+                            Ver. {lcgMatchLog[i].lcg_game_ver}
                         </div>
                     </div>
-                    <div className="box_foot">
-                        Ver. {lcgMatchLog[i].lcg_game_ver}
-                    </div>
+                    <div className="box_outer" />
                 </Style.ListBox>
                 <div className="matchHistory_box" ref={(mh:any) => (matchHistoryRef.current[i] = mh)}>
-                    <MatchHistory gameId={selectGameId} />    
+                    <div className="box_inner">
+                        <MatchHistory gameId={selectGameId} />    
+                    </div>
+                    <div className="box_outer" />
                 </div>
             </Style.ListContainer>)
         }
