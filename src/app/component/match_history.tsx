@@ -7,7 +7,7 @@ import Image from "next/image";
 import DamageGraph  from "./damage_graph";
 import * as Style from "./match_history.style";
 
-const MatchHistory = () => {
+const MatchHistory = (props : {gameId:number}) => {
     const client:any = supabase();
 
     const [imageUrl1, setImageUrl1] = useState<string>("");
@@ -49,7 +49,7 @@ const MatchHistory = () => {
                 .from("lcg_match_info")
                 .select("lcg_game_id, lcg_ver_main, lcg_ver_cdn, lcg_game_duration," + 
                     " lcg_ver_lang, lcg_max_damage_total, lcg_max_damage_taken")
-                .eq("lcg_game_id", 7389173588)
+                .eq("lcg_game_id", props.gameId)
 
             return lcg_match_info;
         }
@@ -58,7 +58,7 @@ const MatchHistory = () => {
             let {data:lcg__match_main, error} = await client
                 .from("lcg_match_main")
                 .select("*")
-                .eq("lcg_game_id", 7389173588)
+                .eq("lcg_game_id", props.gameId)
 
             return lcg__match_main;
         }
@@ -67,7 +67,7 @@ const MatchHistory = () => {
             let {data:lcg_match_sub, error} = await client
                 .from("lcg_match_sub")
                 .select("*")
-                .eq("lcg_game_id", 7389173588)
+                .eq("lcg_game_id", props.gameId)
 
             return lcg_match_sub;
         }
@@ -76,42 +76,46 @@ const MatchHistory = () => {
             let {data:lcg_match_team, error} = await client
                 .from("lcg_match_team")
                 .select("*")
-                .eq("lcg_game_id", 7389173588)
+                .eq("lcg_game_id", props.gameId)
 
             return lcg_match_team;
         }
 
         lcgMatchInfoQuery().then((data) => {
-            setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
-            setImageUrl2(data[0].lcg_ver_cdn + "/img/");
-            setLcgMaxDamageTotal(data[0].lcg_max_damage_total);
-            setLcgMaxDamageTaken(data[0].lcg_max_damage_taken);
+            console.log(data)
+            if(data[0] !== undefined) {
+                setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
+                setImageUrl2(data[0].lcg_ver_cdn + "/img/");
+                setLcgMaxDamageTotal(data[0].lcg_max_damage_total);
+                setLcgMaxDamageTaken(data[0].lcg_max_damage_taken);
 
-            let minute:number = Math.floor(data[0].lcg_game_duration / 60);
-            let second:number = data[0].lcg_game_duration % 60;
-            if(second > 30) {
-                minute += 1;
+                let minute:number = Math.floor(data[0].lcg_game_duration / 60);
+                let second:number = data[0].lcg_game_duration % 60;
+                if(second > 30) {
+                    minute += 1;
+                }
+                setLcgGameDuration(minute);
+
+                setLcgMatchInfoYn(true);
+
+                lcgMatchMainQuery().then((data) => {
+                    setLcgMatchMain(data);
+                });
+        
+                lcgMatchSubQuery().then((data) => {
+                    setLcgMatchSub(data);
+                });
+        
+                lcgMatchTeamQuery().then((data) => {
+                    setLcgMatchTeam(data);
+                });
             }
-            setLcgGameDuration(minute);
-
-            setLcgMatchInfoYn(true);
-
-            lcgMatchMainQuery().then((data) => {
-                setLcgMatchMain(data);
-            });
-    
-            lcgMatchSubQuery().then((data) => {
-                setLcgMatchSub(data);
-            });
-    
-            lcgMatchTeamQuery().then((data) => {
-                setLcgMatchTeam(data);
-            });
+            
         });
-    }, [])
+    }, [props.gameId])
     
     return (
-        <Style.MatchHistory>
+        <Style.MatchHistory $gameId={props.gameId}>
             {
                 lcgMatchInfoYn ?
                 lcgMatchTeam?.map((lcgTeam) => {

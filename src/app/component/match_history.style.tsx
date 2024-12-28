@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
-export const MatchHistory = styled('div')`
+export const MatchHistory = styled('div')<{$gameId:number}>`
     display: flex;
     align-items: center;
     width: 1100px;
+    height: ${({$gameId}) => $gameId > 0 ? '100px' : '0'};
+    overflow: hidden;
+    transition: all 0.4s ease;
 
     table {
         margin: 5px;
@@ -35,7 +38,7 @@ export const MatchHistory = styled('div')`
 
         .lcg_level {
             position: absolute;
-            bottom: 18px;
+            bottom: 12px;
             left: 3px;
             padding: 2px 4px 2px 2px;
             font-size: 10px;
