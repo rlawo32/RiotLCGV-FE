@@ -13,9 +13,19 @@ export const ListContainer = styled('div')`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    .matchHistory_box {
+      height: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+      
+    .matchHistory_box.view_active {
+      height: 355px;
+    }
 `
 
-export const ListItem = styled('div')`
+export const ListBox = styled('div')`
     height: 125px;
     width: 850px;
     margin: 10px;
@@ -31,12 +41,12 @@ export const ListItem = styled('div')`
     rgba(245,10,50,0.8) 95%);
     cursor: pointer;
 
-    .item_head {
+    .box_head {
         display: flex;
         align-items: center;
     }
 
-    .item_body {
+    .box_body {
         position: relative;
         top: -3px;
         display: flex;
@@ -44,14 +54,14 @@ export const ListItem = styled('div')`
         justify-content: center;
         margin: 0 0 12px;
 
-        .item_player {
+        .box_player {
             position: relative;
             display: flex;
             align-items: center;
             padding-top: 7px;
             font-size: 18px;
 
-            .item_win {
+            .box_win {
                 position: absolute;
                 top: -45px;
             }
@@ -72,7 +82,7 @@ export const ListItem = styled('div')`
             align-items: center;
             margin: 0 30px;
 
-            .item_time {
+            .box_time {
                 position: absolute;
                 top: 55px;
                 font-size: 14px;
@@ -80,7 +90,7 @@ export const ListItem = styled('div')`
         }
     }
 
-    .item_foot {
+    .box_foot {
         display: flex;
         align-items: center;
         justify-content: right;
