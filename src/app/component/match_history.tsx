@@ -31,8 +31,8 @@ const MatchHistory = (props : {gameId:number}) => {
     const [lcgMatchSub, setLcgMatchSub] = useState<{
         lcg_game_id:number, lcg_participant_id:number, lcg_first_kil:string, lcg_first_tower:string,
         lcg_double_kill:number, lcg_triple_kill:number, lcg_quadra_kill:number, lcg_penta_kill:number,
-        lcg_normal_ward:number, lcg_vision_ward:number, lcg_gold_total:number, lcg_heal_total:number,
-        lcg_crowd_time:number, lcg_destroy_tower:number, lcg_damage_tower:number
+        lcg_normal_ward:number, lcg_vision_ward:number, lcg_destroy_ward:number, lcg_gold_total:number, 
+        lcg_heal_total:number, lcg_crowd_time:number, lcg_destroy_tower:number, lcg_damage_tower:number
     }[]>([]);
 
     const [lcgMatchTeam, setLcgMatchTeam] = useState<{
@@ -135,7 +135,7 @@ const MatchHistory = (props : {gameId:number}) => {
                                     lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
                                         return (
                                             <tr key={"lcgMain" + idx} className="lcg_main">
-                                                <td className="lcg_common lcg_champion" style={{width:'15px'}}>
+                                                <td className="lcg_champion" style={{width:'15px'}}>
                                                     <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
                                                     alt={"champion"} height={45} width={45} className="lcg_image champion_image" />
                                                     <div className="lcg_level">
@@ -159,7 +159,7 @@ const MatchHistory = (props : {gameId:number}) => {
                                                         {lcgMain.lcg_summoner_name}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_common lcg_kda" style={{width:'60px'}}>
+                                                <td className="lcg_common lcg_kda" style={{width:'90px'}}>
                                                     {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
                                                 </td>
                                                 <td className="lcg_common lcg_damage" style={{width:'60px'}}>
@@ -171,11 +171,14 @@ const MatchHistory = (props : {gameId:number}) => {
                                                     <DamageGraph standard={lcgMaxDamageTaken} target={lcgMain.lcg_damage_taken} flag={"T"}/>
                                                 </td>
                                                 <td className="lcg_common lcg_ward" style={{width:'40px'}}>
-                                                    {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_normal_ward}
-                                                    &nbsp;/&nbsp;
-                                                    {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_vision_ward}
+                                                    {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_destroy_ward}
+                                                    <div className="lcg_ward_count">
+                                                        {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_normal_ward}
+                                                        &nbsp;/&nbsp;
+                                                        {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_vision_ward}
+                                                    </div>
                                                 </td>
-                                                <td className="lcg_common lcg_minion" style={{width:'50px'}}>
+                                                <td className="lcg_common lcg_minion" style={{width:'70px'}}>
                                                     {lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count}
                                                     <div className="lcg_minute_cs">
                                                         분당 {((lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count) / lcgGameDuration).toFixed(1)}

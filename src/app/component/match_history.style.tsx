@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MatchHistory = styled('div')`
     display: flex;
     align-items: center;
-    width: 1100px;
+    width: 100%;
     height: 100%;
 
     table {
@@ -13,7 +13,7 @@ export const MatchHistory = styled('div')`
         background-color: indigo;
 
         tr {
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid #3d96ff;
         }
 
         td {
@@ -27,7 +27,7 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_common {
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .lcg_champion {
@@ -50,6 +50,13 @@ export const MatchHistory = styled('div')`
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 12px;
+        }
+
+        .lcg_ward {
+
+            .lcg_ward_count {
+                margin-top: 3px;
+            }
         }
 
         .lcg_item {
