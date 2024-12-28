@@ -115,7 +115,7 @@ const MatchHistory = (props : {gameId:number}) => {
     }, [props.gameId])
     
     return (
-        <Style.MatchHistory $gameId={props.gameId}>
+        <Style.MatchHistory>
             {
                 lcgMatchInfoYn ?
                 lcgMatchTeam?.map((lcgTeam) => {
