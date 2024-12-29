@@ -36,7 +36,7 @@ const MatchList = () => {
     }
 
     const matchHistoryList= ():any[] => {
-        let result:any[] = []
+        const result:any[] = []
 
         for(let i=0; i<lcgMatchLog.length; i++) {
             result.push(
@@ -94,16 +94,16 @@ const MatchList = () => {
 
     useEffect(() => {
         const lcgTeamLogQuery = async():Promise<any> => {
-            let {data:lcg_team_log, error} = await client
+            const {data:lcg_team_log, error} = await client
                 .from("lcg_team_log")
                 .select("*")
                 .order("lcg_game_id", { ascending: false })
 
-            return lcg_team_log;
+            return error ? error : lcg_team_log;
         }
 
         lcgTeamLogQuery().then((data) => {
-            setLcgMatchLog(data);
+            if(data.length > 0) {setLcgMatchLog(data)} else {console.log(data)}
         });
     }, [])
 
