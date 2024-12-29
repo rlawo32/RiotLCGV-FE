@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import supabase from "@/app/supabase";
 import Image from "next/image";
 
@@ -45,71 +45,74 @@ const MatchHistory = (props : {gameId:number}) => {
 
     useEffect(() => {
         const lcgMatchInfoQuery = async():Promise<any> => {
-            let {data:lcg_match_info, error} = await client
+            const {data:lcg_match_info, error} = await client
                 .from("lcg_match_info")
                 .select("lcg_game_id, lcg_ver_main, lcg_ver_cdn, lcg_game_duration," + 
                     " lcg_ver_lang, lcg_max_damage_total, lcg_max_damage_taken")
                 .eq("lcg_game_id", props.gameId)
 
-            return lcg_match_info;
+            return error ? error : lcg_match_info;
         }
 
         const lcgMatchMainQuery = async():Promise<any> => {
-            let {data:lcg__match_main, error} = await client
+            const {data:lcg__match_main, error} = await client
                 .from("lcg_match_main")
                 .select("*")
                 .eq("lcg_game_id", props.gameId)
 
-            return lcg__match_main;
+            return error ? error : lcg__match_main;
         }
 
         const lcgMatchSubQuery = async():Promise<any> => {
-            let {data:lcg_match_sub, error} = await client
+            const {data:lcg_match_sub, error} = await client
                 .from("lcg_match_sub")
                 .select("*")
                 .eq("lcg_game_id", props.gameId)
 
-            return lcg_match_sub;
+            return error ? error : lcg_match_sub;
         }
 
         const lcgMatchTeamQuery = async():Promise<any> => {
-            let {data:lcg_match_team, error} = await client
+            const {data:lcg_match_team, error} = await client
                 .from("lcg_match_team")
                 .select("*")
                 .eq("lcg_game_id", props.gameId)
 
-            return lcg_match_team;
+            return error ? error : lcg_match_team;
         }
 
         lcgMatchInfoQuery().then((data) => {
-            if(data[0] !== undefined) {
-                setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
-                setImageUrl2(data[0].lcg_ver_cdn + "/img/");
-                setLcgMaxDamageTotal(data[0].lcg_max_damage_total);
-                setLcgMaxDamageTaken(data[0].lcg_max_damage_taken);
+            if(data.length > 0) {
+                if(data[0] !== undefined) {
+                    setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
+                    setImageUrl2(data[0].lcg_ver_cdn + "/img/");
+                    setLcgMaxDamageTotal(data[0].lcg_max_damage_total);
+                    setLcgMaxDamageTaken(data[0].lcg_max_damage_taken);
 
-                let minute:number = Math.floor(data[0].lcg_game_duration / 60);
-                let second:number = data[0].lcg_game_duration % 60;
-                if(second > 30) {
-                    minute += 1;
-                }
-                setLcgGameDuration(minute);
+                    let minute:number = Math.floor(data[0].lcg_game_duration / 60);
+                    const second:number = data[0].lcg_game_duration % 60;
+                    if(second > 30) {
+                        minute += 1;
+                    }
+                    setLcgGameDuration(minute);
 
-                setLcgMatchInfoYn(true);
+                    setLcgMatchInfoYn(true);
 
-                lcgMatchMainQuery().then((data) => {
-                    setLcgMatchMain(data);
-                });
-        
-                lcgMatchSubQuery().then((data) => {
-                    setLcgMatchSub(data);
-                });
-        
-                lcgMatchTeamQuery().then((data) => {
-                    setLcgMatchTeam(data);
-                });
-            }
+                    lcgMatchMainQuery().then((data) => {
+                        if(data.length > 0) {setLcgMatchMain(data)} else {console.log(data)}
+                    });
             
+                    lcgMatchSubQuery().then((data) => {
+                        if(data.length > 0) {setLcgMatchSub(data)} else {console.log(data)}
+                    });
+            
+                    lcgMatchTeamQuery().then((data) => {
+                        if(data.length > 0) {setLcgMatchTeam(data)} else {console.log(data)}
+                    });
+                }
+            } else {
+                console.log(data)
+            }
         });
     }, [props.gameId])
     
