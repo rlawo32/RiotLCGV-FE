@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 
-const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
+const ErrorPage = memo((props : {errorCode:string, errorMessage:string}) => {
     const testRef:any = useRef<any>([]);
 
     const test = (n:number, t:number) => {
@@ -11,21 +11,23 @@ const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
         testRef.current[n].innerHTML = "";
 
         setTimeout(function() {
-            let se = setInterval(function() {
+            const se = setInterval(function() {
                 i++;
                 testRef.current[n].innerHTML = str.slice(0, i) + "|";
-                if (i == str.length) {
-                    clearInterval(se);
-                    testRef.current[n].innerHTML = str;
-                }
             }, 10);
+            if (i == str.length) {
+                clearInterval(se);
+                testRef.current[n].innerHTML = str;
+            }
         }, t);
     }
 
     useEffect(() => {
-        test(0, 0);
-        test(1, 600);
-    }, [])
+        if(props.errorCode.length > 0) {
+            test(0, 0);
+            test(1, 600);
+        }
+    }, [props])
 
     return (
         <div>
@@ -34,6 +36,6 @@ const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
             <div ref={(te:any) => (testRef.current[1] = te)}>{props.errorMessage}</div>
         </div>
     )
-}
+});
 
 export default ErrorPage;
