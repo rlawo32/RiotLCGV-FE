@@ -38,4 +38,6 @@ const ErrorPage = memo((props : {errorCode:string, errorMessage:string}) => {
     )
 });
 
+ErrorPage.displayName = "ErrorPage";
+
 export default ErrorPage;
