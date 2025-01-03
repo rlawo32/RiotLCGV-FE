@@ -15,6 +15,7 @@ const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
                 i++;
                 testRef.current[n].innerHTML = str.slice(0, i) + "|";
             }, 10);
+            
             if (i == str.length) {
                 clearInterval(se);
                 testRef.current[n].innerHTML = str;
