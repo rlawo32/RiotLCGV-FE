@@ -2,7 +2,7 @@
 
 import { memo, useEffect, useRef } from "react";
 
-const ErrorPage = memo((props : {errorCode:string, errorMessage:string}) => {
+const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
     const testRef:any = useRef<any>([]);
 
     const test = (n:number, t:number) => {
@@ -36,8 +36,6 @@ const ErrorPage = memo((props : {errorCode:string, errorMessage:string}) => {
             <div ref={(te:any) => (testRef.current[1] = te)}>{props.errorMessage}</div>
         </div>
     )
-});
-
-const ErrorPageRes = memo(ErrorPage);
+}
 
 export default ErrorPage;
