@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
     const testRef:any = useRef<any>([]);
