@@ -11,6 +11,7 @@ export const MatchHistory = styled('div')`
         border-collapse: collapse;
         table-layout: fixed
         background-color: indigo;
+        color: white;
 
         tr {
             border-bottom: 1px solid #3d96ff;
