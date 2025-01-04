@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import useSupabaseBrowser from "../supabase-browser";
 import DamageGraph  from "./damage_graph";
@@ -11,18 +10,11 @@ import { getLcgMatchMain } from "../queries/getLcgMatchMain";
 import { getLcgMatchSub } from "../queries/getLcgMatchSub";
 import { getLcgMatchTeam } from "../queries/getLcgMatchTeam";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { useQueries } from "@tanstack/react-query";
+import Link from "next/link";
 
 const MatchHistory = (props : {gameId:number}) => {
     const supabase = useSupabaseBrowser();
     const gameId:number = props.gameId;
-
-    // const [imageUrl1, setImageUrl1] = useState<string>("");
-    // const [imageUrl2, setImageUrl2] = useState<string>("");
-    const [lcgMatchInfoYn, setLcgMatchInfoYn] = useState<boolean>(false);
-    // const [lcgGameDuration, setLcgGameDuration] = useState<number>(0);
-    // const [lcgMaxDamageTotal, setLcgMaxDamageTotal] = useState<number>(0);
-    // const [lcgMaxDamageTaken, setLcgMaxDamageTaken] = useState<number>(0);
 
     const { data: lcgMatchInfo, isLoading:lcgMatchInfoLoading, isError:lcgMatchInfoError, 
         error:errorMessage1 } = useQuery(getLcgMatchInfo(supabase, gameId), {enabled:gameId.toString.length > 0});
@@ -97,10 +89,12 @@ const MatchHistory = (props : {gameId:number}) => {
                                                     <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
                                                     alt={"perk2"} height={16} width={16} className="lcg_image perk_image2" />
                                                 </td>
-                                                <td className="lcg_summoner_name" style={{width:'60px'}}>
-                                                    <div className="lcg_summoner_name">
-                                                        {lcgMain.lcg_summoner_name}
-                                                    </div>
+                                                <td className="lcg_summoner_name" style={{width:'50px'}}>
+                                                    <Link href={"https://www.op.gg/summoners/kr/" + lcgMain.lcg_summoner_name + "-" + lcgMain.lcg_summoner_tag} target="_blank">
+                                                        <div className="lcg_summoner_name">
+                                                            {lcgMain.lcg_summoner_name}
+                                                        </div>
+                                                    </Link>
                                                 </td>
                                                 <td className="lcg_common lcg_kda" style={{width:'90px'}}>
                                                     {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
