@@ -1,125 +1,65 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import supabase from "@/app/supabase";
 import Image from "next/image";
-
+import useSupabaseBrowser from "../supabase-browser";
 import DamageGraph  from "./damage_graph";
+
 import * as Style from "./match_history.style";
+import { getLcgMatchInfo } from "../queries/getLcgMatchInfo";
+import { getLcgMatchMain } from "../queries/getLcgMatchMain";
+import { getLcgMatchSub } from "../queries/getLcgMatchSub";
+import { getLcgMatchTeam } from "../queries/getLcgMatchTeam";
+import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import { useQueries } from "@tanstack/react-query";
 
 const MatchHistory = (props : {gameId:number}) => {
-    const client:any = supabase();
+    const supabase = useSupabaseBrowser();
+    const gameId:number = props.gameId;
 
-    const [imageUrl1, setImageUrl1] = useState<string>("");
-    const [imageUrl2, setImageUrl2] = useState<string>("");
-
+    // const [imageUrl1, setImageUrl1] = useState<string>("");
+    // const [imageUrl2, setImageUrl2] = useState<string>("");
     const [lcgMatchInfoYn, setLcgMatchInfoYn] = useState<boolean>(false);
-    const [lcgGameDuration, setLcgGameDuration] = useState<number>(0);
-    const [lcgMaxDamageTotal, setLcgMaxDamageTotal] = useState<number>(0);
-    const [lcgMaxDamageTaken, setLcgMaxDamageTaken] = useState<number>(0);
+    // const [lcgGameDuration, setLcgGameDuration] = useState<number>(0);
+    // const [lcgMaxDamageTotal, setLcgMaxDamageTotal] = useState<number>(0);
+    // const [lcgMaxDamageTaken, setLcgMaxDamageTaken] = useState<number>(0);
 
-    const [lcgMatchMain, setLcgMatchMain] = useState<{
-        lcg_game_id:number, lcg_participant_id:number, lcg_team_id:number, lcg_summoner_id:number,
-        lcg_summoner_name:string, lcg_summoner_tag:string, lcg_champion_id:number, lcg_champion_name:string,
-        lcg_champion_level:number, lcg_spell_name_1:string, lcg_spell_name_2:string, lcg_perk_name_1:string,
-        lcg_perk_name_2:string, lcg_item_id_1:number, lcg_item_id_2:number, lcg_item_id_3:number, 
-        lcg_item_id_4:number,lcg_item_id_5:number, lcg_item_id_6:number, lcg_item_id_7:number, 
-        lcg_kill_count:number, lcg_death_count:number,lcg_assist_count:number, lcg_damage_total:number, 
-        lcg_damage_taken:number, lcg_minion_count:number,lcg_jungle_count:number, lcg_vision_score:number
-    }[]>([]);
+    const { data: lcgMatchInfo, isLoading:lcgMatchInfoLoading, isError:lcgMatchInfoError, 
+        error:errorMessage1 } = useQuery(getLcgMatchInfo(supabase, gameId), {enabled:gameId.toString.length > 0});
+    const { data: lcgMatchMain, isLoading:lcgMatchMainLoading, isError:lcgMatchMainError, 
+        error:errorMessage2 } = useQuery(getLcgMatchMain(supabase, gameId), {enabled:!!lcgMatchInfo});
+    const { data: lcgMatchSub, isLoading:lcgMatchSubLoading, isError:lcgMatchSubError, 
+        error:errorMessage3 } = useQuery(getLcgMatchSub(supabase, gameId), {enabled:!!lcgMatchMain});
+    const { data: lcgMatchTeam, isLoading:lcgMatchTeamLoading, isError:lcgMatchTeamError, 
+        error:errorMessage4 } = useQuery(getLcgMatchTeam(supabase, gameId), {enabled:!!lcgMatchSub});
 
-    const [lcgMatchSub, setLcgMatchSub] = useState<{
-        lcg_game_id:number, lcg_participant_id:number, lcg_first_kil:string, lcg_first_tower:string,
-        lcg_double_kill:number, lcg_triple_kill:number, lcg_quadra_kill:number, lcg_penta_kill:number,
-        lcg_normal_ward:number, lcg_vision_ward:number, lcg_destroy_ward:number, lcg_gold_total:number, 
-        lcg_heal_total:number, lcg_crowd_time:number, lcg_destroy_tower:number, lcg_damage_tower:number
-    }[]>([]);
+    let imageUrl1:string;
+    let imageUrl2:string;
+    let lcgMaxDamageTotal:number;
+    let lcgMaxDamageTaken:number;
+    let lcgGameDuration:number;
 
-    const [lcgMatchTeam, setLcgMatchTeam] = useState<{
-        lcg_game_id:number, lcg_team_id:number, lcg_team_win:string, lcg_first_dragon:string,
-        lcg_first_baron:string, lcg_first_kill:string, lcg_first_tower:string, lcg_first_inhibitor:string,
-        lcg_dragon_total:number, lcg_baron_total:number, lcg_tower_total:number, lcg_horde_total:number,
-        lcg_herald_total:number, lcg_bans_name_1:string, lcg_bans_name_2:string, lcg_bans_name_3:string,
-        lcg_bans_name_4:string, lcg_bans_name_5:string
-    }[]>([]);
+    if(!!lcgMatchInfo) {
+        lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
+        lcgMaxDamageTaken = lcgMatchInfo[0].lcg_max_damage_taken;
 
-    useEffect(() => {
-        const lcgMatchInfoQuery = async():Promise<any> => {
-            const {data:lcg_match_info, error} = await client
-                .from("lcg_match_info")
-                .select("lcg_game_id, lcg_ver_main, lcg_ver_cdn, lcg_game_duration," + 
-                    " lcg_ver_lang, lcg_max_damage_total, lcg_max_damage_taken")
-                .eq("lcg_game_id", props.gameId)
+        const lcgVerCdn = lcgMatchInfo[0].lcg_ver_cdn;
+        const lcgVerMain = lcgMatchInfo[0].lcg_ver_main;
 
-            return error ? error : lcg_match_info;
+        imageUrl1 = lcgVerCdn + "/" + lcgVerMain + "/img/";
+        imageUrl2 = lcgVerCdn + "/img/";
+
+        let minute:number = Math.floor(lcgMatchInfo[0].lcg_game_duration / 60);
+        const second:number = lcgMatchInfo[0].lcg_game_duration % 60;
+        if(second > 30) {
+            minute += 1;
         }
-
-        const lcgMatchMainQuery = async():Promise<any> => {
-            const {data:lcg__match_main, error} = await client
-                .from("lcg_match_main")
-                .select("*")
-                .eq("lcg_game_id", props.gameId)
-
-            return error ? error : lcg__match_main;
-        }
-
-        const lcgMatchSubQuery = async():Promise<any> => {
-            const {data:lcg_match_sub, error} = await client
-                .from("lcg_match_sub")
-                .select("*")
-                .eq("lcg_game_id", props.gameId)
-
-            return error ? error : lcg_match_sub;
-        }
-
-        const lcgMatchTeamQuery = async():Promise<any> => {
-            const {data:lcg_match_team, error} = await client
-                .from("lcg_match_team")
-                .select("*")
-                .eq("lcg_game_id", props.gameId)
-
-            return error ? error : lcg_match_team;
-        }
-
-        lcgMatchInfoQuery().then((data) => {
-            if(data.length > 0) {
-                if(data[0] !== undefined) {
-                    setImageUrl1(data[0].lcg_ver_cdn + "/" + data[0].lcg_ver_main + "/img/");
-                    setImageUrl2(data[0].lcg_ver_cdn + "/img/");
-                    setLcgMaxDamageTotal(data[0].lcg_max_damage_total);
-                    setLcgMaxDamageTaken(data[0].lcg_max_damage_taken);
-
-                    let minute:number = Math.floor(data[0].lcg_game_duration / 60);
-                    const second:number = data[0].lcg_game_duration % 60;
-                    if(second > 30) {
-                        minute += 1;
-                    }
-                    setLcgGameDuration(minute);
-
-                    setLcgMatchInfoYn(true);
-
-                    lcgMatchMainQuery().then((data) => {
-                        if(data.length > 0) {setLcgMatchMain(data)} else {console.log(data)}
-                    });
-            
-                    lcgMatchSubQuery().then((data) => {
-                        if(data.length > 0) {setLcgMatchSub(data)} else {console.log(data)}
-                    });
-            
-                    lcgMatchTeamQuery().then((data) => {
-                        if(data.length > 0) {setLcgMatchTeam(data)} else {console.log(data)}
-                    });
-                }
-            } else {
-                console.log(data)
-            }
-        });
-    }, [props.gameId])
+        lcgGameDuration = minute;
+    }
     
     return (
         <Style.MatchHistory>
             {
-                lcgMatchInfoYn ?
                 lcgMatchTeam?.map((lcgTeam) => {
                     return (
                         <table key={"lcgTeam" + lcgTeam.lcg_team_id}>
@@ -174,11 +114,11 @@ const MatchHistory = (props : {gameId:number}) => {
                                                     <DamageGraph standard={lcgMaxDamageTaken} target={lcgMain.lcg_damage_taken} flag={"T"}/>
                                                 </td>
                                                 <td className="lcg_common lcg_ward" style={{width:'40px'}}>
-                                                    {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_destroy_ward}
+                                                    {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_destroy_ward}
                                                     <div className="lcg_ward_count">
-                                                        {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_normal_ward}
+                                                        {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_normal_ward}
                                                         &nbsp;/&nbsp;
-                                                        {lcgMatchSub.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_vision_ward}
+                                                        {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_vision_ward}
                                                     </div>
                                                 </td>
                                                 <td className="lcg_common lcg_minion" style={{width:'70px'}}>
@@ -240,7 +180,7 @@ const MatchHistory = (props : {gameId:number}) => {
                             </tbody>  
                         </table>
                     )
-                }) : <></>
+                })
             }
         </Style.MatchHistory>
     )
