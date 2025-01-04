@@ -1,26 +1,35 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
-import supabase from "@/app/supabase";
+import { useRef, useState } from "react";
+import useSupabaseBrowser from "../supabase-browser";
 import Image from "next/image";
 
 import * as Style from "./match_list.style";
 
 import MatchHistory from "./match_history";
+import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import { getLcgMatchLog } from "../queries/getLcgMatchLog";
 
 const MatchList = () => {
-    const client:any = supabase();
+    const supabase = useSupabaseBrowser();
     const matchHistoryRef:any = useRef<any>([]);
 
     const [selectGameId, setSelectGameId] = useState<number>(0);
-    const [lcgMatchLog, setLcgMatchLog] = useState<{
-        lcg_game_id:number, lcg_game_win:number, lcg_game_date:string, lcg_game_ver:string, lcg_game_duration:number,
-        team_a_name_1:string, team_a_name_2:string, team_a_name_3:string, team_a_name_4:string, team_a_name_5:string,
-        team_b_name_1:string, team_b_name_2:string, team_b_name_3:string, team_b_name_4:string, team_b_name_5:string
-    }[]>([]);
+    const [selectIdx, setSelectIdx] = useState<number>(-1);
+
+    const { data: lcgMatchLog, isLoading, isError, error } = useQuery(getLcgMatchLog(supabase));
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    
+    if (isError || !lcgMatchLog) {
+        return <div>Error</div>
+    }
 
     const matchListBoxClick = (gameId:number, idx:number) => {
         setSelectGameId(gameId);
+        setSelectIdx(idx);
 
         if(!matchHistoryRef.current[idx].className.includes('view_active')) {
             matchHistoryRef.current[idx].className += ' view_active';
@@ -39,77 +48,65 @@ const MatchList = () => {
         const result:any[] = []
 
         for(let i=0; i<lcgMatchLog.length; i++) {
-            result.push(
-            <Style.ListContainer key={lcgMatchLog[i].lcg_game_id} onClick={() => setSelectGameId(lcgMatchLog[i].lcg_game_id)}>
-                <Style.ListBox onClick={() => matchListBoxClick(lcgMatchLog[i].lcg_game_id, i)}>
-                    <div className="box_inner">
-                        <div className="box_head">
-                            {(lcgMatchLog[i].lcg_game_date).substring(0, 10)}
-                        </div>
-                        <div className="box_body">
-                            <div className="box_player body_left">
-                                {lcgMatchLog[i].lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
-                                <div>
-                                    {lcgMatchLog[i].team_a_name_1}&nbsp;/&nbsp;
-                                    {lcgMatchLog[i].team_a_name_2}&nbsp;/&nbsp; 
-                                    {lcgMatchLog[i].team_a_name_3}&nbsp;/&nbsp; 
-                                    {lcgMatchLog[i].team_a_name_4}&nbsp;/&nbsp; 
-                                    {lcgMatchLog[i].team_a_name_5}
-                                </div>                        
-                            </div>
-                            <div className="body_center">
-                                <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
-                                <div className="box_time">
-                                    {Math.floor(lcgMatchLog[i].lcg_game_duration / 60)}:{String(lcgMatchLog[i].lcg_game_duration % 60).padStart(2, '0')}
-                                </div>
-                            </div>
-                            <div className="box_player body_right">
-                                <div>
-                                    {lcgMatchLog[i].team_b_name_1}&nbsp;/&nbsp;
-                                    {lcgMatchLog[i].team_b_name_2}&nbsp;/&nbsp;
-                                    {lcgMatchLog[i].team_b_name_3}&nbsp;/&nbsp;
-                                    {lcgMatchLog[i].team_b_name_4}&nbsp;/&nbsp;
-                                    {lcgMatchLog[i].team_b_name_5}
-                                </div>
-                                {lcgMatchLog[i].lcg_game_win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win right_icon" />  : <div className="item_win" />} 
-                            </div>
-                        </div>
-                        <div className="box_foot">
-                            Ver. {lcgMatchLog[i].lcg_game_ver}
-                        </div>
-                    </div>
-                    <div className="box_outer" />
-                </Style.ListBox>
-                <div className="matchHistory_box" ref={(mh:any) => (matchHistoryRef.current[i] = mh)}>
-                    <div className="box_inner">
-                        <MatchHistory gameId={selectGameId} />    
-                    </div>
-                    <div className="box_outer" />
-                </div>
-            </Style.ListContainer>)
+            result.push()
         }
 
         return result;
     }
 
-    useEffect(() => {
-        const lcgTeamLogQuery = async():Promise<any> => {
-            const {data:lcg_team_log, error} = await client
-                .from("lcg_team_log")
-                .select("*")
-                .order("lcg_game_id", { ascending: false })
-
-            return error ? error : lcg_team_log;
-        }
-
-        lcgTeamLogQuery().then((data) => {
-            if(data.length > 0) {setLcgMatchLog(data)} else {console.log(data)}
-        });
-    }, [])
-
     return (
         <Style.MatchList>
-            {matchHistoryList()}
+            {lcgMatchLog?.map((lcgLog, idx) => {
+                return (
+                    <Style.ListContainer key={lcgLog.lcg_game_id} onClick={() => {setSelectGameId(lcgLog.lcg_game_id)}}>
+                        <Style.ListBox onClick={() => matchListBoxClick(lcgLog.lcg_game_id, idx)}>
+                            <div className="box_inner">
+                                <div className="box_head">
+                                    {(lcgLog.lcg_game_date).substring(0, 10)}
+                                </div>
+                                <div className="box_body">
+                                    <div className="box_player body_left">
+                                        {lcgLog.lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
+                                        <div>
+                                            {lcgLog.team_a_name_1}&nbsp;/&nbsp;
+                                            {lcgLog.team_a_name_2}&nbsp;/&nbsp; 
+                                            {lcgLog.team_a_name_3}&nbsp;/&nbsp; 
+                                            {lcgLog.team_a_name_4}&nbsp;/&nbsp; 
+                                            {lcgLog.team_a_name_5}
+                                        </div>                        
+                                    </div>
+                                    <div className="body_center">
+                                        <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
+                                        <div className="box_time">
+                                            {Math.floor(lcgLog.lcg_game_duration / 60)}:{String(lcgLog.lcg_game_duration % 60).padStart(2, '0')}
+                                        </div>
+                                    </div>
+                                    <div className="box_player body_right">
+                                        <div>
+                                            {lcgLog.team_b_name_1}&nbsp;/&nbsp;
+                                            {lcgLog.team_b_name_2}&nbsp;/&nbsp;
+                                            {lcgLog.team_b_name_3}&nbsp;/&nbsp;
+                                            {lcgLog.team_b_name_4}&nbsp;/&nbsp;
+                                            {lcgLog.team_b_name_5}
+                                        </div>
+                                        {lcgLog.lcg_game_win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win right_icon" /> : <div className="item_win" />} 
+                                    </div>
+                                </div>
+                                <div className="box_foot">
+                                    Ver. {lcgLog.lcg_game_ver}
+                                </div>
+                            </div>
+                            <div className="box_outer" />
+                        </Style.ListBox>
+                        <div className="matchHistory_box" ref={(mh:any) => (matchHistoryRef.current[idx] = mh)}>
+                            <div className="box_inner">
+                                {selectIdx === idx && <MatchHistory gameId={selectGameId} />}    
+                            </div>
+                            <div className="box_outer" />
+                        </div>
+                </Style.ListContainer>
+                )
+            })}
         </Style.MatchList>
     )
 }
