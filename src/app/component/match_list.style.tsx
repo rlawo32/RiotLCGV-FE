@@ -19,9 +19,9 @@ export const ListContainer = styled('div')`
         position: relative;
         height: 0;
         overflow: hidden;
-        transition: all 0.4s ease;
+        transition: all .4s ease;
 
-        .box_inner {
+        .box_inner {                                                                                                                  
             position: relative;
             display: flex;
             align-items: center;
@@ -52,7 +52,7 @@ export const ListContainer = styled('div')`
         display: inline-block;
         padding: 2px;
         text-decoration: none;
-        height: 415px;
+        height: 435px;
     }
 `
 
@@ -69,9 +69,9 @@ export const ListBox = styled('div')`
     font-weight: bold;
     background-color: grey;
     // background: linear-gradient(to right, 
-    rgba(50,10,245,0.8) 5%, 
-    rgba(240,240,240,0.8) 50%, 
-    rgba(245,10,50,0.8) 95%);
+    /* rgba(50,10,245,0.8) 5%,  */
+    /* rgba(240,240,240,0.8) 50%,  */
+    /* rgba(245,10,50,0.8) 95%); */
     cursor: pointer;
     
     .box_inner {
