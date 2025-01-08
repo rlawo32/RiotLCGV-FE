@@ -11,13 +11,29 @@ import { getLcgMatchSub } from "../queries/getLcgMatchSub";
 import { getLcgMatchTeam } from "../queries/getLcgMatchTeam";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import Link from "next/link";
+import { TableView } from "./table_view.style";
+import Loading from "./loading_page";
+import { useEffect, useState } from "react";
+import BaronIcon from "../icons/baronIcon";
+import DragonIcon from "../icons/dragonIcon";
+import HeraldIcon from "../icons/HeraldIcon";
+import HordeIcon from "../icons/HordeIcon";
+import TurretIcon from "../icons/TurretIcon";
+import InhibitorIcon from "../icons/inhibitorIcon";
+import GoldIcon from "../icons/goldIcon";
 
 const MatchHistory = (props : {gameId:number}) => {
     const supabase = useSupabaseBrowser();
     const gameId:number = props.gameId;
 
+    const [load, setLoad] = useState<boolean>(false);
+
+    useEffect(() => {
+        setTimeout(() => {setLoad(true)}, 1500);
+    }, [])
+
     const { data: lcgMatchInfo, isLoading:lcgMatchInfoLoading, isError:lcgMatchInfoError, 
-        error:errorMessage1 } = useQuery(getLcgMatchInfo(supabase, gameId), {enabled:gameId.toString.length > 0});
+        error:errorMessage1 } = useQuery(getLcgMatchInfo(supabase, gameId), {enabled:!!load});
     const { data: lcgMatchMain, isLoading:lcgMatchMainLoading, isError:lcgMatchMainError, 
         error:errorMessage2 } = useQuery(getLcgMatchMain(supabase, gameId), {enabled:!!lcgMatchInfo});
     const { data: lcgMatchSub, isLoading:lcgMatchSubLoading, isError:lcgMatchSubError, 
@@ -48,6 +64,10 @@ const MatchHistory = (props : {gameId:number}) => {
         }
         lcgGameDuration = minute;
     }
+
+    if(!load) {
+        return <Style.MatchHistory><Loading /></Style.MatchHistory>
+    }
     
     return (
         <Style.MatchHistory>
@@ -56,6 +76,75 @@ const MatchHistory = (props : {gameId:number}) => {
                     return (
                         <table key={"lcgTeam" + lcgTeam.lcg_team_id}>
                             <thead>
+                                <tr>
+                                    <th colSpan={11} className={lcgTeam.lcg_team_id === 100 ? "aggregate aggregate_left" : "aggregate aggregate_right"}>
+                                        {lcgTeam.lcg_team_id === 100 ? 
+                                            <>
+                                                <span className="lcg_object_count">
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><BaronIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_baron}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><DragonIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_dragon}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><HeraldIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_herald}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><HordeIcon /></span>
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_horde}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><TurretIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_tower}</span>
+                                                    </span>
+                                                </span>
+                                                <span className="lcg_team_gold">
+                                                    <span className="lcg_object_icon"><GoldIcon /></span> 
+                                                    <span className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</span>
+                                                </span>
+                                                <span className="lcg_team_kda">
+                                                    {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
+                                                </span>
+                                            </> 
+                                            : 
+                                            <>
+                                                <span className="lcg_team_kda">
+                                                    {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
+                                                </span>
+                                                <span className="lcg_team_gold">
+                                                    <span className="lcg_object_icon"><GoldIcon /></span> 
+                                                    <span className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</span>
+                                                </span>
+                                                <span className="lcg_object_count">
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><BaronIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_baron}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><DragonIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_dragon}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><HeraldIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_herald}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><HordeIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_horde}</span>
+                                                    </span>
+                                                    <span className="lcg_object_item">
+                                                        <span className="lcg_object_icon"><TurretIcon /></span> 
+                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_tower}</span>
+                                                    </span>
+                                                </span>
+                                            </>
+                                        }
+                                    </th>
+                                </tr>
                                 <tr>
                                     <th colSpan={4}>소환사</th>
                                     <th>KDA</th>
@@ -70,44 +159,52 @@ const MatchHistory = (props : {gameId:number}) => {
                                     lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
                                         return (
                                             <tr key={"lcgMain" + idx} className="lcg_main">
-                                                <td className="lcg_champion" style={{width:'15px'}}>
+                                                <td className="lcg_champion">
                                                     <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
-                                                    alt={"champion"} height={45} width={45} className="lcg_image champion_image" />
+                                                    alt={"champion"} height={40} width={40} className="lcg_image champion_image" />
                                                     <div className="lcg_level">
                                                         {lcgMain.lcg_champion_level}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_spell" style={{width:'15px'}}>
+                                                <td className="lcg_spell">
                                                     <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
-                                                    alt={"spell1"} height={24} width={24} className="lcg_image spell_image" />
+                                                    alt={"spell1"} height={20} width={20} className="lcg_image spell_image" />
                                                     <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
-                                                    alt={"spell2"} height={24} width={24} className="lcg_image spell_image" />
+                                                    alt={"spell2"} height={20} width={20} className="lcg_image spell_image" />
                                                 </td>
-                                                <td className="lcg_perk" style={{width:'15px'}}>
+                                                <td className="lcg_perk">
                                                     <Image src={imageUrl2 + lcgMain.lcg_perk_name_1} 
-                                                    alt={"perk1"} height={24} width={24} className="lcg_image perk_image1" />
+                                                    alt={"perk1"} height={22} width={22} className="lcg_image perk_image1" />
                                                     <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
                                                     alt={"perk2"} height={16} width={16} className="lcg_image perk_image2" />
                                                 </td>
-                                                <td className="lcg_summoner_name" style={{width:'50px'}}>
+                                                <td className="lcg_summoner_name">
                                                     <Link href={"https://www.op.gg/summoners/kr/" + lcgMain.lcg_summoner_name + "-" + lcgMain.lcg_summoner_tag} target="_blank">
                                                         <div className="lcg_summoner_name">
                                                             {lcgMain.lcg_summoner_name}
                                                         </div>
                                                     </Link>
                                                 </td>
-                                                <td className="lcg_common lcg_kda" style={{width:'90px'}}>
-                                                    {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
+                                                <td className="lcg_kda">
+                                                    <div className="lcg_kda_head">
+                                                        {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
+                                                        <span className="lcg_kda_rate">
+                                                            ({Math.round((lcgMain.lcg_kill_count + lcgMain.lcg_assist_count) / lcgTeam.lcg_total_kill * 100)}%)
+                                                        </span>
+                                                    </div>
+                                                    <Style.LcgKdaCalc $k={lcgMain.lcg_kill_count} $d={lcgMain.lcg_death_count} $a={lcgMain.lcg_assist_count}>
+                                                        {lcgMain.lcg_death_count !== 0 ? ((lcgMain.lcg_kill_count + lcgMain.lcg_assist_count) / lcgMain.lcg_death_count).toFixed(2) + ":1" : "Perfect"}
+                                                    </Style.LcgKdaCalc>
                                                 </td>
-                                                <td className="lcg_common lcg_damage" style={{width:'60px'}}>
+                                                <td className="lcg_damage">
                                                     {lcgMain.lcg_damage_total.toLocaleString()}
                                                     <DamageGraph standard={lcgMaxDamageTotal} target={lcgMain.lcg_damage_total} flag={"D"}/>
                                                 </td>
-                                                <td className="lcg_common lcg_taken" style={{width:'60px'}}>
+                                                <td className="lcg_taken">
                                                     {lcgMain.lcg_damage_taken.toLocaleString()}
                                                     <DamageGraph standard={lcgMaxDamageTaken} target={lcgMain.lcg_damage_taken} flag={"T"}/>
                                                 </td>
-                                                <td className="lcg_common lcg_ward" style={{width:'40px'}}>
+                                                <td className="lcg_ward">
                                                     {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_destroy_ward}
                                                     <div className="lcg_ward_count">
                                                         {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_normal_ward}
@@ -115,51 +212,51 @@ const MatchHistory = (props : {gameId:number}) => {
                                                         {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_vision_ward}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_common lcg_minion" style={{width:'70px'}}>
+                                                <td className="lcg_minion">
                                                     {lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count}
                                                     <div className="lcg_minute_cs">
                                                         분당 {((lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count) / lcgGameDuration).toFixed(1)}
                                                     </div>
                                                 </td>
-                                                <td className="lcg_item" style={{width:'88px'}}>
+                                                <td className="lcg_item">
                                                     {
                                                         lcgMain.lcg_item_id_1 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
-                                                            alt={"item1"} height={24} width={24} className="item_image" />
+                                                            alt={"item1"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_2 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
-                                                            alt={"item2"} height={24} width={24} className="item_image" />
+                                                            alt={"item2"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_3 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
-                                                            alt={"item3"} height={24} width={24} className="item_image" />
+                                                            alt={"item3"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_4 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
-                                                            alt={"item4"} height={24} width={24} className="item_image" />
+                                                            alt={"item4"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_5 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
-                                                            alt={"item5"} height={24} width={24} className="item_image" />
+                                                            alt={"item5"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                     {
                                                         lcgMain.lcg_item_id_6 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
-                                                            alt={"item6"} height={24} width={24} className="item_image" />
+                                                            alt={"item6"} height={22} width={22} className="item_image" />
                                                             :<div className="item_image empty_image"/>
                                                     }
                                                 </td>
-                                                <td style={{width:'20px'}}>
+                                                <td className="lcg_acc">
                                                     {
                                                         lcgMain.lcg_item_id_7 !== 0 ?
                                                             <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
