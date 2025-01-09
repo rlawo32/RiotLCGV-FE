@@ -5,13 +5,12 @@ import useSupabaseBrowser from "../supabase-browser";
 import DamageGraph  from "./damage_graph";
 
 import * as Style from "./match_history.style";
-import { getLcgMatchInfo } from "../queries/getLcgMatchInfo";
-import { getLcgMatchMain } from "../queries/getLcgMatchMain";
-import { getLcgMatchSub } from "../queries/getLcgMatchSub";
-import { getLcgMatchTeam } from "../queries/getLcgMatchTeam";
+import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
+import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
+import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
+import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import Link from "next/link";
-import { TableView } from "./table_view.style";
 import Loading from "./loading_page";
 import { useEffect, useState } from "react";
 import BaronIcon from "../icons/baronIcon";
@@ -19,7 +18,6 @@ import DragonIcon from "../icons/dragonIcon";
 import HeraldIcon from "../icons/HeraldIcon";
 import HordeIcon from "../icons/HordeIcon";
 import TurretIcon from "../icons/TurretIcon";
-import InhibitorIcon from "../icons/inhibitorIcon";
 import GoldIcon from "../icons/goldIcon";
 
 const MatchHistory = (props : {gameId:number}) => {
@@ -33,13 +31,13 @@ const MatchHistory = (props : {gameId:number}) => {
     }, [])
 
     const { data: lcgMatchInfo, isLoading:lcgMatchInfoLoading, isError:lcgMatchInfoError, 
-        error:errorMessage1 } = useQuery(getLcgMatchInfo(supabase, gameId), {enabled:!!load});
+        error:errorMessage1 } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!load});
     const { data: lcgMatchMain, isLoading:lcgMatchMainLoading, isError:lcgMatchMainError, 
-        error:errorMessage2 } = useQuery(getLcgMatchMain(supabase, gameId), {enabled:!!lcgMatchInfo});
+        error:errorMessage2 } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchInfo});
     const { data: lcgMatchSub, isLoading:lcgMatchSubLoading, isError:lcgMatchSubError, 
-        error:errorMessage3 } = useQuery(getLcgMatchSub(supabase, gameId), {enabled:!!lcgMatchMain});
+        error:errorMessage3 } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
     const { data: lcgMatchTeam, isLoading:lcgMatchTeamLoading, isError:lcgMatchTeamError, 
-        error:errorMessage4 } = useQuery(getLcgMatchTeam(supabase, gameId), {enabled:!!lcgMatchSub});
+        error:errorMessage4 } = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
 
     let imageUrl1:string;
     let imageUrl2:string;

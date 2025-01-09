@@ -8,7 +8,7 @@ import * as Style from "./match_list.style";
 
 import MatchHistory from "./match_history";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { getLcgMatchLog } from "../queries/getLcgMatchLog";
+import { getLcgMatchLogQuery } from "../queries/getLcgMatchLogQuery";
 
 const MatchList = () => {
     const supabase = useSupabaseBrowser();
@@ -17,7 +17,7 @@ const MatchList = () => {
     const [selectGameId, setSelectGameId] = useState<number>(0);
     const [selectIdx, setSelectIdx] = useState<number>(-1);
 
-    const { data: lcgMatchLog, isLoading, isError, error } = useQuery(getLcgMatchLog(supabase));
+    const { data: lcgMatchLog, isLoading, isError, error } = useQuery(getLcgMatchLogQuery(supabase));
 
     if (isLoading) {
         return <div>Loading...</div>
