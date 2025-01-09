@@ -77,72 +77,41 @@ const MatchHistory = (props : {gameId:number}) => {
                         <table key={"lcgTeam" + lcgTeam.lcg_team_id}>
                             <thead>
                                 <tr>
-                                    <th colSpan={11} className={lcgTeam.lcg_team_id === 100 ? "aggregate aggregate_left" : "aggregate aggregate_right"}>
-                                        {lcgTeam.lcg_team_id === 100 ? 
-                                            <>
-                                                <span className="lcg_object_count">
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><BaronIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_baron}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><DragonIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_dragon}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><HeraldIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_herald}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><HordeIcon /></span>
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_horde}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><TurretIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_tower}</span>
-                                                    </span>
-                                                </span>
-                                                <span className="lcg_team_gold">
-                                                    <span className="lcg_object_icon"><GoldIcon /></span> 
-                                                    <span className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</span>
-                                                </span>
-                                                <span className="lcg_team_kda">
-                                                    {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
-                                                </span>
-                                            </> 
-                                            : 
-                                            <>
-                                                <span className="lcg_team_kda">
-                                                    {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
-                                                </span>
-                                                <span className="lcg_team_gold">
-                                                    <span className="lcg_object_icon"><GoldIcon /></span> 
-                                                    <span className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</span>
-                                                </span>
-                                                <span className="lcg_object_count">
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><BaronIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_baron}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><DragonIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_dragon}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><HeraldIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_herald}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><HordeIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_horde}</span>
-                                                    </span>
-                                                    <span className="lcg_object_item">
-                                                        <span className="lcg_object_icon"><TurretIcon /></span> 
-                                                        <span className="lcg_object_data">{lcgTeam.lcg_total_tower}</span>
-                                                    </span>
-                                                </span>
-                                            </>
-                                        }
+                                    <th colSpan={11} className={lcgTeam.lcg_team_id === 100 ? "aggregate_left" : "aggregate_right"}>
+                                        <div className="aggregate">
+                                            <div className="lcg_object_count">
+                                                <div className="lcg_object_item">
+                                                    <div className="lcg_object_icon"><BaronIcon /></div> 
+                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_baron}</div>
+                                                </div>
+                                                <div className="lcg_object_item">
+                                                    <div className="lcg_object_icon"><DragonIcon /></div> 
+                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_dragon}</div>
+                                                </div>
+                                                <div className="lcg_object_item">
+                                                    <div className="lcg_object_icon"><HeraldIcon /></div> 
+                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_herald}</div>
+                                                </div>
+                                                <div className="lcg_object_item">
+                                                    <div className="lcg_object_icon"><HordeIcon /></div>
+                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_horde}</div>
+                                                </div>
+                                                <div className="lcg_object_item">
+                                                    <div className="lcg_object_icon"><TurretIcon /></div> 
+                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_tower}</div>
+                                                </div>
+                                            </div>
+                                            <div className="lcg_team_gold">
+                                                <div className="lcg_object_icon"><GoldIcon /></div> 
+                                                <div className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</div>
+                                            </div>
+                                            <div className="lcg_team_kda">
+                                                {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
+                                            </div>
+                                            <div className="lcg_win" style={lcgTeam.lcg_team_win === 'Y' ? {color:"#5383E8"} : {color:"#E84057"}}>
+                                                {lcgTeam.lcg_team_win === 'Y' ? "승리" : "패배"}
+                                            </div>
+                                        </div> 
                                     </th>
                                 </tr>
                                 <tr>
@@ -188,9 +157,9 @@ const MatchHistory = (props : {gameId:number}) => {
                                                 <td className="lcg_kda">
                                                     <div className="lcg_kda_head">
                                                         {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
-                                                        <span className="lcg_kda_rate">
+                                                        <div className="lcg_kda_rate">
                                                             ({Math.round((lcgMain.lcg_kill_count + lcgMain.lcg_assist_count) / lcgTeam.lcg_total_kill * 100)}%)
-                                                        </span>
+                                                        </div>
                                                     </div>
                                                     <Style.LcgKdaCalc $k={lcgMain.lcg_kill_count} $d={lcgMain.lcg_death_count} $a={lcgMain.lcg_assist_count}>
                                                         {lcgMain.lcg_death_count !== 0 ? ((lcgMain.lcg_kill_count + lcgMain.lcg_assist_count) / lcgMain.lcg_death_count).toFixed(2) + ":1" : "Perfect"}
