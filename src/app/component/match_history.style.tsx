@@ -42,7 +42,7 @@ export const MatchHistory = styled('div')`
                 display: flex;
                 align-items: center;
 
-                padding-bottom: 17px;
+                padding-bottom: 22px;
 
                 .lcg_win {
                     margin: 0 30px;
