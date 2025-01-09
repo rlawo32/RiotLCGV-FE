@@ -1,6 +1,6 @@
 import { TypedSupabaseClient } from "../supabase" 
 
-export function getLcgMatchLog(client: TypedSupabaseClient) {
+export function getLcgMatchLogQuery(client: TypedSupabaseClient) {
   return client
     .from("lcg_match_log")
     .select("*")
