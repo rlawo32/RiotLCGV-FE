@@ -22,47 +22,70 @@ export const MatchHistory = styled('div')`
                 font-size: 14px;
             }
 
-            .aggregate {
-                padding-bottom: 24px;
-            }
-
             .aggregate_left {
-                padding-right: 35px;
-                text-align: right;
-            }
 
-            .aggregate_right {
-                padding-left: 35px;
-                text-align: left;
-            }
-
-            .lcg_team_kda {
-                font-size: 18px;
-            }
-
-            .lcg_team_gold {
-                position: relative;
-                margin: 0 55px 0 70px;
-                font-size: 16px;
-
-                .lcg_object_icon {
-                    position: absolute;
-                    top: 0;
-                    left: -20px;
+                .aggregate {
+                    justify-content: right;
+                    flex-direction: row;
                 }
             }
 
-            .lcg_object_count {
+            .aggregate_right {
 
-                .lcg_object_item {
+                .aggregate {
+                    justify-content: left;
+                    flex-direction: row-reverse;
+                }
+            }
+
+            .aggregate {
+                display: flex;
+                align-items: center;
+
+                padding-bottom: 17px;
+
+                .lcg_win {
+                    margin: 0 30px;
+                    font-size: 17px;
+                    font-weight: bold;
+                }
+    
+                .lcg_team_kda {
+                    margin: 0 20px;
+                    font-size: 18px;
+                }
+
+                .lcg_team_gold {
                     position: relative;
-                    margin: 15px;
+                    margin: 0 30px;
                     font-size: 16px;
 
                     .lcg_object_icon {
                         position: absolute;
-                        top: -1px;
-                        left: -18px;
+                        top: 1px;
+                        left: -20px;
+                    }
+                }
+
+                .lcg_object_count {
+                    display: flex;
+                    align-items: center;
+                    margin: 0 10px;
+
+                    .lcg_object_item {
+                        position: relative;
+                        margin: 0 5px;
+                        font-size: 16px;
+
+                        .lcg_object_icon {
+                            position: absolute;
+                            top: -1px;
+                            left: -10px;
+                        }
+
+                        .lcg_object_data {
+                            margin: 0 10px;
+                        }
                     }
                 }
             }
