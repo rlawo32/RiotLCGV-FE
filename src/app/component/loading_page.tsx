@@ -1,7 +1,6 @@
 'use client'
 
 import { SkeletonUi } from "./loading.style";
-import { TableView } from "./table_view.style";
 
 const Loading = () => {
 
