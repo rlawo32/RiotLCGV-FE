@@ -30,14 +30,10 @@ const MatchHistory = (props : {gameId:number}) => {
         setTimeout(() => {setLoad(true)}, 1500);
     }, [])
 
-    const { data: lcgMatchInfo, isLoading:lcgMatchInfoLoading, isError:lcgMatchInfoError, 
-        error:errorMessage1 } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!load});
-    const { data: lcgMatchMain, isLoading:lcgMatchMainLoading, isError:lcgMatchMainError, 
-        error:errorMessage2 } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchInfo});
-    const { data: lcgMatchSub, isLoading:lcgMatchSubLoading, isError:lcgMatchSubError, 
-        error:errorMessage3 } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
-    const { data: lcgMatchTeam, isLoading:lcgMatchTeamLoading, isError:lcgMatchTeamError, 
-        error:errorMessage4 } = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
+    const { data: lcgMatchInfo } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!load});
+    const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchInfo});
+    const { data: lcgMatchSub } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
+    const { data: lcgMatchTeam } = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
 
     let imageUrl1:string;
     let imageUrl2:string;

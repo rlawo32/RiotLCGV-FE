@@ -17,7 +17,7 @@ const MatchList = () => {
     const [selectGameId, setSelectGameId] = useState<number>(0);
     const [selectIdx, setSelectIdx] = useState<number>(-1);
 
-    const { data: lcgMatchLog, isLoading, isError, error } = useQuery(getLcgMatchLogQuery(supabase));
+    const { data: lcgMatchLog, isLoading, isError } = useQuery(getLcgMatchLogQuery(supabase));
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -42,16 +42,6 @@ const MatchList = () => {
                 matchHistoryRef.current[i].className = matchHistoryRef.current[i].className.replace(' view_active', '');
             }
         }
-    }
-
-    const matchHistoryList= ():any[] => {
-        const result:any[] = []
-
-        for(let i=0; i<lcgMatchLog.length; i++) {
-            result.push()
-        }
-
-        return result;
     }
 
     return (
