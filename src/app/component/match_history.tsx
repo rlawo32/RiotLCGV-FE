@@ -27,7 +27,7 @@ const MatchHistory = (props : {gameId:number}) => {
     const [load, setLoad] = useState<boolean>(false);
 
     useEffect(() => {
-        setTimeout(() => {setLoad(true)}, 1500);
+        setTimeout(() => {setLoad(true)}, 1000);
     }, [])
 
     const { data: lcgMatchInfo } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!load});
