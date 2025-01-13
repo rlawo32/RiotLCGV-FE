@@ -33,7 +33,7 @@ const MatchHistory = (props : {gameId:number}) => {
     const { data: lcgMatchTeam } = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
 
     useEffect(() => {
-        let loadTime:number = 700;
+        let loadTime:number = 1000;
         if(!dataLoading) {
             loadTime += 5000;
         } else if (dataError) {
