@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MatchHistory = styled('div')`
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 1140px;
     height: 100%;
 
     table {
@@ -11,6 +11,38 @@ export const MatchHistory = styled('div')`
         border-collapse: collapse;
         table-layout: fixed;
         color: white;
+
+        .skeleton_ui {
+
+
+            .aggregate_left {.skeleton_header {justify-content: right;flex-direction: row;}}
+
+            .aggregate_right {.skeleton_header {justify-content: left;flex-direction: row-reverse;}}
+
+            .skeleton_header {
+                height: 20px;
+                width: 100%;
+                margin: auto 22px;
+                border-radius: 10px;
+                animation: pulse 2s infinite ease-in-out;
+            }
+
+            .skeleton_portrait {
+                height: 80%;
+                width: 80%;
+                margin: auto;
+                border-radius: 10px;
+                animation: pulse 2s infinite ease-in-out;
+            }
+
+            .skeleton_content {
+                height: 60%;
+                width: 100%;
+                margin: auto;
+                border-radius: 10px;
+                animation: pulse 2s infinite ease-in-out;
+            }
+        }
 
         thead {
             tr:nth-child(n+2) {
@@ -22,21 +54,9 @@ export const MatchHistory = styled('div')`
                 font-size: 14px;
             }
 
-            .aggregate_left {
+            .aggregate_left {.aggregate {justify-content: right;flex-direction: row;}}
 
-                .aggregate {
-                    justify-content: right;
-                    flex-direction: row;
-                }
-            }
-
-            .aggregate_right {
-
-                .aggregate {
-                    justify-content: left;
-                    flex-direction: row-reverse;
-                }
-            }
+            .aggregate_right {.aggregate {justify-content: left;flex-direction: row-reverse;}}
 
             .aggregate {
                 display: flex;
@@ -57,7 +77,7 @@ export const MatchHistory = styled('div')`
 
                 .lcg_team_gold {
                     position: relative;
-                    margin: 0 30px;
+                    margin: 0 25px;
                     font-size: 16px;
 
                     .lcg_object_icon {
@@ -229,6 +249,20 @@ export const MatchHistory = styled('div')`
             width: 16px;
         }
     }
+    
+    @keyframes pulse {
+        0% {
+            background-color: #94a3b8;
+        }
+
+        50% {
+            background-color: #cbd5e1;
+        }
+
+        100% {
+            background-color: #94a3b8;
+        }
+    }
 `;
 
 export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
@@ -246,9 +280,4 @@ export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
         :
         "#9E9EB1"
     }
-`;
-
-export const LcgGameMvp = styled('div')`
-
-    
 `;
