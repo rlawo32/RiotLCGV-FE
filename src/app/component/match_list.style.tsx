@@ -25,6 +25,7 @@ export const ListContainer = styled('div')`
             position: relative;
             display: flex;
             align-items: center;
+            height: 100%;
             padding: 20px 2px 25px;
             z-index: 1;
             border-radius: 14px;
