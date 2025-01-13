@@ -1,17 +1,19 @@
 'use client';
 
-import Image from "next/image";
-import useSupabaseBrowser from "../supabase-browser";
-import DamageGraph  from "./damage_graph";
-
 import * as Style from "./match_history.style";
+
+import { useEffect, useState } from "react";
+import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import Image from "next/image";
+import Link from "next/link";
+import useSupabaseBrowser from "../supabase-browser";
+
 import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
 import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
 import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
 import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
-import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+
+import DamageGraph  from "./damage_graph";
 import BaronIcon from "../icons/baronIcon";
 import DragonIcon from "../icons/dragonIcon";
 import HeraldIcon from "../icons/HeraldIcon";
