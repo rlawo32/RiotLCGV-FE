@@ -20,6 +20,7 @@ import HeraldIcon from "../icons/HeraldIcon";
 import HordeIcon from "../icons/HordeIcon";
 import TurretIcon from "../icons/TurretIcon";
 import GoldIcon from "../icons/goldIcon";
+import InhibitorIcon from "../icons/inhibitorIcon";
 
 const MatchHistory = (props : {gameId:number}) => {
     const supabase = useSupabaseBrowser();
@@ -101,6 +102,10 @@ const MatchHistory = (props : {gameId:number}) => {
                                                             <div className="lcg_object_icon"><TurretIcon /></div> 
                                                             <div className="lcg_object_data">{lcgTeam.lcg_total_tower}</div>
                                                         </div>
+                                                        <div className="lcg_object_item">
+                                                            <div className="lcg_object_icon"><InhibitorIcon /></div> 
+                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_inhibitor}</div>
+                                                        </div>
                                                     </div>
                                                     <div className="lcg_team_gold">
                                                         <div className="lcg_object_icon"><GoldIcon /></div> 
@@ -164,7 +169,9 @@ const MatchHistory = (props : {gameId:number}) => {
                                                             </td>
                                                             <td className="lcg_kda">
                                                                 <div className="lcg_kda_head">
-                                                                    {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
+                                                                    <div>
+                                                                        {lcgMain.lcg_kill_count} / {lcgMain.lcg_death_count} / {lcgMain.lcg_assist_count}
+                                                                    </div>
                                                                     <div className="lcg_kda_rate">
                                                                         ({Math.round((lcgMain.lcg_kill_count + lcgMain.lcg_assist_count) / lcgTeam.lcg_total_kill * 100)}%)
                                                                     </div>
