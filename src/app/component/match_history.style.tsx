@@ -14,7 +14,6 @@ export const MatchHistory = styled('div')`
 
         .skeleton_ui {
 
-
             .aggregate_left {.skeleton_header {justify-content: right;flex-direction: row;}}
 
             .aggregate_right {.skeleton_header {justify-content: left;flex-direction: row-reverse;}}
@@ -54,9 +53,9 @@ export const MatchHistory = styled('div')`
                 font-size: 14px;
             }
 
-            .aggregate_left {.aggregate {justify-content: right;flex-direction: row;}}
+            .aggregate_left {.aggregate {justify-content: right;flex-direction: row;}.lcg_object_count {justify-content: right;flex-direction: row-reverse;}}
 
-            .aggregate_right {.aggregate {justify-content: left;flex-direction: row-reverse;}}
+            .aggregate_right {.aggregate {justify-content: left;flex-direction: row-reverse;}.lcg_object_count {justify-content: left;flex-direction: row;}}
 
             .aggregate {
                 display: flex;
@@ -65,19 +64,20 @@ export const MatchHistory = styled('div')`
                 padding-bottom: 22px;
 
                 .lcg_win {
-                    margin: 0 30px;
+                    margin: 0 20px;
                     font-size: 17px;
                     font-weight: bold;
                 }
     
                 .lcg_team_kda {
-                    margin: 0 20px;
+                    margin: 0 18px;
                     font-size: 18px;
                 }
 
                 .lcg_team_gold {
                     position: relative;
-                    margin: 0 25px;
+                    width: 30px;
+                    margin: 0 35px;
                     font-size: 16px;
 
                     .lcg_object_icon {
@@ -90,21 +90,20 @@ export const MatchHistory = styled('div')`
                 .lcg_object_count {
                     display: flex;
                     align-items: center;
-                    margin: 0 10px;
+                    margin: 0 8px;
 
                     .lcg_object_item {
                         position: relative;
-                        margin: 0 5px;
-                        font-size: 16px;
+                        font-size: 14px;
+                        margin: 0 5px 0 25px;
 
                         .lcg_object_icon {
                             position: absolute;
                             top: -1px;
-                            left: -10px;
+                            left: -19px;
                         }
 
                         .lcg_object_data {
-                            margin: 0 10px;
                         }
                     }
                 }
@@ -168,7 +167,7 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_summoner_name {
-            width: 70px;
+            width: 65px;
             padding-bottom: 3px;
             white-space: nowrap;
             overflow: hidden;
@@ -177,21 +176,24 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_kda {
-            width: 130px;
-            font-size: 11px;
+            width: 140px;
+            font-size: 10px;
 
             .lcg_kda_head {
                 display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 3px;  
             }
 
             .lcg_kda_rate {
-                margin: 0 3px;  
-                font-size: 10px;
+                margin: 0 3px;
+                font-size: 9px;  
             }
 
             .lcg_kda_calc {
                 margin: 3px 0; 
-                font-size: 10px;  
+                font-size: 9px;  
             }
         }
 
