@@ -14,6 +14,7 @@ export const ListContainer = styled('div')`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 20px 0;
 
     .matchHistory_box {
         position: relative;
@@ -26,7 +27,7 @@ export const ListContainer = styled('div')`
             display: flex;
             align-items: center;
             height: 100%;
-            padding: 20px 2px 25px;
+            padding: 20px 3px 24px;
             z-index: 1;
             border-radius: 14px;
             background-color: #0e0e21;
@@ -62,7 +63,7 @@ export const ListBox = styled('div')`
     display: inline-block;
     height: 125px;
     width: 850px;
-    margin: 15px;
+    margin: 10px 0;
     padding: 1px;
     border: none;
     border-radius: 10px;
@@ -74,6 +75,20 @@ export const ListBox = styled('div')`
     /* rgba(240,240,240,0.8) 50%,  */
     /* rgba(245,10,50,0.8) 95%); */
     cursor: pointer;
+
+    &::before, &::after {
+        border-radius: 10px;
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: -1.5px;
+        background-image: linear-gradient(#bed8ff, #3d96ff);
+        background-size: 400%;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        z-index: 0;
+        animation: steam 60s linear infinite;
+    }
     
     .box_inner {
         position: relative;
@@ -88,18 +103,6 @@ export const ListBox = styled('div')`
         background-color: #070719;
         color: white;
         box-shadow: 0 2px 8px rgba(61, 150, 255, .4), inset 0 -2px 12px rgba(58, 113, 255, .5);
-    }
-
-    .box_outer {
-        height: 100%;
-        position: absolute;
-        top: 0%;
-        bottom: 0%;
-        left: 0%;
-        right: 0%;
-        z-index: 0;
-        border-radius: 10px;
-        background-image: linear-gradient(#bed8ff, #3d96ff);
     }
 
     .box_head {
