@@ -47,17 +47,14 @@ export const MatchRanking = styled('div')`
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        margin: 10px 30px;
+        margin: 10px 20px;
 
         .ranker_img {
-            height: 150px;
-            width: 150px;
-            margin: 7px auto;
-            border: 1px solid red;
-            border-radius: 50%;
+            margin: 3px auto;
         }
 
         .ranker_name {
+            margin: 0 0 3px;
             font-size: 20px;
         }
 
