@@ -1,9 +1,9 @@
-import ListMatch from "./component/match_list";
+import MatchList from "./component/match_list";
 
 export default function Home() {
   return (
     <div>
-      <ListMatch />
+      <MatchList />
     </div>
   );
 }
