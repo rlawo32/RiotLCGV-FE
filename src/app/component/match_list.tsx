@@ -60,7 +60,7 @@ const MatchList = () => {
                                     </div>
                                     <div className="box_body">
                                         <div className="box_player body_left">
-                                            {lcgLog.lcg_game_win === 100 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
+                                            {lcgLog.lcg_game_win === 100 ? <Image src={"/img/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win left_icon" /> : <div className="item_win" />} 
                                             <div>
                                                 {lcgLog.team_a_name_1}&nbsp;/&nbsp;
                                                 {lcgLog.team_a_name_2}&nbsp;/&nbsp; 
@@ -70,7 +70,7 @@ const MatchList = () => {
                                             </div>                        
                                         </div>
                                         <div className="body_center">
-                                            <Image src={"/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
+                                            <Image src={"/img/vs_image.png"} alt={"VS"} height={70} width={70} className="list_image" />
                                             <div className="box_time">
                                                 {Math.floor(lcgLog.lcg_game_duration / 60)}:{String(lcgLog.lcg_game_duration % 60).padStart(2, '0')}
                                             </div>
@@ -83,7 +83,7 @@ const MatchList = () => {
                                                 {lcgLog.team_b_name_4}&nbsp;/&nbsp;
                                                 {lcgLog.team_b_name_5}
                                             </div>
-                                            {lcgLog.lcg_game_win === 200 ? <Image src={"/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win right_icon" /> : <div className="item_win" />} 
+                                            {lcgLog.lcg_game_win === 200 ? <Image src={"/img/win_image.png"} alt={"WIN"} height={70} width={70} className="box_win right_icon" /> : <div className="item_win" />} 
                                         </div>
                                     </div>
                                     <div className="box_foot">
