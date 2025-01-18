@@ -10,6 +10,10 @@ export function getLcgAllWinningRateQuery(client:TypedSupabaseClient) {
   return client.rpc('all_winningrate_rank')
 }
 
+export function getLcgAllDeathQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_death_rank')
+}
+
 export function getLcgOneGameBest3GoldQuery(client:TypedSupabaseClient) {
   return client.rpc('onegame_best3_gold_rank')
 }
