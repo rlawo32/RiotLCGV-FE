@@ -78,6 +78,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                cursor: pointer;
             }
 
             .item_title {
@@ -132,6 +133,7 @@ export const RankerContent = styled('div')<{$ea:number}>`
     .ranker_name {
         margin: 0 0 3px;
         font-size: ${({$ea}) => $ea > 2 ? "12px" : $ea === 2 ? "14px" : "17px"};
+        cursor: pointer;
     }
 
     .ranker_title {

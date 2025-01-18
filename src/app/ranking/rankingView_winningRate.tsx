@@ -2,6 +2,7 @@
 
 import * as Style from "./match_ranking.style"
 import Image from "next/image";
+import Link from "next/link";
 
 import { duplicationRank } from "./ranking_tool";
 
@@ -30,7 +31,9 @@ const RankingViewWinningRate = (props : {data:{
                                 <Image src={"/img/border_silver_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
-                                    <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                        <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    </Link>
                                     <div className="ranker_title">승률 {item.rate}%</div>
                                     <div className="ranker_detail">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
                                 </Style.RankerContent>
@@ -45,7 +48,9 @@ const RankingViewWinningRate = (props : {data:{
                                 <Image src={"/img/border_gold_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
-                                    <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                        <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    </Link>
                                     <div className="ranker_title">승률 {item.rate}%</div>
                                     <div className="ranker_detail">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
                                 </Style.RankerContent>
@@ -60,7 +65,9 @@ const RankingViewWinningRate = (props : {data:{
                                 <Image src={"/img/border_bronze_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
-                                    <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                        <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    </Link>
                                     <div className="ranker_title">승률 {item.rate}%</div>
                                     <div className="ranker_detail">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
                                 </Style.RankerContent>   
@@ -74,7 +81,9 @@ const RankingViewWinningRate = (props : {data:{
                     return (
                         <div className="ranking_item" key={"lowRank_" + idx}>
                             <div className="item_rank">{item.rank}</div>
-                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                            </Link>
                             <div className="item_title">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
                             <div className="item_detail">승률 {item.rate}%</div>
                         </div>

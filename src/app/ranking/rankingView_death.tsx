@@ -2,6 +2,7 @@
 
 import * as Style from "./match_ranking.style"
 import Image from "next/image";
+import Link from "next/link";
 
 import { duplicationRank } from "./ranking_tool";
 
@@ -27,7 +28,9 @@ const RankingViewDeath = (props : {data:{
                                 <Image src={"/img/border_silver_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
-                                    <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                        <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    </Link>
                                     <div className="ranker_title"></div>
                                     <div className="ranker_detail">총 {item.lcg_count_death} 데스</div>
                                 </Style.RankerContent>
@@ -42,7 +45,9 @@ const RankingViewDeath = (props : {data:{
                                 <Image src={"/img/border_gold_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
-                                    <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                        <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    </Link>
                                     <div className="ranker_title"></div>
                                     <div className="ranker_detail">총 {item.lcg_count_death} 데스</div>
                                 </Style.RankerContent>
@@ -57,7 +62,9 @@ const RankingViewDeath = (props : {data:{
                                 <Image src={"/img/border_bronze_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
-                                    <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                        <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
+                                    </Link>
                                     <div className="ranker_title"></div>
                                     <div className="ranker_detail">총 {item.lcg_count_death} 데스</div>
                                 </Style.RankerContent>   
@@ -70,7 +77,9 @@ const RankingViewDeath = (props : {data:{
                 {props.data.filter((lowRanking) => lowRanking.rank > 3).map((item, idx) => {
                     return (
                         <div className="ranking_item" key={"lowRank_" + idx}>
-                            <div className="item_rank">{item.rank}</div>
+                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                <div className="item_rank">{item.rank}</div>
+                            </Link>
                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                             <div className="item_title"></div>
                             <div className="item_detail">총 {item.lcg_count_death} 데스</div>
