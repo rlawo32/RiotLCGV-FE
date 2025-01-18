@@ -1,31 +1,19 @@
 'use client';
 
-import Image from "next/image";
 import * as Style from "./match_ranking.style"
+import Image from "next/image";
+
+import { duplicationRank } from "./ranking_tool";
 
 const RankingViewWinningRate = (props : {data:{
-          lcg_summoner_puuid: string
-          lcg_nickname: string
-          lcg_count_play: number
-          lcg_count_victory: number
-          lcg_count_defeat: number
-          rate: string
-          rank: number
+            lcg_summoner_puuid: string
+            lcg_nickname: string
+            lcg_count_play: number
+            lcg_count_victory: number
+            lcg_count_defeat: number
+            rate: string
+            rank: number
         }[]}) => {
-        
-    const duplicationRank = (ea:number):number => {
-        let size:number = 0;
-        if(ea === 1) {
-            size = 120;
-        } else if(ea === 2) {
-            size = 80;
-        } else if(ea === 3) {
-            size = 50;
-        } else {
-            size = 30;
-        }
-        return size;
-    }
 
     return (
         <>
