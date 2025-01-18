@@ -8,7 +8,7 @@ import { getLcgMatchLogQuery } from "../queries/getLcgMatchLogQuery";
 import useSupabaseBrowser from "../supabase-browser";
 import Image from "next/image";
 
-import MatchRanking from "./match_ranking";
+import MatchRanking from "../ranking/match_ranking";
 import MatchHistory from "./match_history";
 import LoadingSpinner from "./loading_spinner";
 
