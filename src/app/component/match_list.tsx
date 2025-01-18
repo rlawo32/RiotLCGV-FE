@@ -1,12 +1,12 @@
 'use client';
 
 import * as Style from "./match_list.style";
+import Image from "next/image";
 
 import { useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import { getLcgMatchLogQuery } from "../queries/getLcgMatchLogQuery";
 import useSupabaseBrowser from "../supabase-browser";
-import Image from "next/image";
 
 import MatchRanking from "../ranking/match_ranking";
 import MatchHistory from "./match_history";

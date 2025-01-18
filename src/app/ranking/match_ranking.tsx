@@ -5,6 +5,7 @@ import * as Style from "./match_ranking.style"
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import { getLcgAllWinningRateQuery } from "../queries/getLcgPlayerStatisticsQuery";
 import useSupabaseBrowser from "../supabase-browser";
+
 import RankingViewWinningRate from "./rankingView_winningRate";
 
 const MatchRanking = () => {
