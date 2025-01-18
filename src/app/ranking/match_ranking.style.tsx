@@ -63,7 +63,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
             padding: 14px 5px 14px 25px;
             border-radius: 10px;
             background-color: rgba(42,50,73, .68);
-            font-size: 11px;
+            font-size: 12px;
             color: whitesmoke;
 
             .item_rank {
