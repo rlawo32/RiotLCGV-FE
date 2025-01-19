@@ -6,10 +6,10 @@ import Link from "next/link";
 
 import { duplicationRank } from "./ranking_tool";
 
-const RankingViewDeath = (props : {data:{
+const RankingViewAssist = (props : {data:{
             lcg_summoner_puuid: string
             lcg_nickname: string
-            lcg_count_death: number
+            lcg_count_assist: number
             rank: number
         }[]}) => {
 
@@ -26,7 +26,7 @@ const RankingViewDeath = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">총 {item.lcg_count_death.toLocaleString()} 데스</div>
+                                    <div className="ranker_title">총 {item.lcg_count_assist.toLocaleString()} 어시</div>
                                     <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.RankingItem>
@@ -43,7 +43,7 @@ const RankingViewDeath = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">총 {item.lcg_count_death.toLocaleString()} 데스</div>
+                                    <div className="ranker_title">총 {item.lcg_count_assist.toLocaleString()} 어시</div>
                                     <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.RankingItem>
@@ -60,7 +60,7 @@ const RankingViewDeath = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">총 {item.lcg_count_death.toLocaleString()} 데스</div>
+                                    <div className="ranker_title">총 {item.lcg_count_assist.toLocaleString()} 어시</div>
                                     <div className="ranker_detail"></div>
                                 </Style.RankerContent>   
                             </Style.RankingItem>
@@ -77,7 +77,7 @@ const RankingViewDeath = (props : {data:{
                             </Link>
                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                             <div className="item_title"></div>
-                            <div className="item_detail">총 {item.lcg_count_death.toLocaleString()} 데스</div>
+                            <div className="item_detail">총 {item.lcg_count_assist.toLocaleString()} 어시</div>
                         </div>
                     )
                 })}
@@ -86,4 +86,4 @@ const RankingViewDeath = (props : {data:{
     )
 }
 
-export default RankingViewDeath;
+export default RankingViewAssist;
