@@ -18,11 +18,6 @@ const RankingViewWinningRate = (props : {data:{
 
     return (
         <>
-            {/* {props.data.map((rankingData) => {
-                return (
-
-                )
-            })} */}
             <div className="ranking_top">    
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 2).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx, arr) => {
