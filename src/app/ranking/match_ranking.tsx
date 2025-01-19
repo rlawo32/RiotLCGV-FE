@@ -4,13 +4,13 @@ import * as Style from "./match_ranking.style"
 
 import { useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import useSupabaseBrowser from "../supabase-browser";
 import { 
     getLcgAllWinningRateQuery, getLcgAllKillQuery, getLcgAllDeathQuery, 
     getLcgAllAssistQuery, getLcgAllCsQuery, getLcgAllDemolisherQuery,
     getLcgAllGoldQuery, getLcgAllDamageQuery, getLcgAllTakenQuery,
     getLcgAllJungleObjectQuery, getLcgAllMultiKillQuery, getLcgAllVisionQuery,
 } from "../queries/getLcgMatchRankingQuery";
-import useSupabaseBrowser from "../supabase-browser";
 
 import RankingViewWinningRate from "./rankingView_winningRate";
 import RankingViewKill from "./rankingView_kill";

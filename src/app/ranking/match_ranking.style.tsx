@@ -39,6 +39,12 @@ export const MatchRanking = styled('div')<{$type:string}>`
         font-size: 17px;
         color: #badbcc;
 
+        svg {
+            height: 12px;
+            width: 12px;
+            margin-right: 2px;
+        }
+
         .ranking_select {
             display: flex;
             justify-content: right;
