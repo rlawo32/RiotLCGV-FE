@@ -20,6 +20,10 @@ import RankingViewCs from "./rankingView_cs";
 import RankingViewGold from "./rankingView_gold";
 import RankingViewDamage from "./rankingView_damage";
 import RankingViewTaken from "./rankingView_taken";
+import RankingViewDemolisher from "./rankingView_demolisher";
+import RankingViewJungleObject from "./rankingView_jungleobject";
+import RankingViewMultiKill from "./rankingView_multikill";
+import RankingViewVision from "./rankingView_vision";
 
 const MatchRanking = () => {
     const supabase = useSupabaseBrowser();
@@ -47,7 +51,7 @@ const MatchRanking = () => {
                         <option value={"AW"}>총 승률</option>
                         <option value={"AK"}>총 킬</option>
                         <option value={"AD"}>총 데스</option>
-                        <option value={"AS"}>총 어시</option>
+                        <option value={"AS"}>총 어시스트</option>
                         <option value={"AC"}>총 CS</option>
                         <option value={"AT"}>총 철거</option>
                         <option value={"AG"}>총 골드</option>
@@ -59,16 +63,18 @@ const MatchRanking = () => {
                     </Style.RankingSelect>
                 </div>
                 {
-                    queryWinningRateResult && rankSelect === 'AW'   ? <RankingViewWinningRate data={queryWinningRateResult}/>   : 
-                    queryAllKillResult && rankSelect === 'AK'       ? <RankingViewKill data={queryAllKillResult}/>              : 
-                    queryAllDeathResult && rankSelect === 'AD'      ? <RankingViewDeath data={queryAllDeathResult}/>            : 
-                    queryAllAssistResult && rankSelect === 'AS'     ? <RankingViewAssist data={queryAllAssistResult}/>          : 
-                    queryAllCsResult && rankSelect === 'AC'         ? <RankingViewCs data={queryAllCsResult}/>                  : 
-                    queryAllGoldResult && rankSelect === 'AG'       ? <RankingViewGold data={queryAllGoldResult}/>              : 
-                    queryAllDamageResult && rankSelect === 'ADA'    ? <RankingViewDamage data={queryAllDamageResult}/>          : 
-                    queryAllTakenResult && rankSelect === 'ATA'     ? <RankingViewTaken data={queryAllTakenResult}/>            : 
-                    
-                    
+                    queryWinningRateResult && rankSelect === 'AW'       ? <RankingViewWinningRate data={queryWinningRateResult}/>       : 
+                    queryAllKillResult && rankSelect === 'AK'           ? <RankingViewKill data={queryAllKillResult}/>                  : 
+                    queryAllDeathResult && rankSelect === 'AD'          ? <RankingViewDeath data={queryAllDeathResult}/>                : 
+                    queryAllAssistResult && rankSelect === 'AS'         ? <RankingViewAssist data={queryAllAssistResult}/>              : 
+                    queryAllCsResult && rankSelect === 'AC'             ? <RankingViewCs data={queryAllCsResult}/>                      : 
+                    queryAllDemolisherResult && rankSelect === 'AT'     ? <RankingViewDemolisher data={queryAllDemolisherResult}/>      : 
+                    queryAllGoldResult && rankSelect === 'AG'           ? <RankingViewGold data={queryAllGoldResult}/>                  : 
+                    queryAllDamageResult && rankSelect === 'ADA'        ? <RankingViewDamage data={queryAllDamageResult}/>              : 
+                    queryAllTakenResult && rankSelect === 'ATA'         ? <RankingViewTaken data={queryAllTakenResult}/>                : 
+                    queryAllJungleObjectResult && rankSelect === 'AJ'   ? <RankingViewJungleObject data={queryAllJungleObjectResult}/>  : 
+                    queryAllMultiKillResult && rankSelect === 'AM'      ? <RankingViewMultiKill data={queryAllMultiKillResult}/>        : 
+                    queryAllVisionResult && rankSelect === 'AV'         ? <RankingViewVision data={queryAllVisionResult}/>              : 
                     <></>
                 }
             </div> 
