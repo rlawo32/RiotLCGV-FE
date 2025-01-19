@@ -3,7 +3,7 @@
 import * as Style from "./match_ranking.style"
 
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { getLcgAllWinningRateQuery, getLcgAllDeathQuery } from "../queries/getLcgPlayerStatisticsQuery";
+import { getLcgAllWinningRateQuery, getLcgAllDeathQuery } from "../queries/getLcgMatchRankingQuery";
 import useSupabaseBrowser from "../supabase-browser";
 
 import RankingViewWinningRate from "./rankingView_winningRate";
@@ -21,12 +21,15 @@ const MatchRanking = () => {
     return (
         <Style.MatchRanking $type={rankSelect}>
             <div className="ranking_container">
-                <select onChange={(e) => setRankSelect(e.target.value)}>
-                    <option value={"AW"}>승률</option>
-                    <option value={"AD"}>데스</option>
-                </select>
-                {queryWinningRateResult && rankSelect === 'AW' ? <RankingViewWinningRate data={queryWinningRateResult}/> : 
-                 queryAllDeathResult && rankSelect === 'AD' ? <RankingViewDeath data={queryAllDeathResult}/> : <></>
+                <div className="ranking_select">
+                    <Style.RankingSelect onChange={(e) => setRankSelect(e.target.value)}>
+                        <option value={"AW"}>총 승률</option>
+                        <option value={"AD"}>총 데스</option>
+                    </Style.RankingSelect>
+                </div>
+                {
+                    queryWinningRateResult && rankSelect === 'AW'   ? <RankingViewWinningRate data={queryWinningRateResult}/>   : 
+                    queryAllDeathResult && rankSelect === 'AD'      ? <RankingViewDeath data={queryAllDeathResult}/>            : <></>
                 }
             </div> 
         </Style.MatchRanking>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MatchRanking = styled('div')<{$type:string}>`
     position: relative;
     border-radius: 15px;
-    height: ${({$type}) => $type === '3D' ? '260px' : '460px'};
+    height: ${({$type}) => $type === '3D' ? '260px' : '470px'};
     width: 850px;
     margin: 30px auto 50px;
     background: linear-gradient(0deg, #000, #272727);
@@ -38,6 +38,12 @@ export const MatchRanking = styled('div')<{$type:string}>`
         width: 100%;
         font-size: 17px;
         color: #badbcc;
+
+        .ranking_select {
+            display: flex;
+            justify-content: right;
+            padding: 0 15px;
+        }
     }
 
     .ranking_top {
@@ -142,5 +148,19 @@ export const RankerContent = styled('div')<{$ea:number}>`
 
     .ranker_detail {
         font-size: ${({$ea}) => $ea > 2 ? "8px" : $ea === 2 ? "10px" : "10px"};
+    }
+`
+
+export const RankingSelect = styled('select')`   
+    padding: 5px 5px;
+    border: none;
+    border-radius: 10px;
+    background: #231f50;
+    color: #6cacc5;
+    font-size: 13px;
+    cursor: pointer;
+        
+    &:focus {
+        outline: 2px solid #6cacc5;
     }
 `
