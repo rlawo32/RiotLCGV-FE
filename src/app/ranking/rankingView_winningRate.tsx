@@ -74,13 +74,35 @@ const RankingViewWinningRate = (props : {data:{
             <div className="ranking_bottom">
                 {props.data.filter((lowRanking) => lowRanking.rank > 3).map((item, idx) => {
                     return (
-                        <div className="ranking_item" key={"lowRank_" + idx}>
-                            <div className="item_rank">{item.rank}</div>
-                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
-                                <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                            </Link>
-                            <div className="item_title">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
-                            <div className="item_detail">승률 {item.rate}%</div>
+                        <div key={"lowRank_" + idx}>    
+                            {
+                                idx === 0 || idx === 6 ? 
+                                    <>
+                                        <div className="ranking_item_header">
+                                            <div className="item_header item_header_rank">순위</div>
+                                            <div className="item_header item_header_nickname">소환사명</div>
+                                            <div className="item_header item_header_title">승 / 패</div>
+                                            <div className="item_header item_header_detail">승률</div>
+                                        </div>
+                                        <div className="ranking_item">
+                                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                                <div className="item_rank">{item.rank}</div>
+                                            </Link>
+                                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                                            <div className="item_title">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                            <div className="item_detail">승률 {item.rate}%</div>
+                                        </div>
+                                    </>
+                                    :
+                                    <div className="ranking_item">
+                                        <div className="item_rank">{item.rank}</div>
+                                        <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                                        </Link>
+                                        <div className="item_title">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                        <div className="item_detail">승률 {item.rate}%</div>
+                                    </div>
+                            }
                         </div>
                     )
                 })}
