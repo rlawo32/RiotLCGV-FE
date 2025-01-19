@@ -143,16 +143,17 @@ export const RankerContent = styled('div')<{$ea:number}>`
     }
 
     .ranker_title {
-        font-size: ${({$ea}) => $ea > 2 ? "9px" : $ea === 2 ? "11px" : "11px"};
+        font-size: ${({$ea}) => $ea > 2 ? "9px" : $ea === 2 ? "11px" : "12px"};
+        font-weight: bold;
     }
 
     .ranker_detail {
-        font-size: ${({$ea}) => $ea > 2 ? "8px" : $ea === 2 ? "10px" : "10px"};
+        font-size: ${({$ea}) => $ea > 2 ? "8px" : $ea === 2 ? "10px" : "11px"};
     }
 `
 
 export const RankingSelect = styled('select')`   
-    padding: 5px 5px;
+    padding: 3px 7px;
     border: none;
     border-radius: 10px;
     background: #231f50;

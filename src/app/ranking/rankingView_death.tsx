@@ -15,11 +15,6 @@ const RankingViewDeath = (props : {data:{
 
     return (
         <>
-            {/* {props.data.map((rankingData) => {
-                return (
-
-                )
-            })} */}
             <div className="ranking_top">    
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 2).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx, arr) => {
@@ -31,8 +26,8 @@ const RankingViewDeath = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail">총 {item.lcg_count_death} 데스</div>
+                                    <div className="ranker_title">총 {item.lcg_count_death} 데스</div>
+                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.RankingItem>
                         )
@@ -48,8 +43,8 @@ const RankingViewDeath = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail">총 {item.lcg_count_death} 데스</div>
+                                    <div className="ranker_title">총 {item.lcg_count_death} 데스</div>
+                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.RankingItem>
                         )
@@ -65,8 +60,8 @@ const RankingViewDeath = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail">총 {item.lcg_count_death} 데스</div>
+                                    <div className="ranker_title">총 {item.lcg_count_death} 데스</div>
+                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>   
                             </Style.RankingItem>
                         )
