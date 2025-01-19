@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MatchRanking = styled('div')<{$type:string}>`
     position: relative;
     border-radius: 15px;
-    height: ${({$type}) => $type === '3D' ? '260px' : '470px'};
+    height: ${({$type}) => $type === '3D' ? '260px' : '500px'};
     width: 850px;
     margin: 30px auto 50px;
     background: linear-gradient(0deg, #000, #272727);
@@ -58,29 +58,75 @@ export const MatchRanking = styled('div')<{$type:string}>`
         align-items: center;
         flex-direction: column;
         flex-wrap: wrap;
-        height: 210px;
+        height: 250px;
         margin-top: 25px;
 
-        .ranking_item {
+        .ranking_item_header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            height: 20px;
-            margin: 3px 10px;
-            padding: 14px 5px 14px 25px;
+            margin: 6px 10px;
+            padding: 5px 15px 5px 5px;
             border-radius: 10px;
             background-color: rgba(42,50,73, .68);
             font-size: 12px;
             color: whitesmoke;
 
+            .item_header {
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .item_header_rank {
+                width: 60px;
+            }
+
+            .item_header_nickname {
+                width: 100px;
+                margin-right: 10px;
+            }
+
+            .item_header_title {
+                width: 80px;
+            }
+
+            .item_header_detail {
+                width: 90px;
+            }
+
+            .item_header_title_long {
+                width: 50px;
+            }
+
+            .item_header_detail_long {
+                width: 120px;
+            }
+        }
+
+        .ranking_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 20px;
+            margin: 3px 10px;
+            padding: 14px 15px 14px 25px;
+            border-radius: 10px;
+            background-color: rgba(42,50,73, .68);
+            font-size: 12px;
+            color: whitesmoke;
+            text-align: center;
+
             .item_rank {
                 width: 20px;
                 margin-right: 20px;
+                text-align: center;
                 font-weight: bold;
             }
 
             .item_nickname {
                 width: 100px;
                 margin-right: 10px;
+                text-align: center;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -93,7 +139,14 @@ export const MatchRanking = styled('div')<{$type:string}>`
 
             .item_detail {
                 width: 90px;
+            }
 
+            .item_title_long {
+                width: 50px;
+            }
+
+            .item_detail_long {
+                width: 120px;
             }
         }
     }
