@@ -64,8 +64,8 @@ const RankingViewJungleObject = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail"></div>
+                                    <div className="ranker_title">처치 수</div>
+                                    <div className="ranker_detail">오브젝트 점수</div>
                                 </Style.RankerContent>   
                             </Style.RankingItem>
                         )
@@ -80,8 +80,8 @@ const RankingViewJungleObject = (props : {data:{
                                 <div className="item_rank">{item.rank}</div>
                             </Link>
                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                            <div className="item_title"></div>
-                            <div className="item_detail"></div>
+                            <div className="item_title">처치 수</div>
+                            <div className="item_detail">오브젝트 점수</div>
                         </div>
                     )
                 })}
