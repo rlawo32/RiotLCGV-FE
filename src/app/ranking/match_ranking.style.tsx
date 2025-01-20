@@ -133,6 +133,19 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 width: 11px;
             }
         }
+        
+        .highRank_multikill_item {
+            margin: 2px 3px;
+
+            span {
+                margin-left: 2px;
+            }
+        }
+
+        .lowRank_multikill_item {
+            width: 26px;
+            margin: 0 4px 0 0;
+        }
     }
 
     @keyframes steam {
@@ -202,7 +215,7 @@ export const LowRankingItem = styled('div')<{$type:string}>`
 
     .item_title {
         width: ${({$type}) => $type === 'L' ? "70px" : "120px"};
-        font-size: ${({$type}) => $type === 'J' ? "11px" : "12px"};
+        font-size: ${({$type}) => $type === 'J' || $type === 'M' ? "11px" : "12px"};
     }
 
     .item_detail {
@@ -228,7 +241,7 @@ export const RankerContent = styled('div')<{$ea:number}>`
     }
 `
 
-export const RankingSelect = styled('select')`   
+export const RankingSelect = styled('select')`
     padding: 3px 7px;
     border: none;
     border-radius: 10px;
