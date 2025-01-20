@@ -48,8 +48,8 @@ const RankingViewMultiKill = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail"></div>
+                                    <div className="ranker_title">멀티킬 횟수</div>
+                                    <div className="ranker_detail">멀티킬 점수</div>
                                 </Style.RankerContent>
                             </Style.RankingItem>
                         )
