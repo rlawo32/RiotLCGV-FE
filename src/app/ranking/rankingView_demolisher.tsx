@@ -24,7 +24,7 @@ const RankingViewDemolisher = (props : {data:{
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 2).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx, arr) => {
                         return (
-                            <Style.RankingItem $ea={arr.length} $rank={2} key={"rank2_" + idx}>
+                            <Style.HighRankingItem $ea={arr.length} $rank={2} key={"rank2_" + idx}>
                                 <Image src={"/img/border_silver_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
@@ -34,14 +34,14 @@ const RankingViewDemolisher = (props : {data:{
                                     <div className="ranker_title">파괴 개수 <TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}</div>
                                     <div className="ranker_detail">구조물 피해량 {item.lcg_count_tower_damage.toLocaleString()}</div>
                                 </Style.RankerContent>
-                            </Style.RankingItem>
+                            </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 1).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 1).map((item, idx, arr) => {
                         return (
-                            <Style.RankingItem $ea={arr.length} $rank={1} key={"rank1_" + idx}>
+                            <Style.HighRankingItem $ea={arr.length} $rank={1} key={"rank1_" + idx}>
                                 <Image src={"/img/border_gold_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
@@ -51,14 +51,14 @@ const RankingViewDemolisher = (props : {data:{
                                     <div className="ranker_title">파괴 개수 <TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}</div>
                                     <div className="ranker_detail">구조물 피해량 {item.lcg_count_tower_damage.toLocaleString()}</div>
                                 </Style.RankerContent>
-                            </Style.RankingItem>
+                            </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 3).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 3).map((item, idx, arr) => {
                         return (
-                            <Style.RankingItem $ea={arr.length} $rank={3} key={"rank3_" + idx}>
+                            <Style.HighRankingItem $ea={arr.length} $rank={3} key={"rank3_" + idx}>
                                 <Image src={"/img/border_bronze_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
@@ -68,7 +68,7 @@ const RankingViewDemolisher = (props : {data:{
                                     <div className="ranker_title">파괴 개수 <TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}</div>
                                     <div className="ranker_detail">구조물 피해량 {item.lcg_count_tower_damage.toLocaleString()}</div>
                                 </Style.RankerContent>   
-                            </Style.RankingItem>
+                            </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
