@@ -101,11 +101,11 @@ export const MatchRanking = styled('div')<{$type:string}>`
             }
 
             .item_header_title_long {
-                width: 50px;
+                width: 70px;
             }
 
             .item_header_detail_long {
-                width: 120px;
+                width: 130px;
             }
         }
     }
@@ -177,19 +177,11 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     }
 
     .item_title {
-        width: 100px;
+        width: ${({$type}) => $type === 'L' ? "70px" : "100px"};
     }
 
     .item_detail {
-        width: 100px;
-    }
-
-    .item_title_long {
-        width: 50px;
-    }
-
-    .item_detail_long {
-        width: 120px;
+        width: ${({$type}) => $type === 'L' ? "130px" : "100px"};
     }
 `
 
