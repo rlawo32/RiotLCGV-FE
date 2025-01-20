@@ -1,9 +1,9 @@
-import MatchList from "./component/match_list";
+import MainView from "./views/main_view";
 
 export default function Home() {
   return (
     <div>
-      <MatchList />
+      <MainView />
     </div>
   );
 }
