@@ -59,6 +59,9 @@ const Reference = () => {
             }
         }
     }
+    
+    const randomArr:string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"];
+    const randomTest:string = randomArr[Math.floor(Math.random() * randomArr.length)];
 
     return (
         <ReferenceStyle>
