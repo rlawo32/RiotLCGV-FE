@@ -146,7 +146,7 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     }
 `
 
-export const LowRankingItem = styled('div')`
+export const LowRankingItem = styled('div')<{$type:string}>`
     display: flex;
     justify-content: space-between;
     align-items: center;

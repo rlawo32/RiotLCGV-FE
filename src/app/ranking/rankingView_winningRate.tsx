@@ -84,7 +84,7 @@ const RankingViewWinningRate = (props : {data:{
                                             <div className="item_header item_header_title">승 / 패</div>
                                             <div className="item_header item_header_detail">승률</div>
                                         </div>
-                                        <Style.LowRankingItem>
+                                        <Style.LowRankingItem $type={""}>
                                             <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                                 <div className="item_rank">{item.rank}</div>
                                             </Link>
@@ -94,7 +94,7 @@ const RankingViewWinningRate = (props : {data:{
                                         </Style.LowRankingItem>
                                     </>
                                     :
-                                    <Style.LowRankingItem>
+                                    <Style.LowRankingItem $type={""}>
                                         <div className="item_rank">{item.rank}</div>
                                         <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
