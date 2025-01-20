@@ -53,11 +53,11 @@ const ErrorPage = (props : {errorCode:string, errorMessage:string}) => {
             <p>HTTP: 404</p>
             <div ref={(te:any) => (testRef.current[0] = te)}>{props.errorCode}</div>
             <div ref={(te:any) => (testRef.current[1] = te)}>{props.errorMessage}</div>
-            <div ref={(te:any) => (testRef.current[2] = te)}>else if we_screwed_up alert "We're really sorry about that." window. location</div>
+            <div ref={(te:any) => (testRef.current[2] = te)}></div>
         </ErrorPageStyle>
     )
 }
 
 const ErrorPageRes = memo(ErrorPage);
 
-export default ErrorPage;
+export default ErrorPageRes;
