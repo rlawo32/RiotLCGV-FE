@@ -22,51 +22,51 @@ const RankingViewVision = (props : {data:{
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 2).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx, arr) => {
                         return (
-                            <Style.RankingItem $ea={arr.length} $rank={2} key={"rank2_" + idx}>
+                            <Style.HighRankingItem $ea={arr.length} $rank={2} key={"rank2_" + idx}>
                                 <Image src={"/img/border_silver_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail"></div>
+                                    <div className="ranker_title">기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}</div>
+                                    <div className="ranker_detail">시야 점수 {item.lcg_count_vision_score}</div>
                                 </Style.RankerContent>
-                            </Style.RankingItem>
+                            </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 1).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 1).map((item, idx, arr) => {
                         return (
-                            <Style.RankingItem $ea={arr.length} $rank={1} key={"rank1_" + idx}>
+                            <Style.HighRankingItem $ea={arr.length} $rank={1} key={"rank1_" + idx}>
                                 <Image src={"/img/border_gold_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"></div>
-                                    <div className="ranker_detail"></div>
+                                    <div className="ranker_title">기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}</div>
+                                    <div className="ranker_detail">시야 점수 {item.lcg_count_vision_score}</div>
                                 </Style.RankerContent>
-                            </Style.RankingItem>
+                            </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 3).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 3).map((item, idx, arr) => {
                         return (
-                            <Style.RankingItem $ea={arr.length} $rank={3} key={"rank3_" + idx}>
+                            <Style.HighRankingItem $ea={arr.length} $rank={3} key={"rank3_" + idx}>
                                 <Image src={"/img/border_bronze_image.png"} alt={"ranking_border"} 
                                 height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
                                 <Style.RankerContent $ea={arr.length}>
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">기본 / 제어 / 파괴</div>
-                                    <div className="ranker_detail"></div>
+                                    <div className="ranker_title">기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}</div>
+                                    <div className="ranker_detail">시야 점수 {item.lcg_count_vision_score}</div>
                                 </Style.RankerContent>   
-                            </Style.RankingItem>
+                            </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
@@ -74,13 +74,35 @@ const RankingViewVision = (props : {data:{
             <div className="ranking_bottom">
                 {props.data.filter((lowRanking) => lowRanking.rank > 3).map((item, idx) => {
                     return (
-                        <div className="ranking_item" key={"lowRank_" + idx}>
-                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
-                                <div className="item_rank">{item.rank}</div>
-                            </Link>
-                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                            <div className="item_title">기본 / 제어 / 파괴</div>
-                            <div className="item_detail"></div>
+                        <div key={"lowRank_" + idx}>    
+                            {
+                                idx === 0 || idx === 6 ? 
+                                    <>
+                                        <div className="ranking_item_header">
+                                            <div className="item_header item_header_rank">순위</div>
+                                            <div className="item_header item_header_nickname">소환사명</div>
+                                            <div className="item_header item_header_title">기본 / 제어 / 파괴</div>
+                                            <div className="item_header item_header_detail">시야 점수</div>
+                                        </div>
+                                        <Style.LowRankingItem $type={""}>
+                                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                                <div className="item_rank">{item.rank}</div>
+                                            </Link>
+                                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                                            <div className="item_title">{item.lcg_count_ward_placed} / {item.lcg_count_vision_ward} / {item.lcg_count_ward_kill}</div>
+                                            <div className="item_detail">{item.lcg_count_vision_score}</div>
+                                        </Style.LowRankingItem>
+                                    </>
+                                    :
+                                    <Style.LowRankingItem $type={""}>
+                                        <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                            <div className="item_rank">{item.rank}</div>
+                                        </Link>
+                                        <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                                        <div className="item_title">{item.lcg_count_ward_placed} / {item.lcg_count_vision_ward} / {item.lcg_count_ward_kill}</div>
+                                        <div className="item_detail">{item.lcg_count_vision_score}</div>
+                                    </Style.LowRankingItem>
+                            }
                         </div>
                     )
                 })}
