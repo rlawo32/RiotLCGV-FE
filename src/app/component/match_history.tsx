@@ -13,13 +13,13 @@ import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
 import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
 
 import DamageGraph  from "./damage_graph";
-import BaronIcon from "../icons/baronIcon";
-import DragonIcon from "../icons/dragonIcon";
+import BaronIcon from "../icons/BaronIcon";
+import DragonIcon from "../icons/DragonIcon";
 import HeraldIcon from "../icons/HeraldIcon";
 import HordeIcon from "../icons/HordeIcon";
 import TurretIcon from "../icons/TurretIcon";
-import GoldIcon from "../icons/goldIcon";
-import InhibitorIcon from "../icons/inhibitorIcon";
+import GoldIcon from "../icons/GoldIcon";
+import InhibitorIcon from "../icons/InhibitorIcon";
 
 const MatchHistory = (props : {gameId:number}) => {
     const supabase = useSupabaseBrowser();
