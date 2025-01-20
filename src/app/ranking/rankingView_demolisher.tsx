@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { duplicationRank } from "./ranking_tool";
 import TurretIcon from "../icons/TurretIcon";
-import InhibitorIcon from "../icons/inhibitorIcon";
+import InhibitorIcon from "../icons/InhibitorIcon";
 
 const RankingViewDemolisher = (props : {data:{
             lcg_summoner_puuid: string

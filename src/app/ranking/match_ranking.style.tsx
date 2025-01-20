@@ -64,7 +64,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
         align-items: center;
         flex-direction: column;
         flex-wrap: wrap;
-        height: 250px;
+        height: 260px;
         margin-top: 25px;
 
         .ranking_item_header {
@@ -93,11 +93,11 @@ export const MatchRanking = styled('div')<{$type:string}>`
             }
 
             .item_header_title {
-                width: 100px;
+                width: 120px;
             }
 
             .item_header_detail {
-                width: 100px;
+                width: 80px;
             }
 
             .item_header_title_long {
@@ -110,7 +110,31 @@ export const MatchRanking = styled('div')<{$type:string}>`
         }
     }
 
-    
+    .object_box {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .highRank_object_item {
+            margin: 1px 3px;
+
+            svg {
+                height: 11px;
+                width: 11px;
+            }
+        }
+
+        .lowRank_object_item {
+            width: 40px;
+            margin: 1px 0 0;
+
+            svg {
+                height: 11px;
+                width: 11px;
+            }
+        }
+    }
+
     @keyframes steam {
         0% {
             background-position: 0 0;
@@ -150,7 +174,7 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 20px;
+    height: ${({$type}) => $type === 'J' ? "30px" : "20px"};
     width: 400px;
     margin: 3px 10px;
     padding: 14px 15px 14px 10px;
@@ -177,11 +201,12 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     }
 
     .item_title {
-        width: ${({$type}) => $type === 'L' ? "70px" : "100px"};
+        width: ${({$type}) => $type === 'L' ? "70px" : "120px"};
+        font-size: ${({$type}) => $type === 'J' ? "11px" : "12px"};
     }
 
     .item_detail {
-        width: ${({$type}) => $type === 'L' ? "130px" : "100px"};
+        width: ${({$type}) => $type === 'L' ? "130px" : "80px"};
     }
 `
 
