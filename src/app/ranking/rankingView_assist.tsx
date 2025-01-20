@@ -81,24 +81,24 @@ const RankingViewAssist = (props : {data:{
                                             <div className="item_header item_header_title"></div>
                                             <div className="item_header item_header_detail">총 어시스트</div>
                                         </div>
-                                        <div className="ranking_item">
+                                        <Style.LowRankingItem>
                                             <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                                 <div className="item_rank">{item.rank}</div>
                                             </Link>
                                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                                             <div className="item_title"></div>
                                             <div className="item_detail">{item.lcg_count_assist.toLocaleString()} 어시</div>
-                                        </div>
+                                        </Style.LowRankingItem>
                                     </>
                                     :
-                                    <div className="ranking_item">
+                                    <Style.LowRankingItem>
                                         <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                             <div className="item_rank">{item.rank}</div>
                                         </Link>
                                         <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                                         <div className="item_title"></div>
                                         <div className="item_detail">{item.lcg_count_assist.toLocaleString()} 어시</div>
-                                    </div>
+                                    </Style.LowRankingItem>
                             }
                         </div>
                     )

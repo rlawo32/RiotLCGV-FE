@@ -108,74 +108,6 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 width: 120px;
             }
         }
-
-        .ranking_item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 20px;
-            width: 400px;
-            margin: 3px 10px;
-            padding: 14px 15px 14px 10px;
-            border-radius: 10px;
-            background-color: rgba(42,50,73, .68);
-            font-size: 12px;
-            color: whitesmoke;
-            text-align: center;
-
-            .item_rank {
-                width: 40px;
-                text-align: center;
-                font-weight: bold;
-            }
-
-            .item_nickname {
-                width: 90px;
-                margin-right: 15px;
-                text-align: center;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                cursor: pointer;
-            }
-
-            .item_title {
-                width: 100px;
-            }
-
-            .item_detail {
-                width: 100px;
-            }
-
-            .item_title_long {
-                width: 50px;
-            }
-
-            .item_detail_long {
-                width: 120px;
-            }
-
-            .item_jo_title {
-                display: flex;
-                flex-wrap: wrap;
-                width: 90px;
-                font-size: 11px;
-
-                svg {
-                    height: 12px;
-                    width: 12px;
-                    margin: 0 3px 2px 0;
-                }
-            }
-
-            .item_jo_detail {
-                width: 100px;
-            }
-        }
-
-        .ranking_jo_item {
-
-        }
     }
 
     
@@ -215,7 +147,50 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
 `
 
 export const LowRankingItem = styled('div')`
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+    width: 400px;
+    margin: 3px 10px;
+    padding: 14px 15px 14px 10px;
+    border-radius: 10px;
+    background-color: rgba(42,50,73, .68);
+    font-size: 12px;
+    color: whitesmoke;
+    text-align: center;
+
+    .item_rank {
+        width: 40px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .item_nickname {
+        width: 90px;
+        margin-right: 15px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    .item_title {
+        width: 100px;
+    }
+
+    .item_detail {
+        width: 100px;
+    }
+
+    .item_title_long {
+        width: 50px;
+    }
+
+    .item_detail_long {
+        width: 120px;
+    }
 `
 
 export const RankerContent = styled('div')<{$ea:number}>`

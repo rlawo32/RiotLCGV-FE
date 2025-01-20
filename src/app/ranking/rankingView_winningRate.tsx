@@ -84,24 +84,24 @@ const RankingViewWinningRate = (props : {data:{
                                             <div className="item_header item_header_title">승 / 패</div>
                                             <div className="item_header item_header_detail">승률</div>
                                         </div>
-                                        <div className="ranking_item">
+                                        <Style.LowRankingItem>
                                             <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                                 <div className="item_rank">{item.rank}</div>
                                             </Link>
                                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                                             <div className="item_title">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
                                             <div className="item_detail">승률 {item.rate}%</div>
-                                        </div>
+                                        </Style.LowRankingItem>
                                     </>
                                     :
-                                    <div className="ranking_item">
+                                    <Style.LowRankingItem>
                                         <div className="item_rank">{item.rank}</div>
                                         <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                                         </Link>
                                         <div className="item_title">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
                                         <div className="item_detail">승률 {item.rate}%</div>
-                                    </div>
+                                    </Style.LowRankingItem>
                             }
                         </div>
                     )
