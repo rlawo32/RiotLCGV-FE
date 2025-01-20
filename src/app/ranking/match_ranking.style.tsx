@@ -4,7 +4,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
     position: relative;
     border-radius: 15px;
     height: ${({$type}) => $type === '3D' ? '260px' : '500px'};
-    width: 850px;
+    width: 950px;
     margin: 30px auto 50px;
     background: linear-gradient(0deg, #000, #272727);
 
@@ -72,7 +72,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
             justify-content: space-between;
             align-items: center;
             margin: 6px 10px;
-            padding: 5px 15px 5px 5px;
+            padding: 5px 15px 5px 10px;
             border-radius: 10px;
             background-color: rgba(42,50,73, .68);
             font-size: 12px;
@@ -84,20 +84,20 @@ export const MatchRanking = styled('div')<{$type:string}>`
             }
 
             .item_header_rank {
-                width: 60px;
+                width: 40px;
             }
 
             .item_header_nickname {
-                width: 100px;
-                margin-right: 10px;
+                width: 90px;
+                margin-right: 15px;
             }
 
             .item_header_title {
-                width: 80px;
+                width: 100px;
             }
 
             .item_header_detail {
-                width: 90px;
+                width: 100px;
             }
 
             .item_header_title_long {
@@ -114,8 +114,9 @@ export const MatchRanking = styled('div')<{$type:string}>`
             justify-content: space-between;
             align-items: center;
             height: 20px;
+            width: 400px;
             margin: 3px 10px;
-            padding: 14px 15px 14px 25px;
+            padding: 14px 15px 14px 10px;
             border-radius: 10px;
             background-color: rgba(42,50,73, .68);
             font-size: 12px;
@@ -123,15 +124,14 @@ export const MatchRanking = styled('div')<{$type:string}>`
             text-align: center;
 
             .item_rank {
-                width: 20px;
-                margin-right: 20px;
+                width: 40px;
                 text-align: center;
                 font-weight: bold;
             }
 
             .item_nickname {
-                width: 100px;
-                margin-right: 10px;
+                width: 90px;
+                margin-right: 15px;
                 text-align: center;
                 white-space: nowrap;
                 overflow: hidden;
@@ -140,11 +140,11 @@ export const MatchRanking = styled('div')<{$type:string}>`
             }
 
             .item_title {
-                width: 80px;
+                width: 100px;
             }
 
             .item_detail {
-                width: 90px;
+                width: 100px;
             }
 
             .item_title_long {
@@ -154,6 +154,27 @@ export const MatchRanking = styled('div')<{$type:string}>`
             .item_detail_long {
                 width: 120px;
             }
+
+            .item_jo_title {
+                display: flex;
+                flex-wrap: wrap;
+                width: 90px;
+                font-size: 11px;
+
+                svg {
+                    height: 12px;
+                    width: 12px;
+                    margin: 0 3px 2px 0;
+                }
+            }
+
+            .item_jo_detail {
+                width: 100px;
+            }
+        }
+
+        .ranking_jo_item {
+
         }
     }
 
@@ -179,7 +200,7 @@ export const RankingBox = styled('div')<{$ea:number}>`
     width: 250px;
 `
 
-export const RankingItem = styled('div')<{$ea:number, $rank:number}>`
+export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     position: relative;
     top: ${({$rank}) => $rank === 1 ? "-45px" : 0};
     display: flex;
@@ -191,6 +212,10 @@ export const RankingItem = styled('div')<{$ea:number, $rank:number}>`
     .ranker_img {
         margin: 3px auto;
     }
+`
+
+export const LowRankingItem = styled('div')`
+    
 `
 
 export const RankerContent = styled('div')<{$ea:number}>`
