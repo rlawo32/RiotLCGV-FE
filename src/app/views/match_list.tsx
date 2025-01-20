@@ -1,6 +1,6 @@
 'use client';
 
-import * as Style from "../component/match_list.style";
+import * as Style from "./match_list.style";
 import Image from "next/image";
 
 import { useRef, useState } from "react";
