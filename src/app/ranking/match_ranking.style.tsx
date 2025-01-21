@@ -244,13 +244,13 @@ export const RankerContent = styled('div')<{$ea:number}>`
 export const RankingSelect = styled('select')`
     padding: 3px 7px;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     background: #231f50;
     color: #6cacc5;
     font-size: 13px;
     cursor: pointer;
-        
-    &:focus {
-        outline: 2px solid #6cacc5;
-    }
+    -webkit-appearance:none;    /* 크롬 화살표 없애기 */
+    -moz-appearance:none;       /* 파이어폭스 화살표 없애기 */
+    appearance:none             /* 화살표 없애기 */
+
 `
