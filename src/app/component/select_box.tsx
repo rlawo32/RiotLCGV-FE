@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faChevronDown as arrow} from "@fortawesome/free-solid-svg-icons";
+
 import { useEffect, useRef, useState } from "react";
 
 const SelectBoxStyle = styled('div')`
