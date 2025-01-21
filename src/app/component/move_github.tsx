@@ -3,9 +3,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faGithub as github} from "@fortawesome/free-brands-svg-icons";
-import Image from "next/image";
 import Link from "next/link";
-
 
 const GithubStyle = styled('div')`
     position: absolute;
