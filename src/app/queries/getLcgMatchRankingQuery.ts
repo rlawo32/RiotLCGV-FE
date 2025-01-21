@@ -65,3 +65,27 @@ export function getLcgOneGameBest3AssistQuery(client:TypedSupabaseClient) {
 export function getLcgOneGameBest3DeathQuery(client:TypedSupabaseClient) {
   return client.rpc('onegame_best3_death_rank')
 }
+
+export function getLcgOneGameBest3CsQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_cs_rank')
+}
+
+export function getLcgOneGameBest3GoldQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_gold_rank')
+}
+
+export function getLcgOneGameBest3TowerQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_tower_rank')
+}
+
+export function getLcgOneGameBest3DamageQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_damage_rank')
+}
+
+export function getLcgOneGameBest3HighTakenQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_hightaken_rank')
+}
+
+export function getLcgOneGameBest3LowTakenQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_lowtaken_rank')
+}
