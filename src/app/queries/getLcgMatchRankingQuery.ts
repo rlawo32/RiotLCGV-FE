@@ -54,6 +54,14 @@ export function getLcgAllJungleObjectQuery(client:TypedSupabaseClient) {
   return client.rpc('all_jungle_object_rank')
 }
 
-export function getLcgOneGameBest3GoldQuery(client:TypedSupabaseClient) {
-  return client.rpc('onegame_best3_gold_rank')
+export function getLcgOneGameBest3KillQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_kill_rank')
+}
+
+export function getLcgOneGameBest3AssistQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_assist_rank')
+}
+
+export function getLcgOneGameBest3DeathQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_death_rank')
 }

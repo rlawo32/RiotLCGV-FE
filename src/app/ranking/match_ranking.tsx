@@ -10,6 +10,7 @@ import {
     getLcgAllAssistQuery, getLcgAllCsQuery, getLcgAllDemolisherQuery,
     getLcgAllGoldQuery, getLcgAllDamageQuery, getLcgAllTakenQuery,
     getLcgAllJungleObjectQuery, getLcgAllMultiKillQuery, getLcgAllVisionQuery,
+    getLcgOneGameBest3KillQuery, getLcgOneGameBest3AssistQuery, getLcgOneGameBest3DeathQuery,
 } from "../queries/getLcgMatchRankingQuery";
 
 import RankingViewWinningRate from "./rankingView_winningRate";
@@ -26,6 +27,10 @@ import RankingViewMultiKill from "./rankingView_multikill";
 import RankingViewVision from "./rankingView_vision";
 import SelectBox from "../component/select_box";
 
+import RankingView1G3BKill from "./rankingView_1G3B_kill";
+import RankingView1G3BAssist from "./rankingView_1G3B_assist";
+import RankingView1G3BDeath from "./rankingView_1G3B_death";
+
 const MatchRanking = () => {
     const supabase = useSupabaseBrowser();
 
@@ -35,6 +40,7 @@ const MatchRanking = () => {
         {key:"AS", name:"총 어시스트"}, {key:"AC", name:"총 CS"}, {key:"AT", name:"총 철거"}, 
         {key:"AG", name:"총 골드"}, {key:"ADA", name:"총 피해량"}, {key:"ATA", name:"총 받은피해량"}, 
         {key:"AJ", name:"총 오브젝트"}, {key:"AM", name:"총 멀티킬"}, {key:"AV", name:"총 시야점수"}, 
+        {key:"1GK", name:"최다 킬"}, {key:"1GD", name:"최다 데스"}, {key:"1GA", name:"최다 어시스트"}, 
     ];
     
     const { data: queryWinningRateResult } = useQuery(getLcgAllWinningRateQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AW'});
@@ -50,6 +56,10 @@ const MatchRanking = () => {
     const { data: queryAllMultiKillResult } = useQuery(getLcgAllMultiKillQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AM'});
     const { data: queryAllVisionResult } = useQuery(getLcgAllVisionQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AV'});
 
+    const { data: queryOneGameBest3KillResult } = useQuery(getLcgOneGameBest3KillQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GK'});
+    const { data: queryOneGameBest3DeathResult } = useQuery(getLcgOneGameBest3DeathQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GD'});
+    const { data: queryOneGameBest3AssistResult } = useQuery(getLcgOneGameBest3AssistQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GA'});
+
     return (
         <Style.MatchRanking $type={rankSelectArr[rankSelectIdx].key}>
             <div className="ranking_container">
@@ -57,18 +67,21 @@ const MatchRanking = () => {
                     <SelectBox rankSelect={rankSelectArr} rankSelectIdx={rankSelectIdx} setRankSelectIdx={setRankSelectIdx}/>
                 </div>
                 {
-                    queryWinningRateResult && rankSelectArr[rankSelectIdx].key === 'AW'       ? <RankingViewWinningRate data={queryWinningRateResult}/>       : 
-                    queryAllKillResult && rankSelectArr[rankSelectIdx].key === 'AK'           ? <RankingViewKill data={queryAllKillResult}/>                  : 
-                    queryAllDeathResult && rankSelectArr[rankSelectIdx].key === 'AD'          ? <RankingViewDeath data={queryAllDeathResult}/>                : 
-                    queryAllAssistResult && rankSelectArr[rankSelectIdx].key === 'AS'         ? <RankingViewAssist data={queryAllAssistResult}/>              : 
-                    queryAllCsResult && rankSelectArr[rankSelectIdx].key === 'AC'             ? <RankingViewCs data={queryAllCsResult}/>                      : 
-                    queryAllDemolisherResult && rankSelectArr[rankSelectIdx].key === 'AT'     ? <RankingViewDemolisher data={queryAllDemolisherResult}/>      : 
-                    queryAllGoldResult && rankSelectArr[rankSelectIdx].key === 'AG'           ? <RankingViewGold data={queryAllGoldResult}/>                  : 
-                    queryAllDamageResult && rankSelectArr[rankSelectIdx].key === 'ADA'        ? <RankingViewDamage data={queryAllDamageResult}/>              : 
-                    queryAllTakenResult && rankSelectArr[rankSelectIdx].key === 'ATA'         ? <RankingViewTaken data={queryAllTakenResult}/>                : 
-                    queryAllJungleObjectResult && rankSelectArr[rankSelectIdx].key === 'AJ'   ? <RankingViewJungleObject data={queryAllJungleObjectResult}/>  : 
-                    queryAllMultiKillResult && rankSelectArr[rankSelectIdx].key === 'AM'      ? <RankingViewMultiKill data={queryAllMultiKillResult}/>        : 
-                    queryAllVisionResult && rankSelectArr[rankSelectIdx].key === 'AV'         ? <RankingViewVision data={queryAllVisionResult}/>              : 
+                    queryWinningRateResult && rankSelectArr[rankSelectIdx].key === 'AW'         ? <RankingViewWinningRate data={queryWinningRateResult}/>       : 
+                    queryAllKillResult && rankSelectArr[rankSelectIdx].key === 'AK'             ? <RankingViewKill data={queryAllKillResult}/>                  : 
+                    queryAllDeathResult && rankSelectArr[rankSelectIdx].key === 'AD'            ? <RankingViewDeath data={queryAllDeathResult}/>                : 
+                    queryAllAssistResult && rankSelectArr[rankSelectIdx].key === 'AS'           ? <RankingViewAssist data={queryAllAssistResult}/>              : 
+                    queryAllCsResult && rankSelectArr[rankSelectIdx].key === 'AC'               ? <RankingViewCs data={queryAllCsResult}/>                      : 
+                    queryAllDemolisherResult && rankSelectArr[rankSelectIdx].key === 'AT'       ? <RankingViewDemolisher data={queryAllDemolisherResult}/>      : 
+                    queryAllGoldResult && rankSelectArr[rankSelectIdx].key === 'AG'             ? <RankingViewGold data={queryAllGoldResult}/>                  : 
+                    queryAllDamageResult && rankSelectArr[rankSelectIdx].key === 'ADA'          ? <RankingViewDamage data={queryAllDamageResult}/>              : 
+                    queryAllTakenResult && rankSelectArr[rankSelectIdx].key === 'ATA'           ? <RankingViewTaken data={queryAllTakenResult}/>                : 
+                    queryAllJungleObjectResult && rankSelectArr[rankSelectIdx].key === 'AJ'     ? <RankingViewJungleObject data={queryAllJungleObjectResult}/>  : 
+                    queryAllMultiKillResult && rankSelectArr[rankSelectIdx].key === 'AM'        ? <RankingViewMultiKill data={queryAllMultiKillResult}/>        : 
+                    queryAllVisionResult && rankSelectArr[rankSelectIdx].key === 'AV'           ? <RankingViewVision data={queryAllVisionResult}/>              : 
+                    queryOneGameBest3KillResult && rankSelectArr[rankSelectIdx].key === '1GK'   ? <RankingView1G3BKill data={queryOneGameBest3KillResult}/>     : 
+                    queryOneGameBest3DeathResult && rankSelectArr[rankSelectIdx].key === '1GD'  ? <RankingView1G3BDeath data={queryOneGameBest3DeathResult}/>   : 
+                    queryOneGameBest3AssistResult && rankSelectArr[rankSelectIdx].key === '1GA' ? <RankingView1G3BAssist data={queryOneGameBest3AssistResult}/> : 
                     <></>
                 }
             </div> 
