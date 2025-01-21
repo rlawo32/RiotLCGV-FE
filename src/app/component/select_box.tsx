@@ -13,7 +13,7 @@ const SelectBoxStyle = styled('div')`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 120px;
+        width: 130px;
         padding: 6px 10px;
         border: none;
         border-radius: 5px;
@@ -29,7 +29,7 @@ const SelectBoxStyle = styled('div')`
         top: 105%;
         left: 10px;
         height: 0;
-        width: 100px;
+        width: 110px;
         padding: 0 5px;
         border: none;
         border-radius: 5px;
@@ -44,7 +44,7 @@ const SelectBoxStyle = styled('div')`
 
     ul.select_list {
         height: 0;
-        width: 90px;
+        width: 100px;
         padding: 0;
         border: none;
         border-radius: 5px;
@@ -59,6 +59,7 @@ const SelectBoxStyle = styled('div')`
         z-index: 3;
         user-select: none;
         list-style:none;
+        word-break: keep-all;
         transition: all 0.3s ease-in-out;
         
         &::-webkit-scrollbar {

@@ -176,9 +176,9 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: ${({$ea}) => $ea > 3 ? "50px" : $ea === 3 ? "45px" : $ea === 2 ? "100px" : "150px"};
+    width: ${({$ea}) => $ea > 3 ? "55px" : $ea === 3 ? "70px" : $ea === 2 ? "100px" : "170px"};
     text-align: center;
-    margin: ${({$ea}) => $ea > 3 ? "5px" : $ea === 3 ? "10px" : $ea === 2 ? "10px" : "10px 30px"};
+    margin: ${({$ea}) => $ea > 3 ? "3px" : $ea === 3 ? "5px" : $ea === 2 ? "10px" : "10px 30px"};
 
     .ranker_img {
         margin: 3px auto;
@@ -229,16 +229,17 @@ export const RankerContent = styled('div')<{$ea:number}>`
     
     .ranker_name {
         margin: 0 0 3px;
-        font-size: ${({$ea}) => $ea > 3 ? "10px" : $ea === 2 ? "14px" : $ea === 3 ? "12px" : "17px"};
+        font-size: ${({$ea}) => $ea > 3 ? "11px" : $ea === 2 ? "14px" : $ea === 3 ? "12px" : "17px"};
         cursor: pointer;
     }
 
     .ranker_title {
-        font-size: ${({$ea}) => $ea > 3 ? "8px" : $ea === 2 ? "11px" : $ea === 3 ? "9px" : "12px"};
+        justify-content: center;
+        font-size: ${({$ea}) => $ea > 3 ? "9px" : $ea === 2 ? "11px" : $ea === 3 ? "9px" : "12px"};
         font-weight: bold;
     }
 
     .ranker_detail {
-        font-size: ${({$ea}) => $ea > 3 ? "7px" : $ea === 2 ? "10px" : $ea === 3 ? "8px" : "11px"};
+        font-size: ${({$ea}) => $ea > 3 ? "8px" : $ea === 2 ? "10px" : $ea === 3 ? "8px" : "11px"};
     }
 `
