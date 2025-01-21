@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const MatchRanking = styled('div')<{$type:string}>`
     position: relative;
     border-radius: 15px;
-    height: ${({$type}) => $type === '3D' ? '260px' : '500px'};
-    width: 950px;
+    height: ${({$type}) => $type.includes('1G') ? '300px' : '500px'};
+    width: ${({$type}) => $type.includes('1G') ? '850px' : '950px'};
     margin: 30px auto 50px;
     background: linear-gradient(0deg, #000, #272727);
 
@@ -48,6 +48,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
         .ranking_select {
             display: flex;
             justify-content: right;
+            margin-bottom: ${({$type}) => $type.includes('1G') ? '40px' : '0'};
             padding: 0 15px;
         }
     }
@@ -163,7 +164,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
 
 export const RankingBox = styled('div')<{$ea:number}>`
     display: flex;
-    justify-content: ${({$ea}) => $ea > 4 ? "flex-start" : "center"};
+    justify-content: ${({$ea}) => $ea > 3 ? "flex-start" : "center"};
     flex-wrap: wrap;
     height: 100%;
     width: 250px;
@@ -175,8 +176,9 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: ${({$ea}) => $ea > 3 ? "50px" : $ea === 3 ? "45px" : $ea === 2 ? "100px" : "150px"};
     text-align: center;
-    margin: ${({$ea}) => $ea > 3 ? "5px" : $ea === 3 ? "10px" : $ea === 2 ? "10px 20px" : "10px 30px"};
+    margin: ${({$ea}) => $ea > 3 ? "5px" : $ea === 3 ? "10px" : $ea === 2 ? "10px" : "10px 30px"};
 
     .ranker_img {
         margin: 3px auto;
@@ -227,30 +229,16 @@ export const RankerContent = styled('div')<{$ea:number}>`
     
     .ranker_name {
         margin: 0 0 3px;
-        font-size: ${({$ea}) => $ea > 2 ? "12px" : $ea === 2 ? "14px" : "17px"};
+        font-size: ${({$ea}) => $ea > 3 ? "10px" : $ea === 2 ? "14px" : $ea === 3 ? "12px" : "17px"};
         cursor: pointer;
     }
 
     .ranker_title {
-        font-size: ${({$ea}) => $ea > 2 ? "9px" : $ea === 2 ? "11px" : "12px"};
+        font-size: ${({$ea}) => $ea > 3 ? "8px" : $ea === 2 ? "11px" : $ea === 3 ? "9px" : "12px"};
         font-weight: bold;
     }
 
     .ranker_detail {
-        font-size: ${({$ea}) => $ea > 2 ? "8px" : $ea === 2 ? "10px" : "11px"};
+        font-size: ${({$ea}) => $ea > 3 ? "7px" : $ea === 2 ? "10px" : $ea === 3 ? "8px" : "11px"};
     }
-`
-
-export const RankingSelect = styled('select')`
-    padding: 3px 7px;
-    border: none;
-    border-radius: 7px;
-    background: #231f50;
-    color: #6cacc5;
-    font-size: 13px;
-    cursor: pointer;
-    -webkit-appearance:none;    /* 크롬 화살표 없애기 */
-    -moz-appearance:none;       /* 파이어폭스 화살표 없애기 */
-    appearance:none             /* 화살표 없애기 */
-
 `
