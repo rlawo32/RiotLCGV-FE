@@ -27,8 +27,11 @@ const RankingView1G3BGold = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
+                                    <div className="ranker_detail">
+                                        <Image src={"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/champion/" + item.lcg_champion_name + ".png"} 
+                                        alt={"champion"} height={40} width={40} className="champion_img" />
+                                    </div>
                                     <div className="ranker_title">최고 {item.gold.toLocaleString()} 골드</div>
-                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -44,8 +47,11 @@ const RankingView1G3BGold = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
+                                    <div className="ranker_detail">
+                                        <Image src={"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/champion/" + item.lcg_champion_name + ".png"} 
+                                        alt={"champion"} height={40} width={40} className="champion_img" />
+                                    </div>
                                     <div className="ranker_title">최고 {item.gold.toLocaleString()} 골드</div>
-                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -61,8 +67,11 @@ const RankingView1G3BGold = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
+                                    <div className="ranker_detail">
+                                        <Image src={"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/champion/" + item.lcg_champion_name + ".png"} 
+                                        alt={"champion"} height={40} width={40} className="champion_img" />
+                                    </div>
                                     <div className="ranker_title">최고 {item.gold.toLocaleString()} 골드</div>
-                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )

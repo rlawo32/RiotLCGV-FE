@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MatchRanking = styled('div')<{$type:string}>`
     position: relative;
     border-radius: 15px;
-    height: ${({$type}) => $type.includes('1G') ? '300px' : '500px'};
+    height: ${({$type}) => $type.includes('1G') ? '330px' : '500px'};
     width: ${({$type}) => $type.includes('1G') ? '850px' : '950px'};
     margin: 30px auto 50px;
     background: linear-gradient(0deg, #000, #272727);
@@ -184,6 +184,11 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
 
     .ranker_img {
         margin: 3px auto;
+    }
+
+    .champion_img {
+        margin: 1px 0;
+        border-radius: 15px;
     }
 `
 

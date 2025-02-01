@@ -29,7 +29,12 @@ const RankingView1G3BTower = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">최고 <TurretIcon />{item.lcg_destroy_tower} 파괴</div>
+                                    <div className="ranker_title">
+                                        <div>
+                                            <Image src={"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/champion/" + item.lcg_champion_name + ".png"} alt={"champion"} height={40} width={40} className="champion_img" />
+                                        </div>
+                                        최고 <TurretIcon />{item.lcg_destroy_tower} 파괴
+                                    </div>
                                     <div className="ranker_detail">최고 {item.lcg_damage_tower.toLocaleString()} 피해량</div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
@@ -46,7 +51,12 @@ const RankingView1G3BTower = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">최고 <TurretIcon />{item.lcg_destroy_tower} 파괴</div>
+                                    <div className="ranker_title">
+                                        <div>
+                                            <Image src={"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/champion/" + item.lcg_champion_name + ".png"} alt={"champion"} height={40} width={40} className="champion_img" />
+                                        </div>
+                                        최고 <TurretIcon />{item.lcg_destroy_tower} 파괴
+                                    </div>
                                     <div className="ranker_detail">최고 {item.lcg_damage_tower.toLocaleString()} 피해량</div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
@@ -63,7 +73,12 @@ const RankingView1G3BTower = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">최고 <TurretIcon />{item.lcg_destroy_tower} 파괴</div>
+                                    <div className="ranker_title">
+                                        <div>
+                                            <Image src={"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/champion/" + item.lcg_champion_name + ".png"} alt={"champion"} height={40} width={40} className="champion_img" />
+                                        </div>
+                                        최고 <TurretIcon />{item.lcg_destroy_tower} 파괴
+                                    </div>
                                     <div className="ranker_detail">최고 {item.lcg_damage_tower.toLocaleString()} 피해량</div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
