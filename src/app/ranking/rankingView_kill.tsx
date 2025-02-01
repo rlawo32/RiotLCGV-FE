@@ -4,7 +4,7 @@ import * as Style from "./match_ranking.style"
 import Image from "next/image";
 import Link from "next/link";
 
-import { duplicationRank } from "./ranking_tool";
+import { duplicationRank } from "../component/match_tool";
 
 const RankingViewKill = (props : {data:{
             lcg_summoner_puuid: string
