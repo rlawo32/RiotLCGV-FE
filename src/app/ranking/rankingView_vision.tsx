@@ -9,6 +9,7 @@ import { duplicationRank } from "./ranking_tool";
 const RankingViewVision = (props : {data:{
             lcg_summoner_puuid: string
             lcg_nickname: string
+            lcg_count_play: number
             lcg_count_vision_score: number
             lcg_count_vision_ward: number
             lcg_count_ward_placed: number

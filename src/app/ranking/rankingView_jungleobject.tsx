@@ -13,6 +13,7 @@ import HordeIcon from "../icons/HordeIcon";
 const RankingViewJungleObject = (props : {data:{
             lcg_summoner_puuid: string
             lcg_nickname: string
+            lcg_count_play: number
             lcg_count_dragon: number
             lcg_count_baron: number
             lcg_count_horde: number

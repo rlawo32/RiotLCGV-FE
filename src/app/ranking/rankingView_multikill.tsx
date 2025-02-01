@@ -13,6 +13,7 @@ import PentaKillIcon from "../icons/PentaKillIcon";
 const RankingViewMultiKill = (props : {data:{
             lcg_summoner_puuid: string
             lcg_nickname: string
+            lcg_count_play: number
             lcg_count_double_kill: number
             lcg_count_triple_kill: number
             lcg_count_quadra_kill: number

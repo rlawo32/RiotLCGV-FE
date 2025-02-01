@@ -9,6 +9,7 @@ import { duplicationRank } from "./ranking_tool";
 const RankingViewCs = (props : {data:{
             lcg_summoner_puuid: string
             lcg_nickname: string
+            lcg_count_play: number
             cs: number
             rank: number
         }[]}) => {
