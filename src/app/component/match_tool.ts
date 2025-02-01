@@ -33,19 +33,8 @@ export const gameDuration = (lcg_game_duration:number):number => {
     return lcgGameDuration;
 }
 
-export const imgUrl = (lcgMatchInfo:{
-    lcg_game_duration: number
-    lcg_game_id: number
-    lcg_max_damage_taken: number
-    lcg_max_damage_total: number
-    lcg_ver_cdn: string
-    lcg_ver_lang: string
-    lcg_ver_main: string
-}, type:string):string => {
+export const imgUrl = (lcgVerCdn:string, lcgVerMain:string, type:string):string => {
     let imageUrl:string = "";
-
-    const lcgVerCdn = lcgMatchInfo.lcg_ver_cdn;
-    const lcgVerMain = lcgMatchInfo.lcg_ver_main;
 
     if(type === 'A') {
         imageUrl = lcgVerCdn + "/" + lcgVerMain + "/img/";
