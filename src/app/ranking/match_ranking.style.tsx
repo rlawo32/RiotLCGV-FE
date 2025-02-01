@@ -136,16 +136,18 @@ export const MatchRanking = styled('div')<{$type:string}>`
         }
         
         .highRank_multikill_item {
-            margin: 2px 3px;
-
-            span {
-                margin-left: 2px;
-            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3px 4px 0 3px;
         }
 
         .lowRank_multikill_item {
-            width: 26px;
-            margin: 0 4px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            margin: 0 2px 0 0;
         }
     }
 
