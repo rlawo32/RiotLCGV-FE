@@ -9,6 +9,7 @@ import { duplicationRank } from "./ranking_tool";
 const RankingView1G3BDeath = (props : {data:{
             lcg_summoner_puuid: string
             lcg_summoner_nickname: string
+            lcg_champion_name: string
             death: number
             rank: number
         }[]}) => {

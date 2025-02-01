@@ -10,6 +10,7 @@ import TurretIcon from "../icons/TurretIcon";
 const RankingView1G3BTower = (props : {data:{
             lcg_summoner_puuid: string
             lcg_summoner_nickname: string
+            lcg_champion_name: string
             lcg_destroy_tower: number
             lcg_damage_tower: number
             rank: number
