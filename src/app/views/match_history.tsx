@@ -7,10 +7,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
-import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
 import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
 import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
 import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
+
+import { lcgMatchInfoData, gameDuration, imgUrl } from "../component/match_tool";
 
 import DamageGraph  from "../component/damage_graph";
 import BaronIcon from "../icons/BaronIcon";
@@ -26,45 +27,34 @@ const MatchHistory = (props : {gameId:number}) => {
     const gameId:number = props.gameId;
 
     const [load, setLoad] = useState<boolean>(false);
+    const lcgMatchInfo:any = lcgMatchInfoData(gameId);
 
-    const { data: lcgMatchInfo, isLoading: dataLoading, isError: dataError, error: errorMsg } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {});
+    useEffect(() => {
+        let loadTime:number = 1000;
+        if(!lcgMatchInfo) {
+            loadTime += 5000;
+        } 
+        setTimeout(() => {setLoad(true)}, loadTime);
+    }, [lcgMatchInfo])
+
     const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchInfo});
     const { data: lcgMatchSub } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
     const { data: lcgMatchTeam } = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
 
-    useEffect(() => {
-        let loadTime:number = 1000;
-        if(!dataLoading) {
-            loadTime += 5000;
-        } else if (dataError) {
-            loadTime = 0;
-            console.log(errorMsg);
-        }
-        setTimeout(() => {setLoad(true)}, loadTime);
-    }, [dataLoading, dataError])
-
-    let imageUrl1:string;
-    let imageUrl2:string;
-    let lcgMaxDamageTotal:number;
-    let lcgMaxDamageTaken:number;
-    let lcgGameDuration:number;
+    let imageUrl1:string = "";
+    let imageUrl2:string = "";
+    let lcgMaxDamageTotal:number = 0;
+    let lcgMaxDamageTaken:number = 0;
+    let lcgGameDuration:number = 0; 
 
     if(!!lcgMatchInfo) {
         lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
         lcgMaxDamageTaken = lcgMatchInfo[0].lcg_max_damage_taken;
 
-        const lcgVerCdn = lcgMatchInfo[0].lcg_ver_cdn;
-        const lcgVerMain = lcgMatchInfo[0].lcg_ver_main;
+        imageUrl1 = imgUrl(lcgMatchInfo[0], "A");
+        imageUrl2 = imgUrl(lcgMatchInfo[0], "B");
 
-        imageUrl1 = lcgVerCdn + "/" + lcgVerMain + "/img/";
-        imageUrl2 = lcgVerCdn + "/img/";
-
-        let minute:number = Math.floor(lcgMatchInfo[0].lcg_game_duration / 60);
-        const second:number = lcgMatchInfo[0].lcg_game_duration % 60;
-        if(second > 30) {
-            minute += 1;
-        }
-        lcgGameDuration = minute;
+        lcgGameDuration = gameDuration(lcgMatchInfo[0].lcg_game_duration);
     }
     
     return (
