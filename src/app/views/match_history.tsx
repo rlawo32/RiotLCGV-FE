@@ -51,8 +51,8 @@ const MatchHistory = (props : {gameId:number}) => {
         lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
         lcgMaxDamageTaken = lcgMatchInfo[0].lcg_max_damage_taken;
 
-        imageUrl1 = imgUrl(lcgMatchInfo[0].lcg_ver_cdn, lcgMatchInfo[0].lcg_ver_main, "A");
-        imageUrl2 = imgUrl(lcgMatchInfo[0].lcg_ver_cdn, lcgMatchInfo[0].lcg_ver_main, "B");
+        imageUrl1 = imgUrl(lcgMatchInfo[0], "A");
+        imageUrl2 = imgUrl(lcgMatchInfo[0], "B");
 
         lcgGameDuration = gameDuration(lcgMatchInfo[0].lcg_game_duration);
     }
