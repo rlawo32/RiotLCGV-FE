@@ -21,18 +21,22 @@ import HordeIcon from "../icons/HordeIcon";
 import TurretIcon from "../icons/TurretIcon";
 import GoldIcon from "../icons/GoldIcon";
 import InhibitorIcon from "../icons/InhibitorIcon";
+import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
 
 const MatchHistory = (props : {gameId:number}) => {
     const supabase = useSupabaseBrowser();
     const gameId:number = props.gameId;
 
     const [load, setLoad] = useState<boolean>(false);
-    const lcgMatchInfo:any = lcgMatchInfoData(gameId);
+    // const lcgMatchInfo:any = lcgMatchInfoData(gameId);
+    const { data: lcgMatchInfo, isLoading: dataLoading, isError: dataError, error: errorMsg } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {});
 
     useEffect(() => {
         let loadTime:number = 1000;
-        if(!lcgMatchInfo) {
+        if(!dataLoading) {
             loadTime += 5000;
+        } else if (dataError) {
+            console.log(errorMsg);
         } 
         setTimeout(() => {setLoad(true)}, loadTime);
     }, [lcgMatchInfo])
