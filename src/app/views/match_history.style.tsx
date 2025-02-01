@@ -70,7 +70,7 @@ export const MatchHistory = styled('div')`
                 }
     
                 .lcg_team_kda {
-                    margin: 0 18px;
+                    margin: 0 16px;
                     font-size: 18px;
                 }
 
