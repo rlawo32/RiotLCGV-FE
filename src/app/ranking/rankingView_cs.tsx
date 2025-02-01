@@ -27,8 +27,8 @@ const RankingViewCs = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
+                                    <div className="ranker_detail">{item.lcg_count_play} 게임</div>
                                     <div className="ranker_title">총 {item.cs.toLocaleString()} CS</div>
-                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -44,8 +44,8 @@ const RankingViewCs = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
+                                    <div className="ranker_detail">{item.lcg_count_play} 게임</div>
                                     <div className="ranker_title">총 {item.cs.toLocaleString()} CS</div>
-                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -61,8 +61,8 @@ const RankingViewCs = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
+                                    <div className="ranker_detail">{item.lcg_count_play} 게임</div>
                                     <div className="ranker_title">총 {item.cs.toLocaleString()} CS</div>
-                                    <div className="ranker_detail"></div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )
@@ -79,7 +79,7 @@ const RankingViewCs = (props : {data:{
                                         <div className="ranking_item_header">
                                             <div className="item_header item_header_rank">순위</div>
                                             <div className="item_header item_header_nickname">소환사명</div>
-                                            <div className="item_header item_header_title"></div>
+                                            <div className="item_header item_header_title">게임횟수</div>
                                             <div className="item_header item_header_detail">총 CS</div>
                                         </div>
                                         <Style.LowRankingItem $type={""}>
@@ -87,7 +87,7 @@ const RankingViewCs = (props : {data:{
                                                 <div className="item_rank">{item.rank}</div>
                                             </Link>
                                             <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                                            <div className="item_title"></div>
+                                            <div className="item_title">{item.lcg_count_play} 게임</div>
                                             <div className="item_detail">CS {item.cs.toLocaleString()}</div>
                                         </Style.LowRankingItem>
                                     </>
@@ -97,7 +97,7 @@ const RankingViewCs = (props : {data:{
                                             <div className="item_rank">{item.rank}</div>
                                         </Link>
                                         <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                                        <div className="item_title"></div>
+                                        <div className="item_title">{item.lcg_count_play} 게임</div>
                                         <div className="item_detail">CS {item.cs.toLocaleString()}</div>
                                     </Style.LowRankingItem>
                             }
