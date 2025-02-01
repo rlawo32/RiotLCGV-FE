@@ -1,26 +1,3 @@
-import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import useSupabaseBrowser from "../supabase-browser";
-import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
-
-export const lcgMatchInfoData = (gameId:number):{
-    lcg_game_duration: number
-    lcg_game_id: number
-    lcg_max_damage_taken: number
-    lcg_max_damage_total: number
-    lcg_ver_cdn: string
-    lcg_ver_lang: string
-    lcg_ver_main: string
-}[]|undefined|null|boolean => {
-    const supabase = useSupabaseBrowser();
-    const { data: lcgMatchInfo, isLoading: dataLoading, isError: dataError, error: errorMsg } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {});
-
-    if(!dataLoading) {
-        console.log('InfoData Loading...');
-    } else if (dataError) {
-        console.log(errorMsg);
-    } 
-    return lcgMatchInfo;
-}
 
 export const gameDuration = (lcg_game_duration:number):number => {
     let minute:number = Math.floor(lcg_game_duration / 60);

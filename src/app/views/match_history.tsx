@@ -11,7 +11,7 @@ import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
 import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
 import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
 
-import { lcgMatchInfoData, gameDuration, imgUrl } from "../component/match_tool";
+import { gameDuration, imgUrl } from "../component/match_tool";
 
 import DamageGraph  from "../component/damage_graph";
 import BaronIcon from "../icons/BaronIcon";
