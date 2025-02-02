@@ -22,6 +22,7 @@ import TurretIcon from "../icons/TurretIcon";
 import GoldIcon from "../icons/GoldIcon";
 import InhibitorIcon from "../icons/InhibitorIcon";
 import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
+import MvpIcon from "../icons/MvpIcon";
 
 const MatchHistory = (props : {gameId:number}) => {
     const supabase = useSupabaseBrowser();
@@ -155,10 +156,11 @@ const MatchHistory = (props : {gameId:number}) => {
                                                             </td>
                                                             <td className="lcg_summoner_name">
                                                                 <Link href={"https://www.op.gg/summoners/kr/" + lcgMain.lcg_summoner_name + "-" + lcgMain.lcg_summoner_tag} target="_blank">
-                                                                    <div className="lcg_summoner_name">
+                                                                    <div className="lcg_nickname">
                                                                         {lcgMain.lcg_summoner_name}
                                                                     </div>
                                                                 </Link>
+                                                                <MvpIcon rank={lcgMain.lcg_mvp_rank} />
                                                             </td>
                                                             <td className="lcg_kda">
                                                                 <div className="lcg_kda_head">

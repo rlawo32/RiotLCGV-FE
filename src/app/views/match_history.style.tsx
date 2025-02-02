@@ -167,12 +167,15 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_summoner_name {
-            width: 65px;
-            padding-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 11px;
+
+            .lcg_nickname {
+                width: 65px;
+                padding-bottom: 3px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 11px;
+            }
         }
 
         .lcg_kda {
