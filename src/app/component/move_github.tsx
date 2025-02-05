@@ -9,6 +9,8 @@ const GithubStyle = styled('div')`
     position: absolute;
     top: 10px;
     left: 10px;
+    height: 25px;
+    width: 25px;
     border-radius: 15px;
 
     .icon_github {
