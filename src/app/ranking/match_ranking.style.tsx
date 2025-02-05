@@ -5,33 +5,13 @@ export const MatchRanking = styled('div')<{$type:string}>`
     border-radius: 15px;
     height: ${({$type}) => $type.includes('1G') ? '330px' : '500px'};
     width: ${({$type}) => $type.includes('1G') ? '850px' : '950px'};
-    margin: 30px auto 50px;
-    background: linear-gradient(0deg, #000, #272727);
-
-    &::before, &::after {
-        border-radius: 15px;
-        content: '';
-        position: absolute;
-        left: -1.5px;
-        top: -1.5px;
-        background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094,
-                #0000ff, #00ff00,#ffff00, #ff0000);
-        background-size: 400%;
-        width: calc(100% + 3px);
-        height: calc(100% + 3.5px);
-        z-index: 0;
-        animation: steam 60s linear infinite;
-    }
-
-    &::after {
-        filter: blur(30px);
-    }
+    margin: 0 auto;
 
     .ranking_container {
         z-index: 1;
         position: relative;
         border-radius: 15px;
-        background: #070719;
+        background: #12121d;
 
         padding: 20px 50px;
         height: 100%;

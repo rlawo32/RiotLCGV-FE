@@ -8,7 +8,6 @@ import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import { getLcgMatchLogQuery } from "../queries/getLcgMatchLogQuery";
 import useSupabaseBrowser from "../supabase-browser";
 
-import MatchRanking from "../ranking/match_ranking";
 import MatchHistory from "./match_history";
 import LoadingSpinner from "../component/loading_spinner";
 
@@ -48,7 +47,6 @@ const MatchList = () => {
 
     return (
         <div>
-            <MatchRanking />
             <Style.MatchList>
                 {lcgMatchLog?.map((lcgLog, idx) => {
                     return (
