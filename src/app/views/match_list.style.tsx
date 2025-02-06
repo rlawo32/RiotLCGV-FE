@@ -54,7 +54,7 @@ export const ListContainer = styled('div')`
         display: inline-block;
         padding: 2px;
         text-decoration: none;
-        height: 435px;
+        height: 830px;
     }
 `
 
