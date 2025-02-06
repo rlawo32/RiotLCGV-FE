@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const MainView = styled('div')`
     position: relative;
-    height: 100vh;
+    @media (max-height: 910px) {
+        height: 100%;
+    }
+    height: 910px;
     width: 1440px;
     margin: 0 auto;
     color: white;
@@ -29,7 +32,7 @@ export const MainView = styled('div')`
         display: flex;
         justify-content: space-between;
         height: 100%;
-        padding: 30px 20px;
+        padding: 25px 40px;
         background: #0d0d25;
         z-index: 1;
     }
