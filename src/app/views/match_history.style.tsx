@@ -1,109 +1,215 @@
 import styled from "styled-components";
 
-export const MatchHistory = styled('div')`
+export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
+    position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    width: 1140px;
+    width: 768px;
     height: 100%;
+    min-height: ${({$type}) => $type === 'L' ? "860px" : "0"};
+    margin: 0 auto;
+    padding: 7px 30px;
+    border-radius: 10px;
+    background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "none"};
 
-    table {
-        margin: 3px;
-        border-collapse: collapse;
-        table-layout: fixed;
-        color: white;
+    .lcg_history_title {
+        position: relative;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        padding: 7px 15px;
+        border-radius: 10px;
+        background-color: rgb(30 30 38 / 1);
 
-        .skeleton_ui {
+        .lcg_history_title_head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding-bottom: 4px;
+            font-weight: 700;
 
-            .aggregate_left {.skeleton_header {justify-content: right;flex-direction: row;}}
-
-            .aggregate_right {.skeleton_header {justify-content: left;flex-direction: row-reverse;}}
-
-            .skeleton_header {
-                height: 20px;
-                width: 100%;
-                margin: auto 22px;
-                border-radius: 10px;
-                animation: pulse 2s infinite ease-in-out;
+            .lcg_history_date {
+                font-size: 1.4rem;
             }
 
-            .skeleton_portrait {
-                height: 80%;
-                width: 80%;
-                margin: auto;
-                border-radius: 10px;
-                animation: pulse 2s infinite ease-in-out;
-            }
-
-            .skeleton_content {
-                height: 60%;
-                width: 100%;
-                margin: auto;
-                border-radius: 10px;
-                animation: pulse 2s infinite ease-in-out;
+            .lcg_history_ver {
+                font-size: 1.2rem; 
             }
         }
 
+        .lcg_history_title_body {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            .lcg_history_duration {
+                display: flex;
+                align-items: center;
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .skeleton_title {
+        display: ${({$load}) => $load ? "none" : "block"};
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        border-radius: 10px;
+        animation: pulse 2s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    .skeleton_header {
+        display: ${({$load}) => $load ? "none" : "block"};
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 100%;
+        margin: auto;
+        border-radius: 10px;
+        animation: pulse 2s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    .skeleton_portrait {
+        display: ${({$load}) => $load ? "none" : "block"};
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 90%;
+        width: 90%;
+        margin: 3px auto;
+        border-radius: 10px;
+        animation: pulse 2s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    .skeleton_content {
+        display: ${({$load}) => $load ? "none" : "block"};
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 90%;
+        width: 93%;
+        margin: 3px 45px;
+        border-radius: 10px;
+        animation: pulse 2s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    table {
+        width: 700px;
+        margin: 5px 3px;
+        border-collapse: collapse;
+        color: white;
+
         thead {
+            height: 65px;
+
             tr:nth-child(n+2) {
                 border-bottom: 1px solid #3d96ff;
             }
 
             th {
-                padding: 4px;
-                font-size: 14px;
+                padding: 3px;
+                font-size: 1.4rem;
             }
-
-            .aggregate_left {.aggregate {justify-content: right;flex-direction: row;}.lcg_object_count {justify-content: right;flex-direction: row-reverse;}}
-
-            .aggregate_right {.aggregate {justify-content: left;flex-direction: row-reverse;}.lcg_object_count {justify-content: left;flex-direction: row;}}
 
             .aggregate {
                 display: flex;
+                flex-direction: column;
+                justify-content: space-between;
                 align-items: center;
+                padding: 0 7px 3px;
 
-                padding-bottom: 22px;
-
-                .lcg_win {
-                    margin: 0 20px;
-                    font-size: 17px;
-                    font-weight: bold;
-                }
-    
-                .lcg_team_kda {
-                    margin: 0 16px;
-                    font-size: 18px;
-                }
-
-                .lcg_team_gold {
+                .aggregate_head {
                     position: relative;
-                    width: 30px;
-                    margin: 0 35px;
-                    font-size: 16px;
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 0 0 6px;
+                    font-size: 1.6rem;
 
-                    .lcg_object_icon {
-                        position: absolute;
-                        top: 1px;
-                        left: -20px;
+                    .aggregate_team {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .team_blue {
+                        color: #1F85FD;
+                    }
+
+                    .team_red {
+                        color: #F60C50;
                     }
                 }
 
-                .lcg_object_count {
+                .aggregate_body {
+                    position: relative;
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
-                    margin: 0 8px;
+                    width: 100%;
+                    
+                    .lcg_team_data {
+                        display: flex;
+                        align-items: center;
+                    }
 
-                    .lcg_object_item {
+                    .lcg_win {
+                        font-weight: bold;
+                        font-size: 1.8rem;
+                    }
+        
+                    .lcg_team_kda {
+                        margin: 0 16px;
+                        font-size: 1.7rem;
+                    }
+
+                    .lcg_team_gold {
                         position: relative;
-                        font-size: 14px;
-                        margin: 0 5px 0 25px;
+                        width: 30px;
+                        margin: 0 35px;
+                        font-size: 1.7rem;
 
                         .lcg_object_icon {
                             position: absolute;
-                            top: -1px;
-                            left: -19px;
+                            top: 1px;
+                            left: -20px;
                         }
+                    }
 
-                        .lcg_object_data {
+                    .lcg_object_count {
+                        display: flex;
+                        align-items: center;
+                        margin: 0 8px;
+
+                        .lcg_object_item {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            margin: 0 5px 0 25px;
+                            font-size: 1.5rem;
+
+                            .lcg_object_icon {
+                                position: absolute;
+                                top: -1px;
+                                left: -19px;
+                            }
+
+                            .lcg_object_data {
+                            }
                         }
                     }
                 }
@@ -112,11 +218,13 @@ export const MatchHistory = styled('div')`
 
         tbody {
             tr {
+                position: relative;
+                height: 58px;
                 border-bottom: 1px solid #3d96ff;
+                font-size: 1.2rem;
             }
 
             td {
-                height: 59px;
                 padding: 3px 2px;
                 text-align: center;
             }
@@ -127,6 +235,11 @@ export const MatchHistory = styled('div')`
             border-radius: 10px;
         }
 
+        .lcg_sub_data  {
+            margin: 4px 0 0; 
+            font-size: 1.1rem;
+        }
+
         .lcg_champion {
             position: relative;
             width: 40px;
@@ -135,8 +248,8 @@ export const MatchHistory = styled('div')`
                 position: absolute;
                 bottom: 12px;
                 left: 3px;
+                margin: 0;
                 padding: 2px 4px 2px 2px;
-                font-size: 10px;
                 background-color: black;
                 border-radius: 50%;
             }
@@ -167,20 +280,19 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_summoner_name {
+            padding: 0 15px;
 
             .lcg_nickname {
-                width: 65px;
+                width: 80px;
                 padding-bottom: 3px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                font-size: 11px;
             }
         }
 
         .lcg_kda {
-            width: 140px;
-            font-size: 10px;
+            width: 130px;
 
             .lcg_kda_head {
                 display: flex;
@@ -191,52 +303,36 @@ export const MatchHistory = styled('div')`
 
             .lcg_kda_rate {
                 margin: 0 3px;
-                font-size: 9px;  
             }
 
             .lcg_kda_calc {
                 margin: 3px 0; 
-                font-size: 9px;  
             }
         }
 
         .lcg_damage {
             width: 60px;
             padding-top: 7px;
-            font-size: 10px;
-            font-weight: bold;
         }
 
         .lcg_taken {
             width: 60px;
             padding-top: 7px;
-            font-size: 10px;
-            font-weight: bold;
         }
 
         .lcg_ward {
-            width: 50px;
-            font-size: 10px;
-
-            .lcg_ward_count {
-                margin-top: 3px;
-            }
+            width: 60px;
         }
 
         .lcg_minion {
-            width: 70px;
-            font-size: 10px;
-
-            .lcg_minute_cs {
-                margin: 2px 0;
-                font-size: 10px;        
-            }
+            width: 60px;
         }
 
         .lcg_item {
             display: flex;
             flex-wrap: wrap;
-            width: 82px;
+            justify-content: right;
+            width: 90px;
         }
         
         .item_image {
@@ -251,7 +347,6 @@ export const MatchHistory = styled('div')`
         }
 
         .lcg_acc {
-            width: 16px;
         }
     }
     
@@ -272,7 +367,7 @@ export const MatchHistory = styled('div')`
 
 export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
     margin: 4px 0 0; 
-    font-size: 11px;
+    font-size: 1.1rem;
     font-weight: bold;
     color: ${({$k, $d, $a}) => 
         ($k > 0 || $a > 0) && $d == 0 ? "#FF8200"
