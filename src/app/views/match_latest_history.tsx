@@ -1,6 +1,6 @@
 'use client';
 
-import * as Style from "./match_latest_history.style";
+import * as Style from "./match_history.style";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,8 +25,9 @@ import GoldIcon from "../icons/GoldIcon";
 import InhibitorIcon from "../icons/InhibitorIcon";
 import MvpIcon from "../icons/MvpIcon";
 import TeamBlueIcon from "../icons/TeamBlueIcon";
-import TeamRedIcon from "../icons/TeamBlueRed";
+import TeamRedIcon from "../icons/TeamRedIcon";
 import GameTimeIcon from "../icons/GameTimeIcon";
+import LoadingSpinner from "../component/loading_spinner";
 
 const MatchLatestHistory = () => {
     const supabase = useSupabaseBrowser();
@@ -42,30 +43,33 @@ const MatchLatestHistory = () => {
 
     const [load, setLoad] = useState<boolean>(false);
 
-    const { data: lcgMatchLog, isError: dataError1, error: errorMsg1 } = useQuery(getLcgMatchLogLatestQuery(supabase));
+    const { data: lcgMatchLog, isLoading: loading1, isError: dataError1, error: errorMsg1 } = useQuery(getLcgMatchLogLatestQuery(supabase));
     if(!!lcgMatchLog) {
         gameId = lcgMatchLog[0].lcg_game_id;
         lcgGameDate = lcgMatchLog[0].lcg_game_date; 
         lcgGameVer = lcgMatchLog[0].lcg_game_ver;
     } else if(dataError1) {
         console.log(errorMsg1);
+        return <div>Error</div>
     }
 
-    const { data: lcgMatchInfo, isLoading: dataLoading, isError: dataErro2, error: errorMsg2 } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!lcgMatchLog});
+    const { data: lcgMatchInfo, isLoading: loading2, isError: dataErro2, error: errorMsg2 } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!lcgMatchLog});
 
     useEffect(() => {
-        let loadTime:number = 1000;
-        if(!dataLoading) {
-            loadTime += 5000;
+        let loadTime:number = 0;
+        if(!loading2) {
+            loadTime += 1000;
         } else if (dataErro2) {
             console.log(errorMsg2);
-        } 
+        } else {
+            loadTime = 0;
+        }
         setTimeout(() => {setLoad(true)}, loadTime);
     }, [lcgMatchInfo])
 
     const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchInfo});
     const { data: lcgMatchSub } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
-    const { data: lcgMatchTeam } = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
+    const { data: lcgMatchTeam, isLoading: loading3} = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
 
     if(!!lcgMatchInfo) {
         lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
@@ -79,97 +83,108 @@ const MatchLatestHistory = () => {
     }
     
     return (
-        <Style.MatchLatestHistory>
-            <div className="lcg_history_title">
-                <div className="lcg_history_title_head">
-                    <div className="lcg_history_date">
-                        {lcgGameDate.substring(0, 10)}
-                    </div>
-                    <div className="lcg_history_ver"> 
-                        ver. {lcgGameVer}
-                    </div>
-                </div>
-                <div className="lcg_history_title_body">
-                    <div className="lcg_history_duration">
-                        <GameTimeIcon />&nbsp;{lcgGameDurationMin}:{String(lcgGameDuration % 60).padStart(2, '0')}
-                    </div>
-                </div>
-            </div>
+        <Style.MatchHistory $load={load} $type={"L"}>
             {
-                lcgMatchTeam?.map((lcgTeam) => {
-                    return (
-                        <table key={"lcgTeam" + lcgTeam.lcg_team_id} width={load ? 0 : 560}>
-                            <thead>
-                                <tr className="skeleton_ui">
-                                    <th colSpan={11}>
-                                        <div className="aggregate">
-                                        {
-                                            load ?
-                                                <>
-                                                    <div className="lcg_team_data">
-                                                        {lcgTeam.lcg_team_id === 100 ? <TeamBlueIcon /> : <TeamRedIcon />}
-                                                        <div className="lcg_win" style={lcgTeam.lcg_team_win === 'Y' ? {color:"#5383E8"} : {color:"#E84057"}}>
-                                                            {lcgTeam.lcg_team_win === 'Y' ? "승리" : "패배"}
-                                                        </div>
-                                                        <div className="lcg_team_kda">
-                                                            {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
-                                                        </div>
-                                                        <div className="lcg_team_gold">
-                                                            <div className="lcg_object_icon"><GoldIcon /></div> 
-                                                            <div className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="lcg_object_count">
-                                                        <div className="lcg_object_item">
-                                                            <div className="lcg_object_icon"><DragonIcon /></div> 
-                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_dragon}</div>
-                                                        </div>
-                                                        <div className="lcg_object_item">
-                                                            <div className="lcg_object_icon"><BaronIcon /></div> 
-                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_baron}</div>
-                                                        </div>
-                                                        <div className="lcg_object_item">
-                                                            <div className="lcg_object_icon"><HeraldIcon /></div> 
-                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_herald}</div>
-                                                        </div>
-                                                        <div className="lcg_object_item">
-                                                            <div className="lcg_object_icon"><HordeIcon /></div>
-                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_horde}</div>
-                                                        </div>
-                                                        <div className="lcg_object_item">
-                                                            <div className="lcg_object_icon"><TurretIcon /></div> 
-                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_tower}</div>
-                                                        </div>
-                                                        <div className="lcg_object_item">
-                                                            <div className="lcg_object_icon"><InhibitorIcon /></div> 
-                                                            <div className="lcg_object_data">{lcgTeam.lcg_total_inhibitor}</div>
-                                                        </div>
-                                                    </div>
-                                                </>
-                                                :
-                                                <div className="skeleton_header" />
-                                        } 
+                loading1 && !loading3 ? <LoadingSpinner /> :
+                    <>
+                        {
+                            lcgMatchTeam ?       
+                                <div className="lcg_history_title">
+                                    <div className="skeleton_title" />
+                                    <div className="lcg_history_title_head">
+                                        <div className="lcg_history_date">
+                                            {lcgGameDate.substring(0, 10)}
                                         </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colSpan={4}>소환사</th>
-                                    <th>KDA</th>
-                                    <th colSpan={2}>피해량</th>
-                                    <th>와드</th>
-                                    <th>CS</th>
-                                    <th colSpan={2}>아이템</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
-                                        return (
-                                            <tr key={"lcgMain" + idx} className="skeleton_ui">
-                                                {
-                                                    load ?
-                                                        <>
+                                        <div className="lcg_history_ver"> 
+                                            ver. {lcgGameVer}
+                                        </div>
+                                    </div>
+                                    <div className="lcg_history_title_body">
+                                        <div className="lcg_history_duration">
+                                            <GameTimeIcon />&nbsp;{lcgGameDurationMin}:{String(lcgGameDuration % 60).padStart(2, '0')}
+                                        </div>
+                                    </div>
+                                </div>
+                                : <></>
+                        }
+                        {
+                            lcgMatchTeam?.map((lcgTeam) => {
+                                return (
+                                    <table key={"lcgTeam" + lcgTeam.lcg_team_id} width={load ? 0 : 560}>
+                                        <thead>
+                                            <tr className="skeleton_ui">
+                                                <th colSpan={11}>
+                                                    <div className="aggregate">
+                                                        <div className="aggregate_head">
+                                                            <div className="skeleton_header" />
+                                                            {lcgTeam.lcg_team_id === 100 ? 
+                                                                <div className="aggregate_team team_blue">
+                                                                    <TeamBlueIcon />&nbsp;&nbsp;TeamBlue
+                                                                </div> : 
+                                                                <div className="aggregate_team team_red">
+                                                                    <TeamRedIcon />&nbsp;&nbsp;TeamRed
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                        <div className="aggregate_body"> 
+                                                            <div className="skeleton_header" />
+                                                            <div className="lcg_team_data">
+                                                                <div className="lcg_win" style={lcgTeam.lcg_team_win === 'Y' ? {color:"#5383E8"} : {color:"#E84057"}}>
+                                                                    {lcgTeam.lcg_team_win === 'Y' ? "승리" : "패배"}
+                                                                </div>
+                                                                <div className="lcg_team_kda">
+                                                                    {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
+                                                                </div>
+                                                                <div className="lcg_team_gold">
+                                                                    <div className="lcg_object_icon"><GoldIcon /></div> 
+                                                                    <div className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="lcg_object_count">
+                                                                <div className="lcg_object_item">
+                                                                    <div className="lcg_object_icon"><DragonIcon /></div> 
+                                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_dragon}</div>
+                                                                </div>
+                                                                <div className="lcg_object_item">
+                                                                    <div className="lcg_object_icon"><BaronIcon /></div> 
+                                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_baron}</div>
+                                                                </div>
+                                                                <div className="lcg_object_item">
+                                                                    <div className="lcg_object_icon"><HeraldIcon /></div> 
+                                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_herald}</div>
+                                                                </div>
+                                                                <div className="lcg_object_item">
+                                                                    <div className="lcg_object_icon"><HordeIcon /></div>
+                                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_horde}</div>
+                                                                </div>
+                                                                <div className="lcg_object_item">
+                                                                    <div className="lcg_object_icon"><TurretIcon /></div> 
+                                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_tower}</div>
+                                                                </div>
+                                                                <div className="lcg_object_item">
+                                                                    <div className="lcg_object_icon"><InhibitorIcon /></div> 
+                                                                    <div className="lcg_object_data">{lcgTeam.lcg_total_inhibitor}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colSpan={4}>소환사</th>
+                                                <th>KDA</th>
+                                                <th colSpan={2}>피해량</th>
+                                                <th>와드</th>
+                                                <th colSpan={2}>아이템</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
+                                                    return (
+                                                        <tr key={"lcgMain" + idx}>
                                                             <td className="lcg_champion">
+                                                                <div className="skeleton_portrait" />
                                                                 <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
                                                                 alt={"champion"} height={40} width={40} className="lcg_image champion_image" />
                                                                 <div className="lcg_sub_data lcg_level">
@@ -177,6 +192,7 @@ const MatchLatestHistory = () => {
                                                                 </div>
                                                             </td>
                                                             <td className="lcg_spell">
+                                                                <div className="skeleton_content" />
                                                                 <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
                                                                 alt={"spell1"} height={20} width={20} className="lcg_image spell_image" />
                                                                 <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
@@ -277,30 +293,18 @@ const MatchLatestHistory = () => {
                                                                         :<div className="item_image empty_image"/>
                                                                 }
                                                             </td>
-                                                        </>
-                                                        :
-                                                        <>
-                                                            <td className="lcg_portrait">
-                                                                <div className="skeleton_portrait" />
-                                                            </td>
-                                                            <td className="lcg_portrait">
-                                                                <div className="skeleton_portrait" />
-                                                            </td>
-                                                            <td className="lcg_empty" colSpan={9}>
-                                                                <div className="skeleton_content" />
-                                                            </td>
-                                                        </>
-                                                }
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>  
-                        </table>
-                    )
-                })
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>  
+                                    </table>
+                                )
+                            })
+                        }
+                    </>
             }
-        </Style.MatchLatestHistory>
+        </Style.MatchHistory>
     )
 }
 
