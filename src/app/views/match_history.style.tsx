@@ -137,6 +137,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     position: relative;
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                     width: 100%;
                     padding: 0 0 6px;
                     font-size: 1.6rem;
@@ -152,6 +153,40 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                     .team_red {
                         color: #F60C50;
+                    }
+
+                    .lcg_team_bans {
+                        display: flex;
+                        align-items: center;
+
+                        .ban_champion {
+                            position: relative;
+                            height: 25px;
+                            margin: 0 4px;
+                            border: 1px solid rgba(0,0,0,0);
+                            border-radius: 4px;
+                            overflow: hidden;
+                            z-index: 0;
+
+                            &:hover {
+                                border: 1px solid red;
+                            }
+
+                            .bans_image {
+                                display: block;
+                                object-fit: cover;
+                                opacity: .6;
+                                transform: scale(1.2, 1.2);
+                            }
+                        }
+
+                        svg {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                        }
                     }
                 }
 
@@ -246,12 +281,13 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
             .lcg_level {
                 position: absolute;
-                bottom: 12px;
+                bottom: 10px;
                 left: 3px;
                 margin: 0;
                 padding: 2px 4px 2px 2px;
                 background-color: black;
                 border-radius: 50%;
+                font-size: 1rem;
             }
 
             .champion_image {
