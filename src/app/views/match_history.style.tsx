@@ -12,7 +12,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     margin: 0 auto;
     padding: 7px 30px;
     border-radius: 10px;
-    background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "none"};
+    background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "rgb(49 49 60 / 1)"};
 
     .lcg_history_title {
         position: relative;
