@@ -15,6 +15,7 @@ import TeamRedIcon from "../icons/TeamRedIcon";
 
 const MatchList = () => {
     const supabase = useSupabaseBrowser();
+    const matchListRef:any = useRef<any>([]);
     const matchHistoryRef:any = useRef<any>([]);
 
     const [selectGameId, setSelectGameId] = useState<number>(0);
@@ -34,14 +35,17 @@ const MatchList = () => {
         setSelectGameId(gameId);
         setSelectIdx(idx);
 
-        if(!matchHistoryRef.current[idx].className.includes('view_active')) {
+        if(!matchListRef.current[idx].className.includes('viewList_active')) {
+            matchListRef.current[idx].className += ' viewList_active';
             matchHistoryRef.current[idx].className += ' view_active';
         } else {            
+            matchListRef.current[idx].className = matchListRef.current[idx].className.replace(' viewList_active', '');
             matchHistoryRef.current[idx].className = matchHistoryRef.current[idx].className.replace(' view_active', '');
         }
 
-        for(let i:number=0; i<matchHistoryRef.current.length; i++) {
+        for(let i:number=0; i<matchListRef.current.length; i++) {
             if(i !== idx) {
+                matchListRef.current[i].className = matchListRef.current[i].className.replace(' viewList_active', '');
                 matchHistoryRef.current[i].className = matchHistoryRef.current[i].className.replace(' view_active', '');
             }
         }
@@ -52,7 +56,7 @@ const MatchList = () => {
             {lcgMatchLog?.map((lcgLog, idx) => {
                 return (
                     <Style.ListContainer key={lcgLog.lcg_game_id}>
-                        <Style.ListBox onClick={() => matchListBoxClick(lcgLog.lcg_game_id, idx)}>
+                        <Style.ListBox onClick={() => matchListBoxClick(lcgLog.lcg_game_id, idx)} ref={(ml:any) => (matchListRef.current[idx] = ml)}>
                             <div className="box_head">
                                 {(lcgLog.lcg_game_date).substring(2, 4)}. {(lcgLog.lcg_game_date).substring(5, 7)}. {(lcgLog.lcg_game_date).substring(8, 10)}.
                             </div>

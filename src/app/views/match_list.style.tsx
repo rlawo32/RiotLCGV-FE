@@ -19,6 +19,11 @@ export const ListContainer = styled('div')`
     flex-direction: column;
     justify-content: center;
     margin: 10px 0;
+    border: 1px solid rgba(0,0,0,0);
+
+    .viewList_active {
+        border: 1px solid rgb(255 68 56 / 1);
+    }
 
     .matchHistory_box {
         height: 0;
@@ -82,10 +87,10 @@ export const ListBox = styled('div')`
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 32px;
-                width: 57px;
+                height: 29px;
+                width: 47px;
                 border-radius: 5px;
-                font-size: 1.8rem;
+                font-size: 1.7rem;
                 line-height: 20px;
                 background-color: rgb(28 28 31 / 1);
             }
