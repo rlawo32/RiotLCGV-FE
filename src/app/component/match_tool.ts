@@ -1,5 +1,5 @@
 
-export const gameDuration = (lcg_game_duration:number):number => {
+export const getGameDuration = (lcg_game_duration:number):number => {
     let minute:number = Math.floor(lcg_game_duration / 60);
     const second:number = lcg_game_duration % 60;
     if(second > 30) {
@@ -10,27 +10,20 @@ export const gameDuration = (lcg_game_duration:number):number => {
     return lcgGameDuration;
 }
 
-export const imgUrl = (lcgMatchInfo:{
-    lcg_game_duration: number
-    lcg_game_id: number
-    lcg_max_damage_taken: number
-    lcg_max_damage_total: number
-    lcg_ver_cdn: string
-    lcg_ver_lang: string
-    lcg_ver_main: string
-}, type:string):string => {
-    let imageUrl:string = "";
-
-    const lcgVerCdn = lcgMatchInfo.lcg_ver_cdn;
-    const lcgVerMain = lcgMatchInfo.lcg_ver_main;
-
-    if(type === 'A') {
-        imageUrl = lcgVerCdn + "/" + lcgVerMain + "/img/";
-    } else {
-        imageUrl = lcgVerCdn + "/img/";
-    }
-
-    return imageUrl;
+export const getPlayerData = (lcgPlayerData:{
+    lcg_player: string
+    lcg_summoner_name: string
+    lcg_summoner_nickname: string
+    lcg_summoner_puuid: string
+}[], puuid:string, flag:string):string|undefined => {
+    let result:string|undefined = "";
+    if(flag === 'name') {
+        result = lcgPlayerData?.find((data) => data.lcg_summoner_puuid === puuid)?.lcg_summoner_name;
+    } else if(flag === 'opgg') {
+        const nickname = lcgPlayerData?.find((data) => data.lcg_summoner_puuid === puuid)?.lcg_summoner_nickname;
+        result = nickname?.split("#")[0] + "-" + nickname?.split("#")[1];
+    } 
+    return result;
 }
 
 export const duplicationRank = (ea:number):number => {
