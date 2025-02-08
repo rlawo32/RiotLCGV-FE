@@ -83,9 +83,9 @@ const MatchAnalyze = (props : {
 
     return (
         <Style.MatchAnalyze>
-            {analyzeArr.map((arr) => {
+            {analyzeArr.map((arr, idx1) => {
                 return (
-                    <div className="lcg_analyze_box">
+                    <div className="lcg_analyze_box" key={"analyze_" + idx1}>
                         <div className="lcg_analyze_title">
                             {
                                 arr.type === 'gold' ? "골드량"
@@ -103,12 +103,12 @@ const MatchAnalyze = (props : {
                             }
                         </div>
                         <div className="lcg_analyze_content">
-                            {props.lcgMatchSub.map((lcgData) => {
+                            {props.lcgMatchSub.map((lcgData, idx2) => {
                                     return (
                                         <>
                                             {
                                                 arr.type === 'gold' ?
-                                                    <div className="lcg_analyze_data">
+                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
                                                         <div className="lcg_analyze_champion">
                                                             <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
                                                             alt={"champion"} height={27} width={27} className="champion_image" />
@@ -122,7 +122,7 @@ const MatchAnalyze = (props : {
                                                     </div>
                                                     :
                                                 arr.type === 'crowd' ?   
-                                                    <div className="lcg_analyze_data">
+                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
                                                         <div className="lcg_analyze_champion">
                                                             <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
                                                             alt={"champion"} height={27} width={27} className="champion_image" />
@@ -136,7 +136,7 @@ const MatchAnalyze = (props : {
                                                     </div>        
                                                     :
                                                 arr.type === 'dpm' ?   
-                                                    <div className="lcg_analyze_data">
+                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
                                                         <div className="lcg_analyze_champion">
                                                             <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
                                                             alt={"champion"} height={27} width={27} className="champion_image" />
@@ -150,7 +150,7 @@ const MatchAnalyze = (props : {
                                                     </div>        
                                                     :
                                                 arr.type === 'gpm' ?   
-                                                    <div className="lcg_analyze_data">
+                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
                                                         <div className="lcg_analyze_champion">
                                                             <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
                                                             alt={"champion"} height={27} width={27} className="champion_image" />
@@ -164,7 +164,7 @@ const MatchAnalyze = (props : {
                                                     </div>        
                                                     :
                                                 arr.type === 'dpg' ?   
-                                                    <div className="lcg_analyze_data">
+                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
                                                         <div className="lcg_analyze_champion">
                                                             <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
                                                             alt={"champion"} height={27} width={27} className="champion_image" />
@@ -178,7 +178,7 @@ const MatchAnalyze = (props : {
                                                     </div>        
                                                     :
                                                 arr.type === 'multi' ?   
-                                                    <div className="lcg_analyze_data">
+                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
                                                         <div className="lcg_analyze_champion">
                                                             <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
                                                             alt={"champion"} height={27} width={27} className="champion_image" />
