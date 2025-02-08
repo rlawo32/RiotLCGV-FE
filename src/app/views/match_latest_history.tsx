@@ -13,8 +13,9 @@ import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
 import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
 import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
+import { getLcgPlayerDataQuery } from "../queries/getLcgPlayerDataQuery";
 
-import { gameDuration } from "../component/match_tool";
+import { getGameDuration, getPlayerData } from "../component/match_tool";
 
 import DamageGraph  from "../component/damage_graph";
 import BaronIcon from "../icons/BaronIcon";
@@ -29,6 +30,7 @@ import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
 import GameTimeIcon from "../icons/GameTimeIcon";
 import LoadingSpinner from "../component/loading_spinner";
+import ProhibitionIcon from "../icons/ProhibitionIcon";
 
 const MatchLatestHistory = () => {
     const supabase = useSupabaseBrowser();
@@ -69,16 +71,27 @@ const MatchLatestHistory = () => {
     }, [lcgMatchInfo])
 
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {enabled:!!lcgMatchInfo});
-    const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchEtc});
+    const { data: lcgPlayerData } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
+    const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgPlayerData});
     const { data: lcgMatchSub } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
     const { data: lcgMatchTeam, isLoading: loading3} = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
+
+    const playerData = (puuid:string, flag:string):string|undefined => {
+        let result:string|undefined = "";
+
+        if(!!lcgPlayerData) {
+            result = getPlayerData(lcgPlayerData, puuid, flag);
+        }
+
+        return result;
+    }
 
     if(!!lcgMatchInfo) {
         lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
         lcgMaxDamageTaken = lcgMatchInfo[0].lcg_max_damage_taken;
 
         lcgGameDuration = lcgMatchInfo[0].lcg_game_duration;
-        lcgGameDurationMin = gameDuration(lcgGameDuration);
+        lcgGameDurationMin = getGameDuration(lcgGameDuration);
 
         if(!!lcgMatchEtc) {
             imageUrl1 = lcgMatchEtc[0].lcg_main_image;
@@ -111,6 +124,7 @@ const MatchLatestHistory = () => {
                                 </div>
                                 : <></>
                         }
+
                         {
                             lcgMatchTeam?.map((lcgTeam) => {
                                 return (
@@ -124,11 +138,39 @@ const MatchLatestHistory = () => {
                                                             {lcgTeam.lcg_team_id === 100 ? 
                                                                 <div className="aggregate_team team_blue">
                                                                     <TeamBlueIcon />&nbsp;&nbsp;TeamBlue
-                                                                </div> : 
+                                                                </div> 
+                                                                : 
                                                                 <div className="aggregate_team team_red">
                                                                     <TeamRedIcon />&nbsp;&nbsp;TeamRed
                                                                 </div>
                                                             }
+                                                            <div className="lcg_team_bans">
+                                                                <div className="ban_champion">
+                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_1 + ".png"} 
+                                                                    alt={"ban_champion_1"} height={30} width={35} className="lcg_image bans_image" />
+                                                                    <ProhibitionIcon />
+                                                                </div>
+                                                                <div className="ban_champion">
+                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_2 + ".png"} 
+                                                                    alt={"ban_champion_2"} height={30} width={35} className="lcg_image bans_image" />
+                                                                    <ProhibitionIcon />
+                                                                </div>
+                                                                <div className="ban_champion">
+                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_3 + ".png"} 
+                                                                    alt={"ban_champion_3"} height={30} width={35} className="lcg_image bans_image" />
+                                                                    <ProhibitionIcon />
+                                                                </div>
+                                                                <div className="ban_champion">
+                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_4 + ".png"} 
+                                                                    alt={"ban_champion_4"} height={30} width={35} className="lcg_image bans_image" />
+                                                                    <ProhibitionIcon />
+                                                                </div>
+                                                                <div className="ban_champion">
+                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_5 + ".png"} 
+                                                                    alt={"ban_champion_5"} height={30} width={35} className="lcg_image bans_image" />
+                                                                    <ProhibitionIcon />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div className="aggregate_body"> 
                                                             <div className="skeleton_header" />
@@ -210,9 +252,9 @@ const MatchLatestHistory = () => {
                                                                 alt={"perk2"} height={16} width={16} className="lcg_image perk_image2" />
                                                             </td>
                                                             <td className="lcg_summoner_name">
-                                                                <Link href={"https://www.op.gg/summoners/kr/" + lcgMain.lcg_summoner_name + "-" + lcgMain.lcg_summoner_tag} target="_blank">
+                                                                <Link href={"https://www.op.gg/summoners/kr/" + playerData(lcgMain.lcg_summoner_puuid, "opgg")} target="_blank">
                                                                     <div className="lcg_nickname">
-                                                                        {lcgMain.lcg_summoner_name}
+                                                                        {playerData(lcgMain.lcg_summoner_puuid, "name")}
                                                                     </div>
                                                                 </Link>
                                                                 <MvpIcon rank={lcgMain.lcg_mvp_rank} />
