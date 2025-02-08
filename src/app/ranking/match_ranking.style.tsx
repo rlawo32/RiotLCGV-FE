@@ -2,22 +2,22 @@ import styled from "styled-components";
 
 export const MatchRanking = styled('div')<{$type:string}>`
     position: relative;
-    border-radius: 15px;
-    height: ${({$type}) => $type.includes('1G') ? '330px' : '500px'};
-    width: ${({$type}) => $type.includes('1G') ? '850px' : '950px'};
+    height: 100%;
+    width: 768px;
     margin: 0 auto;
+    padding: 7px 30px;
+    border-radius: 10px;
+    background-color: rgb(49 49 60 / .7);
+    color: #ffffff;
 
     .ranking_container {
         z-index: 1;
         position: relative;
         border-radius: 15px;
-        background: #12121d;
 
-        padding: 20px 50px;
+        padding: 20px 0;
         height: 100%;
         width: 100%;
-        font-size: 17px;
-        color: #badbcc;
 
         svg {
             height: 12px;
@@ -30,6 +30,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
             justify-content: right;
             margin-bottom: ${({$type}) => $type.includes('1G') ? '40px' : '0'};
             padding: 0 15px;
+            margin-bottom: 20px;
         }
     }
 
@@ -44,20 +45,17 @@ export const MatchRanking = styled('div')<{$type:string}>`
         display: flex;
         align-items: center;
         flex-direction: column;
-        flex-wrap: wrap;
-        height: 260px;
-        margin-top: 25px;
+        margin-top: 65px;
 
         .ranking_item_header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 6px 10px;
-            padding: 5px 15px 5px 10px;
-            border-radius: 10px;
-            background-color: rgba(42,50,73, .68);
-            font-size: 12px;
-            color: whitesmoke;
+            margin: 10px 10px;
+            padding: 10px 15px 10px;
+            border-top: 1px solid rgb(255 68 56 / 1);
+            border-bottom: 1px solid rgb(255 68 56 / 1);
+            font-size: 1.6rem;
 
             .item_header {
                 text-align: center;
@@ -69,50 +67,47 @@ export const MatchRanking = styled('div')<{$type:string}>`
             }
 
             .item_header_nickname {
-                width: 90px;
-                margin-right: 15px;
+                width: 160px;
+            }
+
+            .item_header_count {
+                width: 100px;
             }
 
             .item_header_title {
-                width: 120px;
+                width: 160px;
             }
 
             .item_header_detail {
-                width: 80px;
-            }
-
-            .item_header_title_long {
-                width: 70px;
-            }
-
-            .item_header_detail_long {
-                width: 130px;
+                width: 160px;
             }
         }
     }
 
+    .ranking_card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 50px 0;
+    }
+
     .object_box {
         display: flex;
+        justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        
+        span {
+            margin-left: 2px;
+        }
 
         .highRank_object_item {
             margin: 1px 3px;
-
-            svg {
-                height: 11px;
-                width: 11px;
-            }
         }
 
         .lowRank_object_item {
             width: 40px;
-            margin: 1px 0 0;
-
-            svg {
-                height: 11px;
-                width: 11px;
-            }
         }
         
         .highRank_multikill_item {
@@ -126,20 +121,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            margin: 0 2px 0 0;
-        }
-    }
-
-    @keyframes steam {
-        0% {
-            background-position: 0 0;
-        }
-        50% {
-            background-position: 400% 0;
-        }
-        100% {
-            background-position: 0 0;
+            margin: 0 4px;
         }
     }
 `;
@@ -149,7 +131,7 @@ export const RankingBox = styled('div')<{$ea:number}>`
     justify-content: ${({$ea}) => $ea > 3 ? "flex-start" : "center"};
     flex-wrap: wrap;
     height: 100%;
-    width: 250px;
+    width: calc(100% / 3);
 `
 
 export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
@@ -157,13 +139,14 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     top: ${({$rank}) => $rank === 1 ? "-45px" : 0};
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: ${({$ea}) => $ea > 3 ? "55px" : $ea === 3 ? "70px" : $ea === 2 ? "100px" : "170px"};
+    justify-content: end;
+    align-items: center;
+    width: ${({$ea}) => $ea > 2 ? "55px" : $ea === 2 ? "90px" : "170px"};
     text-align: center;
-    margin: ${({$ea}) => $ea > 3 ? "3px" : $ea === 3 ? "5px" : $ea === 2 ? "10px" : "10px 30px"};
+    margin: ${({$ea}) => $ea > 2 ? "3px" : $ea === 2 ? "10px" : "10px 30px"};
 
     .ranker_img {
-        margin: 3px auto;
+        margin: 4px auto;
     }
 
     .champion_img {
@@ -176,39 +159,39 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: ${({$type}) => $type === 'J' ? "30px" : "20px"};
-    width: 400px;
     margin: 3px 10px;
-    padding: 14px 15px 14px 10px;
+    padding: 10px 15px;
     border-radius: 10px;
-    background-color: rgba(42,50,73, .68);
-    font-size: 12px;
-    color: whitesmoke;
+    background-color: rgb(49 49 60 / 1);
+    font-size: 1.4rem;
     text-align: center;
 
     .item_rank {
         width: 40px;
-        text-align: center;
-        font-weight: bold;
+        span {
+            margin-left: 1px;
+            font-size: 1.2rem;
+        }
     }
 
     .item_nickname {
-        width: 90px;
-        margin-right: 15px;
-        text-align: center;
+        width: 160px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         cursor: pointer;
     }
 
-    .item_title {
-        width: ${({$type}) => $type === 'L' ? "70px" : "120px"};
-        font-size: ${({$type}) => $type === 'J' || $type === 'M' ? "11px" : "12px"};
+    .item_detail1 {
+        width: 100px;
     }
 
-    .item_detail {
-        width: ${({$type}) => $type === 'L' ? "130px" : "80px"};
+    .item_detail2 {
+        width: 160px;
+    }
+
+    .item_detail3 {
+        width: 160px;
     }
 `
 
@@ -228,5 +211,126 @@ export const RankerContent = styled('div')<{$ea:number}>`
 
     .ranker_detail {
         font-size: ${({$ea}) => $ea > 3 ? "8px" : $ea === 2 ? "10px" : $ea === 3 ? "8px" : "11px"};
+    }
+`
+export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
+    position: relative;
+    top: ${({$rank}) => $rank === 1 ? "-55px" : 0};
+    height: 460px;
+    width: 160px;
+    border-radius: 10px;
+    background-color: rgb(43 43 48 / 1);
+    overflow: hidden;
+
+    .card_container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+
+        &:hover > .card_head > .card_champion {
+            transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.1) scaleY(1.1);
+        }
+
+        .card_head {
+            position: relative;
+            height: 65%;
+            width: 100%;
+            overflow: hidden;
+
+            .card_champion {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 99%;
+                width: 100%;
+                background-image: ${({$image}) => "url(" + $image + ")"};
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+
+            .card_effect {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background-image: linear-gradient(rgba(43, 43, 48, 0) 30%, rgb(43, 43, 48) 90%);
+            }
+        }
+
+        .card_body {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            .card_perk {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                .perk_image1 {
+
+                }
+
+                .perk_image2 {
+                    position: absolute;
+                    bottom: 2px;
+                    right: -2px;
+                    border-radius: 100%;
+                    background-color: rgb(28 28 31 / 1);
+                }
+            }
+
+            .card_item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 80%;
+                margin-top: 10px;
+
+                .item_image {
+                    margin: 2px;
+                    border-radius: 7px;
+                }
+
+                .empry_image {
+                    height: 35px;
+                    width: 35px;
+                    border: 1px solid rgb(28 28 31 / 1);
+                }
+            }
+
+            .card_name {
+                margin-top: 12px;
+                font-size: 1.4rem;
+                line-height: 16px;
+            }
+
+            .card_data {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 8px;
+                padding: 4px 9px;
+                border-radius: 10px;
+                background-color: rgb(255 68 56 / 1);
+                font-size: 1.3rem;
+                font-weight: 700;
+                line-height: 16px;
+            }
+
+            .card_date {
+                margin-top: 6px;
+                font-size: 1.4rem;
+                line-height: 16px;
+                color: rgb(158 158 177 / 1);
+            }
+        }
     }
 `
