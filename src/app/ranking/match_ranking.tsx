@@ -31,7 +31,6 @@ import RankingViewVision from "./rankingView_vision";
 import SelectBox from "../component/select_box";
 
 import RankingView1G3BKill from "./rankingView_1G3B_kill";
-import RankingView1G3BAssist from "./rankingView_1G3B_assist";
 import RankingView1G3BDeath from "./rankingView_1G3B_death";
 import RankingView1G3BCs from "./rankingView_1G3B_cs";
 import RankingView1G3BGold from "./rankingView_1G3B_gold";
