@@ -51,25 +51,22 @@ const MatchLatestHistory = () => {
         gameId = lcgMatchLog[0].lcg_game_id;
         lcgGameDate = lcgMatchLog[0].lcg_game_date; 
         lcgGameVer = lcgMatchLog[0].lcg_game_ver;
-    } else if(dataError1) {
-        console.log(errorMsg1);
-        return <div>Error</div>
-    }
-
-    const { data: lcgMatchInfo, isLoading: loading2, isError: dataErro2, error: errorMsg2 } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!lcgMatchLog});
+    } 
 
     useEffect(() => {
         let loadTime:number = 0;
-        if(!loading2) {
+        if(!loading1) {
             loadTime += 1000;
-        } else if (dataErro2) {
-            console.log(errorMsg2);
+        } else if (dataError1) {
+            console.log(errorMsg1);
         } else {
             loadTime = 0;
         }
         setTimeout(() => {setLoad(true)}, loadTime);
-    }, [lcgMatchInfo])
+    }, [lcgMatchLog])
 
+
+    const { data: lcgMatchInfo } = useQuery(getLcgMatchInfoQuery(supabase, gameId), {enabled:!!lcgMatchLog});
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {enabled:!!lcgMatchInfo});
     const { data: lcgPlayerData } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
     const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgPlayerData});

@@ -2,7 +2,7 @@
 
 import * as Style from "./main_sidebar.style";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faUsers as icon_player, faGamepad as icon_latest, 
