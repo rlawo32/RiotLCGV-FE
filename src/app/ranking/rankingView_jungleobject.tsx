@@ -95,45 +95,33 @@ const RankingViewJungleObject = (props : {data:{
             <div className="ranking_bottom">
                 {props.data.filter((lowRanking) => lowRanking.rank > 3).map((item, idx) => {
                     return (
-                        <div key={"lowRank_" + idx}>    
+                        <div key={"lowRank_" + idx}>
                             {
-                                idx === 0 || idx === 6 ? 
-                                    <>
+                                idx === 0 ? 
                                         <div className="ranking_item_header">
                                             <div className="item_header item_header_rank">순위</div>
                                             <div className="item_header item_header_nickname">소환사명</div>
-                                            <div className="item_header item_header_title">처치 수</div>
-                                            <div className="item_header item_header_detail">오브젝트 점수</div>
-                                        </div>
-                                        <Style.LowRankingItem $type={"J"}>
-                                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
-                                                <div className="item_rank">{item.rank}</div>
-                                            </Link>
-                                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                                            <div className="object_box item_title">
-                                                <div className="lowRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
-                                                <div className="lowRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
-                                                <div className="lowRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
-                                                <div className="lowRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
-                                            </div>
-                                            <div className="item_detail">{item.lcg_jungle_object_score}</div>
-                                        </Style.LowRankingItem>
-                                    </>
-                                    :
-                                    <Style.LowRankingItem $type={"J"}>
-                                        <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
-                                            <div className="item_rank">{item.rank}</div>
-                                        </Link>
-                                        <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                                        <div className="object_box item_title">
-                                            <div className="lowRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
-                                            <div className="lowRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
-                                            <div className="lowRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
-                                            <div className="lowRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
-                                        </div>
-                                        <div className="item_detail">{item.lcg_jungle_object_score}</div>
-                                    </Style.LowRankingItem>
+                                            <div className="item_header item_header_count">게임 횟수</div>
+                                            <div className="item_header item_header_title">오브젝트 점수</div>
+                                            <div className="item_header item_header_detail">처치 수</div>
+                                        </div> : <></>
                             }
+                            <Style.LowRankingItem $type={""}>
+                                <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                    <div className="item_rank">{item.rank}<span>th</span></div>
+                                </Link>
+                                <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                                <div className="item_detail1">{item.lcg_count_play} 게임</div>
+                                <div className="item_detail2">
+                                    {item.lcg_jungle_object_score}
+                                </div>
+                                <div className="item_detail3 object_box">
+                                    <div className="lowRank_object_item"><DragonIcon /><span>{item.lcg_count_dragon}</span></div>
+                                    <div className="lowRank_object_item"><BaronIcon /><span>{item.lcg_count_baron}</span></div>
+                                    <div className="lowRank_object_item"><HeraldIcon /><span>{item.lcg_count_herald}</span></div>
+                                    <div className="lowRank_object_item"><HordeIcon /><span>{item.lcg_count_horde}</span></div>
+                                </div>
+                            </Style.LowRankingItem>
                         </div>
                     )
                 })}
