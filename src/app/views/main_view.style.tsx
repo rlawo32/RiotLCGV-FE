@@ -5,7 +5,7 @@ export const MainView = styled('div')`
     @media (max-height: 910px) {
         height: 100%;
     }
-    height: 910px;
+    min-height: 910px;
     width: 1440px;
     margin: 0 auto;
     color: white;
@@ -32,6 +32,7 @@ export const MainView = styled('div')`
         display: flex;
         justify-content: space-between;
         height: 100%;
+        min-height: 910px;
         padding: 25px 40px;
         background: #0d0d25;
         z-index: 1;
