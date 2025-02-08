@@ -72,35 +72,26 @@ const RankingViewDamage = (props : {data:{
             <div className="ranking_bottom">
                 {props.data.filter((lowRanking) => lowRanking.rank > 3).map((item, idx) => {
                     return (
-                        <div key={"lowRank_" + idx}>    
+                        <div key={"lowRank_" + idx}>
                             {
-                                idx === 0 || idx === 6 ? 
-                                    <>
+                                idx === 0 ? 
                                         <div className="ranking_item_header">
                                             <div className="item_header item_header_rank">순위</div>
                                             <div className="item_header item_header_nickname">소환사명</div>
-                                            <div className="item_header item_header_title_long">게임횟수</div>
-                                            <div className="item_header item_header_detail_long">총 피해량</div>
-                                        </div>
-                                        <Style.LowRankingItem $type={"L"}>
-                                            <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
-                                                <div className="item_rank">{item.rank}</div>
-                                            </Link>
-                                            <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                                            <div className="item_title">{item.lcg_count_play} 게임</div>
-                                            <div className="item_detail">{item.lcg_count_damage.toLocaleString()}</div>
-                                        </Style.LowRankingItem>
-                                    </>
-                                    :
-                                    <Style.LowRankingItem $type={"L"}>
-                                        <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
-                                            <div className="item_rank">{item.rank}</div>
-                                        </Link>
-                                        <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
-                                        <div className="item_title">{item.lcg_count_play} 게임</div>
-                                        <div className="item_detail">{item.lcg_count_damage.toLocaleString()}</div>
-                                    </Style.LowRankingItem>
+                                            <div className="item_header item_header_count">게임 횟수</div>
+                                            <div className="item_header item_header_title"></div>
+                                            <div className="item_header item_header_detail">총 피해량</div>
+                                        </div> : <></>
                             }
+                            <Style.LowRankingItem $type={""}>
+                                <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
+                                    <div className="item_rank">{item.rank}<span>th</span></div>
+                                </Link>
+                                <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
+                                <div className="item_detail1">{item.lcg_count_play} 게임</div>
+                                <div className="item_detail2"></div>
+                                <div className="item_detail3">{item.lcg_count_damage.toLocaleString()}</div>
+                            </Style.LowRankingItem>
                         </div>
                     )
                 })}
