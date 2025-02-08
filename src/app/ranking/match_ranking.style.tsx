@@ -230,7 +230,12 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
         width: 100%;
 
         &:hover > .card_head > .card_champion {
+            transition: transform .4s ease-in-out;
             transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.1) scaleY(1.1);
+        }
+
+        &:not(:hover) > .card_head > .card_champion {
+            transition: transform .4s ease-in-out;
         }
 
         .card_head {
