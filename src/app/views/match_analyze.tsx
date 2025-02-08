@@ -143,7 +143,7 @@ const MatchAnalyze = (props : {
                                                         </div>
                                                         <div className="lcg_analyze_graph">
                                                             <div className="lcg_analyze_figure">
-                                                                {lcgData.lcg_damage_per_minute}
+                                                                {lcgData.lcg_damage_per_minute.toLocaleString()}
                                                             </div>
                                                             <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_dpm} target={lcgData.lcg_damage_per_minute * 100} flag={"C"}/>
                                                         </div>
