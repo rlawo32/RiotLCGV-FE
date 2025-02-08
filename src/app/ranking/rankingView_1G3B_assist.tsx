@@ -4,8 +4,6 @@ import * as Style from "./match_ranking.style"
 import Image from "next/image";
 import Link from "next/link";
 
-import { duplicationRank } from "../component/match_tool";
-
 const RankingView1G3BAssist = (props : {data:{
             lcg_summoner_puuid: string
             lcg_summoner_nickname: string
@@ -33,7 +31,7 @@ const RankingView1G3BAssist = (props : {data:{
         <>
             <div className="ranking_card">
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 2).length}>
-                    {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx, arr) => {
+                    {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx) => {
                         return (
                             <Style.HighRankingCard $rank={2} $image={props.path.lcg_cdn + "/img/champion/loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank2_" + idx}>
                                 <div className="card_container">
@@ -104,7 +102,7 @@ const RankingView1G3BAssist = (props : {data:{
                     })}
                 </Style.RankingBox>
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 1).length}>
-                    {props.data.filter((highRanking) => highRanking.rank === 1).map((item, idx, arr) => {
+                    {props.data.filter((highRanking) => highRanking.rank === 1).map((item, idx) => {
                         return (
                             <Style.HighRankingCard $rank={1} $image={props.path.lcg_cdn + "/img/champion/loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank1_" + idx}>
                                 <div className="card_container">
@@ -175,7 +173,7 @@ const RankingView1G3BAssist = (props : {data:{
                     })}
                 </Style.RankingBox>
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 3).length}>
-                    {props.data.filter((highRanking) => highRanking.rank === 3).map((item, idx, arr) => {
+                    {props.data.filter((highRanking) => highRanking.rank === 3).map((item, idx) => {
                         return (
                             <Style.HighRankingCard $rank={3} $image={props.path.lcg_cdn + "/img/champion/loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank3_" + idx}>
                                 <div className="card_container">

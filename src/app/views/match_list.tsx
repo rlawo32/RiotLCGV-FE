@@ -1,7 +1,6 @@
 'use client';
 
 import * as Style from "./match_list.style";
-import Image from "next/image";
 
 import { useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";

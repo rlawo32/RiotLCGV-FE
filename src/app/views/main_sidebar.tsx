@@ -11,7 +11,6 @@ import {
 
 const MainSidebar = (props : {changeView:any}) => {
     const btnRef:any = useRef<any>([]);
-    const [selectView, setSelectView] = useState<number>(0);
 
     const btnClick = (idx:number) => {
         props.changeView(idx);
@@ -30,7 +29,7 @@ const MainSidebar = (props : {changeView:any}) => {
     }
 
     useEffect(() => {
-        btnRef.current[selectView].className += ' select_active';
+        btnRef.current[0].className += ' select_active';
     }, [])
 
     return (
