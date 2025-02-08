@@ -8,12 +8,13 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
-import { getLcgMatchLogLatestQuery, getLcgMatchLogQuery } from "../queries/getLcgMatchLogQuery";
+import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
+import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
 import { getLcgMatchSubQuery } from "../queries/getLcgMatchSubQuery";
 import { getLcgMatchTeamQuery } from "../queries/getLcgMatchTeamQuery";
 
-import { gameDuration, imgUrl } from "../component/match_tool";
+import { gameDuration } from "../component/match_tool";
 
 import DamageGraph  from "../component/damage_graph";
 import BaronIcon from "../icons/BaronIcon";
@@ -67,7 +68,8 @@ const MatchLatestHistory = () => {
         setTimeout(() => {setLoad(true)}, loadTime);
     }, [lcgMatchInfo])
 
-    const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchInfo});
+    const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {enabled:!!lcgMatchInfo});
+    const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchEtc});
     const { data: lcgMatchSub } = useQuery(getLcgMatchSubQuery(supabase, gameId), {enabled:!!lcgMatchMain});
     const { data: lcgMatchTeam, isLoading: loading3} = useQuery(getLcgMatchTeamQuery(supabase, gameId), {enabled:!!lcgMatchSub});
 
@@ -75,11 +77,13 @@ const MatchLatestHistory = () => {
         lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
         lcgMaxDamageTaken = lcgMatchInfo[0].lcg_max_damage_taken;
 
-        imageUrl1 = imgUrl(lcgMatchInfo[0], "A");
-        imageUrl2 = imgUrl(lcgMatchInfo[0], "B");
-
         lcgGameDuration = lcgMatchInfo[0].lcg_game_duration;
         lcgGameDurationMin = gameDuration(lcgGameDuration);
+
+        if(!!lcgMatchEtc) {
+            imageUrl1 = lcgMatchEtc[0].lcg_main_image;
+            imageUrl2 = lcgMatchEtc[0].lcg_sub_image;
+        }
     }
     
     return (
@@ -175,6 +179,7 @@ const MatchLatestHistory = () => {
                                                 <th>KDA</th>
                                                 <th colSpan={2}>피해량</th>
                                                 <th>와드</th>
+                                                <th>CS</th>
                                                 <th colSpan={2}>아이템</th>
                                             </tr>
                                         </thead>
