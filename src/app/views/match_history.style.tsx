@@ -28,8 +28,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_history_title_head {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
             padding-bottom: 4px;
             font-weight: 700;
@@ -45,6 +45,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_history_title_body {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             width: 100%;
 
@@ -53,6 +54,42 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 align-items: center;
                 font-size: 1.5rem;
             }
+        }
+    }
+
+    .lcg_history_tab {
+        display: flex;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(40 40 48 / 1);
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 16px;
+
+        .lcg_tab_left {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .lcg_tab_right {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .lcg_tab_item {
+            padding: 3px 15px;
+            border: 1px solid rgb(86 86 104 / 1);
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(89 89 100 / 1);
+            }
+        }
+
+        .lcg_tab_item.select_tab {
+            border: 1px solid rgb(255 68 56 / 1);
+            background-color: rgb(255 68 56 / 1);
         }
     }
 
