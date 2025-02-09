@@ -5,7 +5,7 @@ import * as Style from "./main_sidebar.style";
 import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faUsers as icon_player, faGamepad as icon_latest, 
+    faShuffle as icon_shuffle, faGamepad as icon_latest, 
     faScroll as icon_history, faTrophy as icon_ranking
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -47,8 +47,8 @@ const MainSidebar = (props : {changeView:any}) => {
                 스코어 랭킹
             </button>
             <button onClick={() => btnClick(3)} ref={(btn:any) => (btnRef.current[3] = btn)}>
-                <FontAwesomeIcon icon={icon_player} className="btn_icon"/>
-                플레이어
+                <FontAwesomeIcon icon={icon_shuffle} className="btn_icon"/>
+                팀 섞기
             </button>
         </Style.MainSidebar>
     )
