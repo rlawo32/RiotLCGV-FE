@@ -4,6 +4,9 @@ import "./globals.css";
 
 import StyledComponentsRegistry from "./StyledComponentsRegistry";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
