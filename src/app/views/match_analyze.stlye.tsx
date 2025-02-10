@@ -30,8 +30,11 @@ export const MatchAnalyze = styled('div')`
 
         .lcg_analyze_content {
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
+            height: 180px;
             width: 100%;
 
             .lcg_analyze_data {
