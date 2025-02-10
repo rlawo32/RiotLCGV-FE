@@ -135,31 +135,46 @@ const MatchHistory = (props : {gameId:number}) => {
                                                                 </div>
                                                             }
                                                             <div className="lcg_team_bans">
-                                                                <div className="ban_champion">
-                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_1 + ".png"} 
-                                                                    alt={"ban_champion_1"} height={30} width={35} className="lcg_image bans_image" />
-                                                                    <ProhibitionIcon />
-                                                                </div>
-                                                                <div className="ban_champion">
-                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_2 + ".png"} 
-                                                                    alt={"ban_champion_2"} height={30} width={35} className="lcg_image bans_image" />
-                                                                    <ProhibitionIcon />
-                                                                </div>
-                                                                <div className="ban_champion">
-                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_3 + ".png"} 
-                                                                    alt={"ban_champion_3"} height={30} width={35} className="lcg_image bans_image" />
-                                                                    <ProhibitionIcon />
-                                                                </div>
-                                                                <div className="ban_champion">
-                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_4 + ".png"} 
-                                                                    alt={"ban_champion_4"} height={30} width={35} className="lcg_image bans_image" />
-                                                                    <ProhibitionIcon />
-                                                                </div>
-                                                                <div className="ban_champion">
-                                                                    <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_5 + ".png"} 
-                                                                    alt={"ban_champion_5"} height={30} width={35} className="lcg_image bans_image" />
-                                                                    <ProhibitionIcon />
-                                                                </div>
+                                                                {
+                                                                    lcgTeam.lcg_bans_name_1 !== 'Empty' ?
+                                                                        <div className="ban_champion">
+                                                                            <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_1 + ".png"} 
+                                                                            alt={"ban_champion_5"} height={30} width={35} className="lcg_image bans_image" />
+                                                                            <ProhibitionIcon />
+                                                                        </div> : <div/>
+                                                                }
+                                                                {
+                                                                    lcgTeam.lcg_bans_name_2 !== 'Empty' ?
+                                                                        <div className="ban_champion">
+                                                                            <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_2 + ".png"} 
+                                                                            alt={"ban_champion_2"} height={30} width={35} className="lcg_image bans_image" />
+                                                                            <ProhibitionIcon />
+                                                                        </div> : <div/>
+                                                                }
+                                                                {
+                                                                    lcgTeam.lcg_bans_name_3 !== 'Empty' ?
+                                                                        <div className="ban_champion">
+                                                                            <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_3 + ".png"} 
+                                                                            alt={"ban_champion_3"} height={30} width={35} className="lcg_image bans_image" />
+                                                                            <ProhibitionIcon />
+                                                                        </div> : <div/>
+                                                                }
+                                                                {
+                                                                    lcgTeam.lcg_bans_name_4 !== 'Empty' ?
+                                                                        <div className="ban_champion">
+                                                                            <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_4 + ".png"} 
+                                                                            alt={"ban_champion_4"} height={30} width={35} className="lcg_image bans_image" />
+                                                                            <ProhibitionIcon />
+                                                                        </div> : <div/>
+                                                                }
+                                                                {
+                                                                    lcgTeam.lcg_bans_name_5 !== 'Empty' ?
+                                                                        <div className="ban_champion">
+                                                                            <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_5 + ".png"} 
+                                                                            alt={"ban_champion_5"} height={30} width={35} className="lcg_image bans_image" />
+                                                                            <ProhibitionIcon />
+                                                                        </div> : <div/>
+                                                                }
                                                             </div>
                                                         </div>
                                                         <div className="aggregate_body"> 
