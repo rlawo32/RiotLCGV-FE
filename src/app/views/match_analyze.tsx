@@ -108,88 +108,154 @@ const MatchAnalyze = (props : {
                                         <>
                                             {
                                                 arr.type === 'gold' ?
-                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
-                                                        <div className="lcg_analyze_champion">
-                                                            <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
-                                                            alt={"champion"} height={27} width={27} className="champion_image" />
-                                                        </div>
-                                                        <div className="lcg_analyze_graph">
-                                                            <div className="lcg_analyze_figure">
-                                                                {lcgData.lcg_gold_total.toLocaleString()}
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
+                                                                alt={"champion"} height={27} width={27} className="champion_image" />
                                                             </div>
-                                                            <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_gold} target={lcgData.lcg_gold_total} flag={"G"}/>
+                                                            <div className="lcg_analyze_graph">
+                                                                <div className="lcg_analyze_figure">
+                                                                    {lcgData.lcg_gold_total.toLocaleString()}
+                                                                </div>
+                                                                <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_gold} target={lcgData.lcg_gold_total} flag={"G"}/>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </>
                                                     :
                                                 arr.type === 'crowd' ?   
-                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
-                                                        <div className="lcg_analyze_champion">
-                                                            <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
-                                                            alt={"champion"} height={27} width={27} className="champion_image" />
-                                                        </div>
-                                                        <div className="lcg_analyze_graph">
-                                                            <div className="lcg_analyze_figure">
-                                                                {lcgData.lcg_crowd_time}
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
+                                                                alt={"champion"} height={27} width={27} className="champion_image" />
                                                             </div>
-                                                            <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_crowd} target={lcgData.lcg_crowd_time} flag={"C"}/>
-                                                        </div>
-                                                    </div>        
+                                                            <div className="lcg_analyze_graph">
+                                                                <div className="lcg_analyze_figure">
+                                                                    {lcgData.lcg_crowd_time}
+                                                                </div>
+                                                                <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_crowd} target={lcgData.lcg_crowd_time} flag={"C"}/>
+                                                            </div>
+                                                        </div>   
+                                                    </>     
                                                     :
                                                 arr.type === 'dpm' ?   
-                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
-                                                        <div className="lcg_analyze_champion">
-                                                            <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
-                                                            alt={"champion"} height={27} width={27} className="champion_image" />
-                                                        </div>
-                                                        <div className="lcg_analyze_graph">
-                                                            <div className="lcg_analyze_figure">
-                                                                {lcgData.lcg_damage_per_minute.toLocaleString()}
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
+                                                                alt={"champion"} height={27} width={27} className="champion_image" />
                                                             </div>
-                                                            <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_dpm} target={lcgData.lcg_damage_per_minute * 100} flag={"C"}/>
-                                                        </div>
-                                                    </div>        
+                                                            <div className="lcg_analyze_graph">
+                                                                <div className="lcg_analyze_figure">
+                                                                    {lcgData.lcg_damage_per_minute.toLocaleString()}
+                                                                </div>
+                                                                <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_dpm} target={lcgData.lcg_damage_per_minute * 100} flag={"C"}/>
+                                                            </div>
+                                                        </div> 
+                                                    </>       
                                                     :
                                                 arr.type === 'gpm' ?   
-                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
-                                                        <div className="lcg_analyze_champion">
-                                                            <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
-                                                            alt={"champion"} height={27} width={27} className="champion_image" />
-                                                        </div>
-                                                        <div className="lcg_analyze_graph">
-                                                            <div className="lcg_analyze_figure">
-                                                                {lcgData.lcg_gold_per_minute}
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
+                                                                alt={"champion"} height={27} width={27} className="champion_image" />
                                                             </div>
-                                                            <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_gpm} target={lcgData.lcg_gold_per_minute * 100} flag={"C"}/>
-                                                        </div>
-                                                    </div>        
+                                                            <div className="lcg_analyze_graph">
+                                                                <div className="lcg_analyze_figure">
+                                                                    {lcgData.lcg_gold_per_minute}
+                                                                </div>
+                                                                <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_gpm} target={lcgData.lcg_gold_per_minute * 100} flag={"C"}/>
+                                                            </div>
+                                                        </div>    
+                                                    </>    
                                                     :
                                                 arr.type === 'dpg' ?   
-                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
-                                                        <div className="lcg_analyze_champion">
-                                                            <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
-                                                            alt={"champion"} height={27} width={27} className="champion_image" />
-                                                        </div>
-                                                        <div className="lcg_analyze_graph">
-                                                            <div className="lcg_analyze_figure">
-                                                                {lcgData.lcg_damage_per_gold}
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
+                                                                alt={"champion"} height={27} width={27} className="champion_image" />
                                                             </div>
-                                                            <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_dpg} target={lcgData.lcg_damage_per_gold * 100} flag={"C"}/>
-                                                        </div>
-                                                    </div>        
+                                                            <div className="lcg_analyze_graph">
+                                                                <div className="lcg_analyze_figure">
+                                                                    {lcgData.lcg_damage_per_gold}
+                                                                </div>
+                                                                <DamageGraph standard={props.lcgMatchInfo.find((data) => data.lcg_game_id === lcgData.lcg_game_id)?.lcg_max_dpg} target={lcgData.lcg_damage_per_gold * 100} flag={"C"}/>
+                                                            </div>
+                                                        </div>  
+                                                    </>      
                                                     :
                                                 arr.type === 'multi' ?   
-                                                    <div className="lcg_analyze_data" key={"data_" + idx2}>
-                                                        <div className="lcg_analyze_champion">
-                                                            <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
-                                                            alt={"champion"} height={27} width={27} className="champion_image" />
-                                                        </div>
-                                                        <div className="lcg_analyze_addition">
-                                                            <div className="addition_item"><DoubleKillIcon /><span>{lcgData.lcg_double_kill}</span></div>
-                                                            <div className="addition_item"><TripleKillIcon /><span>{lcgData.lcg_triple_kill}</span></div>
-                                                            <div className="addition_item"><QuadraKillIcon /><span>{lcgData.lcg_quadra_kill}</span></div>
-                                                            <div className="addition_item"><PentaKillIcon /><span>{lcgData.lcg_penta_kill}</span></div>
-                                                        </div>
-                                                    </div>        
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <Image src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + ".png"} 
+                                                                alt={"champion"} height={27} width={27} className="champion_image" />
+                                                            </div>
+                                                            <div className="lcg_analyze_addition">
+                                                                <div className="addition_item"><DoubleKillIcon /><span>{lcgData.lcg_double_kill}</span></div>
+                                                                <div className="addition_item"><TripleKillIcon /><span>{lcgData.lcg_triple_kill}</span></div>
+                                                                <div className="addition_item"><QuadraKillIcon /><span>{lcgData.lcg_quadra_kill}</span></div>
+                                                                <div className="addition_item"><PentaKillIcon /><span>{lcgData.lcg_penta_kill}</span></div>
+                                                            </div>
+                                                        </div>   
+                                                    </>     
                                                     :
                                                     <></>
                                             }

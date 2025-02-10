@@ -34,8 +34,36 @@ export const MatchAnalyze = styled('div')`
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            height: 180px;
+            height: 200px;
             width: 100%;
+
+            .lcg_analyze_team {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-bottom: 5px;
+
+                .team_blue {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                    content: "";
+                    width: 8px;
+                    height: 8px;
+                    background-color: #5383E8;
+                    border-radius: 50%;
+                }
+
+                .team_red {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                    content: "";
+                    width: 8px;
+                    height: 8px;
+                    background-color: #E84057;
+                    border-radius: 50%;
+                }
+            }
 
             .lcg_analyze_data {
                 display: flex;
