@@ -17,26 +17,23 @@ const SelectBoxStyle = styled('div')`
         padding: 6px 10px;
         border: none;
         border-radius: 5px;
-        background: rgba(42,50,113, .48);
-        color: #ffffffc0;
-        font-size: 12px;
-        font-weight: 400;
+        background-color: rgb(255 68 56 / 1);
+        color: rgb(255 255 255 / 1);
+        font-size: 1.3rem;
+        font-weight: 700;
         cursor: pointer;
     }
 
     .select_box {
         position: absolute;
         top: 105%;
-        left: 10px;
+        left: 0;
         height: 0;
-        width: 110px;
+        width: 130px;
         padding: 0 5px;
         border: none;
         border-radius: 5px;
-        background: #100a1c;
-        background-image:
-            radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0,0,0,0) 100%),
-            radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
+        background-color: rgb(28 28 31 / 1);
         text-align: center;
         z-index: 2;
         transition: all 0.3s ease-in-out;
@@ -44,16 +41,14 @@ const SelectBoxStyle = styled('div')`
 
     ul.select_list {
         height: 0;
-        width: 100px;
+        width: 120px;
         padding: 0;
         border: none;
         border-radius: 5px;
         overflow: auto;
-        background: #100a1c;
-        background-image:
-            radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0,0,0,0) 100%),
-            radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
-        color: #6cacc5;
+        background-color: rgb(40 40 48 / 1);
+        /* background-color: rgb(49 49 60 / 1); */
+        color: rgb(255 255 255 / 1);
         text-align: center;
         cursor: pointer;
         z-index: 3;
@@ -67,7 +62,7 @@ const SelectBoxStyle = styled('div')`
         }
 
         &::-webkit-scrollbar-thumb {
-            background: #3470888f; 
+            background-color: rgb(255 255 255 / 1);
             border-radius: 5px;
         }
 
@@ -79,7 +74,7 @@ const SelectBoxStyle = styled('div')`
 
     ul.select_list li {
         padding: 4px;
-        font-size: 11px;
+        font-size: 1.3rem;
         line-height: 1.4em;
         opacity: 0.7;
     }
@@ -87,24 +82,25 @@ const SelectBoxStyle = styled('div')`
     .select_arrow {
         display: inline-block;
         margin-left: 7px;
-        color: #FFFFFF;
+        color: rgb(255 255 255 / 1);
+        font-weight: 700;
         transition: all .3s linear;
     }
 
     .select_box.show_select {
         padding: 5px;
-        height: 140px;
+        height: 210px;
     }
 
     .select_list.show_select {
         padding: 5px 0;
-        height: 130px;
+        height: 200px;
     }
 
     ul.select_list li.rs_active {
-        color: #c97874;
-        font-size: 12px;
-        font-weight: bold;
+        color: rgb(255 68 56 / 1);
+        font-size: 1.4rem;
+        font-weight: 700;
         opacity: 1;
     }
 
