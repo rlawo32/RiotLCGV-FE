@@ -1,12 +1,13 @@
 'use client'
 
 import * as Style from "./main_view.style";
+import { useState } from "react";
 
 import MatchList from "./match_list";
 import MatchRanking from "../ranking/match_ranking";
 import MatchLatestHistory from "./match_latest_history";
 import MainSidebar from "./main_sidebar";
-import { useState } from "react";
+import MatchShuffle from "./match_shuffle";
 
 const MainView = () => {
 
@@ -25,7 +26,7 @@ const MainView = () => {
                     selectView === 0 ? <MatchLatestHistory /> :
                     selectView === 1 ? <MatchList /> :
                     selectView === 2 ? <MatchRanking /> : 
-                    selectView === 3 ? <h1>개발중...</h1> : <></>
+                    selectView === 3 ? <MatchShuffle /> : <></>
                 }
             </div>
         </Style.MainView>
