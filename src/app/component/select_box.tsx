@@ -13,13 +13,13 @@ const SelectBoxStyle = styled('div')`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 130px;
+        width: 135px;
         padding: 6px 10px;
         border: none;
         border-radius: 5px;
         background-color: rgb(255 68 56 / 1);
         color: rgb(255 255 255 / 1);
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         cursor: pointer;
     }
@@ -29,7 +29,7 @@ const SelectBoxStyle = styled('div')`
         top: 105%;
         left: 0;
         height: 0;
-        width: 130px;
+        width: 135px;
         padding: 0 5px;
         border: none;
         border-radius: 5px;
