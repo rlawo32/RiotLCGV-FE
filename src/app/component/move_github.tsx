@@ -1,9 +1,10 @@
 'use client'
 
 import styled from "styled-components";
+import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faGithub as github} from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
 
 const GithubStyle = styled('div')`
     position: absolute;

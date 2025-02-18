@@ -1,7 +1,8 @@
 'use client'
 
-import { memo, useEffect, useRef } from "react";
 import styled from "styled-components";
+
+import { memo, useEffect, useRef } from "react";
 
 const ErrorPageStyle = styled('div')`
     color: white;

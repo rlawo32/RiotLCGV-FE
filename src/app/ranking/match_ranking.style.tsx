@@ -124,6 +124,14 @@ export const MatchRanking = styled('div')<{$type:string}>`
             margin: 0 4px;
         }
     }
+    
+    .player_img {
+        position: absolute;
+        top: 10px;
+        left: 5px;
+        border-radius: 50%;
+        z-index: -1;
+    }
 `;
 
 export const RankingBox = styled('div')<{$ea:number}>`
@@ -144,6 +152,11 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     width: ${({$ea}) => $ea > 2 ? "55px" : $ea === 2 ? "90px" : "170px"};
     text-align: center;
     margin: ${({$ea}) => $ea > 2 ? "3px" : $ea === 2 ? "10px" : "10px 30px"};
+
+    .ranker_img_box {
+        position: relative;
+        overflow: hidden;
+    }
 
     .ranker_img {
         margin: 4px auto;
