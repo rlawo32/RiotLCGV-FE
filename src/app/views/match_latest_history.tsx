@@ -1,7 +1,6 @@
 'use client';
 
 import * as Style from "./match_history.style";
-import Image from "next/image";
 import Link from "next/link";
 
 import { useEffect, useRef, useState } from "react";
@@ -177,7 +176,7 @@ const MatchLatestHistory = () => {
                                                                             {
                                                                                 lcgTeam.lcg_bans_name_1 !== 'Empty' ?
                                                                                     <div className="ban_champion">
-                                                                                        <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_1 + ".png"} 
+                                                                                        <img src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_1 + ".png"} 
                                                                                         alt={"ban_champion_5"} height={30} width={35} className="lcg_image bans_image" />
                                                                                         <ProhibitionIcon />
                                                                                     </div> : <div/>
@@ -185,7 +184,7 @@ const MatchLatestHistory = () => {
                                                                             {
                                                                                 lcgTeam.lcg_bans_name_2 !== 'Empty' ?
                                                                                     <div className="ban_champion">
-                                                                                        <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_2 + ".png"} 
+                                                                                        <img src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_2 + ".png"} 
                                                                                         alt={"ban_champion_2"} height={30} width={35} className="lcg_image bans_image" />
                                                                                         <ProhibitionIcon />
                                                                                     </div> : <div/>
@@ -193,7 +192,7 @@ const MatchLatestHistory = () => {
                                                                             {
                                                                                 lcgTeam.lcg_bans_name_3 !== 'Empty' ?
                                                                                     <div className="ban_champion">
-                                                                                        <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_3 + ".png"} 
+                                                                                        <img src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_3 + ".png"} 
                                                                                         alt={"ban_champion_3"} height={30} width={35} className="lcg_image bans_image" />
                                                                                         <ProhibitionIcon />
                                                                                     </div> : <div/>
@@ -201,7 +200,7 @@ const MatchLatestHistory = () => {
                                                                             {
                                                                                 lcgTeam.lcg_bans_name_4 !== 'Empty' ?
                                                                                     <div className="ban_champion">
-                                                                                        <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_4 + ".png"} 
+                                                                                        <img src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_4 + ".png"} 
                                                                                         alt={"ban_champion_4"} height={30} width={35} className="lcg_image bans_image" />
                                                                                         <ProhibitionIcon />
                                                                                     </div> : <div/>
@@ -209,7 +208,7 @@ const MatchLatestHistory = () => {
                                                                             {
                                                                                 lcgTeam.lcg_bans_name_5 !== 'Empty' ?
                                                                                     <div className="ban_champion">
-                                                                                        <Image src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_5 + ".png"} 
+                                                                                        <img src={imageUrl1 + "champion/" + lcgTeam.lcg_bans_name_5 + ".png"} 
                                                                                         alt={"ban_champion_5"} height={30} width={35} className="lcg_image bans_image" />
                                                                                         <ProhibitionIcon />
                                                                                     </div> : <div/>
@@ -276,7 +275,7 @@ const MatchLatestHistory = () => {
                                                                     <tr key={"lcgMain" + idx}>
                                                                         <td className="lcg_champion">
                                                                             <div className="skeleton_portrait" />
-                                                                            <Image src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
+                                                                            <img src={imageUrl1 + "champion/" + lcgMain.lcg_champion_name + ".png"} 
                                                                             alt={"champion"} height={40} width={40} className="lcg_image champion_image" />
                                                                             <div className="lcg_sub_data lcg_level">
                                                                                 {lcgMain.lcg_champion_level}
@@ -284,15 +283,15 @@ const MatchLatestHistory = () => {
                                                                         </td>
                                                                         <td className="lcg_spell">
                                                                             <div className="skeleton_content" />
-                                                                            <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
+                                                                            <img src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_1 + ".png"} 
                                                                             alt={"spell1"} height={20} width={20} className="lcg_image spell_image" />
-                                                                            <Image src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
+                                                                            <img src={imageUrl1 + "spell/" + lcgMain.lcg_spell_name_2 + ".png"} 
                                                                             alt={"spell2"} height={20} width={20} className="lcg_image spell_image" />
                                                                         </td>
                                                                         <td className="lcg_perk">
-                                                                            <Image src={imageUrl2 + lcgMain.lcg_perk_name_1} 
+                                                                            <img src={imageUrl2 + lcgMain.lcg_perk_name_1} 
                                                                             alt={"perk1"} height={22} width={22} className="lcg_image perk_image1" />
-                                                                            <Image src={imageUrl2 + lcgMain.lcg_perk_name_2} 
+                                                                            <img src={imageUrl2 + lcgMain.lcg_perk_name_2} 
                                                                             alt={"perk2"} height={16} width={16} className="lcg_image perk_image2" />
                                                                         </td>
                                                                         <td className="lcg_summoner_name">
@@ -341,37 +340,37 @@ const MatchLatestHistory = () => {
                                                                         <td className="lcg_item">
                                                                             {
                                                                                 lcgMain.lcg_item_id_1 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_1 + ".png"} 
                                                                                     alt={"item1"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
                                                                             {
                                                                                 lcgMain.lcg_item_id_2 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_2 + ".png"} 
                                                                                     alt={"item2"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
                                                                             {
                                                                                 lcgMain.lcg_item_id_3 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_3 + ".png"} 
                                                                                     alt={"item3"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
                                                                             {
                                                                                 lcgMain.lcg_item_id_4 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_4 + ".png"} 
                                                                                     alt={"item4"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
                                                                             {
                                                                                 lcgMain.lcg_item_id_5 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_5 + ".png"} 
                                                                                     alt={"item5"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
                                                                             {
                                                                                 lcgMain.lcg_item_id_6 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_6 + ".png"} 
                                                                                     alt={"item6"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
@@ -379,7 +378,7 @@ const MatchLatestHistory = () => {
                                                                         <td className="lcg_acc">
                                                                             {
                                                                                 lcgMain.lcg_item_id_7 !== 0 ?
-                                                                                    <Image src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
+                                                                                    <img src={imageUrl1 + "item/" + lcgMain.lcg_item_id_7 + ".png"} 
                                                                                     alt={"item7"} height={22} width={22} className="item_image" />
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
