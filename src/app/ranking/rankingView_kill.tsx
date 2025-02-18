@@ -1,7 +1,6 @@
 'use client';
 
 import * as Style from "./match_ranking.style"
-import Image from "next/image";
 import Link from "next/link";
 
 import { duplicationRank } from "../component/match_tool";
@@ -21,8 +20,12 @@ const RankingViewKill = (props : {data:{
                     {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx, arr) => {
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={2} key={"rank2_" + idx}>
-                                <Image src={"/img/border_silver_image.png"} alt={"ranking_border"} 
-                                height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
+                                <div className="ranker_img_box">
+                                    <img src={"/img/border_silver_image.png"} alt={"ranking_border"} 
+                                    height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
+                                    {/* <img src={"/img/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
+                                    height={duplicationRank(arr.length)-10} width={duplicationRank(arr.length)-10} className="player_img" /> */}
+                                </div>
                                 <Style.RankerContent $ea={arr.length}>
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
@@ -38,8 +41,12 @@ const RankingViewKill = (props : {data:{
                     {props.data.filter((highRanking) => highRanking.rank === 1).map((item, idx, arr) => {
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={1} key={"rank1_" + idx}>
-                                <Image src={"/img/border_gold_image.png"} alt={"ranking_border"} 
-                                height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
+                                <div className="ranker_img_box">
+                                    <img src={"/img/border_gold_image.png"} alt={"ranking_border"} 
+                                    height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
+                                    {/* <img src={"/img/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
+                                    height={duplicationRank(arr.length)-10} width={duplicationRank(arr.length)-10} className="player_img" /> */}
+                                </div>
                                 <Style.RankerContent $ea={arr.length}>
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
@@ -55,8 +62,12 @@ const RankingViewKill = (props : {data:{
                     {props.data.filter((highRanking) => highRanking.rank === 3).map((item, idx, arr) => {
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={3} key={"rank3_" + idx}>
-                                <Image src={"/img/border_bronze_image.png"} alt={"ranking_border"} 
-                                height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
+                                <div className="ranker_img_box">
+                                    <img src={"/img/border_bronze_image.png"} alt={"ranking_border"} 
+                                    height={duplicationRank(arr.length)} width={duplicationRank(arr.length)} className="ranker_img" />
+                                    {/* <img src={"/img/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
+                                    height={duplicationRank(arr.length)-10} width={duplicationRank(arr.length)-10} className="player_img" /> */}
+                                </div>
                                 <Style.RankerContent $ea={arr.length}>
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
