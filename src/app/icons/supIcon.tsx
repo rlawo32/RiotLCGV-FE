@@ -2,15 +2,11 @@
 const SupIcon = () => {
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <g fill="none" fillRule="evenodd">
-                <g fill="#9AA4AF" fillRule="nonzero">
-                    <g>
-                        <path d="M12.833 10.833L14.5 17.53v.804L12.833 20h-1.666L9.5 18.333v-.804l1.667-6.696h1.666zM7 7.5L9.5 10l-1.667 4.167-2.5-2.5L6.167 10h-2.5L2 7.5h5zm15 0L20.333 10h-2.5l.834 1.667-2.5 2.5L14.5 10 17 7.5h5zM13.743 5l.757.833v.834l-1.667 2.5h-1.666L9.5 6.667v-.834L10.257 5h3.486z" transform="translate(-2164.000000, -859.000000) translate(2164.000000, 859.000000)"/>
-                    </g>
-                </g>
-            </g>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#54c8e8" width="28" height="28" viewBox="0 0 26 26">
+            <path d="M9.5 4.833 10.257 4h3.486l.757.833v.834l-1.667 2.5h-1.666L9.5 5.667zm0 12.696 1.667-7.696h1.666L14.5 
+            17.53v.804L12.833 20h-1.666L9.5 18.333zM3.667 9h2.5l-.834 1.667 2.5 2.5L9.5 9 7 6.5H2zm14.166 0h2.5L22 
+            6.5h-5L14.5 9l1.667 4.167 2.5-2.5z" clipRule="evenodd"></path>
+            </svg>
     )
 }
 
