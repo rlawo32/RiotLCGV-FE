@@ -85,9 +85,10 @@ export const PlayerDataBox = styled('div')`
             width: 100px;
 
             .player_name {
-                width: 100%;
+                width: 100px;
                 margin-top: 12px;
                 font-size: 1.2rem;
+                font-weight: 700;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -100,6 +101,7 @@ export const PlayerDataBox = styled('div')`
             .rank_desc {
                 margin-top: 10px;
                 font-size: 1.2rem;
+                font-weight: 700;
             }
         }
 
@@ -178,6 +180,22 @@ export const PlayerDataBox = styled('div')`
         width: 100%;
         margin-top: 20px;
         border-radius: 10px;
+
+        .match_detail {
+            font-size: 1.2rem;
+            
+            span {
+                margin: 0 1px;
+                letter-spacing: .15rem;
+            }
+        }
+
+        .match_winning {
+            padding-top: 3px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgb(123 122 142 / 1);
+        }
         
         .body_section  {
             display: flex;
@@ -242,17 +260,6 @@ export const PlayerDataBox = styled('div')`
                     flex-direction: column;
                     align-items: center;
                     width: 120px;
-                    font-weight: 700;
-
-                    .match_detail {
-                        font-size: 1.2rem;
-                    }
-
-                    .match_winning {
-                        padding-top: 3px;
-                        font-size: 1rem;
-                        color: rgb(123 122 142 / 1);
-                    }
                 }
 
                 .player_matchLine {
@@ -308,9 +315,8 @@ export const PlayerDataBox = styled('div')`
                     flex-direction: column;
                     align-items: center;
                     width: 120px;
-                    font-weight: 700;
 
-                    .match_detail {
+                    .kda_detail {
                         font-size: 1.2rem;
 
                         span:nth-child(1) {
@@ -322,9 +328,10 @@ export const PlayerDataBox = styled('div')`
                         }
                     }
 
-                    .match_kda {
+                    .kda_calc {
                         padding-top: 3px;
                         font-size: 1rem;
+                        font-weight: 700;
                         color: rgb(123 122 152 / 1);
                     }
                 }
