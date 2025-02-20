@@ -22,6 +22,8 @@ export const getPlayerData = (lcgPlayerData:{
     } else if(flag === 'opgg') {
         const nickname = lcgPlayerData?.find((data) => data.lcg_summoner_puuid === puuid)?.lcg_summoner_nickname;
         result = nickname?.split("#")[0] + "-" + nickname?.split("#")[1];
+    } else if(flag === 'nick') {
+        result = lcgPlayerData?.find((data) => data.lcg_summoner_puuid === puuid)?.lcg_summoner_nickname;
     } 
     return result;
 }
