@@ -8,6 +8,7 @@ import MatchRanking from "../ranking/match_ranking";
 import MatchLatestHistory from "./match_latest_history";
 import MainSidebar from "./main_sidebar";
 import MatchShuffle from "./match_shuffle";
+import MatchPlayer from "./match_player";
 
 const MainView = () => {
 
@@ -26,7 +27,8 @@ const MainView = () => {
                     selectView === 0 ? <MatchLatestHistory /> :
                     selectView === 1 ? <MatchList /> :
                     selectView === 2 ? <MatchRanking /> : 
-                    selectView === 3 ? <MatchShuffle /> : <></>
+                    selectView === 3 ? <MatchPlayer /> : 
+                    selectView === 4 ? <MatchShuffle /> : <></>
                 }
             </div>
         </Style.MainView>
