@@ -20,7 +20,6 @@ const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
 
     let imageUrl1:string = "";
-    let imageUrl2:string = "";
 
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {});
     const { data: lcgPlayerData } = useQuery(getLcgPlayerDataQuery(supabase), {});
@@ -34,7 +33,6 @@ const MatchPlayer = () => {
 
     if(!!lcgMatchEtc) {
         imageUrl1 = lcgMatchEtc[0].lcg_main_image;
-        imageUrl2 = lcgMatchEtc[0].lcg_sub_image;
     }
 
     useEffect(() => {
