@@ -85,8 +85,12 @@ export const PlayerDataBox = styled('div')`
             width: 100px;
 
             .player_name {
+                width: 100%;
                 margin-top: 12px;
                 font-size: 1.2rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
