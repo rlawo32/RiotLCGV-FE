@@ -83,6 +83,7 @@ export const PlayerDataBox = styled('div')`
 
         .head_player {
             width: 100px;
+            text-align: center;
 
             .player_name {
                 width: 100px;

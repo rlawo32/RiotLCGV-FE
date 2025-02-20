@@ -1,6 +1,7 @@
 'use client'
 
 import * as Style from "./match_player.style";
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
@@ -9,14 +10,13 @@ import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery,
     getSelectLcgAllKdaQuery, getSelectLcgWinningRateQuery,
     getSelectLcgPlayerDataQuery, getSelectLcgPlayerRelativeQuery } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
+import { getPlayerData } from "../component/match_tool";
 
 import TopIcon from "../icons/topIcon";
 import JugIcon from "../icons/jugIcon";
 import MidIcon from "../icons/midIcon";
 import AdcIcon from "../icons/adcIcon";
 import SupIcon from "../icons/supIcon";
-import Link from "next/link";
-import { getPlayerData } from "../component/match_tool";
 
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
