@@ -82,6 +82,7 @@ export const PlayerDataBox = styled('div')`
         }
 
         .head_player {
+            width: 100px;
 
             .player_name {
                 margin-top: 12px;
@@ -90,6 +91,7 @@ export const PlayerDataBox = styled('div')`
         }
 
         .head_rank {
+            width: 120px;
 
             .rank_desc {
                 margin-top: 10px;
@@ -100,6 +102,7 @@ export const PlayerDataBox = styled('div')`
         .head_data {
             display: flex;
             align-items: center;
+            width: 220px;
 
             .head_graph {
                 position: relative;
