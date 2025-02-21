@@ -187,7 +187,7 @@ export const PlayerDataBox = styled('div')`
             
             span {
                 margin: 0 1px;
-                letter-spacing: .15rem;
+                letter-spacing: .1rem;
             }
         }
 
@@ -279,7 +279,7 @@ export const PlayerDataBox = styled('div')`
                 font-weight: 700;
 
                 .head_champion {
-                    width: 50px;
+                    width: 45px;
                     text-align: left;
                 }
 
@@ -288,7 +288,7 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .head_winningRate {
-                    width: 70px;
+                    width: 120px;
                 }
             }
 
@@ -307,7 +307,7 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .player_champion {
-                    width: 50px;
+                    width: 45px;
                     text-align: left;
                 }
                 
@@ -338,12 +338,12 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .player_winningRate {
-                    width: 70px;
+                    width: 120px;
                     font-size: 1.1rem;
 
                     span {
                         margin: 0 1px;
-                        letter-spacing: .15rem;
+                        letter-spacing: .1rem;
                     }
                 }
             }
