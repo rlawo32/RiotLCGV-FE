@@ -109,8 +109,8 @@ const MatchShuffle = () => {
     
         for(let i=copyTempDataList.length-1; i>=0; i--) { 
             for(let j=copyTempDataList[i].length-1; j>=0; j--) {
-                let n = Math.floor(Math.random() * (i+1));
-                let m = Math.floor(Math.random() * (j+1));
+                const n = Math.floor(Math.random() * (i+1));
+                const m = Math.floor(Math.random() * (j+1));
                 [copyTempDataList[n][j], copyTempDataList[i][m]] = [copyTempDataList[i][m], copyTempDataList[n][j]];
             }
         }
@@ -120,7 +120,7 @@ const MatchShuffle = () => {
                 for(let j=0; j<copyTempDataList.length; j++) {
                     for(let x=0; x<copyTempDataList[j].length; x++) {
                         if(j === tempPlayerFix[i].row && x === tempPlayerFix[i].cell) {
-                            let tempBox:{id:number, lv:number, nm:string} = copyTempDataList[j][x];
+                            const tempBox:{id:number, lv:number, nm:string} = copyTempDataList[j][x];
                             let row:number = -1;
                             let cell:number = -1;
                             for(let y=0; y<copyTempDataList.length; y++) {
@@ -158,7 +158,7 @@ const MatchShuffle = () => {
         }
 
         for(let i=temp1DemList.length-1; i>=0; i--) {
-            let j = Math.floor(Math.random() * (i+1));
+            const j = Math.floor(Math.random() * (i+1));
             [temp1DemList[i], temp1DemList[j]] = [temp1DemList[j], temp1DemList[i]];
         }
 
@@ -191,8 +191,8 @@ const MatchShuffle = () => {
             }
         }
 
-        let tempComposition:number = Math.ceil(realPersonnel/realTeamCount);
-        let tempCompare:{idx:number, sum:number, len:number}[] = [];
+        const tempComposition:number = Math.ceil(realPersonnel/realTeamCount);
+        const tempCompare:{idx:number, sum:number, len:number}[] = [];
 
         for(let i=0; i<realTeamCount; i++) {
             tempCompare[i] = {idx:i, sum:0, len:temp2DemList[i].length};
@@ -226,7 +226,7 @@ const MatchShuffle = () => {
                 for(let j=0; j<temp2DemList.length; j++) {
                     for(let x=0; x<temp2DemList[j].length; x++) {
                         if(j === tempPlayerFix[i].row && x === tempPlayerFix[i].cell) {
-                            let tempBox:{id:number, lv:number, nm:string} = temp2DemList[j][x];
+                            const tempBox:{id:number, lv:number, nm:string} = temp2DemList[j][x];
                             let row:number = -1;
                             let cell:number = -1;
                             for(let y=0; y<temp2DemList.length; y++) {
@@ -249,7 +249,7 @@ const MatchShuffle = () => {
     const onClickRandom = () => {
         setShuffleCount(shuffleCount+1);
         let intervalTime:number = shuffleTime;
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
             activeRandomData();    
             intervalTime -= decrease;
             if(intervalTime <= 0) {
@@ -261,7 +261,7 @@ const MatchShuffle = () => {
     const onClickBalance = () => {
         setShuffleCount(shuffleCount+1);
         let intervalTime:number = shuffleTime;
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
             activeBalanceData();    
             intervalTime -= decrease;
             if(intervalTime <= 0) {
