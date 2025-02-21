@@ -1,22 +1,27 @@
 'use client'
 
-import TeamBlueIcon from "../icons/TeamBlueIcon";
-import TeamRedIcon from "../icons/TeamRedIcon";
 import * as Style from "./match_shuffle.style";
 
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faPlus as icon_plus, faMinus as icon_minus,
+    faRotate as icon_refresh, faShuffle as icon_random,
+    faScaleBalanced as icon_balance
+} from "@fortawesome/free-solid-svg-icons";
+
+import TeamBlueIcon from "../icons/TeamBlueIcon";
+import TeamRedIcon from "../icons/TeamRedIcon";
 
 const MatchShuffle = () => {
-    const [processStep, setProcessStep] = useState<number>(0);
     const [playerCount, setPlayerCount] = useState<number>(10);
     const [teamCount, setTeamCount] = useState<number>(2);
     const [shuffleCount, setShuffleCount] = useState<number>(0);
+    const [shuffleTime, setShuffleTime] = useState<number>(5000);
+    const [decrease, setDecrease] = useState<number>(200);
 
     const [teams, setTeams] = useState<{id:number, lv:number, nm:string}[][]>([[]]);
-    const [fix, setFix] = useState<{id:number, row:number, cell:number}[]>([]);
-
-    const shuffleTime:number = 3000;
-    const decrease:number = 150;
+    const [playerFix, setPlayerFix] = useState<{id:number, row:number, cell:number}[]>([]);
 
     const createTeam = () => {
         const realPlayerCount:number = playerCount;
@@ -80,9 +85,9 @@ const MatchShuffle = () => {
 
     const updateCheckData = (data:{checked:boolean; index:number; arrNo:number; value:number;}) => {
         if(data.checked) {
-            setFix(prev => [...prev, {id:data.index, row:data.arrNo, cell:data.value}]);
+            setPlayerFix(prev => [...prev, {id:data.index, row:data.arrNo, cell:data.value}]);
         } else {
-            setFix(fix.filter((el) => el.id !== data.index));
+            setPlayerFix(playerFix.filter((el) => el.id !== data.index));
         }
     }
 
@@ -99,7 +104,7 @@ const MatchShuffle = () => {
     
     const activeRandomData = () => {
         const tempProduceTeam:{id:number, lv:number, nm:string}[][] = teams;
-        const tempPlayerFix:{id:number, row:number, cell:number}[] = fix;
+        const tempPlayerFix:{id:number, row:number, cell:number}[] = playerFix;
         const copyTempDataList:{id:number, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
     
         for(let i=copyTempDataList.length-1; i>=0; i--) { 
@@ -140,7 +145,7 @@ const MatchShuffle = () => {
         const realTeamCount:number = teamCount;
         const realComposition:number = realPersonnel/realTeamCount;
         const tempProduceTeam:{id:number, lv:number, nm:string}[][] = teams;
-        const tempPlayerFix:{id:number, row:number, cell:number}[] = fix;
+        const tempPlayerFix:{id:number, row:number, cell:number}[] = playerFix;
 
         const copyTempDataList:{id:number, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
         const temp1DemList:{id:number, lv:number, nm:string}[] = [];
@@ -242,28 +247,71 @@ const MatchShuffle = () => {
     }
     
     const onClickRandom = () => {
+        setShuffleCount(shuffleCount+1);
         let intervalTime:number = shuffleTime;
         let interval = setInterval(() => {
             activeRandomData();    
             intervalTime -= decrease;
-            if(intervalTime === 0) {
+            if(intervalTime <= 0) {
                 clearInterval(interval);
             }
         }, decrease);
     }
 
     const onClickBalance = () => {
+        setShuffleCount(shuffleCount+1);
         let intervalTime:number = shuffleTime;
         let interval = setInterval(() => {
             activeBalanceData();    
             intervalTime -= decrease;
-            if(intervalTime === 0) {
+            if(intervalTime <= 0) {
                 clearInterval(interval);
             }
         }, decrease);
     }
 
+    const onClickRefresh = () => {
+        setShuffleCount(0);
+        setShuffleTime(5000);
+        setDecrease(200);
+        setTeams([[]]);
+        setPlayerFix([]);
+        setTeamCount(2);
+        setPlayerCount(10);
+        createTeam();
+    }
+
+    const onClickShuffleTime = (type:boolean) => {
+        const time:number = 1000;
+
+        if(type) {
+            if(shuffleTime < 10000) {
+                setShuffleTime(shuffleTime+time)
+            }
+        } else {
+            if(shuffleTime > 1000) {
+                setShuffleTime(shuffleTime-time)
+            }
+        }
+    }
+
+    const onClickShuffleSpeed = (type:boolean) => {
+        const time:number = 100;
+
+        if(type) {
+            if(decrease < 1000) {
+                setDecrease(decrease+time)
+            }
+        } else {
+            if(decrease > 100) {
+                setDecrease(decrease-time)
+            }
+        }
+    }
+
     useEffect(() => {
+        setPlayerCount(10);
+        setTeamCount(2);
         createTeam();
     }, [])
 
@@ -296,7 +344,7 @@ const MatchShuffle = () => {
                                                 type="text" id={"input_" + child.id} placeholder="이름 입력" $camp={idx1}/>
                                     <div className="list_check">
                                         <Style.CheckStyle onChange={(e) => updateCheckData({checked:e.target.checked, index:child.id, arrNo:idx1, value:idx2})} 
-                                                    checked={fix.some(data => data.id === child.id) ? true : false} type="checkbox" id={"chkbx" + child.id} />
+                                                    checked={playerFix.some(data => data.id === child.id) ? true : false} type="checkbox" id={"chkbx" + child.id} />
                                         <Style.LabelStyle htmlFor={"chkbx" + child.id} className="check-box" />
                                         <Style.ToolTipStyle className="tooltip">
                                             Fix
@@ -308,9 +356,43 @@ const MatchShuffle = () => {
                     </div>
                 ))}
             </div>
-            <div className="btn_section">
-                <Style.BtnStyle onClick={() => onClickRandom()}>무작위</Style.BtnStyle>
-                <Style.BtnStyle onClick={() => onClickBalance()}>밸런스</Style.BtnStyle>
+            <div className="control_section">
+                <div className="info_section">
+                    <div className="shuffle_count">셔플 횟수 {shuffleCount}</div>
+                    <div className="shuffle_control">
+                        <div className="control_item shuffle_time">
+                            <div className="control_title">
+                                셔플 시간
+                            </div>
+                            <div className="control_tool">
+                                <button onClick={() => onClickShuffleTime(true)}><FontAwesomeIcon icon={icon_plus} className="btn_icon"/></button>
+                                <div className="sec_time">{shuffleTime/1000}초</div>
+                                <button onClick={() => onClickShuffleTime(false)}><FontAwesomeIcon icon={icon_minus} className="btn_icon"/></button>
+                            </div>
+                        </div>
+                        <div className="control_item shuffle_speed">
+                            <div className="control_title">
+                                셔플 속도
+                            </div>
+                            <div className="control_tool">
+                                <button onClick={() => onClickShuffleSpeed(true)}><FontAwesomeIcon icon={icon_plus} className="btn_icon"/></button>
+                                <div className="sec_time">{decrease/1000}초</div>
+                                <button onClick={() => onClickShuffleSpeed(false)}><FontAwesomeIcon icon={icon_minus} className="btn_icon"/></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="btn_section">
+                    <Style.BtnStyle onClick={() => onClickRandom()}>
+                        <FontAwesomeIcon icon={icon_random} className="btn_icon"/>무작위
+                    </Style.BtnStyle>
+                    <Style.BtnStyle onClick={() => onClickBalance()}>
+                        <FontAwesomeIcon icon={icon_balance} className="btn_icon"/>밸런스
+                    </Style.BtnStyle>
+                    <Style.BtnStyle onClick={() => onClickRefresh()}>
+                        <FontAwesomeIcon icon={icon_refresh} className="btn_icon"/>초기화
+                    </Style.BtnStyle>
+                </div>
             </div>
         </Style.MatchShuffle>
     )

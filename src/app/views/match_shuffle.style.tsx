@@ -66,12 +66,71 @@ export const MatchShuffle = styled('div')`
             }
         }
     }
-    
-    .btn_section {
-        display: flex;
-        justify-content: space-between;
-        width: 300px;
-        margin-top: 20px;
+
+    .control_section {
+        padding: 25px 45px;
+        margin-top: 35px;
+        border-radius: 20px;
+        background-color: rgb(30 30 38 / 1);
+
+        .info_section {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0 auto 35px;
+            color: #ffffff;
+            text-align: center;
+
+            .shuffle_count {
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .shuffle_control {
+                display: flex;
+                justify-content: center;
+                font-size: 1.3rem;
+
+                button {
+                    padding: 3px 4px;
+                    margin: 0 3px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: .9rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                }
+
+                .control_item {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 5px;
+
+                    .control_title {
+                        font-size: 1.4rem;
+                        margin-bottom: 3px;
+                    }
+
+                    .control_tool {
+                        display: flex;
+                        align-items: center;
+
+                        .sec_time {
+                            width: 35px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .btn_section {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px auto;
+        }
     }
 `;
 
@@ -117,8 +176,9 @@ export const InputPlayerStyle = styled('input')<{$camp:number}>`
 `;
 
 export const BtnStyle= styled('button')`
-    display: block;
-    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
     padding: 10px 30px;
     border: none;
     border-radius: 10px;
@@ -135,6 +195,10 @@ export const BtnStyle= styled('button')`
         transform: scale(1.1);
         box-shadow: 0 0 20px rgba(42,50,113, .68);
         background-position: right center;
+    }
+
+    .btn_icon {
+        margin-right: 7px;
     }
 `;
 
@@ -234,16 +298,14 @@ export const LabelStyle = styled('label')`
     transition-property: transform;
 
     &:hover {
-        transform: scale(1.2);
 
         + .tooltip {
             width: 32px;
-            top: -38px;
+            top: -30px;
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-            background: rgba(42,50,113, .9);
             color: #c97874;
             z-index: 1;
 
@@ -260,7 +322,7 @@ export const LabelStyle = styled('label')`
         position: absolute;
         height: 0;
         width: 4px;
-        background-color: #7B7A8E;
+        background-color: #ffffff;
         display: inline-block;
         -moz-transform-origin: left top;
         -ms-transform-origin: left top;
@@ -336,12 +398,11 @@ export const SelectStyle = styled('select')`
     &:hover {
         + .tooltip {
             width: 45px;
-            top: -35px;
+            top: -32px;
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-            background: rgba(42,50,113, .9);
             color: #c97874;
             z-index: 1;
 
@@ -358,7 +419,7 @@ export const ToolTipStyle = styled('div')`
     height: 25px;
     font-size: 11px;
     font-weight: bold;
-    background: rgba(42,50,113, .9);
+    background: rgb(28 28 31 / 1);
     color: #c97874;
     padding: 5px 8px;
     border-radius: 10px;
@@ -373,7 +434,7 @@ export const ToolTipStyle = styled('div')`
         content: "";
         height: 8px;
         width: 8px;
-        background: rgba(42,50,113, .9);
+        background: rgb(28 28 31 / 1);
         bottom: -3px;
         left: 32%;
         transform: translate(-50%) rotate(45deg);
