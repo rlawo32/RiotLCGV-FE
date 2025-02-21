@@ -100,6 +100,11 @@ export const MatchShuffle = styled('div')`
                     font-size: .9rem;
                     font-weight: 700;
                     cursor: pointer;
+
+                    &:active {
+                        scale: .7;
+                        transition: scale .3s;
+                    }
                 }
 
                 .control_item {
@@ -166,7 +171,10 @@ export const InputPlayerStyle = styled('input')<{$camp:number}>`
     background: rgb(28 28 31 / 1);
     color: #ffffff;
     font-size: 2.2rem;
-    outline: none;
+
+    &:focus {
+        outline: 1px solid #ffffff;
+    }
 
     &::placeholder {
         color: gray;

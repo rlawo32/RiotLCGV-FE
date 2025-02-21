@@ -333,7 +333,8 @@ const MatchShuffle = () => {
                             {parent.map((child, idx2) => (
                                 <div key={idx2} className="list_child">
                                     <div className="list_select">
-                                        <Style.SelectStyle onChange={(e) => updateSelectData({index:child.id, arrNo:idx1, value:parseInt(e.target.value)})} value={child.lv}>
+                                        <Style.SelectStyle onChange={(e) => updateSelectData({index:child.id, arrNo:idx1, value:parseInt(e.target.value)})} 
+                                        value={child.lv} tabIndex={-1}>
                                             {onActiveSelectBox()}
                                         </Style.SelectStyle>    
                                         <Style.ToolTipStyle className="tooltip">
