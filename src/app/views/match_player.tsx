@@ -67,7 +67,7 @@ const MatchPlayer = () => {
             <Style.PlayerDataBox>
                 <div className="box_head">
                     {
-                        !!selectPlayerData ? 
+                        !!lcgPlayerData && !!selectPlayerData ? 
                             <>
                                 <div className="head_section head_player">
                                     <img src={imageUrl1 + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
@@ -94,7 +94,7 @@ const MatchPlayer = () => {
                             </> : <></>
                     }
                     {
-                        !!selectPlayerWinningRate && !!selectPlayerAllKda ? 
+                        !!lcgPlayerData && !!selectPlayerWinningRate && !!selectPlayerAllKda ? 
                             <>
                                 <div className="head_data">
                                     <div className="head_graph">
