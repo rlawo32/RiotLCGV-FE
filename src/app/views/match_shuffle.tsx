@@ -359,7 +359,7 @@ const MatchShuffle = () => {
             </div>
             <div className="control_section">
                 <div className="info_section">
-                    <div className="shuffle_count">셔플 횟수 {shuffleCount}</div>
+                    <div className="shuffle_count">셔플 횟수 {shuffleCount}회</div>
                     <div className="shuffle_control">
                         <div className="control_item shuffle_time">
                             <div className="control_title">
