@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local"
 import "./globals.css";
-
-import StyledComponentsRegistry from "./StyledComponentsRegistry";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
+
+// styled-components issus solution
+import StyledComponentsRegistry from "./StyledComponentsRegistry";
+
+// fontawesome issue solution
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
+// vercle analytics
+import { Analytics } from '@vercel/analytics/react';
+
+// font-family addition
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
   display: "swap",
@@ -31,6 +38,7 @@ export default function RootLayout({
         <body className={pretendard.className}>
           <StyledComponentsRegistry>
             {children}
+            <Analytics />
           </StyledComponentsRegistry>
         </body>
       </html>
