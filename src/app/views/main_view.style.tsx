@@ -2,11 +2,29 @@ import styled from "styled-components";
 
 export const MainView = styled('div')`
     position: relative;
+    // Main_Height
     @media (max-height: 910px) {
         height: 100%;
     }
     min-height: 910px;
+    // Main_Height
+
+    // Main_Width
+    @media (max-width: 1440px) {
+        width: 1280px;
+    }
+    @media (max-width: 1280px) {
+        width: 1024px;
+    }
+    @media (max-width: 1024px) {
+        width: 768px;
+    }
+    @media (max-width: 768px) {
+        width: 100%;
+    }
     width: 1440px;
+    // Main_Width
+
     margin: 0 auto;
     color: white;
     font-weight: 400;
@@ -31,8 +49,10 @@ export const MainView = styled('div')`
     .main_container {
         display: flex;
         justify-content: space-between;
+        @media (max-width: 1280px) {
+            flex-direction: column;
+        }
         height: 100%;
-        min-height: 910px;
         padding: 25px 40px;
         background: #0d0d25;
         z-index: 1;

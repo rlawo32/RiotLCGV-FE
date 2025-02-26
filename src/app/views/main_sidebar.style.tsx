@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
 export const MainSidebar = styled('div')`
+    @media (max-width: 1280px) {
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 768px;
+        padding: 10px;
+        margin: 5px auto 25px;
+        border: 1px solid #FF4438;
+    }
+    @media (max-width: 1024px) {
+        width: 100%;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -11,6 +23,16 @@ export const MainSidebar = styled('div')`
     background-color: rgb(49 49 60 / .7);
 
     .btn_icon {
+        @media (max-width: 1280px) {
+            top: 5px;
+            left: 15px;
+            font-size: 2.3rem;
+        }
+        @media (max-width: 1024px) {
+            top: 6px;
+            left: 10px;
+            font-size: 1.5rem;
+        }
         position: absolute;
         top: 10px;
         left: 25px;
@@ -19,6 +41,16 @@ export const MainSidebar = styled('div')`
     }
 
     button {
+        @media (max-width: 1280px) {
+            padding: 5px 15px 10px 55px;
+            margin: 0 4px;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            padding: 5px 10px 7px 35px;
+            margin: 2px;
+            font-size: 1.2rem;
+        }
         position: relative;
         padding: 15px 15px 10px 75px;
         margin: 4px 0;
