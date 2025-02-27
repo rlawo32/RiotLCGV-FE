@@ -10,6 +10,11 @@ const SelectBoxStyle = styled('div')`
     position: relative;
 
     button {
+        @media (max-width: 768px) {
+            width: 120px;
+            padding: 4px 10px;
+            font-size: 1rem;
+        }
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -25,6 +30,9 @@ const SelectBoxStyle = styled('div')`
     }
 
     .select_box {
+        @media (max-width: 768px) {
+            width: 120px;
+        }
         position: absolute;
         top: 105%;
         left: 0;
@@ -40,8 +48,11 @@ const SelectBoxStyle = styled('div')`
     }
 
     ul.select_list {
+        @media (max-width: 768px) {
+            width: 110px;
+        }
         height: 0;
-        width: 120px;
+        width: 125px;
         padding: 0;
         border: none;
         border-radius: 5px;
@@ -73,6 +84,10 @@ const SelectBoxStyle = styled('div')`
     }
 
     ul.select_list li {
+        @media (max-width: 768px) {
+            font-size: 1rem;
+            line-height: 1.2em;
+        }
         padding: 4px;
         font-size: 1.3rem;
         line-height: 1.4em;
@@ -98,6 +113,9 @@ const SelectBoxStyle = styled('div')`
     }
 
     ul.select_list li.rs_active {
+        @media (max-width: 768px) {
+            font-size: 1.1rem;
+        }
         color: rgb(255 68 56 / 1);
         font-size: 1.4rem;
         font-weight: 700;
