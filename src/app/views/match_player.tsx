@@ -73,7 +73,7 @@ const MatchPlayer = () => {
                             <div className="box_head">
                                 {
                                     !!lcgPlayerData && !!selectPlayerData ? 
-                                        <>
+                                        <div className="head_summoner">
                                             <div className="head_section head_player">
                                                 <img src={imageUrl1 + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
                                                 alt={"profileIcon"} className="player_img" loading="lazy"/>
@@ -96,7 +96,7 @@ const MatchPlayer = () => {
                                                     </div>
                                                 }
                                             </div>
-                                        </> : <></>
+                                        </div> : <></>
                                 }
                                 {
                                     !!lcgPlayerData && !!selectPlayerWinningRate && !!selectPlayerAllKda ? 
@@ -106,7 +106,7 @@ const MatchPlayer = () => {
                                                     <div className="graph_gage">
                                                         <strong>{selectPlayerWinningRate[0].rate}%</strong>
                                                     </div>
-                                                    <svg viewBox="0 0 200 200">
+                                                    <svg viewBox="0 0 200 200" className="b_graph">
                                                         <circle cx="100" cy="100" r="80" fill="none" stroke="#E84057" strokeWidth="30">
                                                         </circle>
                                                         <circle cx="100" cy="100" r="80" fill="none" stroke="#5383E8" strokeWidth="30" 
@@ -114,6 +114,16 @@ const MatchPlayer = () => {
                                                             2 * Math.PI * 80 * (Math.trunc((1 - (parseInt(selectPlayerWinningRate[0].rate) / 100)) * 100) / 100)
                                                         }`}
                                                         strokeDashoffset={2 * Math.PI * 80 * 0.25}>
+                                                        </circle>
+                                                    </svg>
+                                                    <svg viewBox="0 0 200 200" className="s_graph">
+                                                        <circle cx="100" cy="100" r="70" fill="none" stroke="#E84057" strokeWidth="20">
+                                                        </circle>
+                                                        <circle cx="100" cy="100" r="70" fill="none" stroke="#5383E8" strokeWidth="20" 
+                                                        strokeDasharray={`${2 * Math.PI * 70 * (parseInt(selectPlayerWinningRate[0].rate) / 100)} ${
+                                                            2 * Math.PI * 70 * (Math.trunc((1 - (parseInt(selectPlayerWinningRate[0].rate) / 100)) * 100) / 100)
+                                                        }`}
+                                                        strokeDashoffset={2 * Math.PI * 70 * 0.25}>
                                                         </circle>
                                                     </svg>
                                                 </div>

@@ -6,7 +6,6 @@ export const MainView = styled('div')`
     @media (max-height: 910px) {
         height: 100%;
     }
-    min-height: 910px;
     // Main_Height
 
     // Main_Width
@@ -38,6 +37,7 @@ export const MainView = styled('div')`
         background-size: 400%;
         width: 100%;
         height: 100%;
+        border-radius: 7px;
         z-index: -1;
         animation: steam 60s linear infinite;
     }
@@ -54,6 +54,7 @@ export const MainView = styled('div')`
         }
         height: 100%;
         padding: 25px 40px;
+        border-radius: 7px;
         background: #0d0d25;
         z-index: 1;
     }
