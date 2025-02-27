@@ -17,6 +17,34 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     border-radius: 10px;
     background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "rgb(49 49 60 / 1)"};
 
+    .lcg_history_head {
+        @media (max-width: 768px) {
+            width: 340px;
+        }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .lcg_history_duration {
+            @media (max-width: 768px) {
+                padding: 0;
+                font-size: 1.2rem;
+            }
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 1.5rem;
+        }
+
+        .lcg_history_empty {
+            @media (max-width: 768px) {
+                width: 30px;
+            }
+            width: 50px;
+        }
+    }
+
     .lcg_history_title {
         @media (max-width: 768px) {
             width: 380px;
@@ -113,6 +141,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     .skeleton_header {
+        @media (max-width: 768px) {
+            height: 37px;
+        }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
         top: 0;
@@ -126,12 +157,18 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     .skeleton_portrait {
+        @media (max-width: 768px) {
+            top: -10px;
+            left: -15px;
+            height: 60px;
+            width: 80px;
+        }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
-        top: 0;
+        top: -4px;
         left: 0;
-        height: 90%;
-        width: 90%;
+        height: 100%;
+        width: 100%;
         margin: 3px auto;
         border-radius: 10px;
         animation: pulse 2s infinite ease-in-out;
@@ -139,10 +176,15 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     .skeleton_content {
+        @media (max-width: 768px) {
+            left: 50px;
+            height: 90%;
+            width: 73%;
+        }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
         top: 0;
-        left: 0;
+        left: -1px;
         height: 90%;
         width: 93%;
         margin: 3px 45px;
