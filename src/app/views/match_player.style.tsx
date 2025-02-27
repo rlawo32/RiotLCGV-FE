@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const MatchPlayer = styled('div')`
+    @media (max-width: 1024px) {
+        width: 100%;
+        padding: 7px 15px;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -24,6 +28,11 @@ export const PlayerSelectBox = styled('div')`
     border-bottom: 1px solid rgb(255 68 56 / 1);
 
     .select_item {
+        @media (max-width: 768px) {
+            font-size: 1.1rem;
+            margin: 2px;
+            padding: 5px 10px;
+        }
         margin: 3px;
         padding: 7px 12px;
         border-radius: 10px;
@@ -66,6 +75,10 @@ export const PlayerDataBox = styled('div')`
     }
 
     .box_head {
+        @media (max-width: 768px) {
+            flex-direction: column;
+            height: fit-content;
+        }
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -74,49 +87,78 @@ export const PlayerDataBox = styled('div')`
         padding: 20px 30px;
         border-radius: 10px;
         background-color: rgb(30 30 38 / 1);
-        
-        .head_section  {
+
+        .head_summoner {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-        }
-
-        .head_player {
-            width: 100px;
-            text-align: center;
-
-            .player_name {
-                width: 100px;
-                margin-top: 12px;
-                font-size: 1.2rem;
-                font-weight: 700;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+            width: 280px;
+        
+            .head_section  {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
-        }
 
-        .head_rank {
-            width: 120px;
+            .head_player {
+                width: 100px;
+                text-align: center;
 
-            .rank_desc {
-                margin-top: 10px;
-                font-size: 1.2rem;
-                font-weight: 700;
+                .player_name {
+                    width: 100px;
+                    margin-top: 12px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .head_rank {
+                width: 120px;
+
+                .rank_desc {
+                    margin-top: 10px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                }
             }
         }
 
         .head_data {
+            @media (max-width: 768px) {
+                margin-top: 35px;
+            }
             display: flex;
             align-items: center;
             width: 220px;
 
             .head_graph {
+                @media (min-width: 768px) {
+                    .b_graph {
+                        display: block;
+                    }
+                    .s_graph {
+                        display: none;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .b_graph {
+                        display: none;
+                    }
+                    .s_graph {
+                        display: block;
+                    }
+                }
                 position: relative;
                 height: 108px;
                 width: 108px;
 
                 .graph_gage {
+                    @media (max-width: 768px) {
+                        font-size: 1.3rem;
+                    }
                     position: absolute;
                     height: 108px;
                     width: 108px;
@@ -136,11 +178,17 @@ export const PlayerDataBox = styled('div')`
                     margin-bottom: 20px;
 
                     .count_play {
+                        @media (max-width: 768px) {
+                            font-size: 1.2rem;
+                        }
                         font-size: 1.5rem;
                         font-weight: 700;
                     }
 
                     .count_wof {
+                        @media (max-width: 768px) {
+                            font-size: 1rem;
+                        }
                         padding-top: 2px;
                         font-size: 1.2rem;
                         font-weight: 400;
@@ -151,11 +199,17 @@ export const PlayerDataBox = styled('div')`
                 .detail_kda {
 
                     .calc_kda {
+                        @media (max-width: 768px) {
+                            font-size: 1.2rem;
+                        }
                         font-size: 1.5rem;
                         font-weight: 700;
                     }
 
                     .origin_kda {
+                        @media (max-width: 768px) {
+                            font-size: 1rem;
+                        }
                         padding-top: 2px;
                         font-size: 1.2rem;
                         font-weight: 700;
@@ -175,6 +229,9 @@ export const PlayerDataBox = styled('div')`
     }
 
     .box_body {
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
         display: flex;
         justify-content: space-between;
         height: 100%;
@@ -199,6 +256,12 @@ export const PlayerDataBox = styled('div')`
         }
         
         .body_section  {
+            @media (max-width: 1024px) {
+                padding: 15px 12px;
+            }
+            @media (max-width: 768px) {
+                margin: 10px 0 0 0;
+            }
             display: flex;
             flex-direction: column;
             align-items: center;
