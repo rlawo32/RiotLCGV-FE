@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const MatchList = styled('div')`
+    @media (max-width: 1024px) {
+        width: 100%;
+        padding: 7px 15px;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -14,6 +18,9 @@ export const MatchList = styled('div')`
 `;
 
 export const ListContainer = styled('div')`
+    @media (max-width: 1024px) {
+        width: 100%;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -32,11 +39,20 @@ export const ListContainer = styled('div')`
     }
       
     .matchHistory_box.view_active {
+        @media (max-width: 768px) {
+            height: 100%;
+        }
         height: 830px;
     }
 `
 
 export const ListBox = styled('div')`
+    @media (max-width: 1024px) {
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        justify-content: space-around;
+    }
     position: relative;
     display: flex;
     align-items: center;
@@ -52,17 +68,49 @@ export const ListBox = styled('div')`
     cursor: pointer;
 
     .box_head {
+        @media (max-width: 1024px) {
+            font-size: 1.2rem;
+        }
+        @media (min-width: 768px) {
+            .box_ver {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            height: 70px;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 1.4rem;
+
+            .box_ver {
+                display: block;
+                font-size: 1rem;
+            }
+        }
         display: flex;
         align-items: center;
         font-size: 1.3rem;
     }
 
     .box_body {
+        @media (max-width: 768px) {
+            flex-direction: column;
+
+            .body_left {
+                flex-direction: row-reverse;
+            }
+        }
         display: flex;
         align-items: center;
         justify-content: center;
 
         .box_player {
+            @media (max-width: 1024px) {
+                font-size: 1.2rem;
+            }
+            @media (max-width: 768px) {
+                margin: 5px 0;
+            }
             position: relative;
             display: flex;
             align-items: center;
@@ -84,6 +132,11 @@ export const ListBox = styled('div')`
             margin: 0 20px;
 
             .box_vs {
+                @media (max-width: 768px) {
+                    height: 20px;
+                    font-size: 1.3rem;
+                    line-height: 10px;
+                }
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -104,6 +157,12 @@ export const ListBox = styled('div')`
     }
 
     .box_foot {
+        @media (max-width: 1024px) {
+            font-size: .8rem;
+        }
+        @media (max-width: 768px) {
+            display: none;
+        }
         display: flex;
         align-items: end;
         justify-content: right;

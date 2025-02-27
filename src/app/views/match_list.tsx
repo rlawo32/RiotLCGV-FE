@@ -58,6 +58,9 @@ const MatchList = () => {
                         <Style.ListBox onClick={() => matchListBoxClick(lcgLog.lcg_game_id, idx)} ref={(ml:any) => (matchListRef.current[idx] = ml)}>
                             <div className="box_head">
                                 {(lcgLog.lcg_game_date).substring(2, 4)}. {(lcgLog.lcg_game_date).substring(5, 7)}. {(lcgLog.lcg_game_date).substring(8, 10)}.
+                                <div className="box_ver">
+                                    Ver. {lcgLog.lcg_game_ver}
+                                </div>
                             </div>
                             <div className="box_body">
                                 <div className="box_player body_left">
