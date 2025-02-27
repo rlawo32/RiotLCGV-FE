@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const MatchRanking = styled('div')<{$type:string}>`
+    @media (max-width: 1024px) {
+        width: 100%;
+        padding: 7px 15px;
+    }
     position: relative;
     height: 100%;
     width: 768px;
@@ -39,15 +43,22 @@ export const MatchRanking = styled('div')<{$type:string}>`
         justify-content: center;
         align-items: center;
         height: 170px;
+        padding-top: 25px;
     }
 
     .ranking_bottom {
+        @media (max-width: 768px) {
+            margin-top: 55px;
+        }
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-top: 65px;
+        margin-top: 110px;
 
         .ranking_item_header {
+            @media (max-width: 768px) {
+                font-size: 1.1rem;
+            }
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -63,22 +74,37 @@ export const MatchRanking = styled('div')<{$type:string}>`
             }
 
             .item_header_rank {
+                @media (max-width: 768px) {
+                    width: 20px;
+                }
                 width: 40px;
             }
 
             .item_header_nickname {
+                @media (max-width: 768px) {
+                    width: 80px;
+                }
                 width: 160px;
             }
 
             .item_header_count {
+                @media (max-width: 768px) {
+                    width: 50px;
+                }
                 width: 100px;
             }
 
             .item_header_title {
+                @media (max-width: 768px) {
+                    width: 80px;
+                }
                 width: 160px;
             }
 
             .item_header_detail {
+                @media (max-width: 768px) {
+                    width: 80px;
+                }
                 width: 160px;
             }
         }
@@ -107,6 +133,10 @@ export const MatchRanking = styled('div')<{$type:string}>`
         }
 
         .lowRank_object_item {
+            @media (max-width: 768px) {
+                width: 37px;
+                margin: 4px 1px 0;
+            }
             width: 40px;
         }
         
@@ -118,6 +148,9 @@ export const MatchRanking = styled('div')<{$type:string}>`
         }
 
         .lowRank_multikill_item {
+            @media (max-width: 768px) {
+                margin: 2px 4px;
+            }
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,6 +168,9 @@ export const MatchRanking = styled('div')<{$type:string}>`
 `;
 
 export const RankingBox = styled('div')<{$ea:number}>`
+    @media (max-width: 768px) {
+        width: calc(86% / 2);
+    }
     display: flex;
     justify-content: ${({$ea}) => $ea > 3 ? "flex-start" : "center"};
     flex-wrap: wrap;
@@ -142,7 +178,12 @@ export const RankingBox = styled('div')<{$ea:number}>`
     width: calc(100% / 3);
 `
 
-export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
+export const HighRankingItem = styled('div')<{$ea:number, $rank:number, $h:number, $w:number}>`
+    @media (max-width: 768px) {
+        top: ${({$rank}) => $rank === 1 ? "-65px" : 0};
+        width: fit-content;
+        margin: 5px;
+    }
     position: relative;
     top: ${({$rank}) => $rank === 1 ? "-45px" : 0};
     display: flex;
@@ -159,6 +200,12 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
     }
 
     .ranker_img {
+        @media (max-width: 768px) {
+            height: ${({$h}) => $h-25}px;
+            width: ${({$w}) => $w-25}px;
+        }
+        height: ${({$h}) => $h}px;
+        width: ${({$w}) => $w}px;
         margin: 4px auto;
     }
 
@@ -169,6 +216,9 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number}>`
 `
 
 export const LowRankingItem = styled('div')<{$type:string}>`
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -180,6 +230,9 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     text-align: center;
 
     .item_rank {
+        @media (max-width: 768px) {
+            width: 20px;
+        }
         width: 40px;
         span {
             margin-left: 1px;
@@ -188,6 +241,9 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     }
 
     .item_nickname {
+        @media (max-width: 768px) {
+            width: 80px;
+        }
         width: 160px;
         white-space: nowrap;
         overflow: hidden;
@@ -196,14 +252,23 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     }
 
     .item_detail1 {
+        @media (max-width: 768px) {
+            width: 50px;
+        }
         width: 100px;
     }
 
     .item_detail2 {
+        @media (max-width: 768px) {
+            width: 80px;
+        }
         width: 160px;
     }
 
     .item_detail3 {
+        @media (max-width: 768px) {
+            width: 80px;
+        }
         width: 160px;
     }
 `
@@ -211,22 +276,37 @@ export const LowRankingItem = styled('div')<{$type:string}>`
 export const RankerContent = styled('div')<{$ea:number}>`
     
     .ranker_name {
+        @media (max-width: 768px) {
+            font-size: ${({$ea}) => $ea > 3 ? ".7rem" : $ea === 2 ? "1.1rem" : $ea === 3 ? ".9rem" : "1.3rem"};
+        }
         margin: 0 0 3px;
-        font-size: ${({$ea}) => $ea > 3 ? "11px" : $ea === 2 ? "14px" : $ea === 3 ? "12px" : "17px"};
+        font-size: ${({$ea}) => $ea > 3 ? ".9rem" : $ea === 2 ? "1.3rem" : $ea === 3 ? "1.1rem" : "1.5rem"};
         cursor: pointer;
     }
 
     .ranker_title {
+        @media (max-width: 768px) {
+            font-size: ${({$ea}) => $ea > 3 ? ".6rem" : $ea === 2 ? ".8rem" : $ea === 3 ? ".6rem" : ".9rem"};
+        }
         justify-content: center;
-        font-size: ${({$ea}) => $ea > 3 ? "9px" : $ea === 2 ? "11px" : $ea === 3 ? "9px" : "12px"};
+        font-size: ${({$ea}) => $ea > 3 ? ".8rem" : $ea === 2 ? "1rem" : $ea === 3 ? ".8rem" : "1.1rem"};
         font-weight: bold;
     }
 
     .ranker_detail {
-        font-size: ${({$ea}) => $ea > 3 ? "8px" : $ea === 2 ? "10px" : $ea === 3 ? "8px" : "11px"};
+        @media (max-width: 768px) {
+            font-size: ${({$ea}) => $ea > 3 ? ".5rem" : $ea === 2 ? ".7rem" : $ea === 3 ? ".5rem" : ".8rem"};
+        }
+        font-size: ${({$ea}) => $ea > 3 ? ".7rem" : $ea === 2 ? ".9rem" : $ea === 3 ? ".7rem" : "1rem"};
     }
 `
+
 export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
+    @media (max-width: 768px) {
+        height: 310px;
+        width: 120px;
+        margin: 0 5px;
+    }
     position: relative;
     top: ${({$rank}) => $rank === 1 ? "-55px" : 0};
     height: 460px;
@@ -292,13 +372,24 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                 justify-content: center;
 
                 .perk_image1 {
-
+                    @media (max-width: 768px) {
+                        height: 30px;
+                        width: 30px;
+                    }
+                    height: 50px;
+                    width: 50px;
                 }
 
                 .perk_image2 {
+                    @media (max-width: 768px) {
+                        height: 14px;
+                        width: 14px;
+                    }
                     position: absolute;
                     bottom: 2px;
                     right: -2px;
+                    height: 20px;
+                    width: 20px;
                     border-radius: 100%;
                     background-color: rgb(28 28 31 / 1);
                 }
@@ -313,24 +404,44 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                 margin-top: 10px;
 
                 .item_image {
+                    @media (max-width: 768px) {
+                        height: 22px;
+                        width: 22px;
+                    }
+                    height: 35px;
+                    width: 35px;
                     margin: 2px;
                     border-radius: 7px;
                 }
 
-                .empry_image {
+                .empty_image {
+                    @media (max-width: 768px) {
+                        height: 22px;
+                        width: 22px;
+                    }
                     height: 35px;
                     width: 35px;
+                    background-color: rgb(28 28 31 / 1);
                     border: 1px solid rgb(28 28 31 / 1);
                 }
             }
 
             .card_name {
+                @media (max-width: 768px) {
+                    font-size: 1.1rem;
+                    line-height: 10px;
+                }
                 margin-top: 12px;
                 font-size: 1.4rem;
                 line-height: 16px;
             }
 
             .card_data {
+                @media (max-width: 768px) {
+                    padding: 3px 7px;
+                    font-size: .9rem;
+                    line-height: 8px;
+                }
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -344,6 +455,10 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
             }
 
             .card_date {
+                @media (max-width: 768px) {
+                    font-size: 1.1rem;
+                    line-height: 10px;
+                }
                 margin-top: 6px;
                 font-size: 1.4rem;
                 line-height: 16px;
