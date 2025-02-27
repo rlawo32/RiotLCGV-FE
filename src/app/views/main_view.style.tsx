@@ -20,7 +20,7 @@ export const MainView = styled('div')`
         width: 768px;
     }
     @media (max-width: 768px) {
-        width: 100%;
+        width: 480px;
     }
     width: 1440px;
     // Main_Width

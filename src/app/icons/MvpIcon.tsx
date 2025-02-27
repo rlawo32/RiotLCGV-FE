@@ -3,6 +3,17 @@
 import styled from "styled-components";
 
 const IconStyle = styled('div')<{$rank:string}>`
+    @media (max-width: 1024px) {
+        font-size: .9rem;
+        margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+        height: 12px;
+        padding: 0 6px;
+        margin: 0 2px 3px;
+        font-size: .8rem;
+        line-height: 12px;
+    }
     height: 15px;
     width: fit-content;
     padding: 0 8px;
