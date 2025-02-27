@@ -6,6 +6,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    @media (max-width: 1024px) {
+        width: 100%;
+    }
     width: 768px;
     height: 100%;
     min-height: ${({$type}) => $type === 'L' ? "860px" : "0"};
@@ -15,6 +18,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "rgb(49 49 60 / 1)"};
 
     .lcg_history_title {
+        @media (max-width: 768px) {
+            width: 380px;
+        }
         position: relative;
         top: 0;
         display: flex;
@@ -146,6 +152,12 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     table {
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            width: 360px;
+        }
         width: 700px;
         margin: 5px 3px;
         border-collapse: collapse;
@@ -159,6 +171,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
 
             th {
+                @media (max-width: 768px) {
+                    font-size: 1.2rem;
+                }
                 padding: 3px;
                 font-size: 1.4rem;
             }
@@ -171,6 +186,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 padding: 0 7px 3px;
 
                 .aggregate_head {
+                    @media (max-width: 768px) {
+                        font-size: 1.4rem;
+                    }
                     position: relative;
                     display: flex;
                     justify-content: space-between;
@@ -210,7 +228,13 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             }
 
                             .bans_image {
+                                @media (max-width: 768px) {
+                                    height: 20px;
+                                    width: 25px;
+                                }
                                 display: block;
+                                height: 30px;
+                                width: 35px;
                                 object-fit: cover;
                                 opacity: .6;
                                 transform: scale(1.2, 1.2);
@@ -240,16 +264,27 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     }
 
                     .lcg_win {
+                        @media (max-width: 768px) {
+                            font-size: 1.5rem;
+                        }
                         font-weight: bold;
                         font-size: 1.8rem;
                     }
         
                     .lcg_team_kda {
+                        @media (max-width: 768px) {
+                            margin: 0 0 0 10px;
+                            font-size: 1.4rem;
+                        }
                         margin: 0 16px;
                         font-size: 1.7rem;
                     }
 
                     .lcg_team_gold {
+                        @media (max-width: 768px) {
+                            font-size: 1.4rem;
+                            margin: 0 0 0 30px;
+                        }
                         position: relative;
                         width: 30px;
                         margin: 0 35px;
@@ -263,11 +298,20 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     }
 
                     .lcg_object_count {
+                        @media (max-width: 768px) {
+                            justify-content: end;
+                            flex-wrap: wrap;
+                            width: 150px;
+                        }
                         display: flex;
                         align-items: center;
                         margin: 0 8px;
 
                         .lcg_object_item {
+                            @media (max-width: 768px) {
+                                font-size: 1.2rem;
+                                margin: 3px 5px 0 25px;
+                            }
                             position: relative;
                             display: flex;
                             align-items: center;
@@ -290,6 +334,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         tbody {
             tr {
+                @media (max-width: 1024px) {
+                    font-size: 1rem;
+                }
                 position: relative;
                 height: 58px;
                 border-bottom: 1px solid #3d96ff;
@@ -308,66 +355,135 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
 
         .lcg_sub_data  {
+            @media (max-width: 768px) {
+                font-size: .9rem;
+            }
             margin: 4px 0 0; 
             font-size: 1.1rem;
         }
 
-        .lcg_champion {
-            position: relative;
-            width: 40px;
+        .lcg_summoner {
+            width: 200px;
 
-            .lcg_level {
-                position: absolute;
-                bottom: 10px;
-                left: 3px;
-                margin: 0;
-                padding: 2px 4px 2px 2px;
-                background-color: black;
-                border-radius: 50%;
-                font-size: 1rem;
-            }
+            .lcg_summoner_wrap {
+                @media (max-width: 768px) {
+                    justify-content: center;
+                }
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
 
-            .champion_image {
-                margin: 0 3px 0 0;
-            }
-        }
+                .lcg_summoner_info {
+                    display: flex;
+                    align-items: center;
 
-        .lcg_spell {
-            width: 22px;
+                    .lcg_champion {
+                        @media (max-width: 768px) {
+                            width: 30px;
+                        }
+                        position: relative;
+                        width: 40px;
 
-            .spell_image {
-                margin: 0;
-            }
-        }
+                        .lcg_level {
+                            @media (max-width: 768px) {
+                                font-size: .7rem;
+                            }
+                            position: absolute;
+                            bottom: 4px;
+                            left: 1px;
+                            margin: 0;
+                            padding: 2px 4px 2px 2px;
+                            background-color: black;
+                            border-radius: 50%;
+                            font-size: 1rem;
+                        }
 
-        .lcg_perk {
-            width: 22px;
+                        .champion_image {
+                            @media (max-width: 768px) {
+                                height: 30px;
+                                width: 30px;
+                            }
+                            height: 40px;
+                            width: 40px;
+                            margin: 0 3px 0 0;
+                        }
+                    }
 
-            .perk_image1 {
-                margin-top: 2px;
-            }
+                    .lcg_spell {
+                        @media (max-width: 768px) {
+                            width: 16px;
+                        }
+                        width: 22px;
 
-            .perk_image2 {
-                margin: 0 0 3px;
-            }
-        }
+                        .spell_image {
+                            @media (max-width: 768px) {
+                                height: 14px;
+                                width: 14px;
+                            }
+                            height: 20px;
+                            width: 20px;
+                            margin: 0;
+                        }
+                    }
 
-        .lcg_summoner_name {
-            padding: 0 15px;
+                    .lcg_perk {
+                        @media (max-width: 768px) {
+                            width: 16px;
+                        }
+                        width: 22px;
 
-            .lcg_nickname {
-                width: 80px;
-                padding-bottom: 3px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                        .perk_image1 {
+                            @media (max-width: 768px) {
+                                height: 14px;
+                                width: 14px;
+                            }
+                            height: 22px;
+                            width: 22px;
+                            margin-top: 2px;
+                        }
+
+                        .perk_image2 {
+                            height: 16px;
+                            width: 16px;
+                            margin: 0 0 3px;
+                        }
+                    }
+                }
+
+                .lcg_summoner_name {
+                    @media (max-width: 1024px) {
+                        padding: 0 5px;
+                    }
+                    @media (max-width: 768px) {
+                        display: flex;
+                        align-items: center;
+                    }
+                    padding: 0 5px;
+
+                    .lcg_nickname {
+                        @media (max-width: 1024px) {
+                            width: 40px;
+                        }
+                        width: 80px;
+                        margin: 0 auto;
+                        padding-bottom: 3px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
             }
         }
 
         .lcg_kda {
-            width: 130px;
+            width: 140px;
 
             .lcg_kda_head {
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                }
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -375,6 +491,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
 
             .lcg_kda_rate {
+                @media (max-width: 768px) {
+                    font-size: .9rem;
+                }
                 margin: 0 3px;
             }
 
@@ -383,25 +502,42 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
         }
 
-        .lcg_damage {
-            width: 60px;
-            padding-top: 7px;
-        }
+        .lcg_deal {
+            @media (max-width: 768px) {
+                width: 80px;
+            }
+            width: 130px;
 
-        .lcg_taken {
-            width: 60px;
-            padding-top: 7px;
+            .lcg_graph {
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-top: 4px;
+            }
         }
 
         .lcg_ward {
+            @media (max-width: 768px) {
+                width: 40px;
+            }
             width: 60px;
         }
 
         .lcg_minion {
+            @media (max-width: 768px) {
+                width: 40px;
+            }
             width: 60px;
         }
 
         .lcg_item {
+            @media (max-width: 768px) {
+                width: 60px;
+            }
             display: flex;
             flex-wrap: wrap;
             justify-content: right;
@@ -409,11 +545,21 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         
         .item_image {
+            @media (max-width: 768px) {
+                height: 20px;
+                width: 20px;
+            }
+            height: 22px;
+            width: 22px;
             margin: 2px;
             border-radius: 10px;
         }
 
         .empty_image {
+            @media (max-width: 768px) {
+                height: 20px;
+                width: 20px;
+            }
             height: 22px;
             width: 22px;
             border: 1px solid grey;
@@ -439,6 +585,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 `;
 
 export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
+    @media (max-width: 768px) {
+        font-size: .9rem;
+    }
     margin: 4px 0 0; 
     font-size: 1.1rem;
     font-weight: bold;

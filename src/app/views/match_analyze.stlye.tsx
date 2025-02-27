@@ -11,11 +11,14 @@ export const MatchAnalyze = styled('div')`
     margin: 0 auto;
 
     .lcg_analyze_box {
+        @media (max-width: 768px) {
+            width: 93%;
+        }
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: calc(94% / 2);
+        width: calc(93% / 2);
         margin: 10px;
 
         .lcg_analyze_title {
