@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const MatchShuffle = styled('div')`
+    @media (max-width: 1024px) {
+        width: 100%;
+        padding: 50px 15px;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -18,14 +22,21 @@ export const MatchShuffle = styled('div')`
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+
         .list_wrap {
             position: relative;
             display: flex;
 
             .list_parent {
+                @media (max-width: 768px) {
+                    margin: 0 4px;
+                }
                 margin: 0 10px;
 
                 .team_camp {
+                    @media (max-width: 768px) {
+                        font-size: 1.8rem;
+                    }
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -45,12 +56,20 @@ export const MatchShuffle = styled('div')`
                     margin: auto;
                     
                     .list_select {
+                        @media (max-width: 768px) {
+                            top: 19px;
+                            left: 10px;
+                        }
                         position: absolute;
                         top: 19px;
                         left: 15px;
                     }
 
                     .list_check {
+                        @media (max-width: 768px) {
+                            top: 17px;
+                            right: 10px;
+                        }
                         position: absolute;
                         top: 19px;
                         right: 15px;
@@ -68,12 +87,19 @@ export const MatchShuffle = styled('div')`
     }
 
     .control_section {
+        @media (max-width: 768px) {
+            width: 100%;
+            padding: 25px 0 20px;
+        }
         padding: 25px 45px;
         margin-top: 35px;
         border-radius: 20px;
         background-color: rgb(30 30 38 / 1);
 
         .info_section {
+            @media (max-width: 768px) {
+                width: 100%;
+            }
             display: flex;
             flex-direction: column;
             width: 300px;
@@ -82,17 +108,26 @@ export const MatchShuffle = styled('div')`
             text-align: center;
 
             .shuffle_count {
+                @media (max-width: 768px) {
+                    font-size: 1.4rem;
+                }
                 font-size: 1.8rem;
                 font-weight: 700;
                 margin-bottom: 15px;
             }
 
             .shuffle_control {
+                @media (max-width: 768px) {
+                    font-size: 1rem;
+                }
                 display: flex;
                 justify-content: center;
                 font-size: 1.3rem;
 
                 button {
+                    @media (max-width: 768px) {
+                        font-size: .8rem;
+                    }
                     padding: 3px 4px;
                     margin: 0 3px;
                     border: none;
@@ -115,6 +150,9 @@ export const MatchShuffle = styled('div')`
                     margin: 0 5px;
 
                     .control_title {
+                        @media (max-width: 768px) {
+                            font-size: 1.1rem;
+                        }
                         font-size: 1.4rem;
                         margin-bottom: 3px;
                     }
@@ -124,6 +162,9 @@ export const MatchShuffle = styled('div')`
                         align-items: center;
 
                         .sec_time {
+                            @media (max-width: 768px) {
+                                width: 25px;
+                            }
                             width: 35px;
                         }
                     }
@@ -132,6 +173,10 @@ export const MatchShuffle = styled('div')`
         }
         
         .btn_section {
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
             display: flex;
             justify-content: space-between;
             margin: 10px auto;
@@ -163,6 +208,16 @@ export const InputValueStyle = styled('input')`
 `;
 
 export const InputPlayerStyle = styled('input')<{$camp:number}>`
+    @media (max-width: 1024px) {
+        width: 240px;
+        font-size: 1.8rem;
+    }
+    @media (max-width: 768px) {
+        width: 170px;
+        margin: 10px 2px;
+        padding: 10px 30px 10px 55px;
+        font-size: 1.5rem;
+    }
     width: 300px;
     margin: 10px 5px;
     padding: 10px 55px 10px 70px;
@@ -184,6 +239,11 @@ export const InputPlayerStyle = styled('input')<{$camp:number}>`
 `;
 
 export const BtnStyle= styled('button')`
+    @media (max-width: 768px) {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 1.3rem;
+    }
     display: flex;
     align-items: center;
     margin: 0 10px;
@@ -237,6 +297,9 @@ export const CheckStyle = styled('input')`
             border-color:#7B7A8E;
     
             &::after{
+                @media (max-width: 768px) {
+                    height: 10px;
+                }
                 height: 25px;
                 -moz-animation: dothabottomcheck .2s ease 0s forwards;
                 -o-animation: dothabottomcheck .2s ease 0s forwards;
@@ -245,6 +308,9 @@ export const CheckStyle = styled('input')`
             }
             
             &::before{
+                @media (max-width: 768px) {
+                    height: 20px;
+                }
                 height: 60px;
                 box-shadow: 0 0 0 3px rgba(42,50,73, .7);
                 -moz-animation: dothatopcheck .4s ease 0s forwards;
@@ -257,34 +323,62 @@ export const CheckStyle = styled('input')`
 
     @-moz-keyframes dothabottomcheck{
       0% { height: 0; }
-      100% { height: 24px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 16px;
+        }
+        height: 24px; }
     } 
     @-webkit-keyframes dothabottomcheck{
       0% { height: 0; }
-      100% { height: 24px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 16px;
+        }
+        height: 24px; }
     }
     @keyframes dothabottomcheck{
       0% { height: 0; }
-      100% { height: 24px;  }
+      100% { 
+        @media (max-width: 768px) {
+            height: 16px;
+        }
+        height: 24px; }
     }
     @keyframes dothatopcheck{
       0% { height: 0; }
       50% { height: 0; }
-      100% { height: 50px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 30px;
+        }
+        height: 50px; }
     }
     @-webkit-keyframes dothatopcheck{
       0% { height: 0; }
       50% { height: 0; }
-      100% { height: 50px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 30px;
+        }
+        height: 50px; }
     }
     @-moz-keyframes dothatopcheck{
       0% { height: 0; }
       50% { height: 0; }
-      100% { height: 50px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 30px;
+        }
+        height: 50px; }
     }
 `;
 
 export const LabelStyle = styled('label')`
+    @media (max-width: 768px) {
+        height: 22px;
+        width: 22px;
+    }
     display: inline-block;
     height: 27px;
     width: 27px;
@@ -315,7 +409,7 @@ export const LabelStyle = styled('label')`
             pointer-events: auto;
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
             color: #c97874;
-            z-index: 1;
+            z-index: 0;
 
             &::before {
                 left: 35%;
@@ -345,6 +439,10 @@ export const LabelStyle = styled('label')`
     }
 
     &::before {
+        @media (max-width: 768px) {
+            top: 15px;
+            left: 10px;
+        }
         top: 17px;
         left: 12px;
         -moz-transform: rotate(-135deg);
@@ -355,6 +453,10 @@ export const LabelStyle = styled('label')`
     }
 
     &::after {
+        @media (max-width: 768px) {
+            top: 5px;
+            left: -1px;
+        }
         top: 7px;
         left: 1px;
         -moz-transform: rotate(-45deg);
@@ -366,34 +468,61 @@ export const LabelStyle = styled('label')`
 
     @-moz-keyframes dothabottomcheck{
       0% { height: 0; }
-      100% { height: 14px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 10px;
+        }
+        height: 14px; }
     } 
     @-webkit-keyframes dothabottomcheck{
       0% { height: 0; }
-      100% { height: 14px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 10px;
+        }
+        height: 14px; }
     }
     @keyframes dothabottomcheck{
       0% { height: 0; }
-      100% { height: 14px;  }
+      100% { 
+        @media (max-width: 768px) {
+            height: 10px;
+        }
+        height: 14px; }
     }
     @keyframes dothatopcheck{
       0% { height: 0; }
       50% { height: 0; }
-      100% { height: 25px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 20px;
+        }
+        height: 25px; }
     }
     @-webkit-keyframes dothatopcheck{
       0% { height: 0; }
       50% { height: 0; }
-      100% { height: 25px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 20px;
+        }
+        height: 25px; }
     }
     @-moz-keyframes dothatopcheck{
       0% { height: 0; }
       50% { height: 0; }
-      100% { height: 25px; }
+      100% { 
+        @media (max-width: 768px) {
+            height: 20px;
+        }
+        height: 25px; }
     }
 `;
 
-export const SelectStyle = styled('select')`    
+export const SelectStyle = styled('select')`
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+    }
     padding: 5px;
     border: none;
     border-radius: 10px;
@@ -412,7 +541,7 @@ export const SelectStyle = styled('select')`
             pointer-events: auto;
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
             color: #c97874;
-            z-index: 1;
+            z-index: 0;
 
             &::before {
                 left: 30%;
