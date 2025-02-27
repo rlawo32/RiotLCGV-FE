@@ -41,45 +41,45 @@ const RankingView1G3BCs = (props : {data:{
                                     <div className="card_body">
                                         <div className="card_perk">
                                             <img src={props.path.lcg_sub_image + item.lcg_perk_name_1} 
-                                            alt={"perk1"} height={50} width={50} className="perk_image1" />
+                                            alt={"perk1"} className="perk_image1" />
                                             <img src={props.path.lcg_sub_image + item.lcg_perk_name_2} 
-                                            alt={"perk2"} height={20} width={20} className="perk_image2" />
+                                            alt={"perk2"} className="perk_image2" />
                                         </div>
                                         <div className="card_item">
                                             {
                                                 item.lcg_item_id_1 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_1 + ".png"} 
-                                                    alt={"item1"} height={35} width={35} className="item_image" />
+                                                    alt={"item1"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_2 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_2 + ".png"} 
-                                                    alt={"item2"} height={35} width={35} className="item_image" />
+                                                    alt={"item2"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_3 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_3 + ".png"} 
-                                                    alt={"item3"} height={35} width={35} className="item_image" />
+                                                    alt={"item3"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_4 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_4 + ".png"} 
-                                                    alt={"item4"} height={35} width={35} className="item_image" />
+                                                    alt={"item4"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_5 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_5 + ".png"} 
-                                                    alt={"item5"} height={35} width={35} className="item_image" />
+                                                    alt={"item5"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_6 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_6 + ".png"} 
-                                                    alt={"item6"} height={35} width={35} className="item_image" />
+                                                    alt={"item6"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                         </div>
@@ -112,45 +112,45 @@ const RankingView1G3BCs = (props : {data:{
                                     <div className="card_body">
                                         <div className="card_perk">
                                             <img src={props.path.lcg_sub_image + item.lcg_perk_name_1} 
-                                            alt={"perk1"} height={50} width={50} className="perk_image1" />
+                                            alt={"perk1"} className="perk_image1" />
                                             <img src={props.path.lcg_sub_image + item.lcg_perk_name_2} 
-                                            alt={"perk2"} height={20} width={20} className="perk_image2" />
+                                            alt={"perk2"} className="perk_image2" />
                                         </div>
                                         <div className="card_item">
                                             {
                                                 item.lcg_item_id_1 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_1 + ".png"} 
-                                                    alt={"item1"} height={35} width={35} className="item_image" />
+                                                    alt={"item1"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_2 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_2 + ".png"} 
-                                                    alt={"item2"} height={35} width={35} className="item_image" />
+                                                    alt={"item2"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_3 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_3 + ".png"} 
-                                                    alt={"item3"} height={35} width={35} className="item_image" />
+                                                    alt={"item3"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_4 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_4 + ".png"} 
-                                                    alt={"item4"} height={35} width={35} className="item_image" />
+                                                    alt={"item4"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_5 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_5 + ".png"} 
-                                                    alt={"item5"} height={35} width={35} className="item_image" />
+                                                    alt={"item5"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_6 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_6 + ".png"} 
-                                                    alt={"item6"} height={35} width={35} className="item_image" />
+                                                    alt={"item6"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                         </div>
@@ -183,45 +183,45 @@ const RankingView1G3BCs = (props : {data:{
                                     <div className="card_body">
                                         <div className="card_perk">
                                             <img src={props.path.lcg_sub_image + item.lcg_perk_name_1} 
-                                            alt={"perk1"} height={50} width={50} className="perk_image1" />
+                                            alt={"perk1"} className="perk_image1" />
                                             <img src={props.path.lcg_sub_image + item.lcg_perk_name_2} 
-                                            alt={"perk2"} height={20} width={20} className="perk_image2" />
+                                            alt={"perk2"} className="perk_image2" />
                                         </div>
                                         <div className="card_item">
                                             {
                                                 item.lcg_item_id_1 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_1 + ".png"} 
-                                                    alt={"item1"} height={35} width={35} className="item_image" />
+                                                    alt={"item1"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_2 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_2 + ".png"} 
-                                                    alt={"item2"} height={35} width={35} className="item_image" />
+                                                    alt={"item2"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_3 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_3 + ".png"} 
-                                                    alt={"item3"} height={35} width={35} className="item_image" />
+                                                    alt={"item3"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_4 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_4 + ".png"} 
-                                                    alt={"item4"} height={35} width={35} className="item_image" />
+                                                    alt={"item4"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_5 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_5 + ".png"} 
-                                                    alt={"item5"} height={35} width={35} className="item_image" />
+                                                    alt={"item5"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_6 !== 0 ?
                                                     <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_6 + ".png"} 
-                                                    alt={"item6"} height={35} width={35} className="item_image" />
+                                                    alt={"item6"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                         </div>
