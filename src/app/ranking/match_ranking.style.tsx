@@ -5,8 +5,8 @@ export const MatchRanking = styled('div')<{$type:string}>`
         width: 100%;
         padding: 7px 15px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         padding: 7px 5px;
     }
     position: relative;
@@ -63,8 +63,8 @@ export const MatchRanking = styled('div')<{$type:string}>`
             @media (max-width: 768px) {
                 font-size: 1.1rem;
             }
-            // t-mobile
-            @media (max-width: 500px) {
+            // mobile_view
+            @media (max-width: 480px) {
                 font-size: .9rem;
             }
             display: flex;
@@ -92,8 +92,8 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 @media (max-width: 768px) {
                     width: 80px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     width: 70px;
                 }
                 width: 160px;
@@ -103,8 +103,8 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 @media (max-width: 768px) {
                     width: 50px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     width: 40px;
                 }
                 width: 100px;
@@ -114,8 +114,8 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 @media (max-width: 768px) {
                     width: 80px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     width: 70px;
                 }
                 width: 160px;
@@ -125,8 +125,8 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 @media (max-width: 768px) {
                     width: 80px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     width: 70px;
                 }
                 width: 160px;
@@ -208,8 +208,8 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number, $h:numbe
         width: fit-content;
         margin: 5px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         width: ${({$ea}) => $ea > 2 ? "30px" : $ea === 2 ? "40px" : "75px"};
         margin: 2px;
     }
@@ -233,8 +233,8 @@ export const HighRankingItem = styled('div')<{$ea:number, $rank:number, $h:numbe
             height: ${({$h}) => $h-25}px;
             width: ${({$w}) => $w-25}px;
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             height: ${({$h}) => $h-40}px;
             width: ${({$w}) => $w-40}px;
         }
@@ -253,8 +253,8 @@ export const LowRankingItem = styled('div')<{$type:string}>`
     @media (max-width: 768px) {
         font-size: 1rem;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         font-size: .8rem;
     }
     display: flex;
@@ -276,8 +276,8 @@ export const LowRankingItem = styled('div')<{$type:string}>`
             @media (max-width: 768px) {
                 font-size: .9rem;
             }
-            // t-mobile
-            @media (max-width: 500px) {
+            // mobile_view
+            @media (max-width: 480px) {
                 font-size: .7rem;
             }
             margin-left: 1px;
@@ -289,8 +289,8 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         @media (max-width: 768px) {
             width: 80px;
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             width: 70px;
         }
         width: 160px;
@@ -304,8 +304,8 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         @media (max-width: 768px) {
             width: 50px;
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             width: 40px;
         }
         width: 100px;
@@ -319,8 +319,8 @@ export const LowRankingItem = styled('div')<{$type:string}>`
                 width: 10px;
             }
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             width: 70px;
             svg {
                 height: 7px;
@@ -334,8 +334,8 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         @media (max-width: 768px) {
             width: 80px;
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             width: 70px;
         }
         width: 160px;
@@ -348,8 +348,8 @@ export const RankerContent = styled('div')<{$ea:number}>`
         @media (max-width: 768px) {
             font-size: ${({$ea}) => $ea > 3 ? ".7rem" : $ea === 2 ? "1.1rem" : $ea === 3 ? ".9rem" : "1.3rem"};
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             font-size: ${({$ea}) => $ea > 3 ? ".5rem" : $ea === 2 ? ".9rem" : $ea === 3 ? ".7rem" : "1.1rem"};
         }
         margin: 0 0 3px;
@@ -361,8 +361,8 @@ export const RankerContent = styled('div')<{$ea:number}>`
         @media (max-width: 768px) {
             font-size: ${({$ea}) => $ea > 3 ? ".6rem" : $ea === 2 ? ".8rem" : $ea === 3 ? ".6rem" : ".9rem"};
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             font-size: ${({$ea}) => $ea > 3 ? ".45rem" : $ea === 2 ? ".65rem" : $ea === 3 ? ".45rem" : ".75rem"};
         }
         justify-content: center;
@@ -384,8 +384,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
         width: 120px;
         margin: 0 5px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         height: 270px;
         width: 90px;
     }
@@ -458,8 +458,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                         height: 30px;
                         width: 30px;
                     }
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         height: 25px;
                         width: 25px;
                     }
@@ -472,8 +472,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                         height: 14px;
                         width: 14px;
                     }
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         height: 12px;
                         width: 12px;
                     }
@@ -500,8 +500,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                         height: 22px;
                         width: 22px;
                     }
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         height: 17px;
                         width: 17px;
                     }
@@ -516,8 +516,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                         height: 22px;
                         width: 22px;
                     }
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         height: 17px;
                         width: 17px;
                     }
@@ -533,8 +533,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                     font-size: 1.1rem;
                     line-height: 10px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     font-size: 1rem;
                     line-height: 9px;
                 }
@@ -549,8 +549,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                     font-size: .9rem;
                     line-height: 8px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     padding: 3px 4px;
                     font-size: .8rem;
                     line-height: 6px;
@@ -572,8 +572,8 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
                     font-size: 1.1rem;
                     line-height: 10px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     font-size: .9rem;
                     line-height: 9px;
                 }

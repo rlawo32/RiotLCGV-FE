@@ -55,8 +55,8 @@ export const PlayerDataBox = styled('div')`
     margin: 10px auto;
 
     .player_img {
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             height: 60px;
             width: 60px;
         }
@@ -66,8 +66,8 @@ export const PlayerDataBox = styled('div')`
     }
 
     .rank_img {
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             height: 60px;
             width: 60px;
         }
@@ -78,8 +78,8 @@ export const PlayerDataBox = styled('div')`
     }
 
     .champion_img {
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             height: 30px;
             width: 30px;
         }
@@ -104,8 +104,8 @@ export const PlayerDataBox = styled('div')`
         background-color: rgb(30 30 38 / 1);
 
         .head_summoner {
-            // t-mobile
-            @media (max-width: 500px) {
+            // mobile_view
+            @media (max-width: 480px) {
                 justify-content: space-around;
             }
             display: flex;
@@ -330,8 +330,8 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .player_opponent {
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         font-size: 1.1rem;
                     }
                     width: 100px;
@@ -349,16 +349,16 @@ export const PlayerDataBox = styled('div')`
                     width: 120px;
 
                     .match_detail {
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             font-size: 1.1rem;
                         }
                     }
                 }
 
                 .player_matchLine {
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         svg {
                             height: 25px;
                             width: 25px;
@@ -418,8 +418,8 @@ export const PlayerDataBox = styled('div')`
                     width: 120px;
 
                     .kda_detail {
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             font-size: 1rem;
                         }
                         font-size: 1.2rem;
@@ -434,8 +434,8 @@ export const PlayerDataBox = styled('div')`
                     }
 
                     .kda_calc {
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             font-size: .9rem;
                         }
                         padding-top: 3px;
@@ -449,8 +449,8 @@ export const PlayerDataBox = styled('div')`
                     width: 120px;
 
                     .match_detail {
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             font-size: 1.1rem;
                         }
                     }

@@ -21,8 +21,8 @@ export const MainView = styled('div')`
     @media (max-width: 768px) {
         width: 480px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         width: 320px;
     }
     width: 1440px;

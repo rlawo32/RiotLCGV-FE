@@ -5,8 +5,8 @@ export const MatchList = styled('div')`
         width: 100%;
         padding: 7px 15px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         padding: 7px 2px;
     }
     position: relative;
@@ -91,8 +91,8 @@ export const ListBox = styled('div')`
                 font-size: 1rem;
             }
         }
-        // t-mobile
-        @media (max-width: 500px) {
+        // mobile_view
+        @media (max-width: 480px) {
             font-size: 1.1rem;
 
             .box_ver {
@@ -124,8 +124,8 @@ export const ListBox = styled('div')`
             @media (max-width: 768px) {
                 margin: 5px 0;
             }
-            // t-mobile
-            @media (max-width: 500px) {
+            // mobile_view
+            @media (max-width: 480px) {
                 font-size: 1rem;
             }
             position: relative;
@@ -154,8 +154,8 @@ export const ListBox = styled('div')`
                     font-size: 1.3rem;
                     line-height: 10px;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     height: 16px;
                     width: 42px;
                     font-size: 1.1rem;

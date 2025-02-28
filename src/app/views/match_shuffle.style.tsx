@@ -5,8 +5,8 @@ export const MatchShuffle = styled('div')`
         width: 100%;
         padding: 50px 15px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         padding: 50px 5px;
     }
     position: relative;
@@ -41,8 +41,8 @@ export const MatchShuffle = styled('div')`
                     @media (max-width: 768px) {
                         font-size: 1.8rem;
                     }
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         font-size: 1.5rem;
                     }
                     display: flex;
@@ -52,8 +52,8 @@ export const MatchShuffle = styled('div')`
                     font-weight: 700;
                     margin-bottom: 10px;
                     svg {
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             height: 25px; 
                             width: 25px;
                         }
@@ -76,8 +76,8 @@ export const MatchShuffle = styled('div')`
                             top: 19px;
                             left: 10px;
                         }
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             top: 12px;
                             left: 7px;
                         }
@@ -91,8 +91,8 @@ export const MatchShuffle = styled('div')`
                             top: 17px;
                             right: 10px;
                         }
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             top: 12px;
                             right: 7px;
                         }
@@ -137,8 +137,8 @@ export const MatchShuffle = styled('div')`
                 @media (max-width: 768px) {
                     font-size: 1.4rem;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     font-size: 1.2rem;
                 }
                 font-size: 1.8rem;
@@ -150,8 +150,8 @@ export const MatchShuffle = styled('div')`
                 @media (max-width: 768px) {
                     font-size: 1rem;
                 }
-                // t-mobile
-                @media (max-width: 500px) {
+                // mobile_view
+                @media (max-width: 480px) {
                     font-size: .9rem;
                 }
                 display: flex;
@@ -162,8 +162,8 @@ export const MatchShuffle = styled('div')`
                     @media (max-width: 768px) {
                         font-size: .8rem;
                     }
-                    // t-mobile
-                    @media (max-width: 500px) {
+                    // mobile_view
+                    @media (max-width: 480px) {
                         font-size: .6rem;
                     }
                     padding: 3px 4px;
@@ -191,8 +191,8 @@ export const MatchShuffle = styled('div')`
                         @media (max-width: 768px) {
                             font-size: 1.1rem;
                         }
-                        // t-mobile
-                        @media (max-width: 500px) {
+                        // mobile_view
+                        @media (max-width: 480px) {
                             font-size: 1rem;
                         }
                         font-size: 1.4rem;
@@ -260,8 +260,8 @@ export const InputPlayerStyle = styled('input')<{$camp:number}>`
         padding: 10px 30px 10px 55px;
         font-size: 1.5rem;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         width: 130px;
         margin: 5px 2px;
         padding: 7px 25px 10px 42px;
@@ -294,8 +294,8 @@ export const BtnStyle= styled('button')`
         margin: 5px;
         font-size: 1.3rem;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         padding: 7px 18px;
         margin: 5px;
         font-size: 1.1rem;
@@ -435,8 +435,8 @@ export const LabelStyle = styled('label')`
         height: 22px;
         width: 22px;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         height: 17px;
         width: 17px;
     }
@@ -584,8 +584,8 @@ export const SelectStyle = styled('select')`
     @media (max-width: 768px) {
         font-size: 1.1rem;
     }
-    // t-mobile
-    @media (max-width: 500px) {
+    // mobile_view
+    @media (max-width: 480px) {
         font-size: .9rem;
         padding: 5px 2px;
     }
