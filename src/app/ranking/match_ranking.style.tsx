@@ -94,7 +94,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 70px;
+                    width: 65px;
                 }
                 width: 160px;
             }
@@ -105,7 +105,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 40px;
+                    width: 35px;
                 }
                 width: 100px;
             }
@@ -116,7 +116,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 70px;
+                    width: 65px;
                 }
                 width: 160px;
             }
@@ -127,7 +127,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 70px;
+                    width: 65px;
                 }
                 width: 160px;
             }
@@ -291,7 +291,7 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 70px;
+            width: 65px;
         }
         width: 160px;
         white-space: nowrap;
@@ -306,7 +306,7 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 40px;
+            width: 35px;
         }
         width: 100px;
     }
@@ -321,7 +321,7 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 70px;
+            width: 65px;
             svg {
                 height: 7px;
                 width: 7px;
@@ -336,7 +336,7 @@ export const LowRankingItem = styled('div')<{$type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 70px;
+            width: 65px;
         }
         width: 160px;
     }

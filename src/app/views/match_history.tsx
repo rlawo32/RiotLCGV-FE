@@ -93,7 +93,7 @@ const MatchHistory = (props : {gameId:number}) => {
         lcgMaxDamageTotal = lcgMatchInfo[0].lcg_max_damage_total;
         lcgMaxDamageTaken = lcgMatchInfo[0].lcg_max_damage_taken;
 
-        lcgGameDuration = getGameDuration(lcgMatchInfo[0].lcg_game_duration);
+        lcgGameDuration = lcgMatchInfo[0].lcg_game_duration;
         lcgGameDurationMin = getGameDuration(lcgGameDuration);
 
         if(!!lcgMatchEtc) {
