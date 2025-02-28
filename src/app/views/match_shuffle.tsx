@@ -342,7 +342,7 @@ const MatchShuffle = () => {
                                         </Style.ToolTipStyle>
                                     </div>
                                     <Style.InputPlayerStyle onChange={(e) => updateInputData({index:child.id, arrNo:idx1, value:e.target.value})} value={child.nm} 
-                                                type="text" id={"input_" + child.id} placeholder="이름 입력" $camp={idx1}/>
+                                                type="text" id={"input_" + child.id} $camp={idx1}/>
                                     <div className="list_check">
                                         <Style.CheckStyle onChange={(e) => updateCheckData({checked:e.target.checked, index:child.id, arrNo:idx1, value:idx2})} 
                                                     checked={playerFix.some(data => data.id === child.id) ? true : false} type="checkbox" id={"chkbx" + child.id} />
