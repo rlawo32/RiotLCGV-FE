@@ -5,6 +5,10 @@ export const MatchList = styled('div')`
         width: 100%;
         padding: 7px 15px;
     }
+    // t-mobile
+    @media (max-width: 500px) {
+        padding: 7px 2px;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -35,7 +39,7 @@ export const ListContainer = styled('div')`
     .matchHistory_box {
         height: 0;
         overflow: hidden;
-        transition: all .4s ease;
+        transition: height .4s ease;
     }
       
     .matchHistory_box.view_active {
@@ -87,6 +91,15 @@ export const ListBox = styled('div')`
                 font-size: 1rem;
             }
         }
+        // t-mobile
+        @media (max-width: 500px) {
+            font-size: 1.1rem;
+
+            .box_ver {
+                display: block;
+                font-size: .9rem;
+            }
+        }
         display: flex;
         align-items: center;
         font-size: 1.3rem;
@@ -110,6 +123,10 @@ export const ListBox = styled('div')`
             }
             @media (max-width: 768px) {
                 margin: 5px 0;
+            }
+            // t-mobile
+            @media (max-width: 500px) {
+                font-size: 1rem;
             }
             position: relative;
             display: flex;
@@ -135,6 +152,13 @@ export const ListBox = styled('div')`
                 @media (max-width: 768px) {
                     height: 20px;
                     font-size: 1.3rem;
+                    line-height: 10px;
+                }
+                // t-mobile
+                @media (max-width: 500px) {
+                    height: 16px;
+                    width: 42px;
+                    font-size: 1.1rem;
                     line-height: 10px;
                 }
                 display: flex;
