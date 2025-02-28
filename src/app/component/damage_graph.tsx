@@ -3,6 +3,11 @@
 import styled from "styled-components";
 
 const GraphTotal = styled('div')<{$flag:string}>`
+    // t-mobile
+    @media (max-width: 500px) {
+        height: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "6px" : "11px"};
+        width: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "40px" : "60px"};
+    }
     height: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "11px" : "16px"};
     width: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "50px" : "100px"};
     margin: 5px auto;
