@@ -222,7 +222,7 @@ const MatchPlayer = () => {
                                             <div className="champion_item" key={"relative_" + idx}>
                                                 <div className="player_champion">
                                                     <img src={imageUrl1 + "champion/" + data.lcg_champion_name + ".png"} 
-                                                    alt={"champion"} className="champion_img"  loading="lazy"/>
+                                                    alt={"champion"} className="champion_img" loading="lazy"/>
                                                 </div>
                                                 <div className="player_kda">
                                                     <div className="kda_detail">
