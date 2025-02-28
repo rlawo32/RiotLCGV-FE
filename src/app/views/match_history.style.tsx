@@ -39,6 +39,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 padding: 0;
                 font-size: 1.2rem;
             }
+            // t-mobile
+            @media (max-width: 500px) {
+                padding-left: 7px;
+            }
             display: flex;
             align-items: center;
             padding-left: 10px;
@@ -47,7 +51,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_history_empty {
             @media (max-width: 768px) {
-                width: 30px;
+                width: 37px;
             }
             width: 50px;
         }
@@ -165,6 +169,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     .skeleton_title {
+        // t-mobile
+        @media (max-width: 500px) {
+            left: 8px;
+            width: 95%;
+        }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
         top: 0;
@@ -180,6 +189,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     .skeleton_header {
         @media (max-width: 768px) {
             height: 37px;
+        }
+        // t-mobile
+        @media (max-width: 500px) {
+            height: 43px;
         }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
@@ -200,6 +213,13 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             height: 60px;
             width: 80px;
         }
+        // t-mobile
+        @media (max-width: 500px) {
+            top: -5px;
+            left: -5px;
+            height: 50px;
+            width: 70px;
+        }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
         top: -4px;
@@ -217,6 +237,12 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             left: 50px;
             height: 90%;
             width: 73%;
+        }
+        // t-mobile
+        @media (max-width: 500px) {
+            left: 43px;
+            height: 90%;
+            width: 70%;
         }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
@@ -302,6 +328,13 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                         align-items: center;
 
                         .ban_champion {
+                            @media (max-width: 768px) {
+                                height: 20px;
+                            }
+                            // t-mobile
+                            @media (max-width: 500px) {
+                                margin: 0 2px;
+                            }
                             position: relative;
                             height: 25px;
                             margin: 0 4px;
@@ -318,6 +351,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 @media (max-width: 768px) {
                                     height: 20px;
                                     width: 25px;
+                                }
+                                // t-mobile
+                                @media (max-width: 500px) {
+                                    height: 20px;
+                                    width: 20px;
                                 }
                                 display: block;
                                 height: 30px;
@@ -378,6 +416,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             // t-mobile
                             @media (max-width: 500px) {
                                 margin: 0;
+                                font-size: 1.2rem;
                             }
                             margin: 0 16px;
                             font-size: 1.7rem;
@@ -387,6 +426,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             @media (max-width: 768px) {
                                 font-size: 1.4rem;
                                 margin: 0 0 0 30px;
+                            }
+                            // t-mobile
+                            @media (max-width: 500px) {
+                                font-size: 1.2rem;
                             }
                             position: relative;
                             width: 30px;
@@ -415,6 +458,15 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             @media (max-width: 768px) {
                                 font-size: 1.2rem;
                                 margin: 3px 5px 0 25px;
+                            }
+                            // t-mobile
+                            @media (max-width: 500px) {
+                                font-size: 1rem;
+
+                                svg {
+                                    height: 14px;
+                                    width: 14px;
+                                }
                             }
                             position: relative;
                             display: flex;

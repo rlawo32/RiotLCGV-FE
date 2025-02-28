@@ -192,12 +192,14 @@ const MatchHistory = (props : {gameId:number}) => {
                                                                 <div className="lcg_win" style={lcgTeam.lcg_team_win === 'Y' ? {color:"#5383E8"} : {color:"#E84057"}}>
                                                                     {lcgTeam.lcg_team_win === 'Y' ? "승리" : "패배"}
                                                                 </div>
-                                                                <div className="lcg_team_kda">
-                                                                    {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
-                                                                </div>
-                                                                <div className="lcg_team_gold">
-                                                                    <div className="lcg_object_icon"><GoldIcon /></div> 
-                                                                    <div className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</div>
+                                                                <div className="lcg_amount">
+                                                                    <div className="lcg_team_kda">
+                                                                        {lcgTeam.lcg_total_kill + " / " + lcgTeam.lcg_total_death + " / " +  lcgTeam.lcg_total_assist}
+                                                                    </div>
+                                                                    <div className="lcg_team_gold">
+                                                                        <div className="lcg_object_icon"><GoldIcon /></div> 
+                                                                        <div className="lcg_object_data">{(lcgTeam.lcg_total_gold).toLocaleString()}</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div className="lcg_object_count">
