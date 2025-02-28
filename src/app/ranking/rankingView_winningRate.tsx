@@ -94,7 +94,7 @@ const RankingViewWinningRate = (props : {data:{
                                         </div> : <></>
                             }
                             <Style.LowRankingItem $type={""}>
-                                <div className="item_rank">{item.rank}th</div>
+                                <div className="item_rank">{item.rank}<span>th</span></div>
                                 <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                     <div className="item_nickname">{item.lcg_nickname.split('#')[0]}</div>
                                 </Link>
