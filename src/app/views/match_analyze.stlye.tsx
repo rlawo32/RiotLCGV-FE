@@ -22,11 +22,19 @@ export const MatchAnalyze = styled('div')`
         margin: 10px;
 
         .lcg_analyze_title {
+            // t-mobile
+            @media (max-width: 500px) {
+                font-size: 1.2rem;
+            }
             margin-bottom: 10px;
             font-size: 1.5rem;
             font-weight: 700;
 
             span {
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: 1rem;
+                }
                 font-size: 1.2rem;
             }
         }
@@ -41,6 +49,10 @@ export const MatchAnalyze = styled('div')`
             width: 100%;
 
             .lcg_analyze_team {
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: 1rem;
+                }
                 font-size: 1.2rem;
                 font-weight: 700;
                 margin-bottom: 5px;
@@ -78,6 +90,13 @@ export const MatchAnalyze = styled('div')`
                 .lcg_analyze_champion {
 
                     .champion_image {
+                        // t-mobile
+                        @media (max-width: 500px) {
+                            height: 22px;
+                            width: 22px;
+                        }
+                        height: 27px;
+                        width: 27px;
                         border: none;
                         border-radius: 10px;
                     }
@@ -88,6 +107,11 @@ export const MatchAnalyze = styled('div')`
                     margin: 2px 4px;
 
                     .lcg_analyze_figure {
+                        // t-mobile
+                        @media (max-width: 500px) {
+                            top: 5px;
+                            font-size: .9rem;
+                        }
                         position: absolute;
                         top: 6px;
                         right: 5px;
@@ -97,11 +121,23 @@ export const MatchAnalyze = styled('div')`
                 }
 
                 .lcg_analyze_addition {
+                    // t-mobile
+                    @media (max-width: 500px) {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        width: 70px;
+                        margin: 2px;
+                        font-size: 1rem;
+                    }
                     display: flex;
-                    font-size: 1.1rem;
                     margin: 2px 4px;
+                    font-size: 1.1rem;
 
                     .addition_item {
+                        // t-mobile
+                        @media (max-width: 500px) {
+                            margin: 1px 3px;
+                        }
                         margin: 0 3px;
                     }
                 }
