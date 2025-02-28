@@ -9,6 +9,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     @media (max-width: 1024px) {
         width: 100%;
     }
+    // t-mobile
+    @media (max-width: 500px) {
+        padding: 7px 5px;
+    }
     width: 768px;
     height: 100%;
     min-height: ${({$type}) => $type === 'L' ? "860px" : "0"};
@@ -19,7 +23,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
     .lcg_history_head {
         @media (max-width: 768px) {
-            width: 340px;
+            width: 360px;
+        }
+        // t-mobile
+        @media (max-width: 500px) {
+            width: 300px;
         }
         display: flex;
         justify-content: space-between;
@@ -47,7 +55,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
     .lcg_history_title {
         @media (max-width: 768px) {
-            width: 380px;
+            width: 360px;
+        }
+        // t-mobile
+        @media (max-width: 500px) {
+            width: 300px;
         }
         position: relative;
         top: 0;
@@ -61,6 +73,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         background-color: rgb(30 30 38 / 1);
 
         .lcg_history_title_head {
+            // t-mobile
+            @media (max-width: 500px) {
+                padding-bottom: 6px;
+            }
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -69,10 +85,18 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             font-weight: 700;
 
             .lcg_history_date {
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: 1.2rem;
+                }
                 font-size: 1.4rem;
             }
 
             .lcg_history_ver {
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: 1rem;
+                }
                 font-size: 1.2rem; 
             }
         }
@@ -84,6 +108,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 100%;
 
             .lcg_history_duration {
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: 1.2rem;
+                }
                 display: flex;
                 align-items: center;
                 font-size: 1.5rem;
@@ -92,6 +120,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     .lcg_history_tab {
+        // t-mobile
+        @media (max-width: 500px) {
+            font-size: 1.1rem;
+            line-height: 12px;
+        }
         display: flex;
         border: none;
         border-radius: 5px;
@@ -112,6 +145,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
 
         .lcg_tab_item {
+            // t-mobile
+            @media (max-width: 500px) {
+                padding: 3px 10px;
+            }
             padding: 3px 15px;
             border: 1px solid rgb(86 86 104 / 1);
             cursor: pointer;
@@ -200,6 +237,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         @media (max-width: 768px) {
             width: 360px;
         }
+        // t-mobile
+        @media (max-width: 500px) {
+            width: 300px;
+        }
         width: 700px;
         margin: 5px 3px;
         border-collapse: collapse;
@@ -215,6 +256,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             th {
                 @media (max-width: 768px) {
                     font-size: 1.2rem;
+                }
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: 1rem;
                 }
                 padding: 3px;
                 font-size: 1.4rem;
@@ -301,6 +346,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     width: 100%;
                     
                     .lcg_team_data {
+                        // t-mobile
+                        @media (max-width: 500px) {
+                            flex-wrap: wrap;
+                        }
                         display: flex;
                         align-items: center;
                     }
@@ -312,30 +361,43 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                         font-weight: bold;
                         font-size: 1.8rem;
                     }
+
+                    .lcg_amount {
+                        // t-mobile
+                        @media (max-width: 500px) {
+                            margin: 5px 0 0;
+                        }
+                        display: flex;
+                        align-items: center;
         
-                    .lcg_team_kda {
-                        @media (max-width: 768px) {
-                            margin: 0 0 0 10px;
-                            font-size: 1.4rem;
+                        .lcg_team_kda {
+                            @media (max-width: 768px) {
+                                margin: 0 0 0 10px;
+                                font-size: 1.4rem;
+                            }
+                            // t-mobile
+                            @media (max-width: 500px) {
+                                margin: 0;
+                            }
+                            margin: 0 16px;
+                            font-size: 1.7rem;
                         }
-                        margin: 0 16px;
-                        font-size: 1.7rem;
-                    }
 
-                    .lcg_team_gold {
-                        @media (max-width: 768px) {
-                            font-size: 1.4rem;
-                            margin: 0 0 0 30px;
-                        }
-                        position: relative;
-                        width: 30px;
-                        margin: 0 35px;
-                        font-size: 1.7rem;
+                        .lcg_team_gold {
+                            @media (max-width: 768px) {
+                                font-size: 1.4rem;
+                                margin: 0 0 0 30px;
+                            }
+                            position: relative;
+                            width: 30px;
+                            margin: 0 35px;
+                            font-size: 1.7rem;
 
-                        .lcg_object_icon {
-                            position: absolute;
-                            top: 1px;
-                            left: -20px;
+                            .lcg_object_icon {
+                                position: absolute;
+                                top: 1px;
+                                left: -20px;
+                            }
                         }
                     }
 
@@ -379,6 +441,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 @media (max-width: 1024px) {
                     font-size: 1rem;
                 }
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: .9rem;
+                }
                 position: relative;
                 height: 58px;
                 border-bottom: 1px solid #3d96ff;
@@ -400,11 +466,19 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             @media (max-width: 768px) {
                 font-size: .9rem;
             }
+            // t-mobile
+            @media (max-width: 500px) {
+                font-size: .75rem;
+            }
             margin: 4px 0 0; 
             font-size: 1.1rem;
         }
 
         .lcg_summoner {
+            // t-mobile
+            @media (max-width: 500px) {
+                width: 100px;
+            }
             width: 200px;
 
             .lcg_summoner_wrap {
@@ -433,7 +507,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 font-size: .7rem;
                             }
                             position: absolute;
-                            bottom: 4px;
+                            bottom: 3px;
                             left: 1px;
                             margin: 0;
                             padding: 2px 4px 2px 2px;
@@ -444,8 +518,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                         .champion_image {
                             @media (max-width: 768px) {
-                                height: 30px;
-                                width: 30px;
+                                height: 32px;
+                                width: 32px;
                             }
                             height: 40px;
                             width: 40px;
@@ -463,6 +537,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             @media (max-width: 768px) {
                                 height: 14px;
                                 width: 14px;
+                                margin: 0 0 0 2px;
                             }
                             height: 20px;
                             width: 20px;
@@ -487,6 +562,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                         }
 
                         .perk_image2 {
+                            @media (max-width: 768px) {
+                                height: 12px;
+                                width: 12px;
+                            }
                             height: 16px;
                             width: 16px;
                             margin: 0 0 3px;
@@ -495,9 +574,6 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 }
 
                 .lcg_summoner_name {
-                    @media (max-width: 1024px) {
-                        padding: 0 5px;
-                    }
                     @media (max-width: 768px) {
                         display: flex;
                         align-items: center;
@@ -536,6 +612,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 @media (max-width: 768px) {
                     font-size: .9rem;
                 }
+                // t-mobile
+                @media (max-width: 500px) {
+                    font-size: .75rem;
+                }
                 margin: 0 3px;
             }
 
@@ -547,6 +627,12 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         .lcg_deal {
             @media (max-width: 768px) {
                 width: 80px;
+            }
+            // t-mobile
+            @media (max-width: 500px) {
+                width: 60px;
+                padding: 0;
+                font-size: .8rem;
             }
             width: 130px;
 
@@ -566,6 +652,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             @media (max-width: 768px) {
                 width: 40px;
             }
+            // t-mobile
+            @media (max-width: 500px) {
+                width: 30px;
+            }
             width: 60px;
         }
 
@@ -573,12 +663,20 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             @media (max-width: 768px) {
                 width: 40px;
             }
+            // t-mobile
+            @media (max-width: 500px) {
+                width: 30px;
+            }
             width: 60px;
         }
 
         .lcg_item {
             @media (max-width: 768px) {
                 width: 60px;
+            }
+            // t-mobile
+            @media (max-width: 500px) {
+                width: 42px;
             }
             display: flex;
             flex-wrap: wrap;
@@ -591,6 +689,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 height: 20px;
                 width: 20px;
             }
+            // t-mobile
+            @media (max-width: 500px) {
+                height: 15px;
+                width: 15px;
+            }
             height: 22px;
             width: 22px;
             margin: 2px;
@@ -602,12 +705,21 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 height: 20px;
                 width: 20px;
             }
+            // t-mobile
+            @media (max-width: 500px) {
+                height: 15px;
+                width: 15px;
+            }
             height: 22px;
             width: 22px;
             border: 1px solid grey;
         }
 
         .lcg_acc {
+            // t-mobile
+            @media (max-width: 500px) {
+                padding: 0;
+            }
         }
     }
     
@@ -629,6 +741,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
     @media (max-width: 768px) {
         font-size: .9rem;
+    }
+    // t-mobile
+    @media (max-width: 500px) {
+        font-size: .75rem;
     }
     margin: 4px 0 0; 
     font-size: 1.1rem;

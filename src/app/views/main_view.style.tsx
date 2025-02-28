@@ -21,6 +21,10 @@ export const MainView = styled('div')`
     @media (max-width: 768px) {
         width: 480px;
     }
+    // t-mobile
+    @media (max-width: 500px) {
+        width: 320px;
+    }
     width: 1440px;
     // Main_Width
 
@@ -51,6 +55,9 @@ export const MainView = styled('div')`
         justify-content: space-between;
         @media (max-width: 1280px) {
             flex-direction: column;
+        }
+        @media (max-width: 768px) {
+            padding: 25px 10px;
         }
         height: 100%;
         padding: 25px 40px;
