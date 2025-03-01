@@ -35,3 +35,23 @@ export function getSelectLcgPlayerChampionQuery(client:TypedSupabaseClient, puui
 export function getSelectLcgPlayerRelativeQuery(client:TypedSupabaseClient, puuid:string) {
   return client.rpc("player_relative").eq("lcg_person_puuid", puuid)
 }
+
+export function getSelectLcgPlayerAvgDpmQuery(client:TypedSupabaseClient, puuid:string) {
+  return client.rpc("all_avg_dpm_rank").eq("lcg_summoner_puuid", puuid)
+}
+
+export function getSelectLcgPlayerAvgGpmQuery(client:TypedSupabaseClient, puuid:string) {
+  return client.rpc("all_avg_gpm_rank").eq("lcg_summoner_puuid", puuid)
+}
+
+export function getSelectLcgPlayerAvgDpgQuery(client:TypedSupabaseClient, puuid:string) {
+  return client.rpc("all_avg_dpg_rank").eq("lcg_summoner_puuid", puuid)
+}
+
+export function getSelectLcgPlayerMvpQuery(client:TypedSupabaseClient, puuid:string) {
+  return client.rpc("all_mvp_rank").eq("lcg_summoner_puuid", puuid)
+}
+
+export function getSelectLcgPlayerAceQuery(client:TypedSupabaseClient, puuid:string) {
+  return client.rpc("all_ace_rank").eq("lcg_summoner_puuid", puuid)
+}
