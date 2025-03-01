@@ -90,158 +90,201 @@ export const PlayerDataBox = styled('div')`
     }
 
     .box_head {
-        @media (max-width: 768px) {
-            flex-direction: column;
-            height: fit-content;
-        }
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 170px;
+        flex-direction: column;
         width: 100%;
         padding: 20px 30px;
         border-radius: 10px;
         background-color: rgb(30 30 38 / 1);
 
-        .head_summoner {
-            // mobile_view
-            @media (max-width: 480px) {
-                justify-content: space-around;
+        hr {
+            height: 0;
+            margin: 20px 0;
+            border: .1rem solid #eaeaf1;
+            opacity: .5;
+        }
+
+        .head_top {
+            @media (max-width: 768px) {
+                flex-direction: column;
+                height: fit-content;
             }
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
-            width: 280px;
-        
-            .head_section  {
+            height: 170px;
+            width: 100%;
+
+            .head_summoner {
+                // mobile_view
+                @media (max-width: 480px) {
+                    justify-content: space-around;
+                }
                 display: flex;
-                flex-direction: column;
+                justify-content: space-between;
                 align-items: center;
-            }
+                width: 280px;
+            
+                .head_section  {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
 
-            .head_player {
-                width: 100px;
-                text-align: center;
-
-                .player_name {
+                .head_player {
                     width: 100px;
-                    margin-top: 12px;
-                    font-size: 1.2rem;
-                    font-weight: 700;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    text-align: center;
+
+                    .player_name {
+                        width: 100px;
+                        margin-top: 12px;
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .head_rank {
+                    width: 120px;
+
+                    .rank_desc {
+                        margin-top: 10px;
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                    }
                 }
             }
 
-            .head_rank {
-                width: 120px;
+            .head_data {
+                @media (max-width: 768px) {
+                    margin-top: 35px;
+                }
+                display: flex;
+                align-items: center;
+                width: 220px;
 
-                .rank_desc {
-                    margin-top: 10px;
-                    font-size: 1.2rem;
-                    font-weight: 700;
+                .head_graph {
+                    @media (min-width: 768px) {
+                        .b_graph {
+                            display: block;
+                        }
+                        .s_graph {
+                            display: none;
+                        }
+                    }
+                    @media (max-width: 768px) {
+                        .b_graph {
+                            display: none;
+                        }
+                        .s_graph {
+                            display: block;
+                        }
+                    }
+                    position: relative;
+                    height: 108px;
+                    width: 108px;
+
+                    .graph_gage {
+                        @media (max-width: 768px) {
+                            font-size: 1.3rem;
+                        }
+                        position: absolute;
+                        height: 108px;
+                        width: 108px;
+                        text-align: center;
+                        color: #3182ce;
+                        font-size: 1.6rem;
+                        line-height: 108px;
+                    }
+                }
+
+                .head_detail {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 25px;
+
+                    .detail_play {
+                        margin-bottom: 20px;
+
+                        .count_play {
+                            @media (max-width: 768px) {
+                                font-size: 1.2rem;
+                            }
+                            font-size: 1.5rem;
+                            font-weight: 700;
+                        }
+
+                        .count_wof {
+                            @media (max-width: 768px) {
+                                font-size: 1rem;
+                            }
+                            padding-top: 2px;
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                            color: rgb(123 122 142 / 1);
+                        }
+                    }
+
+                    .detail_kda {
+
+                        .calc_kda {
+                            @media (max-width: 768px) {
+                                font-size: 1.2rem;
+                            }
+                            font-size: 1.5rem;
+                            font-weight: 700;
+                        }
+
+                        .origin_kda {
+                            @media (max-width: 768px) {
+                                font-size: 1rem;
+                            }
+                            padding-top: 2px;
+                            font-size: 1.2rem;
+                            font-weight: 700;
+                            color: rgb(123 122 142 / 1);
+
+                            span:nth-child(1) {
+                                margin: 0 4px 0 0;
+                            }
+
+                            span:nth-child(1n+2) {
+                                margin: 0 4px;
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        .head_data {
-            @media (max-width: 768px) {
-                margin-top: 35px;
-            }
+        .head_bottom {
             display: flex;
+            flex-wrap: wrap-reverse;
+            justify-content: center;
             align-items: center;
-            width: 220px;
 
-            .head_graph {
-                @media (min-width: 768px) {
-                    .b_graph {
-                        display: block;
-                    }
-                    .s_graph {
-                        display: none;
-                    }
-                }
-                @media (max-width: 768px) {
-                    .b_graph {
-                        display: none;
-                    }
-                    .s_graph {
-                        display: block;
-                    }
-                }
-                position: relative;
-                height: 108px;
-                width: 108px;
-
-                .graph_gage {
-                    @media (max-width: 768px) {
-                        font-size: 1.3rem;
-                    }
-                    position: absolute;
-                    height: 108px;
-                    width: 108px;
-                    text-align: center;
-                    color: #3182ce;
-                    font-size: 1.6rem;
-                    line-height: 108px;
-                }
-            }
-
-            .head_detail {
+            .bottom_item {
                 display: flex;
                 flex-direction: column;
-                margin-left: 25px;
+                align-items: center;
+                width: calc(100% / 4);
+                margin: 15px 5px;
 
-                .detail_play {
-                    margin-bottom: 20px;
-
-                    .count_play {
-                        @media (max-width: 768px) {
-                            font-size: 1.2rem;
-                        }
-                        font-size: 1.5rem;
-                        font-weight: 700;
-                    }
-
-                    .count_wof {
-                        @media (max-width: 768px) {
-                            font-size: 1rem;
-                        }
-                        padding-top: 2px;
-                        font-size: 1.2rem;
-                        font-weight: 400;
-                        color: rgb(123 122 142 / 1);
-                    }
+                .item_figure {
+                    color: #ffffff;
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                    line-height: 26px;
                 }
-
-                .detail_kda {
-
-                    .calc_kda {
-                        @media (max-width: 768px) {
-                            font-size: 1.2rem;
-                        }
-                        font-size: 1.5rem;
-                        font-weight: 700;
-                    }
-
-                    .origin_kda {
-                        @media (max-width: 768px) {
-                            font-size: 1rem;
-                        }
-                        padding-top: 2px;
-                        font-size: 1.2rem;
-                        font-weight: 700;
-                        color: rgb(123 122 142 / 1);
-
-                        span:nth-child(1) {
-                            margin: 0 4px 0 0;
-                        }
-
-                        span:nth-child(1n+2) {
-                            margin: 0 4px;
-                        }
-                    }
+                
+                .item_title {
+                    padding-top: .125rem;
+                    color: #7B7A8E;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    line-height: 16px;
                 }
             }
         }
