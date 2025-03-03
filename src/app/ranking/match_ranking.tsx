@@ -10,11 +10,16 @@ import {
     getLcgAllAssistQuery, getLcgAllCsQuery, getLcgAllDemolisherQuery,
     getLcgAllGoldQuery, getLcgAllDamageQuery, getLcgAllTakenQuery,
     getLcgAllJungleObjectQuery, getLcgAllMultiKillQuery, getLcgAllVisionQuery,
+    getLcgAllAvgDpmQuery, getLcgAllAvgGpmQuery, getLcgAllAvgDpgQuery, 
+    getLcgAllMvpQuery, getLcgAllAceQuery,
     getLcgOneGameBest3KillQuery, getLcgOneGameBest3AssistQuery, getLcgOneGameBest3DeathQuery,
     getLcgOneGameBest3CsQuery, getLcgOneGameBest3GoldQuery, getLcgOneGameBest3TowerQuery,
     getLcgOneGameBest3DamageQuery, getLcgOneGameBest3HighTakenQuery, getLcgOneGameBest3LowTakenQuery,
+    getLcgOneGameBest3DpmQuery, getLcgOneGameBest3GpmQuery, getLcgOneGameBest3DpgQuery,
 } from "../queries/getLcgMatchRankingQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
+
+import SelectBox from "../component/select_box";
 
 import RankingViewWinningRate from "./rankingView_winningRate";
 import RankingViewKill from "./rankingView_kill";
@@ -28,7 +33,11 @@ import RankingViewDemolisher from "./rankingView_demolisher";
 import RankingViewJungleObject from "./rankingView_jungleobject";
 import RankingViewMultiKill from "./rankingView_multikill";
 import RankingViewVision from "./rankingView_vision";
-import SelectBox from "../component/select_box";
+import RankingViewAvgDpm from "./rankingView_avgDpm";
+import RankingViewAvgGpm from "./rankingView_avgGpm";
+import RankingViewAvgDpg from "./rankingView_avgDpg";
+import RankingViewMvp from "./rankingView_mvp";
+import RankingViewAce from "./rankingView_ace";
 
 import RankingView1G3BKill from "./rankingView_1G3B_kill";
 import RankingView1G3BDeath from "./rankingView_1G3B_death";
@@ -38,6 +47,10 @@ import RankingView1G3BTower from "./rankingView_1G3B_tower";
 import RankingView1G3BDamage from "./rankingView_1G3B_damage";
 import RankingView1G3BHighTaken from "./rankingView_1G3B_highTaken";
 import RankingView1G3BLowTaken from "./rankingView_1G3B_lowTaken";
+import RankingView1G3BAssist from "./rankingView_1G3B_assist";
+import RankingView1G3BDpm from "./rankingView_1G3B_dpm";
+import RankingView1G3BGpm from "./rankingView_1G3B_gpm";
+import RankingView1G3BDpg from "./rankingView_1G3B_dpg";
 
 const MatchRanking = () => {
     const supabase = useSupabaseBrowser();
@@ -48,9 +61,12 @@ const MatchRanking = () => {
         {key:"AS", name:"총 어시스트"}, {key:"AC", name:"총 CS"}, {key:"AT", name:"총 철거"}, 
         {key:"AG", name:"총 골드"}, {key:"ADA", name:"총 피해량"}, {key:"ATA", name:"총 받은피해량"}, 
         {key:"AJ", name:"총 오브젝트"}, {key:"AM", name:"총 멀티킬"}, {key:"AV", name:"총 시야점수"}, 
+        {key:"ADM", name:"총 DPM"}, {key:"AGM", name:"총 GPM"}, {key:"ADG", name:"총 DPG"}, 
+        {key:"AMP", name:"총 MVP"}, {key:"AAE", name:"총 ACE"}, 
         {key:"1GK", name:"최다 킬"}, {key:"1GD", name:"최다 데스"}, {key:"1GA", name:"최다 어시스트"}, 
         {key:"1GC", name:"최다 CS"}, {key:"1GG", name:"최다 골드"}, {key:"1GT", name:"최다 철거"}, 
         {key:"1GDA", name:"최고 피해량"}, {key:"1GHT", name:"최고 받은피해량"}, {key:"1GLT", name:"최저 받은피해량"}, 
+        {key:"1GDM", name:"최고 DPM"}, {key:"1GGM", name:"최고 GPM"}, {key:"1GDG", name:"최고 DPG"}, 
     ];
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {});
     
@@ -66,6 +82,11 @@ const MatchRanking = () => {
     const { data: queryAllJungleObjectResult } = useQuery(getLcgAllJungleObjectQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AJ'});
     const { data: queryAllMultiKillResult } = useQuery(getLcgAllMultiKillQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AM'});
     const { data: queryAllVisionResult } = useQuery(getLcgAllVisionQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AV'});
+    const { data: queryAllAvgDpmResult } = useQuery(getLcgAllAvgDpmQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'ADM'});
+    const { data: queryAllAvgGpmResult } = useQuery(getLcgAllAvgGpmQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AGM'});
+    const { data: queryAllAvgDpgResult } = useQuery(getLcgAllAvgDpgQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'ADG'});
+    const { data: queryAllMvpResult } = useQuery(getLcgAllMvpQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AMP'});
+    const { data: queryAllAceResult } = useQuery(getLcgAllAceQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AAE'});
 
     const { data: queryOneGameBest3KillResult } = useQuery(getLcgOneGameBest3KillQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GK'});
     const { data: queryOneGameBest3DeathResult } = useQuery(getLcgOneGameBest3DeathQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GD'});
@@ -76,6 +97,9 @@ const MatchRanking = () => {
     const { data: queryOneGameBest3DamageResult } = useQuery(getLcgOneGameBest3DamageQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GDA'});
     const { data: queryOneGameBest3HTakenResult } = useQuery(getLcgOneGameBest3HighTakenQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GHT'});
     const { data: queryOneGameBest3LTakenResult } = useQuery(getLcgOneGameBest3LowTakenQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GLT'});
+    const { data: queryOneGameBest3DpmResult } = useQuery(getLcgOneGameBest3DpmQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GDM'});
+    const { data: queryOneGameBest3GpmResult } = useQuery(getLcgOneGameBest3GpmQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GGM'});
+    const { data: queryOneGameBest3DpgResult } = useQuery(getLcgOneGameBest3DpgQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === '1GDG'});
 
     return (
         <Style.MatchRanking $type={rankSelectArr[rankSelectIdx].key}>
@@ -97,16 +121,23 @@ const MatchRanking = () => {
                     queryAllJungleObjectResult && rankSelectArr[rankSelectIdx].key === 'AJ'         ? <RankingViewJungleObject data={queryAllJungleObjectResult}/>                              : 
                     queryAllMultiKillResult && rankSelectArr[rankSelectIdx].key === 'AM'            ? <RankingViewMultiKill data={queryAllMultiKillResult}/>                                    : 
                     queryAllVisionResult && rankSelectArr[rankSelectIdx].key === 'AV'               ? <RankingViewVision data={queryAllVisionResult}/>                                          : 
+                    queryAllAvgDpmResult && rankSelectArr[rankSelectIdx].key === 'ADM'              ? <RankingViewAvgDpm data={queryAllAvgDpmResult}/>                                          : 
+                    queryAllAvgGpmResult && rankSelectArr[rankSelectIdx].key === 'AGM'              ? <RankingViewAvgGpm data={queryAllAvgGpmResult}/>                                          : 
+                    queryAllAvgDpgResult && rankSelectArr[rankSelectIdx].key === 'ADG'              ? <RankingViewAvgDpg data={queryAllAvgDpgResult}/>                                          :
+                    queryAllMvpResult && rankSelectArr[rankSelectIdx].key === 'AMP'                 ? <RankingViewMvp data={queryAllMvpResult}/>                                                : 
+                    queryAllAceResult && rankSelectArr[rankSelectIdx].key === 'AAE'                 ? <RankingViewAce data={queryAllAceResult}/>                                                :
                     queryOneGameBest3KillResult && rankSelectArr[rankSelectIdx].key === '1GK'       ? <RankingView1G3BKill data={queryOneGameBest3KillResult} path={lcgMatchEtc[0]}/>           : 
                     queryOneGameBest3DeathResult && rankSelectArr[rankSelectIdx].key === '1GD'      ? <RankingView1G3BDeath data={queryOneGameBest3DeathResult} path={lcgMatchEtc[0]}/>         : 
-                    // queryOneGameBest3AssistResult && rankSelectArr[rankSelectIdx].key === '1GA'     ? <RankingView1G3BAssist data={queryOneGameBest3AssistResult} path={lcgMatchEtc[0]}/>       : 
-                    queryOneGameBest3AssistResult && rankSelectArr[rankSelectIdx].key === '1GA'     ? <div>개발중</div>                                                                          : 
+                    queryOneGameBest3AssistResult && rankSelectArr[rankSelectIdx].key === '1GA'     ? <RankingView1G3BAssist data={queryOneGameBest3AssistResult} path={lcgMatchEtc[0]}/>       : 
                     queryOneGameBest3CsResult && rankSelectArr[rankSelectIdx].key === '1GC'         ? <RankingView1G3BCs data={queryOneGameBest3CsResult} path={lcgMatchEtc[0]}/>               : 
                     queryOneGameBest3GoldResult && rankSelectArr[rankSelectIdx].key === '1GG'       ? <RankingView1G3BGold data={queryOneGameBest3GoldResult} path={lcgMatchEtc[0]}/>           : 
                     queryOneGameBest3TowerResult && rankSelectArr[rankSelectIdx].key === '1GT'      ? <RankingView1G3BTower data={queryOneGameBest3TowerResult} path={lcgMatchEtc[0]}/>         : 
                     queryOneGameBest3DamageResult && rankSelectArr[rankSelectIdx].key === '1GDA'    ? <RankingView1G3BDamage data={queryOneGameBest3DamageResult} path={lcgMatchEtc[0]}/>       : 
                     queryOneGameBest3HTakenResult && rankSelectArr[rankSelectIdx].key === '1GHT'    ? <RankingView1G3BHighTaken data={queryOneGameBest3HTakenResult} path={lcgMatchEtc[0]}/>    :
                     queryOneGameBest3LTakenResult && rankSelectArr[rankSelectIdx].key === '1GLT'    ? <RankingView1G3BLowTaken data={queryOneGameBest3LTakenResult} path={lcgMatchEtc[0]}/>     : 
+                    queryOneGameBest3DpmResult && rankSelectArr[rankSelectIdx].key === '1GDM'       ? <RankingView1G3BDpm data={queryOneGameBest3DpmResult} path={lcgMatchEtc[0]}/>             : 
+                    queryOneGameBest3GpmResult && rankSelectArr[rankSelectIdx].key === '1GGM'       ? <RankingView1G3BGpm data={queryOneGameBest3GpmResult} path={lcgMatchEtc[0]}/>             :
+                    queryOneGameBest3DpgResult && rankSelectArr[rankSelectIdx].key === '1GDG'       ? <RankingView1G3BDpg data={queryOneGameBest3DpgResult} path={lcgMatchEtc[0]}/>             : 
                     <></> : <></>
                 }
             </div> 
