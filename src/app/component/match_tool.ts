@@ -1,4 +1,25 @@
 
+export const getCurrentTimeCalc = (time:string):string => {
+
+    const currentTime:Date = new Date();
+    const updateTime:Date = new Date(time);
+    const calculationTime:number = Math.floor((currentTime.getTime() - updateTime.getTime()) / 1000);
+    let result:string = "";
+
+    if(calculationTime < 60) {
+        result = "방금 전";
+    } else if(calculationTime < (60 * 60)) {
+        result = Math.floor(calculationTime / 60) + "분 전";
+    } else if(calculationTime < (60 * 60 * 24)) {
+        result = Math.floor(calculationTime / (60 * 60)) + "시간 전";
+    } else if(calculationTime < (60 * 60 * 24 * 7)) {
+        result = Math.floor(calculationTime / (60 * 60 * 24)) + "일 전";
+    } else {
+        result = updateTime.toLocaleString();
+    }
+    return result;
+}
+
 export const getGameDuration = (lcg_game_duration:number):number => {
     let minute:number = Math.floor(lcg_game_duration / 60);
     const second:number = lcg_game_duration % 60;
