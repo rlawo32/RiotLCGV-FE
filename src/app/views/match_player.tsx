@@ -12,7 +12,7 @@ import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery,
     getSelectLcgPlayerAvgDpgQuery, getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
 } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
-import { getPlayerData } from "../component/match_tool";
+import { getPlayerData, getCurrentTimeCalc } from "../component/match_tool";
 
 import TopIcon from "../icons/topIcon";
 import JugIcon from "../icons/jugIcon";
@@ -25,6 +25,7 @@ const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
 
     let imageUrl1:string = "";
+    let lastUpdate:string = "";
 
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {});
     const { data: lcgPlayerData, isLoading: loading1 } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
@@ -44,6 +45,7 @@ const MatchPlayer = () => {
 
     if(!!lcgMatchEtc) {
         imageUrl1 = lcgMatchEtc[0].lcg_main_image;
+        lastUpdate = lcgMatchEtc[0].lcg_update_player;
     }
 
     const playerData = (puuid:string, flag:string):string|undefined => {
@@ -79,6 +81,9 @@ const MatchPlayer = () => {
                         <Style.PlayerDataBox>
                             <div className="box_head">
                                 <div className="head_top">
+                                    마지막 업데이트 <span>{getCurrentTimeCalc(lastUpdate)}</span>
+                                </div>
+                                <div className="head_mid">
                                     {
                                         !!lcgPlayerData && !!selectPlayerData ? 
                                             <div className="head_summoner">

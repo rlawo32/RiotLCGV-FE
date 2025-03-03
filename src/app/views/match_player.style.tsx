@@ -105,6 +105,19 @@ export const PlayerDataBox = styled('div')`
         }
 
         .head_top {
+            color: #7B7A8E;
+            font-size: 1.1rem;
+            font-weight: 700;
+
+            span {
+                margin-left: 3px;
+                color: #ffffff;
+                font-size: .9rem;
+                font-weight: 400;
+            }
+        }
+
+        .head_mid {
             @media (max-width: 768px) {
                 flex-direction: column;
                 height: fit-content;
