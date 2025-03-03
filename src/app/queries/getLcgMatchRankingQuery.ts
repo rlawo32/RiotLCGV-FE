@@ -54,6 +54,30 @@ export function getLcgAllJungleObjectQuery(client:TypedSupabaseClient) {
   return client.rpc('all_jungle_object_rank')
 }
 
+export function getLcgAllAvgDpmQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_avg_dpm_rank')
+}
+
+export function getLcgAllAvgGpmQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_avg_gpm_rank')
+}
+
+export function getLcgAllAvgDpgQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_avg_dpg_rank')
+}
+
+export function getLcgAllMvpQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_mvp_rank')
+}
+
+export function getLcgAllAceQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_ace_rank')
+}
+
+export function getLcgAllTierQuery(client:TypedSupabaseClient) {
+  return client.rpc('all_tier_rank')
+}
+
 export function getLcgOneGameBest3KillQuery(client:TypedSupabaseClient) {
   return client.rpc('onegame_best3_kill_rank')
 }
@@ -88,4 +112,16 @@ export function getLcgOneGameBest3HighTakenQuery(client:TypedSupabaseClient) {
 
 export function getLcgOneGameBest3LowTakenQuery(client:TypedSupabaseClient) {
   return client.rpc('onegame_best3_lowtaken_rank')
+}
+
+export function getLcgOneGameBest3DpmQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_dpm_rank')
+}
+
+export function getLcgOneGameBest3GpmQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_gpm_rank')
+}
+
+export function getLcgOneGameBest3DpgQuery(client:TypedSupabaseClient) {
+  return client.rpc('onegame_best3_dpg_rank')
 }
