@@ -12,7 +12,7 @@ import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery,
     getSelectLcgPlayerAvgDpgQuery, getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
 } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
-import { getPlayerData, getCurrentTimeCalc } from "../component/match_tool";
+import { getPlayerData } from "../component/match_tool";
 
 import TopIcon from "../icons/topIcon";
 import JugIcon from "../icons/jugIcon";
