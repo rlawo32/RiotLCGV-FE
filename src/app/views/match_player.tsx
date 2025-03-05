@@ -20,6 +20,7 @@ import MidIcon from "../icons/midIcon";
 import AdcIcon from "../icons/adcIcon";
 import SupIcon from "../icons/supIcon";
 import LoadingSpinner from "../component/loading_spinner";
+import LastUpdate from "../component/last_update";
 
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
@@ -66,6 +67,7 @@ const MatchPlayer = () => {
 
     return (
         <Style.MatchPlayer>
+            <LastUpdate type={"U"} date={lastUpdate}/>
             {
                 loading1 && loading2 ? <LoadingSpinner /> :
                     <>
@@ -81,7 +83,6 @@ const MatchPlayer = () => {
                         <Style.PlayerDataBox>
                             <div className="box_head">
                                 <div className="head_top">
-                                    마지막 업데이트 <span>{getCurrentTimeCalc(lastUpdate)}</span>
                                 </div>
                                 <div className="head_mid">
                                     {

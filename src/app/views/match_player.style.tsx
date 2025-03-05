@@ -23,7 +23,7 @@ export const PlayerSelectBox = styled('div')`
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin: 10px auto;
+    margin: 0 auto 5px;
     padding: 10px 20px;
     border-bottom: 1px solid rgb(255 68 56 / 1);
 
@@ -105,16 +105,6 @@ export const PlayerDataBox = styled('div')`
         }
 
         .head_top {
-            color: #7B7A8E;
-            font-size: 1.1rem;
-            font-weight: 700;
-
-            span {
-                margin-left: 3px;
-                color: #ffffff;
-                font-size: .9rem;
-                font-weight: 400;
-            }
         }
 
         .head_mid {
