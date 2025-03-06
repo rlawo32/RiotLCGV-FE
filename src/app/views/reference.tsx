@@ -23,9 +23,10 @@ const PageStyle = styled('div')`
     height: 100vh;
     width: 100%;
 
-    .drag-container {
+    .main_container {
         position: relative;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         user-select: none; /* 드래그 중 텍스트 선택 방지 */
@@ -66,6 +67,7 @@ const PageStyle = styled('div')`
         border: 1px solid green;
         color: green;
         z-index: -1;
+        opacity: 0;
     }
 `
 
@@ -90,7 +92,7 @@ const Page = () => {
     }
 
     const itemDetected = (rectData:DOMRect) => {
-        const container = document.getElementById('drag-container');
+        const container = document.getElementById('main_container');
 
         const itemBoxList = container?.children;
 
@@ -108,7 +110,8 @@ const Page = () => {
                 if( rectData.left <= (itemLeft + itemWidth) && rectData.top <= (itemTop + itemHeight) && 
                     rectData.right >= (itemRight - itemWidth) && rectData.top <= (itemTop + itemHeight) && 
                     rectData.left <= (itemLeft + itemWidth) && rectData.bottom >= (itemBottm - itemHeight) && 
-                    rectData.right >= (itemRight - itemWidth) && rectData.bottom >= (itemBottm - itemHeight) ) {
+                    rectData.right >= (itemRight - itemWidth) && rectData.bottom >= (itemBottm - itemHeight) && 
+                    itemBox.classList.contains('pop') === false) {
                     itemBox.classList.add('detected');
                 } else {
                     itemBox.classList.remove('detected');
@@ -118,7 +121,7 @@ const Page = () => {
     }
 
     const itemPop = () => {
-        const detectBox = document.querySelectorAll('.detected');
+        const detectBox = document.querySelectorAll('.item_box.detected');
         let sum:number = 0;
         if(!!detectBox) detectBox.forEach(item => sum += parseInt(item.id));
 
@@ -127,8 +130,24 @@ const Page = () => {
         }
     }
 
+    const itemCreate = () => {
+        for(let i=0; i<100; i++) {
+            let random:number = Math.floor(Math.random() * 10);
+            if(random === 0) random = 1;
+            
+    		const container = document.getElementById("main_container");
+            const item = document.createElement('div');
+            item.classList.add('item_box');
+            item.textContent = random.toString();
+            item.setAttribute('id', random.toString());
+
+            if(!!container) container.appendChild(item);
+        }
+    }
+
     useEffect(() => {
-        const container = document.getElementById('drag-container');
+        itemCreate();
+        const container = document.getElementById('main_container');
         const selectionArea = document.getElementById('selection-area');
 
         if(!!container && !!selectionArea) {
@@ -185,13 +204,8 @@ const Page = () => {
 
     return (
         <PageStyle>
-            <div id="drag-container" className="drag-container">
+            <div id="main_container" className="main_container">
                 <div id="selection-area" className="selection-area"></div>
-                <div id={"9"} className="item_box">9</div>
-                <div id={"1"} className="item_box">1</div>
-                <div id={"5"} className="item_box">5</div>
-                <div id={"5"} className="item_box">5</div>
-                <div id={"4"} className="item_box">4</div>
             </div>
         </PageStyle>
     )
