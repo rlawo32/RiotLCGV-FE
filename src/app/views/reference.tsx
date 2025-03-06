@@ -1,27 +1,16 @@
 'use client';
 
-import * as Style from "./page.style";  
-
-import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faGrinStars as add, faAnchor as anchor, 
-    faBacon as bacon, faVcard as vcard
-} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import Test1 from "./test1";
-import Test2 from "./test2";
-import Test3 from "./test3";
 
-// global root 
-// font-size: 62.5%;
-// line-height: 150%;
+import React, { useEffect, useState } from "react";
+
 const PageStyle = styled('div')`
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
+    margin: auto;
 
     .main_container {
         position: relative;
@@ -34,7 +23,7 @@ const PageStyle = styled('div')`
         width: 100%;
     }
 
-    .selection-area {
+    .selection_area {
         display: none;
         position: absolute;
         border: 1px dashed #00f;
@@ -72,13 +61,6 @@ const PageStyle = styled('div')`
 `
 
 const Page = () => {
-
-    const [rect, setRect] = useState<{
-        r1:{x:number, y:number},
-        r2:{x:number, y:number},
-        r3:{x:number, y:number},
-        r4:{x:number, y:number}
-    }>();
     
     let startX:number = 0;
     let startY:number = 0;
@@ -106,7 +88,6 @@ const Page = () => {
                 const itemWidth = itemBox.getBoundingClientRect().width / 2;
                 const itemHeight = itemBox.getBoundingClientRect().height / 2;
 
-
                 if( rectData.left <= (itemLeft + itemWidth) && rectData.top <= (itemTop + itemHeight) && 
                     rectData.right >= (itemRight - itemWidth) && rectData.top <= (itemTop + itemHeight) && 
                     rectData.left <= (itemLeft + itemWidth) && rectData.bottom >= (itemBottm - itemHeight) && 
@@ -131,7 +112,7 @@ const Page = () => {
     }
 
     const itemCreate = () => {
-        for(let i=0; i<100; i++) {
+        for(let i=0; i<300; i++) {
             let random:number = Math.floor(Math.random() * 10);
             if(random === 0) random = 1;
             
@@ -148,7 +129,7 @@ const Page = () => {
     useEffect(() => {
         itemCreate();
         const container = document.getElementById('main_container');
-        const selectionArea = document.getElementById('selection-area');
+        const selectionArea = document.getElementById('selection_area');
 
         if(!!container && !!selectionArea) {
             container.addEventListener('mousedown', function(event) {
@@ -175,12 +156,6 @@ const Page = () => {
 
                 const rectData = selectionArea.getBoundingClientRect();
 
-                setRect({
-                    r1:{x:rectData.left, y:rectData.top}, 
-                    r2:{x:rectData.right, y:rectData.top}, 
-                    r3:{x:rectData.left, y:rectData.bottom}, 
-                    r4:{x:rectData.right, y:rectData.bottom}
-                });
                 itemDetected(rectData);
                 event.preventDefault();
             });
@@ -205,7 +180,7 @@ const Page = () => {
     return (
         <PageStyle>
             <div id="main_container" className="main_container">
-                <div id="selection-area" className="selection-area"></div>
+                <div id="selection_area" className="selection_area"></div>
             </div>
         </PageStyle>
     )
