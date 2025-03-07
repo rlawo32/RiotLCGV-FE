@@ -12,6 +12,13 @@ const PageStyle = styled('div')`
     width: 100%;
     margin: auto;
 
+    .score_section {
+        width: 100%;
+        color: #ffffff;
+        text-align: center;
+        font-size: 2rem;
+    }
+
     .main_container {
         position: relative;
         display: flex;
@@ -65,6 +72,10 @@ const Page = () => {
     let startX:number = 0;
     let startY:number = 0;
     let dragging:boolean = false;
+    let timer:any = null;
+
+    const [score, setScore] = useState<number>(0);
+    const [time, setTime] = useState<number>(60);
 
     const getDistance = (x1:number, y1:number, x2:number, y2:number):number => {
         let x:number = x2 - x1;
@@ -79,7 +90,7 @@ const Page = () => {
         const itemBoxList = container?.children;
 
         if(!!itemBoxList) {
-            for(let i=1; i<itemBoxList.length; i++) {
+            for(let i=2; i<itemBoxList.length; i++) {
                 const itemBox = itemBoxList[i];
                 const itemTop = itemBox.getBoundingClientRect().top;
                 const itemBottm = itemBox.getBoundingClientRect().bottom;
@@ -107,7 +118,24 @@ const Page = () => {
         if(!!detectBox) detectBox.forEach(item => sum += parseInt(item.id));
 
         if(sum === 10) {
-            if(!!detectBox) detectBox.forEach(item => item.classList.add('pop'));
+            if(!!detectBox) {
+                detectBox.forEach(item => item.classList.add('pop')); 
+                const touchstone:number = detectBox.length;
+                let point:number = (touchstone * 2) + 1;
+
+                setScore((score) => (score + point));
+                // switch (touchstone) {
+                //     case 2 : point = 5; break;
+                //     case 3 : point = 7; break;
+                //     case 4 : point = 9; break;
+                //     case 5 : point = 11; break;
+                //     case 6 : point = 13; break;
+                //     case 7 : point = 15; break;
+                //     case 8 : point = 17; break;
+                //     case 9 : point = 19; break;
+                //     case 10 : point = 21; break;
+                // }
+            }
         }
     }
 
@@ -126,8 +154,18 @@ const Page = () => {
         }
     }
 
+    const fnCountDown = () => { 
+        timer = setTimeout(() => {setTime((time) => (time - 1))}, 1000);
+    }
+
+    useEffect(() => {
+        if(time === 0) {clearTimeout(timer); alert('시간초과');}
+        else {fnCountDown();}
+    }, [time])
+
     useEffect(() => {
         itemCreate();
+        fnCountDown();
         const container = document.getElementById('main_container');
         const selectionArea = document.getElementById('selection_area');
 
@@ -180,6 +218,9 @@ const Page = () => {
     return (
         <PageStyle>
             <div id="main_container" className="main_container">
+                <div className="score_section">
+                    {score} / {time}
+                </div>
                 <div id="selection_area" className="selection_area"></div>
             </div>
         </PageStyle>
