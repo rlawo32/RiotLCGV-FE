@@ -75,8 +75,8 @@ const PageStyle = styled('div')`
     .test_box.pop {
         position: relative;
         animation: bombLeftOut 1s ease;
-        /* transition: opacity 1s;
-        opacity: 0; */
+        transition: opacity 1s;
+        opacity: 0;
     }
 
     @keyframes bombLeftOut {
