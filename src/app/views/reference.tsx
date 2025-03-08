@@ -12,6 +12,17 @@ const PageStyle = styled('div')`
     width: 100%;
     margin: auto;
 
+    .test_view {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+        width: 50%;
+        border: 2px solid red;
+        overflow: hidden;
+    }
+
     .main_container {
         position: relative;
         display: flex;
@@ -56,7 +67,48 @@ const PageStyle = styled('div')`
         border: 1px solid green;
         color: green;
         z-index: -1;
+        transition: opacity 1s;
         opacity: 0;
+        animation: bombLeftOut 1s ease;
+    }
+
+    .test_box.pop {
+        position: relative;
+        animation: bombLeftOut 1s ease;
+        /* transition: opacity 1s;
+        opacity: 0; */
+    }
+
+    @keyframes bombLeftOut {
+        0% {
+            transform: translateX(0px) translateY(0px);
+            /* transform-origin: 0 0;
+            transform: rotate(0deg); */
+        }
+        15% {
+            transform: translateX(-25px) translateY(-25px);
+        }
+        25% {
+            transform: translateX(-50px) translateY(-50px);
+        }
+        50% {
+            transform: translateX(-50px) translateY(50px);
+            /* opacity: 1;
+            transform-origin: -100% 900%;
+            transform: rotate(-160deg); */
+        }
+        /* 75% {
+            opacity: 1;
+            transform-origin: -100% 50%;
+            transform: rotate(-160deg);
+            filter: blur(0px);
+        } */
+        100% {
+            transform: translateX(-50px) translateY(100px);
+            /* opacity: 0;
+            transform-origin: -100% 900%;
+            transform: rotate(-160deg); */
+        }
     }
 `
 
@@ -177,10 +229,19 @@ const Page = () => {
         }
     }, [])
 
+    const testClick = () => {
+        const testBox = document.getElementById('test_box');
+
+        if(!!testBox) testBox.classList.add('pop');
+    }
+
     return (
         <PageStyle>
-            <div id="main_container" className="main_container">
+            {/* <div id="main_container" className="main_container">
                 <div id="selection_area" className="selection_area"></div>
+            </div> */}
+            <div className="test_view">
+                <div id="test_box" className="test_box" onClick={() => testClick()}>HELLO</div>
             </div>
         </PageStyle>
     )
