@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const PageStyle = styled('div')`
     display: flex;
@@ -76,14 +76,13 @@ const PageStyle = styled('div')`
         z-index: -1;
         transition: opacity 1s;
         opacity: 0;
-        animation: bombLeftOut 1s ease;
     }
 
     .test_box.pop {
         position: relative;
-        animation: bombLeftOut 1s ease;
-        transition: opacity 1s;
-        opacity: 0;
+        animation: bombLeftOut 3s ease;
+        transition: transform 1s;
+        
     }
 
     @keyframes bombLeftOut {
@@ -92,14 +91,8 @@ const PageStyle = styled('div')`
             /* transform-origin: 0 0;
             transform: rotate(0deg); */
         }
-        15% {
-            transform: translateX(-25px) translateY(-25px);
-        }
-        25% {
-            transform: translateX(-50px) translateY(-50px);
-        }
         50% {
-            transform: translateX(-50px) translateY(50px);
+            transform: translateX(-50px) translateY(-50px);
             /* opacity: 1;
             transform-origin: -100% 900%;
             transform: rotate(-160deg); */
@@ -111,7 +104,7 @@ const PageStyle = styled('div')`
             filter: blur(0px);
         } */
         100% {
-            transform: translateX(-50px) translateY(100px);
+            transform: translateX(-100px) translateY(100px);
             /* opacity: 0;
             transform-origin: -100% 900%;
             transform: rotate(-160deg); */
@@ -128,6 +121,8 @@ const Page = () => {
 
     const [score, setScore] = useState<number>(0);
     const [time, setTime] = useState<number>(60);
+    const [x, setX] = useState<number>(100);
+    const [y, setY] = useState<number>(100);
 
     const getDistance = (x1:number, y1:number, x2:number, y2:number):number => {
         let x:number = x2 - x1;
@@ -215,9 +210,11 @@ const Page = () => {
         else {fnCountDown();}
     }, [time])
 
+    const canvas = useRef<any>(null);
+
     useEffect(() => {
         itemCreate();
-        fnCountDown();
+        // fnCountDown();
         const container = document.getElementById('main_container');
         const selectionArea = document.getElementById('selection_area');
 
@@ -267,10 +264,44 @@ const Page = () => {
         }
     }, [])
 
-    const testClick = () => {
-        const testBox = document.getElementById('test_box');
+    const testClick = (e:React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+        const vx:number = Math.random() * 4;
+        const vy:number = -10;
+        let laf:any;
+        if(!!canvas.current) {
+            const ctx = canvas.current.getContext("2d");
+            
+            const ball = {
+                x: (e.clientX - ctx.canvas.offsetLeft) / 2,
+                y: (e.clientY - ctx.canvas.offsetTop) / 2,
+                vx: vx,
+                vy: vy,
+                gravity: 0.3,
+                radius: 25,
+                color: "blue",
+    
+                draw() {
+                  ctx.beginPath();
+                  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+                  ctx.closePath();
+                  ctx.fillStyle = this.color;
+                  ctx.fill();
+                },
+            };
 
-        if(!!testBox) testBox.classList.add('pop');
+            const draw = () => {
+                ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+                ball.draw();
+                ball.vy += ball.gravity;
+                ball.x += ball.vx;
+                ball.y += ball.vy;
+                laf = window.requestAnimationFrame(draw);
+            }
+
+            canvas.current.addEventListener("click", () => {
+                laf = window.requestAnimationFrame(draw);
+            });
+        }
     }
 
     return (
@@ -281,9 +312,10 @@ const Page = () => {
                 </div>
                 <div id="selection_area" className="selection_area"></div>
             </div> */}
-            <div className="test_view">
+            <canvas ref={canvas} style={{border: "1px solid red", width:"600px", height:"300px"}} onClick={(e) => testClick(e)}></canvas>
+            {/* <div className="test_view">
                 <div id="test_box" className="test_box" onClick={() => testClick()}>HELLO</div>
-            </div>
+            </div> */}
         </PageStyle>
     )
 }
