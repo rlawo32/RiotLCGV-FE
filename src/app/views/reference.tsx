@@ -50,6 +50,15 @@ const PageStyle = styled('div')`
         //transition: all 0.2s ease; /* 크기 및 위치 변경에 대한 부드러운 전환 */
     }
 
+    .drag_area {
+        display: none;
+        position: absolute;
+        border: 1px dashed #00f;
+        background-color: rgba(0, 0, 255, 0.2);
+        pointer-events: none; /* 마우스 이벤트가 차단되지 않도록 함 */
+        //transition: all 0.2s ease; /* 크기 및 위치 변경에 대한 부드러운 전환 */
+    }
+
     .item_box {
         height: 30px;
         width: 30px;
@@ -262,6 +271,73 @@ const Page = () => {
                 event.preventDefault(); // 드래그 작업 종료
             });
         }
+        const drag_area = document.getElementById('drag_area');
+
+        if(!!canvas.current && !!drag_area) {
+            const ctx = canvas.current.getContext("2d");
+            
+            const ball = {
+                x: 10,
+                y: 10,
+                vx: 0,
+                vy: 0,
+                gravity: 0.6,
+                radius: 10,
+                color: "blue",
+    
+                draw() {
+                  ctx.beginPath();
+                  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+                  ctx.closePath();
+                  ctx.fillStyle = this.color;
+                  ctx.fill();
+                },
+            };
+
+            for(let i=1; i<=20; i++) {
+                ball.draw();
+                ball.x += 25;
+                if(i % 5 === 0) {
+                    ball.x = 10;
+                    ball.y += 25;
+                }
+            }
+
+            canvas.current.addEventListener('mousedown', function(event:any) {
+                startX = event.pageX;
+                startY = event.pageY;
+                dragging = true;
+                drag_area.style.display = 'none';
+                drag_area.style.width = '0px';
+                drag_area.style.height = '0px';
+                event.preventDefault(); // 기본 드래그 동작 방지
+            });
+    
+            canvas.current.addEventListener('mousemove', function(event:any) {
+                if (!dragging) return;
+                const moveX = event.pageX;
+                const moveY = event.pageY;
+                const width = Math.abs(moveX - startX);
+                const height = Math.abs(moveY - startY);
+                drag_area.style.display = 'block';
+                drag_area.style.width = `${width}px`;
+                drag_area.style.height = `${height}px`;
+                drag_area.style.left = `${Math.min(startX, moveX)}px`;
+                drag_area.style.top = `${Math.min(startY, moveY)}px`;
+                event.preventDefault();
+            });
+    
+            canvas.current.addEventListener('mouseup', function(event:any) {
+                dragging = false;
+                startX = 0;
+                startY = 0;
+                drag_area.style.display = 'none';
+                drag_area.style.width = '0px';
+                drag_area.style.height = '0px';
+                // 여기서 선택 영역을 완료합니다
+                event.preventDefault(); // 드래그 작업 종료
+            });
+        }
     }, [])
 
     const testClick = (e:React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
@@ -276,7 +352,7 @@ const Page = () => {
                 y: (e.clientY - ctx.canvas.offsetTop) / 2,
                 vx: vx,
                 vy: vy,
-                gravity: 0.3,
+                gravity: 0.6,
                 radius: 25,
                 color: "blue",
     
@@ -312,7 +388,9 @@ const Page = () => {
                 </div>
                 <div id="selection_area" className="selection_area"></div>
             </div> */}
-            <canvas ref={canvas} style={{border: "1px solid red", width:"600px", height:"300px"}} onClick={(e) => testClick(e)}></canvas>
+            <canvas ref={canvas} style={{border: "1px solid red", width:"600px", height:"300px"}}>
+                <div id="drag_area" className="drag_area"></div>
+            </canvas>
             {/* <div className="test_view">
                 <div id="test_box" className="test_box" onClick={() => testClick()}>HELLO</div>
             </div> */}
