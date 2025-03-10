@@ -3,6 +3,7 @@
 import styled from "styled-components";
 
 import React, { useEffect, useRef, useState } from "react";
+import test from "node:test";
 
 const PageStyle = styled('div')`
     position: relative;
@@ -312,7 +313,6 @@ const Page = () => {
         let conversionResult:string = "";
 
         const arr:string[] = conversionOrigin.split('');
-        let testT = /`${textSpecific}`/;
 
         if(textOption1 === 'O') {
             for(let word of arr) {
@@ -325,17 +325,54 @@ const Page = () => {
                 }
             }
         } else if(textOption1 === 'I') {
-
-        } else if(textOption1 === 'S') {
-            for(let word of arr) {
-                if(testT.test(word))
+            for(let i=0; i<arr.length; i+=textInterval) {
                 if(textOption2 === 'F') {
-                    conversionResult += conversionOrder + word;
+                    conversionResult += conversionOrder + conversionOrigin.substring(i, i+textInterval);
                 } else if(textOption2 === 'B') {
-                    conversionResult += word + conversionOrder;
+                    conversionResult += conversionOrigin.substring(i, i+textInterval) + conversionOrder;
                 } else if(textOption2 === 'A') {
-                    conversionResult += conversionOrder + word + conversionOrder;
+                    conversionResult += conversionOrder + conversionOrigin.substring(i, i+textInterval) + conversionOrder;
                 }
+            }
+        } else if(textOption1 === 'S') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder + textSpecific);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, textSpecific + conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder + textSpecific + conversionOrder);
+            }
+        } else if(textOption1 === 'N') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder + textSpecific);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, textSpecific + conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder + textSpecific + conversionOrder);
+            }
+        } else if(textOption1 === 'L') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder + textSpecific);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, textSpecific + conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder + textSpecific + conversionOrder);
+            }
+        } else if(textOption1 === 'U') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder + textSpecific);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, textSpecific + conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder + textSpecific + conversionOrder);
+            }
+        } else if(textOption1 === 'K') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder + textSpecific);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, textSpecific + conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder + textSpecific + conversionOrder);
             }
         }
 
@@ -355,12 +392,16 @@ const Page = () => {
             <textarea style={{resize : "none"}} value={textInput} onChange={(e) => setTextInput(e.target.value)}></textarea>
             <div className="text_option_area">
                 <select onChange={(e) => setTextOption1(e.target.value)}>
-                    <option value="O">1문자마다</option>
-                    <option value="I">N문자마다</option>
-                    <option value="S">특정 문자마다</option>
+                    <option value="O">1문자</option>
+                    <option value="I">N문자</option>
+                    <option value="S">특정 문자</option>
+                    <option value="N">숫자</option>
+                    <option value="L">영소문자</option>
+                    <option value="U">영대문자</option>
+                    <option value="K">한글</option>
                 </select>
 
-                {/* 숫자에만, 영어소문자에만, 대문자에만, 한글에만, 특수문자에만, /// 특정조건 무시  */}
+                {/* 숫자에만, 영어소문자에만, 대문자에만, 한글에만, 특수문자에만, /// 특정조건 무시 /// 특정문자 제거  */}
                 <select onChange={(e) => setTextOption2(e.target.value)}>
                     <option value="F">문자 앞</option>
                     <option value="B">문자 뒤</option>
