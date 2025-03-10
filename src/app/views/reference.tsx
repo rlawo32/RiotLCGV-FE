@@ -61,6 +61,33 @@ const PageStyle = styled('div')`
         transition: opacity .1s ease-in-out;
         opacity: 0;
     }
+
+    textarea {
+        width: 500px;
+        height: 300px;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .text_option_area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        select {
+            margin: 10px;
+        }
+
+        input {
+            width: 100px;
+            margin: 10px;
+        }
+
+        button {
+            width: 100px;
+        }
+    }
 `
 
 const Page = () => {
@@ -73,6 +100,14 @@ const Page = () => {
 
     const [score, setScore] = useState<number>(0);
     const [time, setTime] = useState<number>(60);
+
+    const [textInput, setTextInput] = useState<string>("");
+    const [textResult, setTextResult] = useState<string>("");
+    const [textOption1, setTextOption1] = useState<string>("O");
+    const [textOption2, setTextOption2] = useState<string>("F");
+    const [textOrder, setTextOrder] = useState<string>("");
+    const [textInterval, setTextInterval] = useState<number>(0);
+    const [textSpecific, setTextSpecific] = useState<string>("");
 
     const getDistance = (x1:number, y1:number, x2:number, y2:number):number => {
         let x:number = x2 - x1;
@@ -139,7 +174,7 @@ const Page = () => {
                         y: itemY + 15,
                         vx: Math.random() * 20 - 10,
                         vy: Math.random() * 5 - 15,
-                        gravity: 0.9,
+                        gravity: 1,
                         radius: 15,
                         color: "red",
             
@@ -271,16 +306,63 @@ const Page = () => {
         }
     }, [])
 
+    const textConversion = () => {
+        const conversionOrigin:string = textInput.replace(/ /g,"");
+        const conversionOrder:string = textOrder;
+        let conversionResult:string = "";
+
+        if(textOption1 === 'O') {
+            const arr:string[] = conversionOrigin.split('');
+            for(let word of arr) {
+                if(textOption2 === 'F') {
+                    conversionResult += conversionOrder + word;
+                } else if(textOption2 === 'B') {
+                    conversionResult += word + conversionOrder;
+                } else if(textOption2 === 'A') {
+                    conversionResult += conversionOrder + word + conversionOrder;
+                }
+            }
+        } else if(textOption1 === 'I') {
+
+        } else if(textOption1 === 'S') {
+
+        }
+
+        setTextResult(conversionResult);
+    }
+
     return (
         <PageStyle>
-            <div id="main_container" className="main_container" style={{border: "1px solid red", width:"600px", height:"300px"}}>
+            {/* <div id="main_container" className="main_container" style={{border: "1px solid red", width:"600px", height:"300px"}}>
                 <div className="score_section">
                     {score} / {time}
                 </div>
                 <div id="selection_area" className="selection_area"></div>
             </div>
             <canvas ref={canvasRef} style={{position:"absolute", border:"1px solid red", width:"600px", height:"300px", zIndex:-1}} >
-            </canvas>
+            </canvas> */}
+            <textarea style={{resize : "none"}} value={textInput} onChange={(e) => setTextInput(e.target.value)}></textarea>
+            <div className="text_option_area">
+                <select onChange={(e) => setTextOption1(e.target.value)}>
+                    <option value="O">1문자마다</option>
+                    <option value="I">N문자마다</option>
+                    <option value="S">특정 문자마다</option>
+                </select>
+
+                {/* 숫자에만, 영어소문자에만, 대문자에만, 한글에만, 특수문자에만,  */}
+                <select onChange={(e) => setTextOption2(e.target.value)}>
+                    <option value="F">문자 앞</option>
+                    <option value="B">문자 뒤</option>
+                    <option value="A">문자 앞뒤</option>
+                </select>
+                {
+                    textOption1 === "I" ? <input type="number" value={textInterval} onChange={(e) => setTextInterval(e.target.valueAsNumber)} /> :
+                    textOption1 === "S" ? <input type="text" value={textSpecific} onChange={(e) => setTextSpecific(e.target.value)} /> : <></>
+                }
+                <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} placeholder="word" />
+                <button onClick={() => textConversion()}>변환</button>
+            </div>
+            <textarea style={{resize : "none"}} value={textResult} readOnly={true}></textarea>
         </PageStyle>
     )
 }
