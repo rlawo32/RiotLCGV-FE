@@ -5,6 +5,7 @@ import styled from "styled-components";
 import React, { useEffect, useRef, useState } from "react";
 
 const PageStyle = styled('div')`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,21 +14,13 @@ const PageStyle = styled('div')`
     margin: auto;
 
     .score_section {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         color: #ffffff;
         text-align: center;
         font-size: 2rem;
-    }
-
-    .test_view {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 50%;
-        width: 50%;
-        border: 2px solid red;
-        overflow: hidden;
     }
 
     .main_container {
@@ -37,20 +30,10 @@ const PageStyle = styled('div')`
         justify-content: center;
         align-items: center;
         user-select: none; /* 드래그 중 텍스트 선택 방지 */
-        height: 100vh;
-        width: 100%;
+        background: rgba(0, 0, 0, 0);
     }
 
     .selection_area {
-        display: none;
-        position: absolute;
-        border: 1px dashed #00f;
-        background-color: rgba(0, 0, 255, 0.2);
-        pointer-events: none; /* 마우스 이벤트가 차단되지 않도록 함 */
-        //transition: all 0.2s ease; /* 크기 및 위치 변경에 대한 부드러운 전환 */
-    }
-
-    .drag_area {
         display: none;
         position: absolute;
         border: 1px dashed #00f;
@@ -64,60 +47,19 @@ const PageStyle = styled('div')`
         width: 30px;
         margin: 10px;
         border: 1px solid red;
+        border-radius: 50%;
         color: red;
         z-index: -1;
+        text-align: center;
     }
 
     .item_box.detected {
-        height: 30px;
-        width: 30px;
-        margin: 10px;
         border: 1px solid blue;
-        z-index: -1;
     }
 
     .item_box.pop {
-        height: 30px;
-        width: 30px;
-        margin: 10px;
-        border: 1px solid green;
-        color: green;
-        z-index: -1;
-        transition: opacity 1s;
+        transition: opacity .1s ease-in-out;
         opacity: 0;
-    }
-
-    .test_box.pop {
-        position: relative;
-        animation: bombLeftOut 3s ease;
-        transition: transform 1s;
-        
-    }
-
-    @keyframes bombLeftOut {
-        0% {
-            transform: translateX(0px) translateY(0px);
-            /* transform-origin: 0 0;
-            transform: rotate(0deg); */
-        }
-        50% {
-            transform: translateX(-50px) translateY(-50px);
-            /* opacity: 1;
-            transform-origin: -100% 900%;
-            transform: rotate(-160deg); */
-        }
-        /* 75% {
-            opacity: 1;
-            transform-origin: -100% 50%;
-            transform: rotate(-160deg);
-            filter: blur(0px);
-        } */
-        100% {
-            transform: translateX(-100px) translateY(100px);
-            /* opacity: 0;
-            transform-origin: -100% 900%;
-            transform: rotate(-160deg); */
-        }
     }
 `
 
@@ -169,13 +111,69 @@ const Page = () => {
     }
 
     const itemPop = () => {
+        const container = document.getElementById("main_container");
         const detectBox = document.querySelectorAll('.item_box.detected');
         let sum:number = 0;
+
         if(!!detectBox) detectBox.forEach(item => sum += parseInt(item.id));
 
         if(sum === 10) {
-            if(!!detectBox) {
-                detectBox.forEach(item => item.classList.add('pop')); 
+            if(!!detectBox && !!container && !!canvas.current) {
+                const ctx = canvas.current.getContext("2d");
+                const dpr = window.devicePixelRatio;
+                const canvasWidth = canvas.current.getBoundingClientRect().width;
+                const canvasHeight = canvas.current.getBoundingClientRect().height;
+                canvas.current.width = canvasWidth * dpr;
+                canvas.current.height = canvasHeight * dpr;
+                canvas.current.style.width = `${canvasWidth}px`;
+                canvas.current.style.height = `${canvasHeight}px`;
+
+                const list:{x:number, y:number, vx:number, vy:number, gravity:number, radius:number, color:string, draw:() => void}[] = [];
+                detectBox.forEach(item => {
+                    item.classList.add('pop');
+                    const itemX = Math.abs(item.getBoundingClientRect().x - container.getBoundingClientRect().x);
+                    const itemY = Math.abs(item.getBoundingClientRect().y - container.getBoundingClientRect().y);
+
+                    const ball = {
+                        x: itemX + 15,
+                        y: itemY + 15,
+                        vx: Math.random() * 20 - 10,
+                        vy: Math.random() * 5 - 15,
+                        gravity: 0.9,
+                        radius: 15,
+                        color: "red",
+            
+                        draw() {
+                            ctx.save();
+                            ctx.beginPath();
+                            ctx.strokeStyle = this.color;
+                            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+                            ctx.stroke();
+                            ctx.closePath();
+                            ctx.restore();
+                        },
+                    };
+                    list.push(ball);            
+                });
+
+                list.forEach(item => {
+                    item.draw();
+                });
+            
+                setTimeout(() => {
+                    const drawStart = () => {
+                        window.requestAnimationFrame(drawStart);
+                        ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+                        list.forEach(item => {
+                            item.draw();
+                            item.vy += item.gravity;
+                            item.x += item.vx;
+                            item.y += item.vy;
+                        });
+                    }
+                    drawStart();
+                }, 100);
+
                 const touchstone:number = detectBox.length;
                 let point:number = (touchstone * 2) + 1;
 
@@ -196,7 +194,7 @@ const Page = () => {
     }
 
     const itemCreate = () => {
-        for(let i=0; i<300; i++) {
+        for(let i=0; i<55; i++) {
             let random:number = Math.floor(Math.random() * 10);
             if(random === 0) random = 1;
             
@@ -210,14 +208,14 @@ const Page = () => {
         }
     }
 
-    const fnCountDown = () => { 
-        timer = setTimeout(() => {setTime((time) => (time - 1))}, 1000);
-    }
+    // const fnCountDown = () => { 
+    //     timer = setTimeout(() => {setTime((time) => (time - 1))}, 1000);
+    // }
 
-    useEffect(() => {
-        if(time === 0) {clearTimeout(timer); alert('시간초과');}
-        else {fnCountDown();}
-    }, [time])
+    // useEffect(() => {
+    //     if(time === 0) {clearTimeout(timer); alert('시간초과');}
+    //     else {fnCountDown();}
+    // }, [time])
 
     const canvas = useRef<any>(null);
 
@@ -229,8 +227,8 @@ const Page = () => {
 
         if(!!container && !!selectionArea) {
             container.addEventListener('mousedown', function(event) {
-                startX = event.pageX;
-                startY = event.pageY;
+                startX = event.pageX - container.offsetLeft;
+                startY = event.pageY - container.offsetTop;
                 dragging = true;
                 selectionArea.style.display = 'none';
                 selectionArea.style.width = '0px';
@@ -240,8 +238,8 @@ const Page = () => {
     
             document.addEventListener('mousemove', function(event) {
                 if (!dragging) return;
-                const moveX = event.pageX;
-                const moveY = event.pageY;
+                const moveX = event.pageX - container.offsetLeft;
+                const moveY = event.pageY - container.offsetTop;
                 const width = Math.abs(moveX - startX);
                 const height = Math.abs(moveY - startY);
                 selectionArea.style.display = 'block';
@@ -271,129 +269,18 @@ const Page = () => {
                 event.preventDefault(); // 드래그 작업 종료
             });
         }
-        const drag_area = document.getElementById('drag_area');
-
-        if(!!canvas.current && !!drag_area) {
-            const ctx = canvas.current.getContext("2d");
-            
-            const ball = {
-                x: 10,
-                y: 10,
-                vx: 0,
-                vy: 0,
-                gravity: 0.6,
-                radius: 10,
-                color: "blue",
-    
-                draw() {
-                  ctx.beginPath();
-                  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-                  ctx.closePath();
-                  ctx.fillStyle = this.color;
-                  ctx.fill();
-                },
-            };
-
-            for(let i=1; i<=20; i++) {
-                ball.draw();
-                ball.x += 25;
-                if(i % 5 === 0) {
-                    ball.x = 10;
-                    ball.y += 25;
-                }
-            }
-
-            canvas.current.addEventListener('mousedown', function(event:any) {
-                startX = event.pageX;
-                startY = event.pageY;
-                dragging = true;
-                drag_area.style.display = 'none';
-                drag_area.style.width = '0px';
-                drag_area.style.height = '0px';
-                event.preventDefault(); // 기본 드래그 동작 방지
-            });
-    
-            canvas.current.addEventListener('mousemove', function(event:any) {
-                if (!dragging) return;
-                const moveX = event.pageX;
-                const moveY = event.pageY;
-                const width = Math.abs(moveX - startX);
-                const height = Math.abs(moveY - startY);
-                drag_area.style.display = 'block';
-                drag_area.style.width = `${width}px`;
-                drag_area.style.height = `${height}px`;
-                drag_area.style.left = `${Math.min(startX, moveX)}px`;
-                drag_area.style.top = `${Math.min(startY, moveY)}px`;
-                event.preventDefault();
-            });
-    
-            canvas.current.addEventListener('mouseup', function(event:any) {
-                dragging = false;
-                startX = 0;
-                startY = 0;
-                drag_area.style.display = 'none';
-                drag_area.style.width = '0px';
-                drag_area.style.height = '0px';
-                // 여기서 선택 영역을 완료합니다
-                event.preventDefault(); // 드래그 작업 종료
-            });
-        }
     }, [])
-
-    const testClick = (e:React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-        const vx:number = Math.random() * 4;
-        const vy:number = -10;
-        let laf:any;
-        if(!!canvas.current) {
-            const ctx = canvas.current.getContext("2d");
-            
-            const ball = {
-                x: (e.clientX - ctx.canvas.offsetLeft) / 2,
-                y: (e.clientY - ctx.canvas.offsetTop) / 2,
-                vx: vx,
-                vy: vy,
-                gravity: 0.6,
-                radius: 25,
-                color: "blue",
-    
-                draw() {
-                  ctx.beginPath();
-                  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-                  ctx.closePath();
-                  ctx.fillStyle = this.color;
-                  ctx.fill();
-                },
-            };
-
-            const draw = () => {
-                ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
-                ball.draw();
-                ball.vy += ball.gravity;
-                ball.x += ball.vx;
-                ball.y += ball.vy;
-                laf = window.requestAnimationFrame(draw);
-            }
-
-            canvas.current.addEventListener("click", () => {
-                laf = window.requestAnimationFrame(draw);
-            });
-        }
-    }
 
     return (
         <PageStyle>
-            {/* <div id="main_container" className="main_container">
+            <div id="main_container" className="main_container" style={{border: "1px solid red", width:"600px", height:"300px"}}>
                 <div className="score_section">
                     {score} / {time}
                 </div>
                 <div id="selection_area" className="selection_area"></div>
-            </div> */}
-            <canvas ref={canvas} style={{border: "1px solid red", width:"600px", height:"300px"}}>
-                <div id="drag_area" className="drag_area"></div>
+            </div>
+            <canvas ref={canvas} style={{position:"absolute", border:"1px solid red", width:"600px", height:"300px", zIndex:-1}} >
             </canvas>
-            {/* <div className="test_view">
-                <div id="test_box" className="test_box" onClick={() => testClick()}>HELLO</div>
-            </div> */}
         </PageStyle>
     )
 }
