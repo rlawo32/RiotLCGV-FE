@@ -311,8 +311,10 @@ const Page = () => {
         const conversionOrder:string = textOrder;
         let conversionResult:string = "";
 
+        const arr:string[] = conversionOrigin.split('');
+        let testT = /`${textSpecific}`/;
+
         if(textOption1 === 'O') {
-            const arr:string[] = conversionOrigin.split('');
             for(let word of arr) {
                 if(textOption2 === 'F') {
                     conversionResult += conversionOrder + word;
@@ -325,7 +327,16 @@ const Page = () => {
         } else if(textOption1 === 'I') {
 
         } else if(textOption1 === 'S') {
-
+            for(let word of arr) {
+                if(testT.test(word))
+                if(textOption2 === 'F') {
+                    conversionResult += conversionOrder + word;
+                } else if(textOption2 === 'B') {
+                    conversionResult += word + conversionOrder;
+                } else if(textOption2 === 'A') {
+                    conversionResult += conversionOrder + word + conversionOrder;
+                }
+            }
         }
 
         setTextResult(conversionResult);
@@ -349,7 +360,7 @@ const Page = () => {
                     <option value="S">특정 문자마다</option>
                 </select>
 
-                {/* 숫자에만, 영어소문자에만, 대문자에만, 한글에만, 특수문자에만,  */}
+                {/* 숫자에만, 영어소문자에만, 대문자에만, 한글에만, 특수문자에만, /// 특정조건 무시  */}
                 <select onChange={(e) => setTextOption2(e.target.value)}>
                     <option value="F">문자 앞</option>
                     <option value="B">문자 뒤</option>
