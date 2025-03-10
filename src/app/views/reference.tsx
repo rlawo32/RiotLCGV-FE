@@ -64,6 +64,7 @@ const PageStyle = styled('div')`
 `
 
 const Page = () => {
+    const canvasRef:React.MutableRefObject<any> = useRef<any>(null);
     
     let startX:number = 0;
     let startY:number = 0;
@@ -72,8 +73,6 @@ const Page = () => {
 
     const [score, setScore] = useState<number>(0);
     const [time, setTime] = useState<number>(60);
-    const [x, setX] = useState<number>(100);
-    const [y, setY] = useState<number>(100);
 
     const getDistance = (x1:number, y1:number, x2:number, y2:number):number => {
         let x:number = x2 - x1;
@@ -83,24 +82,23 @@ const Page = () => {
     }
 
     const itemDetected = (rectData:DOMRect) => {
-        const container = document.getElementById('main_container');
-
-        const itemBoxList = container?.children;
+        const container:HTMLElement|null = document.getElementById('main_container');
+        const itemBoxList:HTMLCollection|undefined = container?.children;
 
         if(!!itemBoxList) {
             for(let i=2; i<itemBoxList.length; i++) {
-                const itemBox = itemBoxList[i];
-                const itemTop = itemBox.getBoundingClientRect().top;
-                const itemBottm = itemBox.getBoundingClientRect().bottom;
-                const itemLeft = itemBox.getBoundingClientRect().left;
-                const itemRight = itemBox.getBoundingClientRect().right;
-                const itemWidth = itemBox.getBoundingClientRect().width / 2;
-                const itemHeight = itemBox.getBoundingClientRect().height / 2;
+                const itemBox:Element = itemBoxList[i];
+                const itemTop:number = itemBox.getBoundingClientRect().top;
+                const itemBottom:number  = itemBox.getBoundingClientRect().bottom;
+                const itemLeft:number  = itemBox.getBoundingClientRect().left;
+                const itemRight:number  = itemBox.getBoundingClientRect().right;
+                const itemWidth:number  = itemBox.getBoundingClientRect().width / 2;
+                const itemHeight:number  = itemBox.getBoundingClientRect().height / 2;
 
                 if( rectData.left <= (itemLeft + itemWidth) && rectData.top <= (itemTop + itemHeight) && 
                     rectData.right >= (itemRight - itemWidth) && rectData.top <= (itemTop + itemHeight) && 
-                    rectData.left <= (itemLeft + itemWidth) && rectData.bottom >= (itemBottm - itemHeight) && 
-                    rectData.right >= (itemRight - itemWidth) && rectData.bottom >= (itemBottm - itemHeight) && 
+                    rectData.left <= (itemLeft + itemWidth) && rectData.bottom >= (itemBottom - itemHeight) && 
+                    rectData.right >= (itemRight - itemWidth) && rectData.bottom >= (itemBottom - itemHeight) && 
                     itemBox.classList.contains('pop') === false) {
                     itemBox.classList.add('detected');
                 } else {
@@ -111,30 +109,32 @@ const Page = () => {
     }
 
     const itemPop = () => {
-        const container = document.getElementById("main_container");
-        const detectBox = document.querySelectorAll('.item_box.detected');
+        const container:HTMLElement|null = document.getElementById("main_container");
+        const detectBox:NodeListOf<Element> = document.querySelectorAll('.item_box.detected');
         let sum:number = 0;
 
         if(!!detectBox) detectBox.forEach(item => sum += parseInt(item.id));
 
         if(sum === 10) {
-            if(!!detectBox && !!container && !!canvas.current) {
-                const ctx = canvas.current.getContext("2d");
-                const dpr = window.devicePixelRatio;
-                const canvasWidth = canvas.current.getBoundingClientRect().width;
-                const canvasHeight = canvas.current.getBoundingClientRect().height;
-                canvas.current.width = canvasWidth * dpr;
-                canvas.current.height = canvasHeight * dpr;
-                canvas.current.style.width = `${canvasWidth}px`;
-                canvas.current.style.height = `${canvasHeight}px`;
+            if(!!detectBox && !!container && !!canvasRef.current) {
+                const ctx:CanvasRenderingContext2D = canvasRef.current.getContext("2d");
+                const canvasWidth:number = canvasRef.current.getBoundingClientRect().width;
+                const canvasHeight:number = canvasRef.current.getBoundingClientRect().height;
+                const dpr:number = window.devicePixelRatio;
 
                 const list:{x:number, y:number, vx:number, vy:number, gravity:number, radius:number, color:string, draw:() => void}[] = [];
+
+                canvasRef.current.width = canvasWidth * dpr;
+                canvasRef.current.height = canvasHeight * dpr;
+                canvasRef.current.style.width = `${canvasWidth}px`;
+                canvasRef.current.style.height = `${canvasHeight}px`;
+
                 detectBox.forEach(item => {
                     item.classList.add('pop');
-                    const itemX = Math.abs(item.getBoundingClientRect().x - container.getBoundingClientRect().x);
-                    const itemY = Math.abs(item.getBoundingClientRect().y - container.getBoundingClientRect().y);
+                    const itemX:number = Math.abs(item.getBoundingClientRect().x - container.getBoundingClientRect().x);
+                    const itemY:number = Math.abs(item.getBoundingClientRect().y - container.getBoundingClientRect().y);
 
-                    const ball = {
+                    const ball:{x:number, y:number, vx:number, vy:number, gravity:number, radius:number, color:string, draw:() => void} = {
                         x: itemX + 15,
                         y: itemY + 15,
                         vx: Math.random() * 20 - 10,
@@ -161,9 +161,9 @@ const Page = () => {
                 });
             
                 setTimeout(() => {
-                    const drawStart = () => {
-                        window.requestAnimationFrame(drawStart);
-                        ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+                    const drawFrame = () => {
+                        window.requestAnimationFrame(drawFrame);
+                        ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
                         list.forEach(item => {
                             item.draw();
                             item.vy += item.gravity;
@@ -171,7 +171,7 @@ const Page = () => {
                             item.y += item.vy;
                         });
                     }
-                    drawStart();
+                    drawFrame();
                 }, 100);
 
                 const touchstone:number = detectBox.length;
@@ -194,12 +194,14 @@ const Page = () => {
     }
 
     const itemCreate = () => {
-        for(let i=0; i<55; i++) {
+        const createCnt:number = 55;
+        for(let i=0; i<createCnt; i++) {
             let random:number = Math.floor(Math.random() * 10);
             if(random === 0) random = 1;
             
-    		const container = document.getElementById("main_container");
-            const item = document.createElement('div');
+    		const container:HTMLElement|null = document.getElementById("main_container");
+            const item:HTMLDivElement = document.createElement('div');
+
             item.classList.add('item_box');
             item.textContent = random.toString();
             item.setAttribute('id', random.toString());
@@ -217,13 +219,11 @@ const Page = () => {
     //     else {fnCountDown();}
     // }, [time])
 
-    const canvas = useRef<any>(null);
-
     useEffect(() => {
         itemCreate();
         // fnCountDown();
-        const container = document.getElementById('main_container');
-        const selectionArea = document.getElementById('selection_area');
+        const container:HTMLElement|null = document.getElementById('main_container');
+        const selectionArea:HTMLElement|null = document.getElementById('selection_area');
 
         if(!!container && !!selectionArea) {
             container.addEventListener('mousedown', function(event) {
@@ -233,39 +233,39 @@ const Page = () => {
                 selectionArea.style.display = 'none';
                 selectionArea.style.width = '0px';
                 selectionArea.style.height = '0px';
-                event.preventDefault(); // 기본 드래그 동작 방지
+                event.preventDefault();
             });
     
             document.addEventListener('mousemove', function(event) {
                 if (!dragging) return;
-                const moveX = event.pageX - container.offsetLeft;
-                const moveY = event.pageY - container.offsetTop;
-                const width = Math.abs(moveX - startX);
-                const height = Math.abs(moveY - startY);
+                const rectData:DOMRect = selectionArea.getBoundingClientRect();
+                const moveX:number = event.pageX - container.offsetLeft;
+                const moveY:number = event.pageY - container.offsetTop;
+                const width:number = Math.abs(moveX - startX);
+                const height:number = Math.abs(moveY - startY);
+
                 selectionArea.style.display = 'block';
                 selectionArea.style.width = `${width}px`;
                 selectionArea.style.height = `${height}px`;
                 selectionArea.style.left = `${Math.min(startX, moveX)}px`;
                 selectionArea.style.top = `${Math.min(startY, moveY)}px`;
 
-                const rectData = selectionArea.getBoundingClientRect();
-
                 itemDetected(rectData);
                 event.preventDefault();
             });
     
             document.addEventListener('mouseup', function(event) {
-                dragging = false;
                 startX = 0;
                 startY = 0;
+                dragging = false;
                 selectionArea.style.display = 'none';
                 selectionArea.style.width = '0px';
                 selectionArea.style.height = '0px';
 
                 itemPop();
-                const itemBox = document.querySelectorAll('.item_box');
+
+                const itemBox:NodeListOf<Element> = document.querySelectorAll('.item_box');
                 if(!!itemBox) itemBox.forEach(item => item.classList.remove('detected'));
-                // 여기서 선택 영역을 완료합니다
                 event.preventDefault(); // 드래그 작업 종료
             });
         }
@@ -279,7 +279,7 @@ const Page = () => {
                 </div>
                 <div id="selection_area" className="selection_area"></div>
             </div>
-            <canvas ref={canvas} style={{position:"absolute", border:"1px solid red", width:"600px", height:"300px", zIndex:-1}} >
+            <canvas ref={canvasRef} style={{position:"absolute", border:"1px solid red", width:"600px", height:"300px", zIndex:-1}} >
             </canvas>
         </PageStyle>
     )
