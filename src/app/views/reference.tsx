@@ -3,7 +3,10 @@
 import styled from "styled-components";
 
 import React, { useEffect, useRef, useState } from "react";
-import test from "node:test";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight as arrowIcon } from "@fortawesome/free-solid-svg-icons";
 
 const PageStyle = styled('div')`
     position: relative;
@@ -63,30 +66,108 @@ const PageStyle = styled('div')`
         opacity: 0;
     }
 
-    textarea {
-        width: 500px;
-        height: 300px;
-        margin: 10px;
-        padding: 10px;
-    }
-
-    .text_option_area {
+    .text_tool_container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
 
-        select {
+        textarea {
+            width: 400px;
+            height: 500px;
             margin: 10px;
+            padding: 45px 10px 10px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            outline: none;
         }
 
-        input {
-            width: 100px;
-            margin: 10px;
+        .text_input_area {
+            display: flex;
+            align-items: end;
+
+            .icon {
+                margin-bottom: 250px;
+                color: #ffffff;
+                font-size: 2.5rem;
+            }
+
+            .text_input_section {
+                position: relative;
+            }
+            
+            .text_result_section {
+                position: relative;
+            }
+
+            .text_section_header {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 400px;
+                height: 40px;
+                padding: 0 5px 0 10px;
+                border: 2px solid #000000;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                background-color: #ffffff;
+
+                button {
+                    margin: 0 5px;
+                }
+
+                .header_title {
+                    font-size: 1.4rem;
+                }
+            }
         }
 
-        button {
-            width: 100px;
+        .text_option_area {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            justify-content: center;
+            width: 600px;
+            height: 90px;
+            padding: 0 10px;
+            border: 2px solid grey;
+            border-radius: 10px;
+
+            select {
+                width: 100px;
+                margin: 10px;
+            }
+
+            input {
+                width: 100px;
+                margin: 10px;
+            }
+
+            button {
+                width: 100px;
+            }
+
+            .text_option_section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: calc(100% / 4);
+                height: 100%;
+
+                button {
+                    width: 100%;
+                    height: 100%;
+                    margin: 10px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .tooltip {
+            
         }
     }
 `
@@ -102,6 +183,7 @@ const Page = () => {
     const [score, setScore] = useState<number>(0);
     const [time, setTime] = useState<number>(60);
 
+    const [textMode, setTextMode] = useState<string>("I");
     const [textInput, setTextInput] = useState<string>("");
     const [textResult, setTextResult] = useState<string>("");
     const [textOption1, setTextOption1] = useState<string>("O");
@@ -308,7 +390,7 @@ const Page = () => {
     }, [])
 
     const textConversion = () => {
-        const conversionOrigin:string = textInput.replace(/ /g,"");
+        const conversionOrigin:string = textOption1 === 'G' ? textInput : textInput.replace(/ /g,"");
         const conversionOrder:string = textOrder;
         let conversionResult:string = "";
 
@@ -343,41 +425,202 @@ const Page = () => {
                 conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder + textSpecific + conversionOrder);
             }
         } else if(textOption1 === 'N') {
-            if(textOption2 === 'F') {
-                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder + textSpecific);
-            } else if(textOption2 === 'B') {
-                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, textSpecific + conversionOrder);
-            } else if(textOption2 === 'A') {
-                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder + textSpecific + conversionOrder);
+            const arr1:string[] = textInput.split('');
+            for(let word of arr1) {
+                if(/[0-9]/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
             }
         } else if(textOption1 === 'L') {
-            if(textOption2 === 'F') {
-                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder + textSpecific);
-            } else if(textOption2 === 'B') {
-                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, textSpecific + conversionOrder);
-            } else if(textOption2 === 'A') {
-                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder + textSpecific + conversionOrder);
+            const arr1:string[] = textInput.split('');
+            for(let word of arr1) {
+                if(/[a-z]/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
             }
         } else if(textOption1 === 'U') {
-            if(textOption2 === 'F') {
-                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder + textSpecific);
-            } else if(textOption2 === 'B') {
-                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, textSpecific + conversionOrder);
-            } else if(textOption2 === 'A') {
-                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder + textSpecific + conversionOrder);
+            const arr1:string[] = textInput.split('');
+            for(let word of arr1) {
+                if(/[A-Z]/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
             }
         } else if(textOption1 === 'K') {
-            if(textOption2 === 'F') {
-                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder + textSpecific);
-            } else if(textOption2 === 'B') {
-                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, textSpecific + conversionOrder);
-            } else if(textOption2 === 'A') {
-                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder + textSpecific + conversionOrder);
+            const arr1:string[] = textInput.split('');
+            for(let word of arr1) {
+                if(/[ㄱ-힣]/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
+            }
+        } else if(textOption1 === 'E') {
+            const arr1:string[] = textInput.split('');
+            for(let word of arr1) {
+                if(/\n/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
+            }
+        } else if(textOption1 === 'G') {
+            const arr1:string[] = textInput.split('');
+            for(let word of arr1) {
+                if(/\s/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
             }
         }
 
         setTextResult(conversionResult);
     }
+
+    const textRemove = () => {
+        const conversionOrigin:string = textInput.replace(/ /g,"");
+        const conversionOrder:string = textOrder;
+        let conversionResult:string = "";
+
+        const arr:string[] = conversionOrigin.split('');
+
+        if(textOption1 === 'O') {
+            for(let word of arr) {
+                if(textOption2 === 'F') {
+                    conversionResult += conversionOrder + word;
+                } else if(textOption2 === 'B') {
+                    conversionResult += word + conversionOrder;
+                } else if(textOption2 === 'A') {
+                    conversionResult += conversionOrder + word + conversionOrder;
+                }
+            }
+        } else if(textOption1 === 'I') {
+            for(let i=0; i<arr.length; i+=textInterval) {
+                if(textOption2 === 'F') {
+                    conversionResult += conversionOrder + conversionOrigin.substring(i, i+textInterval);
+                } else if(textOption2 === 'B') {
+                    conversionResult += conversionOrigin.substring(i, i+textInterval) + conversionOrder;
+                } else if(textOption2 === 'A') {
+                    conversionResult += conversionOrder + conversionOrigin.substring(i, i+textInterval) + conversionOrder;
+                }
+            }
+        } else if(textOption1 === 'S') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, '');
+            }
+        } else if(textOption1 === 'N') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, '');
+            }
+        } else if(textOption1 === 'L') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, '');
+            }
+        } else if(textOption1 === 'U') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, '');
+            }
+        } else if(textOption1 === 'K') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, '');
+            }
+        } else if(textOption1 === 'E') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/\n/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/\n/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/\n/g, '');
+            }
+        } else if(textOption1 === 'G') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/\s/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/\s/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/\s/g, '');
+            }
+        }
+
+        setTextResult(conversionResult);
+    }
+
+    const textMove = () => {
+    }
+
+    useEffect(() => {
+        if(textMode === 'I') setTextOption1('O');
+        else if(textMode === 'D') setTextOption1('S');
+        else if(textMode === 'U') setTextOption1('S');
+    }, [textMode])
 
     return (
         <PageStyle>
@@ -389,32 +632,82 @@ const Page = () => {
             </div>
             <canvas ref={canvasRef} style={{position:"absolute", border:"1px solid red", width:"600px", height:"300px", zIndex:-1}} >
             </canvas> */}
-            <textarea style={{resize : "none"}} value={textInput} onChange={(e) => setTextInput(e.target.value)}></textarea>
-            <div className="text_option_area">
-                <select onChange={(e) => setTextOption1(e.target.value)}>
-                    <option value="O">1문자</option>
-                    <option value="I">N문자</option>
-                    <option value="S">특정 문자</option>
-                    <option value="N">숫자</option>
-                    <option value="L">영소문자</option>
-                    <option value="U">영대문자</option>
-                    <option value="K">한글</option>
-                </select>
-
-                {/* 숫자에만, 영어소문자에만, 대문자에만, 한글에만, 특수문자에만, /// 특정조건 무시 /// 특정문자 제거  */}
-                <select onChange={(e) => setTextOption2(e.target.value)}>
-                    <option value="F">문자 앞</option>
-                    <option value="B">문자 뒤</option>
-                    <option value="A">문자 앞뒤</option>
-                </select>
-                {
-                    textOption1 === "I" ? <input type="number" value={textInterval} onChange={(e) => setTextInterval(e.target.valueAsNumber)} /> :
-                    textOption1 === "S" ? <input type="text" value={textSpecific} onChange={(e) => setTextSpecific(e.target.value)} /> : <></>
-                }
-                <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} placeholder="word" />
-                <button onClick={() => textConversion()}>변환</button>
+            <div className="text_tool_container">
+                <div className="text_input_area">
+                    <div className="text_input_section">
+                        <div className="text_section_header">
+                            <div className="header_title">
+                                Enter Text
+                            </div>
+                        </div>
+                        <textarea style={{resize : "none"}} value={textInput} onChange={(e) => setTextInput(e.target.value)}></textarea>
+                    </div>
+                    <FontAwesomeIcon icon={arrowIcon} className="icon" />
+                    <div className="text_result_section">
+                        <div className="text_section_header">
+                            <div className="header_title">
+                                Text Result
+                            </div>
+                            <div className="text_simple_area">
+                                <CopyToClipboard text={textResult} onCopy={() => alert("복사되었습니다.")}>
+                                    <button>결과 복사</button>
+                                </CopyToClipboard>
+                                <button onClick={() => setTextInput(textResult)}>입력창으로 이동</button>
+                            </div>
+                        </div>
+                        <textarea style={{resize : "none"}} value={textResult} readOnly={true}></textarea>
+                    </div>
+                </div>
+                <div className="text_option_area">
+                    <div className="text_option_section">
+                        <select onChange={(e) => setTextMode(e.target.value)}>
+                            <option value="I">문자 추가</option>
+                            <option value="D">문자 제거</option>
+                            <option value="U">문자 수정</option>
+                        </select>
+                    </div>
+                    <div className="text_option_section">
+                        <select value={textOption1} onChange={(e) => setTextOption1(e.target.value)}>
+                            {
+                                textMode === 'I' ? 
+                                    <>
+                                        <option value="O">1문자</option>
+                                        <option value="I">N문자</option>
+                                    </> : <></>
+                            }
+                            <option value="S">특정 문자</option>
+                            <option value="N">숫자</option>
+                            <option value="L">영소문자</option>
+                            <option value="U">영대문자</option>
+                            <option value="K">한글</option>
+                            <option value="E">개행</option>
+                            <option value="G">공백</option>
+                        </select>
+                        {
+                            textOption1 === "I" ? <input type="number" value={textInterval} onChange={(e) => setTextInterval(e.target.valueAsNumber)} /> :
+                            textOption1 === "S" ? <input type="text" value={textSpecific} onChange={(e) => setTextSpecific(e.target.value)} /> : <input type="text" style={{opacity:0}} />
+                        }
+                    </div>
+                    {
+                        textMode === 'I' ?
+                            <div className="text_option_section">
+                                <select onChange={(e) => setTextOption2(e.target.value)}>
+                                    <option value="F">문자 앞</option>
+                                    <option value="B">문자 뒤</option>
+                                    <option value="A">문자 앞뒤</option>
+                                </select>
+                                <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} placeholder="word" />
+                            </div> : <div className="text_option_section">1</div>
+                    }
+                    <div className="text_option_section">
+                        {
+                            textMode === "I" ? <button onClick={() => textConversion()}>변환</button> : 
+                            textMode === "D" ? <button onClick={() => textRemove()}>제거</button> :
+                            textMode === "U" ? <button onClick={() => textRemove()}>수정</button> : <></>
+                        }
+                    </div>
+                </div>
             </div>
-            <textarea style={{resize : "none"}} value={textResult} readOnly={true}></textarea>
         </PageStyle>
     )
 }
