@@ -1,6 +1,7 @@
 'use client'
 
 import * as Style from "./main_view.style";
+
 import { useState } from "react";
 
 import MatchList from "./match_list";
