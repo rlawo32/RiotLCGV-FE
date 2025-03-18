@@ -14,6 +14,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
     width: 768px;
     margin: 0 auto;
     padding: 7px 30px;
+    border: 1px solid #887d7d;
     border-radius: 10px;
     background-color: rgb(49 49 60 / .7);
     color: #ffffff;

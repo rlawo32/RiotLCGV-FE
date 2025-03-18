@@ -19,6 +19,7 @@ export const MainSidebar = styled('div')`
     height: fit-content;
     width: 300px;
     padding: 40px 10px;
+    border: 1px solid #887d7d;
     border-radius: 10px;
     background-color: rgb(49 49 60 / .7);
 

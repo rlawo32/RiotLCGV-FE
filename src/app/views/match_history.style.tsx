@@ -18,6 +18,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     min-height: ${({$type}) => $type === 'L' ? "860px" : "0"};
     margin: 0 auto;
     padding: 7px 30px;
+    border: 1px solid #887d7d;
     border-radius: 10px;
     background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "rgb(49 49 60 / 1)"};
 

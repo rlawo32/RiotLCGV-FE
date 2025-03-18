@@ -18,6 +18,7 @@ export const MatchShuffle = styled('div')`
     height: 100%;
     margin: 0 auto;
     padding: 70px 30px;
+    border: 1px solid #887d7d;
     border-radius: 10px;
     background-color: rgb(49 49 60 / .7);
 
@@ -82,7 +83,7 @@ export const MatchShuffle = styled('div')`
                             left: 7px;
                         }
                         position: absolute;
-                        top: 19px;
+                        top: 21px;
                         left: 15px;
                     }
 
@@ -594,7 +595,7 @@ export const SelectStyle = styled('select')`
     border-radius: 10px;
     background: rgb(68 68 71 / 1);
     color: #ffffff;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
     outline: none;
 

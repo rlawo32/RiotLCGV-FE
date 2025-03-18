@@ -15,6 +15,7 @@ export const MatchPlayer = styled('div')`
     min-height: 860px;
     margin: 0 auto;
     padding: 7px 30px;
+    border: 1px solid #887d7d;
     border-radius: 10px;    
     background-color: rgb(49 49 60 / .7);
 `;
