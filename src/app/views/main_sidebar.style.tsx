@@ -10,10 +10,6 @@ export const MainSidebar = styled('div')`
     @media (max-width: 1024px) {
         width: 100%;
     }
-    // mobile_view
-    @media (max-width: 500px) {
-        width: 350px;
-    }
     position: relative;
     display: flex;
     flex-direction: column;
