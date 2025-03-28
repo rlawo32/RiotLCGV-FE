@@ -63,7 +63,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 360px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 290px;
         }
         position: relative;
