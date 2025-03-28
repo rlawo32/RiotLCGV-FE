@@ -34,8 +34,20 @@ const RankingViewDemolisher = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"><TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}</div>
-                                    <div className="ranker_detail">구조물 피해량 {item.lcg_count_tower_damage.toLocaleString()}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}
+                                            </div>
+                                            <div className="box_title">
+                                                구조물 피해량
+                                            </div>
+                                            <div className="box_detail">
+                                                {item.lcg_count_tower_damage.toLocaleString()}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -54,8 +66,20 @@ const RankingViewDemolisher = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"><TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}</div>
-                                    <div className="ranker_detail">구조물 피해량 {item.lcg_count_tower_damage.toLocaleString()}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}
+                                            </div>
+                                            <div className="box_title">
+                                                구조물 피해량
+                                            </div>
+                                            <div className="box_detail">
+                                                {item.lcg_count_tower_damage.toLocaleString()}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -74,8 +98,20 @@ const RankingViewDemolisher = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title"><TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}</div>
-                                    <div className="ranker_detail">구조물 피해량 {item.lcg_count_tower_damage.toLocaleString()}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <TurretIcon />{item.lcg_count_tower}&nbsp;&nbsp;<InhibitorIcon />{item.lcg_count_inhibitor}
+                                            </div>
+                                            <div className="box_title">
+                                                구조물 피해량
+                                            </div>
+                                            <div className="box_detail">
+                                                {item.lcg_count_tower_damage.toLocaleString()}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )
