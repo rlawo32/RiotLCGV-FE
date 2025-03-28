@@ -25,21 +25,26 @@ export const PlayerSelectBox = styled('div')`
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto 5px;
-    padding: 10px 20px;
+    padding: 10px 5px;
     border-bottom: 1px solid rgb(255 68 56 / 1);
 
     .select_item {
         @media (max-width: 768px) {
-            font-size: 1.1rem;
-            margin: 2px;
-            padding: 5px 10px;
+            font-size: 1rem;
+            margin: 1px;
+            padding: 3px 6px;
         }
-        margin: 3px;
-        padding: 7px 12px;
+        // mobile_view
+        @media (max-width: 480px) {
+            font-size: .8rem;
+            padding: 2px 5px;
+        }
+        margin: 2px;
+        padding: 4px 7px;
         border-radius: 10px;
         border: none;
         background-color: rgb(30 30 38 / 1);
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         cursor: pointer;
 
         &:hover {

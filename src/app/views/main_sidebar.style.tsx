@@ -13,6 +13,9 @@ export const MainSidebar = styled('div')`
     @media (max-width: 1024px) {
         width: 100%;
     }
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -34,6 +37,17 @@ export const MainSidebar = styled('div')`
             left: 10px;
             font-size: 1.5rem;
         }
+        @media (max-width: 768px) {
+            top: 5px;
+            left: 8px;
+            font-size: 1rem;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
+            top: 4px;
+            left: 5px;
+            font-size: .9rem;
+        }
         position: absolute;
         top: 10px;
         left: 25px;
@@ -51,6 +65,15 @@ export const MainSidebar = styled('div')`
             padding: 5px 10px 7px 35px;
             margin: 2px;
             font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            padding: 3px 7px 5px 25px;
+            font-size: 1rem;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
+            padding: 2px 5px 4px 22px;
+            font-size: .9rem;
         }
         position: relative;
         padding: 15px 15px 10px 75px;
