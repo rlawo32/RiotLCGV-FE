@@ -29,8 +29,10 @@ const RankingViewAvgDpm = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">{item.count} 게임</div>
-                                    <div className="ranker_title">평균 DPM {item.avg.toLocaleString()}</div>
+                                    <div className="ranker_content_main">{item.count} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        평균 DPM {item.avg.toLocaleString()}
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -49,8 +51,10 @@ const RankingViewAvgDpm = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">{item.count} 게임</div>
-                                    <div className="ranker_title">평균 DPM {item.avg.toLocaleString()}</div>
+                                    <div className="ranker_content_main">{item.count} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        평균 DPM {item.avg.toLocaleString()}
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -69,8 +73,10 @@ const RankingViewAvgDpm = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">{item.count} 게임</div>
-                                    <div className="ranker_title">평균 DPM {item.avg.toLocaleString()}</div>
+                                    <div className="ranker_content_main">{item.count} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        평균 DPM {item.avg.toLocaleString()}
+                                    </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )
