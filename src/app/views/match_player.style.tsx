@@ -5,6 +5,10 @@ export const MatchPlayer = styled('div')`
         width: 100%;
         padding: 7px 15px;
     }
+    // mobile_view
+    @media (max-width: 480px) {
+        padding: 5px 8px;
+    }
     position: relative;
     display: flex;
     flex-direction: column;
@@ -21,6 +25,10 @@ export const MatchPlayer = styled('div')`
 `;
 
 export const PlayerSelectBox = styled('div')`
+    // mobile_view
+    @media (max-width: 480px) {
+        padding: 10px 3px;
+    }
     position: relative;
     display: flex;
     flex-wrap: wrap;
