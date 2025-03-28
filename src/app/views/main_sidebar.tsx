@@ -34,26 +34,28 @@ const MainSidebar = (props : {changeView:any}) => {
 
     return (
         <Style.MainSidebar>
-            <button onClick={() => btnClick(0)} ref={(btn:any) => (btnRef.current[0] = btn)}>
-                <FontAwesomeIcon icon={icon_latest} className="btn_icon"/>
-                최근 게임
-            </button>
-            <button onClick={() => btnClick(1)} ref={(btn:any) => (btnRef.current[1] = btn)}>
-                <FontAwesomeIcon icon={icon_history} className="btn_icon"/>
-                내전 전적
-            </button>
-            <button onClick={() => btnClick(2)} ref={(btn:any) => (btnRef.current[2] = btn)}>
-                <FontAwesomeIcon icon={icon_ranking} className="btn_icon"/>
-                스코어 랭킹
-            </button>
-            <button onClick={() => btnClick(3)} ref={(btn:any) => (btnRef.current[3] = btn)}>
-                <FontAwesomeIcon icon={icon_player} className="btn_icon"/>
-                플레이어
-            </button>
-            <button onClick={() => btnClick(4)} ref={(btn:any) => (btnRef.current[4] = btn)}>
-                <FontAwesomeIcon icon={icon_shuffle} className="btn_icon"/>
-                팀 섞기
-            </button>
+            <div className="sidebar_container">
+                <button onClick={() => btnClick(0)} ref={(btn:any) => (btnRef.current[0] = btn)}>
+                    <FontAwesomeIcon icon={icon_latest} className="btn_icon"/>
+                    최근 게임
+                </button>
+                <button onClick={() => btnClick(1)} ref={(btn:any) => (btnRef.current[1] = btn)}>
+                    <FontAwesomeIcon icon={icon_history} className="btn_icon"/>
+                    내전 전적
+                </button>
+                <button onClick={() => btnClick(2)} ref={(btn:any) => (btnRef.current[2] = btn)}>
+                    <FontAwesomeIcon icon={icon_ranking} className="btn_icon"/>
+                    스코어 랭킹
+                </button>
+                <button onClick={() => btnClick(3)} ref={(btn:any) => (btnRef.current[3] = btn)}>
+                    <FontAwesomeIcon icon={icon_player} className="btn_icon"/>
+                    플레이어
+                </button>
+                <button onClick={() => btnClick(4)} ref={(btn:any) => (btnRef.current[4] = btn)}>
+                    <FontAwesomeIcon icon={icon_shuffle} className="btn_icon"/>
+                    팀 섞기
+                </button>
+            </div>
         </Style.MainSidebar>
     )
 }
