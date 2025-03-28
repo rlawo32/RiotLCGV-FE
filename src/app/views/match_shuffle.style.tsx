@@ -16,6 +16,7 @@ export const MatchShuffle = styled('div')`
     align-items: center;
     width: 768px;
     height: 100%;
+    min-height: 860px;
     margin: 0 auto;
     padding: 70px 30px;
     border: 1px solid #887d7d;
