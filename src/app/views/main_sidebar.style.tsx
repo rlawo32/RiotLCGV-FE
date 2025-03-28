@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainSidebar = styled('div')`
     @media (max-width: 1280px) {
         width: 768px;
-        padding: 10px 0;
+        padding: 10px 15px;
         margin: 5px auto 25px;
         border: 1px solid #FF4438;
     }
@@ -29,9 +29,8 @@ export const MainSidebar = styled('div')`
             flex-wrap: wrap;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             justify-content: flex-start;
-            width: 75%;
         }
         position: relative;
         display: flex;
@@ -55,7 +54,7 @@ export const MainSidebar = styled('div')`
             font-size: 1rem;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             font-size: .9rem;
         }
         position: absolute;
@@ -82,8 +81,8 @@ export const MainSidebar = styled('div')`
             font-size: 1rem;
         }
         // mobile_view
-        @media (max-width: 500px) {
-            width: calc(92% / 3);
+        @media (max-width: 480px) {
+            width: calc(calc(100% / 2) - 8px);
             padding: 5px;
             margin: 2px 3px;
             font-size: .9rem;
