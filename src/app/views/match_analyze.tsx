@@ -5,6 +5,7 @@ import * as Style from "./match_analyze.stlye";
 import { getGameDuration } from "../component/match_tool";
 
 import DamageGraph from "../component/damage_graph";
+
 import DoubleKillIcon from "../icons/DoubleKillIcon";
 import TripleKillIcon from "../icons/TripleKillIcon";
 import QuadraKillIcon from "../icons/QuadraKillIcon";

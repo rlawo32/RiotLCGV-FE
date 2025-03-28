@@ -4,6 +4,7 @@ import * as Style from "./match_ranking.style"
 import Link from "next/link";
 
 import { duplicationRank } from "../component/match_tool";
+
 import DragonIcon from "../icons/DragonIcon";
 import BaronIcon from "../icons/BaronIcon";
 import HeraldIcon from "../icons/HeraldIcon";

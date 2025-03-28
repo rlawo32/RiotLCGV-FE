@@ -15,7 +15,9 @@ import { getLcgPlayerDataQuery } from "../queries/getLcgPlayerDataQuery";
 
 import { getGameDuration, getPlayerData } from "../component/match_tool";
 
+import MatchAnalyze from "./match_analyze";
 import DamageGraph  from "../component/damage_graph";
+
 import BaronIcon from "../icons/BaronIcon";
 import DragonIcon from "../icons/DragonIcon";
 import HeraldIcon from "../icons/HeraldIcon";
@@ -27,7 +29,6 @@ import MvpIcon from "../icons/MvpIcon";
 import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
 import ProhibitionIcon from "../icons/ProhibitionIcon";
-import MatchAnalyze from "./match_analyze";
 import GameTimeIcon from "../icons/GameTimeIcon";
 
 const MatchHistory = (props : {gameId:number}) => {

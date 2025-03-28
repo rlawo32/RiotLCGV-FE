@@ -7,8 +7,9 @@ import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import { getLcgMatchLogQuery } from "../queries/getLcgMatchLogQuery";
 import useSupabaseBrowser from "../supabase-browser";
 
-import MatchHistory from "./match_history";
 import LoadingSpinner from "../component/loading_spinner";
+import MatchHistory from "./match_history";
+
 import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
 

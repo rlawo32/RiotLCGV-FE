@@ -14,13 +14,14 @@ import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery,
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getPlayerData } from "../component/match_tool";
 
+import LoadingSpinner from "../component/loading_spinner";
+import LastUpdate from "../component/last_update";
+
 import TopIcon from "../icons/topIcon";
 import JugIcon from "../icons/jugIcon";
 import MidIcon from "../icons/midIcon";
 import AdcIcon from "../icons/adcIcon";
 import SupIcon from "../icons/supIcon";
-import LoadingSpinner from "../component/loading_spinner";
-import LastUpdate from "../component/last_update";
 
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();

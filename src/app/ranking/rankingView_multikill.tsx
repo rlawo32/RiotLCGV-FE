@@ -4,6 +4,7 @@ import * as Style from "./match_ranking.style"
 import Link from "next/link";
 
 import { duplicationRank } from "../component/match_tool";
+
 import DoubleKillIcon from "../icons/DoubleKillIcon";
 import TripleKillIcon from "../icons/TripleKillIcon";
 import QuadraKillIcon from "../icons/QuadraKillIcon";

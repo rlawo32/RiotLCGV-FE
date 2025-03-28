@@ -15,6 +15,7 @@ export const MatchList = styled('div')`
     justify-content: center;
     align-items: center;
     height: 100%;
+    min-height: 860px;
     padding: 7px 30px;
     margin: 0 auto;
     border: 1px solid #887d7d;
