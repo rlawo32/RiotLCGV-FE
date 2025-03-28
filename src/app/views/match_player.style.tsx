@@ -151,9 +151,17 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .head_rank {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        width: 100px;
+                    }
                     width: 120px;
 
                     .rank_desc {
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            font-size: 1rem;
+                        }
                         margin-top: 10px;
                         font-size: 1.2rem;
                         font-weight: 700;
@@ -277,6 +285,13 @@ export const PlayerDataBox = styled('div')`
                 margin: 15px 5px;
 
                 .item_figure {
+                    @media (max-width: 768px) {
+                        font-size: 1.5rem;
+                    }
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        font-size: 1.2rem;
+                    }
                     color: #ffffff;
                     font-size: 1.7rem;
                     font-weight: 700;
@@ -284,6 +299,13 @@ export const PlayerDataBox = styled('div')`
                 }
                 
                 .item_title {
+                    @media (max-width: 768px) {
+                        font-size: 1rem;
+                    }
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        font-size: .9rem;
+                    }
                     padding-top: .125rem;
                     color: #7B7A8E;
                     font-size: 1.2rem;

@@ -17,11 +17,11 @@ import { getPlayerData } from "../component/match_tool";
 import LoadingSpinner from "../component/loading_spinner";
 import LastUpdate from "../component/last_update";
 
-import TopIcon from "../icons/topIcon";
-import JugIcon from "../icons/jugIcon";
-import MidIcon from "../icons/midIcon";
-import AdcIcon from "../icons/adcIcon";
-import SupIcon from "../icons/supIcon";
+import TopIcon from "../icons/TopIcon";
+import JugIcon from "../icons/JugIcon";
+import MidIcon from "../icons/MidIcon";
+import AdcIcon from "../icons/AdcIcon";
+import SupIcon from "../icons/SupIcon";
 
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
