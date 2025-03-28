@@ -28,7 +28,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 300px;
+            width: 290px;
         }
         display: flex;
         justify-content: space-between;
@@ -63,8 +63,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 360px;
         }
         // mobile_view
-        @media (max-width: 480px) {
-            width: 300px;
+        @media (max-width: 500px) {
+            width: 290px;
         }
         position: relative;
         top: 0;
