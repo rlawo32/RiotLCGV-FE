@@ -304,7 +304,7 @@ export const PlayerDataBox = styled('div')`
                     }
                     // mobile_view
                     @media (max-width: 480px) {
-                        font-size: .9rem;
+                        font-size: .8rem;
                     }
                     padding-top: .125rem;
                     color: #7B7A8E;
