@@ -6,8 +6,8 @@ import { getCurrentTimeCalc } from "./match_tool";
 
 const LastUpdateStyle = styled('div')`
     // mobile_view
-    @media (max-width: 500px) {
-        font-size: 1rem;
+    @media (max-width: 480px) {
+        font-size: .9rem;
     }
     width: 100%;
     margin-top: 5px;
@@ -18,8 +18,8 @@ const LastUpdateStyle = styled('div')`
 
     span {
         // mobile_view
-        @media (max-width: 500px) {
-            font-size: .9rem;
+        @media (max-width: 480px) {
+            font-size: .8rem;
         }
         margin-left: 3px;
         color: #deddf0;
