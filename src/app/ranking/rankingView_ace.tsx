@@ -29,8 +29,10 @@ const RankingViewAce = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">{item.lcg_count_play} 게임</div>
-                                    <div className="ranker_title">총 {item.lcg_count_ace.toLocaleString()}회</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        총 {item.lcg_count_ace.toLocaleString()}회
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -49,8 +51,10 @@ const RankingViewAce = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">{item.lcg_count_play} 게임</div>
-                                    <div className="ranker_title">총 {item.lcg_count_ace.toLocaleString()}회</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        총 {item.lcg_count_ace.toLocaleString()}회
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -69,8 +73,10 @@ const RankingViewAce = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">{item.lcg_count_play} 게임</div>
-                                    <div className="ranker_title">총 {item.lcg_count_ace.toLocaleString()}회</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        총 {item.lcg_count_ace.toLocaleString()}회
+                                    </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )
