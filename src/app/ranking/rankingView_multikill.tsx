@@ -38,12 +38,23 @@ const RankingViewMultiKill = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">멀티킬 점수 {item.lcg_multi_kill_score}</div>
-                                    <div className="object_box ranker_title">
-                                        <div className="highRank_multikill_item"><DoubleKillIcon /><span>{item.lcg_count_double_kill}</span></div>
-                                        <div className="highRank_multikill_item"><TripleKillIcon /><span>{item.lcg_count_triple_kill}</span></div>
-                                        <div className="highRank_multikill_item"><QuadraKillIcon /><span>{item.lcg_count_quadra_kill}</span></div>
-                                        <div className="highRank_multikill_item"><PentaKillIcon /><span>{item.lcg_count_penta_kill}</span></div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <div className="object_box">
+                                                    <div className="highRank_multikill_item"><DoubleKillIcon /><span>{item.lcg_count_double_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><TripleKillIcon /><span>{item.lcg_count_triple_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><QuadraKillIcon /><span>{item.lcg_count_quadra_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><PentaKillIcon /><span>{item.lcg_count_penta_kill}</span></div>
+                                                </div>
+                                            </div>
+                                            <div className="box_title">
+                                            </div>
+                                            <div className="box_detail">
+                                                멀티킬 점수 {item.lcg_multi_kill_score.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
@@ -63,12 +74,23 @@ const RankingViewMultiKill = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">멀티킬 점수 {item.lcg_multi_kill_score}</div>
-                                    <div className="object_box ranker_title">
-                                        <div className="highRank_multikill_item"><DoubleKillIcon /><span>{item.lcg_count_double_kill}</span></div>
-                                        <div className="highRank_multikill_item"><TripleKillIcon /><span>{item.lcg_count_triple_kill}</span></div>
-                                        <div className="highRank_multikill_item"><QuadraKillIcon /><span>{item.lcg_count_quadra_kill}</span></div>
-                                        <div className="highRank_multikill_item"><PentaKillIcon /><span>{item.lcg_count_penta_kill}</span></div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <div className="object_box">
+                                                    <div className="highRank_multikill_item"><DoubleKillIcon /><span>{item.lcg_count_double_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><TripleKillIcon /><span>{item.lcg_count_triple_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><QuadraKillIcon /><span>{item.lcg_count_quadra_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><PentaKillIcon /><span>{item.lcg_count_penta_kill}</span></div>
+                                                </div>
+                                            </div>
+                                            <div className="box_title">
+                                            </div>
+                                            <div className="box_detail">
+                                                멀티킬 점수 {item.lcg_multi_kill_score.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
@@ -88,12 +110,23 @@ const RankingViewMultiKill = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">멀티킬 점수 {item.lcg_multi_kill_score}</div>
-                                    <div className="object_box ranker_title">
-                                        <div className="highRank_multikill_item"><DoubleKillIcon /><span>{item.lcg_count_double_kill}</span></div>
-                                        <div className="highRank_multikill_item"><TripleKillIcon /><span>{item.lcg_count_triple_kill}</span></div>
-                                        <div className="highRank_multikill_item"><QuadraKillIcon /><span>{item.lcg_count_quadra_kill}</span></div>
-                                        <div className="highRank_multikill_item"><PentaKillIcon /><span>{item.lcg_count_penta_kill}</span></div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <div className="object_box">
+                                                    <div className="highRank_multikill_item"><DoubleKillIcon /><span>{item.lcg_count_double_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><TripleKillIcon /><span>{item.lcg_count_triple_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><QuadraKillIcon /><span>{item.lcg_count_quadra_kill}</span></div>
+                                                    <div className="highRank_multikill_item"><PentaKillIcon /><span>{item.lcg_count_penta_kill}</span></div>
+                                                </div>
+                                            </div>
+                                            <div className="box_title">
+                                            </div>
+                                            <div className="box_detail">
+                                                멀티킬 점수 {item.lcg_multi_kill_score.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>

@@ -31,8 +31,10 @@ const RankingViewWinningRate = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">승률 {item.rate}%</div>
-                                    <div className="ranker_detail">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                    <div className="ranker_content_main">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                    <div className="ranker_content_sub">
+                                        승률 {item.rate}%
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -51,8 +53,10 @@ const RankingViewWinningRate = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">승률 {item.rate}%</div>
-                                    <div className="ranker_detail">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                    <div className="ranker_content_main">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                    <div className="ranker_content_sub">
+                                        승률 {item.rate}%
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -71,8 +75,10 @@ const RankingViewWinningRate = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_title">승률 {item.rate}%</div>
-                                    <div className="ranker_detail">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                    <div className="ranker_content_main">{item.lcg_count_victory}승 {item.lcg_count_defeat}패</div>
+                                    <div className="ranker_content_sub">
+                                        승률 {item.rate}%
+                                    </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )

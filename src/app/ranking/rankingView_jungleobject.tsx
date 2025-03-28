@@ -37,13 +37,24 @@ const RankingViewJungleObject = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="object_box ranker_title">
-                                        <div className="highRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
-                                        <div className="highRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
-                                        <div className="highRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
-                                        <div className="highRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <div className="object_box">
+                                                    <div className="highRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
+                                                    <div className="highRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
+                                                    <div className="highRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
+                                                    <div className="highRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
+                                                </div>
+                                            </div>
+                                            <div className="box_title">
+                                            </div>
+                                            <div className="box_detail">
+                                                오브젝트 점수 {item.lcg_jungle_object_score.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="ranker_detail">오브젝트 점수 {item.lcg_jungle_object_score}</div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -62,13 +73,24 @@ const RankingViewJungleObject = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="object_box ranker_title">
-                                        <div className="highRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
-                                        <div className="highRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
-                                        <div className="highRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
-                                        <div className="highRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <div className="object_box">
+                                                    <div className="highRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
+                                                    <div className="highRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
+                                                    <div className="highRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
+                                                    <div className="highRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
+                                                </div>
+                                            </div>
+                                            <div className="box_title">
+                                            </div>
+                                            <div className="box_detail">
+                                                오브젝트 점수 {item.lcg_jungle_object_score.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="ranker_detail">오브젝트 점수 {item.lcg_jungle_object_score}</div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -87,13 +109,24 @@ const RankingViewJungleObject = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="object_box ranker_title">
-                                        <div className="highRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
-                                        <div className="highRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
-                                        <div className="highRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
-                                        <div className="highRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                                <div className="object_box">
+                                                    <div className="highRank_object_item"><DragonIcon />{item.lcg_count_dragon}</div>
+                                                    <div className="highRank_object_item"><BaronIcon />{item.lcg_count_baron}</div>
+                                                    <div className="highRank_object_item"><HeraldIcon />{item.lcg_count_herald}</div>
+                                                    <div className="highRank_object_item"><HordeIcon />{item.lcg_count_horde}</div>
+                                                </div>
+                                            </div>
+                                            <div className="box_title">
+                                            </div>
+                                            <div className="box_detail">
+                                                오브젝트 점수 {item.lcg_jungle_object_score.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="ranker_detail">오브젝트 점수 {item.lcg_jungle_object_score}</div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )
