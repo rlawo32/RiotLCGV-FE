@@ -32,8 +32,19 @@ const RankingViewVision = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">시야 점수 {item.lcg_count_vision_score}</div>
-                                    <div className="ranker_title">기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                            </div>
+                                            <div className="box_title">
+                                                기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}
+                                            </div>
+                                            <div className="box_detail">
+                                                시야 점수 {item.lcg_count_vision_score}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -52,8 +63,19 @@ const RankingViewVision = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">시야 점수 {item.lcg_count_vision_score}</div>
-                                    <div className="ranker_title">기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                            </div>
+                                            <div className="box_title">
+                                                기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}
+                                            </div>
+                                            <div className="box_detail">
+                                                시야 점수 {item.lcg_count_vision_score}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
@@ -72,8 +94,19 @@ const RankingViewVision = (props : {data:{
                                     <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_nickname.split('#')[0] + "-" + item.lcg_nickname.split('#')[1]} target="_blank">
                                         <div className="ranker_name">{item.lcg_nickname.split('#')[0]}</div>
                                     </Link>
-                                    <div className="ranker_detail">시야 점수 {item.lcg_count_vision_score}</div>
-                                    <div className="ranker_title">기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}</div>
+                                    <div className="ranker_content_main">{item.lcg_count_play} 게임</div>
+                                    <div className="ranker_content_sub">
+                                        <div className="detail_box">
+                                            <div className="box_content">
+                                            </div>
+                                            <div className="box_title">
+                                                기본 {item.lcg_count_ward_placed} / 제어 {item.lcg_count_vision_ward} / 파괴 {item.lcg_count_ward_kill}
+                                            </div>
+                                            <div className="box_detail">
+                                                시야 점수 {item.lcg_count_vision_score}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
                         )
