@@ -4,6 +4,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
     @media (max-width: 1024px) {
         width: 100%;
         padding: 7px 15px;
+        min-height: 460px;
     }
     // mobile_view
     @media (max-width: 480px) {
@@ -11,6 +12,7 @@ export const MatchRanking = styled('div')<{$type:string}>`
     }
     position: relative;
     height: 100%;
+    min-height: 860px;
     width: 768px;
     margin: 0 auto;
     padding: 7px 30px;
@@ -48,12 +50,16 @@ export const MatchRanking = styled('div')<{$type:string}>`
         justify-content: center;
         align-items: center;
         height: 170px;
-        padding-top: 25px;
+        padding-top: 45px;
     }
 
     .ranking_bottom {
         @media (max-width: 768px) {
             margin-top: 55px;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
+            margin-top: 35px;
         }
         display: flex;
         align-items: center;
@@ -351,14 +357,14 @@ export const RankerContent = styled('div')<{$ea:number}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            font-size: ${({$ea}) => $ea > 3 ? ".5rem" : $ea === 2 ? ".9rem" : $ea === 3 ? ".7rem" : "1.1rem"};
+            font-size: ${({$ea}) => $ea > 3 ? ".6rem" : $ea === 2 ? ".8rem" : $ea === 3 ? ".6rem" : "1rem"};
         }
         margin: 0 0 3px;
         font-size: ${({$ea}) => $ea > 3 ? ".9rem" : $ea === 2 ? "1.3rem" : $ea === 3 ? "1.1rem" : "1.5rem"};
         cursor: pointer;
     }
 
-    .ranker_title {
+    .ranker_content_main {
         @media (max-width: 768px) {
             font-size: ${({$ea}) => $ea > 3 ? ".6rem" : $ea === 2 ? ".8rem" : $ea === 3 ? ".6rem" : ".9rem"};
         }
@@ -368,14 +374,55 @@ export const RankerContent = styled('div')<{$ea:number}>`
         }
         justify-content: center;
         font-size: ${({$ea}) => $ea > 3 ? ".8rem" : $ea === 2 ? "1rem" : $ea === 3 ? ".8rem" : "1.1rem"};
-        font-weight: bold;
     }
 
-    .ranker_detail {
+    .ranker_content_sub {
         @media (max-width: 768px) {
             font-size: ${({$ea}) => $ea > 3 ? ".5rem" : $ea === 2 ? ".7rem" : $ea === 3 ? ".5rem" : ".8rem"};
         }
+        // mobile_view
+        @media (max-width: 480px) {
+            font-size: ${({$ea}) => $ea > 3 ? ".4rem" : $ea === 2 ? ".6rem" : $ea === 3 ? ".4rem" : ".7rem"};
+        }
         font-size: ${({$ea}) => $ea > 3 ? ".7rem" : $ea === 2 ? ".9rem" : $ea === 3 ? ".7rem" : "1rem"};
+        font-weight: bold;
+    }
+
+    .detail_box {
+        margin-top: 3px;
+        font-weight: normal;
+
+        .box_content {
+            svg {
+                @media (max-width: 768px) {
+                    width: 10px;
+                    height: 10px;
+                }
+                // mobile_view
+                @media (max-width: 480px) {
+                    width: 8px;
+                    height: 8px;
+                }
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        .box_title {
+            margin-top: 2px;
+        }
+
+        .box_detail {
+            @media (max-width: 768px) {
+                font-size: ${({$ea}) => $ea > 3 ? ".6rem" : $ea === 2 ? ".6rem" : $ea === 3 ? ".6rem" : ".7rem"};
+            }
+            // mobile_view
+            @media (max-width: 480px) {
+                font-size: ${({$ea}) => $ea > 3 ? ".4rem" : $ea === 2 ? ".6rem" : $ea === 3 ? ".4rem" : ".6rem"};
+            }
+            font-size: ${({$ea}) => $ea > 3 ? ".6rem" : $ea === 2 ? ".8rem" : $ea === 3 ? ".6rem" : ".9rem"};
+            font-weight: bold;
+        }
     }
 `
 
@@ -394,6 +441,7 @@ export const HighRankingCard = styled('div')<{$rank:number, $image:string}>`
     top: ${({$rank}) => $rank === 1 ? "-55px" : 0};
     height: 460px;
     width: 160px;
+    margin-top: 80px;
     border-radius: 10px;
     background-color: rgb(43 43 48 / 1);
     overflow: hidden;
