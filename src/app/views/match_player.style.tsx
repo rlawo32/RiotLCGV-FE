@@ -369,7 +369,7 @@ export const PlayerDataBox = styled('div')`
             align-items: center;
             width: 100%;
             min-width: calc(90% / 2);
-            min-height: 635px;
+            min-height: 550px;
             margin: 5px;
             border-radius: 10px;
             background-color: rgb(30 30 38 / 1);
