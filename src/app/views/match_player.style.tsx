@@ -317,7 +317,7 @@ export const PlayerDataBox = styled('div')`
                     }
                     // mobile_view
                     @media (max-width: 480px) {
-                        font-size: .8rem;
+                        font-size: .7rem;
                     }
                     padding-top: .125rem;
                     color: #7B7A8E;
@@ -363,10 +363,13 @@ export const PlayerDataBox = styled('div')`
             @media (max-width: 768px) {
                 margin: 10px 0 0 0;
             }
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
+            min-width: 330px;
+            min-height: 635px;
             margin: 5px;
             border-radius: 10px;
             background-color: rgb(30 30 38 / 1);
@@ -385,7 +388,7 @@ export const PlayerDataBox = styled('div')`
 
                 .head_opponent {
                     width: 100px;
-                    text-align: left;
+                    text-align: center;
                 }
 
                 .head_winningRate {

@@ -1,15 +1,16 @@
 'use client'
 
 import * as Style from "./match_player.style";
+import * as MainStyle from "./main_view.style";
 import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
-import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery, 
+import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionTotalQuery, getSelectLcgPlayerChampionQuery, 
     getSelectLcgAllKdaQuery, getSelectLcgWinningRateQuery, getSelectLcgPlayerDataQuery, 
-    getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerAvgDpmQuery, getSelectLcgPlayerAvgGpmQuery,
-    getSelectLcgPlayerAvgDpgQuery, getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
+    getSelectLcgPlayerRelativeTotalQuery, getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerAvgDpmQuery, 
+    getSelectLcgPlayerAvgGpmQuery, getSelectLcgPlayerAvgDpgQuery, getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
 } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getPlayerData } from "../component/match_tool";
@@ -33,12 +34,16 @@ const MatchPlayer = () => {
     const { data: lcgPlayerData, isLoading: loading1 } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
 
     const [selectPlayer, setSelectPlayer] = useState<string>("");
+    const [pageChampion, setPageChampion] = useState<number>(1);
+    const [pageRelative, setPageRelative] = useState<number>(1);
 
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerWinningRate } = useQuery(getSelectLcgWinningRateQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
-    const { data: selectPlayerChampion } = useQuery(getSelectLcgPlayerChampionQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
-    const { data: selectPlayerRelative } = useQuery(getSelectLcgPlayerRelativeQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: playerChampionTotal } = useQuery(getSelectLcgPlayerChampionTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: playerRelativeTotal } = useQuery(getSelectLcgPlayerRelativeTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerChampion } = useQuery(getSelectLcgPlayerChampionQuery(supabase, selectPlayer, pageChampion), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerRelative } = useQuery(getSelectLcgPlayerRelativeQuery(supabase, selectPlayer, pageRelative), {enabled:!!lcgPlayerData});
     const { data: selectPlayerDpm } = useQuery(getSelectLcgPlayerAvgDpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerGpm } = useQuery(getSelectLcgPlayerAvgGpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerDpg } = useQuery(getSelectLcgPlayerAvgDpgQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -59,6 +64,11 @@ const MatchPlayer = () => {
 
         return result;
     }
+
+    useEffect(() => {
+        setPageChampion(1);
+        setPageRelative(1);
+    }, [selectPlayer])
 
     useEffect(() => {
         if(!!lcgPlayerData) {
@@ -183,7 +193,7 @@ const MatchPlayer = () => {
                                             }
                                         </div>
                                         <div className="item_title">
-                                            분당 데미지
+                                            평균 분당 데미지
                                         </div>
                                     </div>
                                     <div className="bottom_item">
@@ -193,7 +203,7 @@ const MatchPlayer = () => {
                                             }
                                         </div>
                                         <div className="item_title">
-                                            분당 골드 획득
+                                            평균 분당 골드 획득
                                         </div>
                                     </div>
                                     <div className="bottom_item">
@@ -203,7 +213,7 @@ const MatchPlayer = () => {
                                             }
                                         </div>
                                         <div className="item_title">
-                                            골드당 데미지
+                                            평균 골드당 데미지
                                         </div>
                                     </div>
                                     <div className="bottom_item">
@@ -273,6 +283,17 @@ const MatchPlayer = () => {
                                             </div>
                                         )
                                     })}
+                                    {
+                                        !!playerRelativeTotal && !!selectPlayerRelative ?
+                                            <>
+                                                {
+                                                    playerRelativeTotal.length <= selectPlayerRelative.length ? <></> : 
+                                                        <MainStyle.Pagination>
+                                                            <button onClick={() => setPageRelative(pageRelative + 1)} className="more_btn">더보기</button>
+                                                        </MainStyle.Pagination>
+                                                }
+                                            </> : <LoadingSpinner />
+                                    }
                                 </div>
                                 <div className="body_section body_right">
                                     <div className="champion_head">
@@ -324,6 +345,17 @@ const MatchPlayer = () => {
                                             </div>
                                         )
                                     })}
+                                    {
+                                        !!playerChampionTotal && !!selectPlayerChampion ?
+                                            <>
+                                                {
+                                                    playerChampionTotal.length <= selectPlayerChampion.length ? <></> : 
+                                                        <MainStyle.Pagination>
+                                                            <button onClick={() => setPageChampion(pageChampion + 1)} className="more_btn">더보기</button>
+                                                        </MainStyle.Pagination>
+                                                }
+                                            </> : <LoadingSpinner />
+                                    }
                                 </div>
                             </div>
                         </Style.PlayerDataBox>
