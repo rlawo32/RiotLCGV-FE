@@ -60,7 +60,7 @@ const MatchList = () => {
     }
 
     const pagination = ():any[] => {
-        let result:any[] = [];
+        const result:any[] = [];
 
         if(!!totalData) {
             const totalPage:number = Math.ceil(totalData.length / 10);
