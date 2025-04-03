@@ -85,7 +85,6 @@ export const Pagination = styled('div')`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 25px;
     width: 100%;
 
     button {
@@ -101,14 +100,14 @@ export const Pagination = styled('div')`
 
     .page_btn {
         padding: .5rem 1rem;
-        margin: .5rem;
+        margin: .5rem .5rem 2.5rem;
         font-size: 1.3rem;
     }
 
     .more_btn {
         width: 100%;
         padding: .7rem 2rem;
-        margin: 2rem 0;
+        margin: 2rem 0 1rem;
         font-size: 1.2rem;
     }
 `
