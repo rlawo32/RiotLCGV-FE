@@ -5,7 +5,7 @@ import * as MainStyle from "./main_view.style"
 
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { getLcgMatchLogQuery, getLcgMatchLogPagingQuery, getLcgMatchLogTotalQuery } from "../queries/getLcgMatchLogQuery";
+import { getLcgMatchLogPagingQuery, getLcgMatchLogTotalQuery } from "../queries/getLcgMatchLogQuery";
 import useSupabaseBrowser from "../supabase-browser";
 
 import LoadingSpinner from "../component/loading_spinner";
