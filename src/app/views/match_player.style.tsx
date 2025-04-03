@@ -368,7 +368,7 @@ export const PlayerDataBox = styled('div')`
             flex-direction: column;
             align-items: center;
             width: 100%;
-            min-width: 330px;
+            min-width: calc(90% / 2);
             min-height: 635px;
             margin: 5px;
             border-radius: 10px;
