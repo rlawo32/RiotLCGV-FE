@@ -395,7 +395,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                     .lcg_win {
                         @media (max-width: 768px) {
-                            font-size: 1.5rem;
+                            font-size: 1.3rem;
                         }
                         font-weight: bold;
                         font-size: 1.8rem;
@@ -412,7 +412,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                         .lcg_team_kda {
                             @media (max-width: 768px) {
                                 margin: 0 0 0 10px;
-                                font-size: 1.4rem;
+                                font-size: 1.3rem;
                             }
                             // mobile_view
                             @media (max-width: 480px) {
@@ -425,7 +425,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                         .lcg_team_gold {
                             @media (max-width: 768px) {
-                                font-size: 1.4rem;
+                                font-size: 1.3rem;
                                 margin: 0 0 0 30px;
                             }
                             // mobile_view
@@ -457,7 +457,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                         .lcg_object_item {
                             @media (max-width: 768px) {
-                                font-size: 1.2rem;
+                                font-size: 1.3rem;
                                 margin: 3px 5px 0 25px;
                             }
                             // mobile_view
