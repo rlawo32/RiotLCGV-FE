@@ -78,3 +78,37 @@ export const MainView = styled('div')`
         }
     }
 `
+
+export const Pagination = styled('div')`
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
+
+    button {
+        border: none;
+        border-radius: 8px;
+        background-color: rgb(70 70 88 / 1);
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(70 70 88 / .5);
+        }
+    }
+
+    .page_btn {
+        padding: .5rem 1rem;
+        margin: .5rem;
+        font-size: 1.3rem;
+    }
+
+    .more_btn {
+        width: 100%;
+        padding: .7rem 2rem;
+        margin: 2rem 0;
+        font-size: 1.2rem;
+    }
+`
