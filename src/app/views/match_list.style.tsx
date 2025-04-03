@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const MatchList = styled('div')`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     @media (max-width: 1024px) {
         width: 100%;
+        min-width: 0px;
         padding: 7px 15px;
     }
     // mobile_view
     @media (max-width: 480px) {
         padding: 7px 2px;
     }
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-width: 832px;
     height: 100%;
     min-height: 860px;
     padding: 7px 30px;
@@ -24,10 +26,21 @@ export const MatchList = styled('div')`
 `;
 
 export const ListContainer = styled('div')`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+`
+
+export const ListItem = styled('div')`
     @media (max-width: 1024px) {
         width: 100%;
     }
     position: relative;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
