@@ -22,6 +22,13 @@ export const MatchRanking = styled('div')<{$type:string}>`
     color: #ffffff;
 
     h4 {
+        @media (max-width: 768px) {
+            font-size: 1.3rem;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
+            font-size: 1.1rem;
+        }
         color: gray;
         font-size: 1.5rem;
         font-weight: 700;
