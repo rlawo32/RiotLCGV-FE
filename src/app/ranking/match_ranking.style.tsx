@@ -21,6 +21,48 @@ export const MatchRanking = styled('div')<{$type:string}>`
     background-color: rgb(49 49 60 / .7);
     color: #ffffff;
 
+    h4 {
+        color: gray;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .s_rank_text {
+        background-image: -webkit-linear-gradient(336deg,#f00, #ff2b00, #f50, #ff8000, #fa0, #ffd500, #ff0, 
+            #d4ff00, #af0, #80ff00, #5f0, #2bff00, #0f0, #00ff2a, #0f5, #00ff80, #0fa, #00ffd5, 
+            #0ff, #00d5ff, #0af, #0080ff, #05f, #002aff, #00f, #2b00ff, #50f, #8000ff, #a0f, 
+            #d400ff, #f0f, #ff00d4, #f0a, #ff0080, #f05, #ff002b, #f00);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-size: 200% 100%;
+        animation: slide 15s infinite linear;
+    }
+    @keyframes slide{0%{background-position:0 0}to{background-position:-200% 0}}
+
+    .a_rank_text{
+        color: #FEDB37;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #FFEBA8 0%, #E5C787 8%, #F2D792 30%, #D2B360 40%, transparent 80%),
+                    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #F2D792 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .b_rank_text{
+        color: #A8A8A8;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #404040 0%, #848484 8%, #EDEDED 30%, #E2E2E2 40%, transparent 80%),
+                    radial-gradient(ellipse farthest-corner at left top, #898989 0%, #E2E2E2 8%, #FDFDFD 25%, #A4A4A4 62.5%, #A8A8A8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .c_rank_text{
+        color: #823F2E;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #EABAAD 0%, #DEA99E 8%, #D88F7A 30%, #B07366 60%, transparent 80%),
+                    radial-gradient(ellipse farthest-corner at left top, #FFF1EE 0%, #EABAAD 8%, #D88F7A 25%, #7E3B2A 62.5%, #DF946D 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
     .ranking_container {
         z-index: 1;
         position: relative;

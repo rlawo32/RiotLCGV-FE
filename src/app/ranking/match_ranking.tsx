@@ -6,12 +6,12 @@ import { useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { 
-    getLcgAllWinningRateQuery, getLcgAllKillQuery, getLcgAllDeathQuery, 
-    getLcgAllAssistQuery, getLcgAllCsQuery, getLcgAllDemolisherQuery,
-    getLcgAllGoldQuery, getLcgAllDamageQuery, getLcgAllTakenQuery,
-    getLcgAllJungleObjectQuery, getLcgAllMultiKillQuery, getLcgAllVisionQuery,
-    getLcgAllAvgDpmQuery, getLcgAllAvgGpmQuery, getLcgAllAvgDpgQuery, 
-    getLcgAllMvpQuery, getLcgAllAceQuery,
+    getLcgAllOverallQuery, getLcgAllWinningRateQuery, getLcgAllKillQuery, 
+    getLcgAllDeathQuery, getLcgAllAssistQuery, getLcgAllCsQuery, 
+    getLcgAllDemolisherQuery,getLcgAllGoldQuery, getLcgAllDamageQuery, 
+    getLcgAllTakenQuery,getLcgAllJungleObjectQuery, getLcgAllMultiKillQuery, 
+    getLcgAllVisionQuery,getLcgAllAvgDpmQuery, getLcgAllAvgGpmQuery, 
+    getLcgAllAvgDpgQuery, getLcgAllMvpQuery, getLcgAllAceQuery,
     getLcgOneGameBest3KillQuery, getLcgOneGameBest3AssistQuery, getLcgOneGameBest3DeathQuery,
     getLcgOneGameBest3CsQuery, getLcgOneGameBest3GoldQuery, getLcgOneGameBest3TowerQuery,
     getLcgOneGameBest3DamageQuery, getLcgOneGameBest3HighTakenQuery, getLcgOneGameBest3LowTakenQuery,
@@ -22,6 +22,7 @@ import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import SelectBox from "../component/select_box";
 import LoadingSpinner from "../component/loading_spinner";
 
+import RankingViewOverall from "./rankingView_overall";
 import RankingViewWinningRate from "./rankingView_winningRate";
 import RankingViewKill from "./rankingView_kill";
 import RankingViewDeath from "./rankingView_death";
@@ -58,12 +59,12 @@ const MatchRanking = () => {
 
     const [rankSelectIdx, setRankSelectIdx] = useState<number>(0);
     const rankSelectArr:{key:string, name:string}[] = [
-        {key:"AW", name:"총 승률"}, {key:"AK", name:"총 킬"}, {key:"AD", name:"총 데스"}, 
-        {key:"AS", name:"총 어시스트"}, {key:"AC", name:"총 CS"}, {key:"AT", name:"총 철거"}, 
-        {key:"AG", name:"총 골드"}, {key:"ADA", name:"총 피해량"}, {key:"ATA", name:"총 받은피해량"}, 
-        {key:"AJ", name:"총 오브젝트"}, {key:"AM", name:"총 멀티킬"}, {key:"AV", name:"총 시야점수"}, 
-        {key:"ADM", name:"총 DPM"}, {key:"AGM", name:"총 GPM"}, {key:"ADG", name:"총 DPG"}, 
-        {key:"AMP", name:"총 MVP"}, {key:"AAE", name:"총 ACE"}, 
+        {key:"AA", name:"종합 랭킹"}, {key:"AW", name:"총 승률"}, {key:"AK", name:"총 킬"}, 
+        {key:"AD", name:"총 데스"}, {key:"AS", name:"총 어시스트"}, {key:"AC", name:"총 CS"}, 
+        {key:"AT", name:"총 철거"}, {key:"AG", name:"총 골드"}, {key:"ADA", name:"총 피해량"}, 
+        {key:"ATA", name:"총 받은피해량"}, {key:"AJ", name:"총 오브젝트"}, {key:"AM", name:"총 멀티킬"}, 
+        {key:"AV", name:"총 시야점수"}, {key:"ADM", name:"총 DPM"}, {key:"AGM", name:"총 GPM"}, 
+        {key:"ADG", name:"총 DPG"}, {key:"AMP", name:"총 MVP"}, {key:"AAE", name:"총 ACE"}, 
         {key:"1GK", name:"최다 킬"}, {key:"1GD", name:"최다 데스"}, {key:"1GA", name:"최다 어시스트"}, 
         {key:"1GC", name:"최다 CS"}, {key:"1GG", name:"최다 골드"}, {key:"1GT", name:"최다 철거"}, 
         {key:"1GDA", name:"최고 피해량"}, {key:"1GHT", name:"최고 받은피해량"}, {key:"1GLT", name:"최저 받은피해량"}, 
@@ -71,6 +72,7 @@ const MatchRanking = () => {
     ];
     const { data: lcgMatchEtc, isLoading: loading1} = useQuery(getLcgMatchEtcQuery(supabase), {});
     
+    const { data: queryOverallResult } = useQuery(getLcgAllOverallQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AA'});
     const { data: queryWinningRateResult } = useQuery(getLcgAllWinningRateQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AW'});
     const { data: queryAllKillResult } = useQuery(getLcgAllKillQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AK'});
     const { data: queryAllDeathResult } = useQuery(getLcgAllDeathQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AD'});
@@ -112,6 +114,7 @@ const MatchRanking = () => {
                         </div>
                         {
                             lcgMatchEtc ?
+                            queryOverallResult && rankSelectArr[rankSelectIdx].key === 'AA'                 ? <RankingViewOverall data={queryOverallResult}/>                                           : 
                             queryWinningRateResult && rankSelectArr[rankSelectIdx].key === 'AW'             ? <RankingViewWinningRate data={queryWinningRateResult}/>                                   : 
                             queryAllKillResult && rankSelectArr[rankSelectIdx].key === 'AK'                 ? <RankingViewKill data={queryAllKillResult}/>                                              : 
                             queryAllDeathResult && rankSelectArr[rankSelectIdx].key === 'AD'                ? <RankingViewDeath data={queryAllDeathResult}/>                                            : 
