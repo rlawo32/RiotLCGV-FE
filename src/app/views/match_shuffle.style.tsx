@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MatchShuffle = styled('div')`
     @media (max-width: 1024px) {
         width: 100%;
+        min-height: 0;
         padding: 50px 15px;
     }
     // mobile_view
@@ -74,13 +75,16 @@ export const MatchShuffle = styled('div')`
                     margin: auto;
                     
                     .list_select {
+                        @media (max-width: 1024px) {
+                            top: 20px;
+                        }
                         @media (max-width: 768px) {
-                            top: 19px;
+                            top: 20px;
                             left: 10px;
                         }
                         // mobile_view
                         @media (max-width: 480px) {
-                            top: 12px;
+                            top: 13px;
                             left: 7px;
                         }
                         position: absolute;
@@ -90,17 +94,17 @@ export const MatchShuffle = styled('div')`
 
                     .list_check {
                         @media (max-width: 768px) {
-                            top: 17px;
-                            right: 10px;
+                            top: 17.5px;
+                            right: 9px;
                         }
                         // mobile_view
                         @media (max-width: 480px) {
-                            top: 12px;
-                            right: 7px;
+                            top: 11px;
+                            right: 6px;
                         }
                         position: absolute;
-                        top: 19px;
-                        right: 15px;
+                        top: 20px;
+                        right: 13px;
                     }
 
                     .list_image {
@@ -117,10 +121,18 @@ export const MatchShuffle = styled('div')`
     .control_section {
         @media (max-width: 768px) {
             width: 100%;
+            height: 190px;
             padding: 25px 0 20px;
+            margin-top: 40px;
         }
+        // mobile_view
+        @media (max-width: 480px) {
+            height: 180px;
+        }
+        width: 560px;
+        height: 210px;
         padding: 25px 45px;
-        margin-top: 35px;
+        margin-top: 60px;
         border-radius: 20px;
         background-color: rgb(30 30 38 / 1);
 
@@ -254,25 +266,26 @@ export const InputValueStyle = styled('input')`
 export const InputPlayerStyle = styled('input')<{$camp:number}>`
     @media (max-width: 1024px) {
         width: 240px;
+        padding: 10px 40px 10px 60px;
         font-size: 1.8rem;
     }
     @media (max-width: 768px) {
         width: 170px;
         margin: 10px 2px;
-        padding: 10px 30px 10px 55px;
+        padding: 10px 35px 10px 52px;
         font-size: 1.5rem;
     }
     // mobile_view
     @media (max-width: 480px) {
         width: 130px;
         margin: 5px 2px;
-        padding: 7px 25px 10px 42px;
+        padding: 7px 25px 8px 42px;
         border-radius: 10px;
         font-size: 1.3rem;
     }
     width: 300px;
     margin: 10px 5px;
-    padding: 10px 55px 10px 70px;
+    padding: 10px 45px 10px 60px;
     border: 2px solid ${({$camp}) => $camp === 0 ? "#1F85FD" : "#F60C50"};
     border-radius: 15px;
     background: rgb(28 28 31 / 1);
@@ -311,7 +324,7 @@ export const BtnStyle= styled('button')`
     box-shadow: 0 0 40px rgba(42,50,113, .68);
     background-color: rgb(28 28 31 / 1);
     color: #ffffff;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     cursor: pointer;
     transition: 0.5s;
@@ -351,113 +364,56 @@ export const CheckStyle = styled('input')`
 
     &:checked {
 
-        + .check-box {
-            border-color:#7B7A8E;
-    
-            &::after{
-                @media (max-width: 768px) {
-                    height: 10px;
-                }
-                height: 25px;
-                -moz-animation: dothabottomcheck .2s ease 0s forwards;
-                -o-animation: dothabottomcheck .2s ease 0s forwards;
-                -webkit-animation: dothabottomcheck .2s ease 0s forwards;
-                animation: dothabottomcheck .2s ease 0s forwards;
+        + .check_box {
+            @media (max-width: 1024px) {
+                padding: 4px 0 0;
             }
-            
-            &::before{
-                @media (max-width: 768px) {
-                    height: 20px;
-                }
-                height: 60px;
-                box-shadow: 0 0 0 3px rgba(42,50,73, .7);
-                -moz-animation: dothatopcheck .4s ease 0s forwards;
-                -o-animation: dothatopcheck .4s ease 0s forwards;
-                -webkit-animation: dothatopcheck .4s ease 0s forwards;
-                animation: dothatopcheck .4s ease 0s forwards;
+            @media (max-width: 768px) {
+                padding: 5px 0 0;
             }
+            // mobile_view
+            @media (max-width: 480px) {
+                padding: 4px 0 0;
+            }
+            padding: 6px 0 0;
+            border: none;
+            border-radius: 7px;
+            background-color: red;
         }
-    }
-
-    @-moz-keyframes dothabottomcheck{
-      0% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 16px;
-        }
-        height: 24px; }
-    } 
-    @-webkit-keyframes dothabottomcheck{
-      0% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 16px;
-        }
-        height: 24px; }
-    }
-    @keyframes dothabottomcheck{
-      0% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 16px;
-        }
-        height: 24px; }
-    }
-    @keyframes dothatopcheck{
-      0% { height: 0; }
-      50% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 30px;
-        }
-        height: 50px; }
-    }
-    @-webkit-keyframes dothatopcheck{
-      0% { height: 0; }
-      50% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 30px;
-        }
-        height: 50px; }
-    }
-    @-moz-keyframes dothatopcheck{
-      0% { height: 0; }
-      50% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 30px;
-        }
-        height: 50px; }
     }
 `;
 
 export const LabelStyle = styled('label')`
+    @media (max-width: 1024px) {
+        width: 25px;
+        height: 20px;
+        padding: 3px 0 0;
+        font-size: .9rem;
+    }
     @media (max-width: 768px) {
-        height: 22px;
-        width: 22px;
+        padding: 4px 0 0;
+        font-size: .8rem;
     }
     // mobile_view
     @media (max-width: 480px) {
         height: 17px;
-        width: 17px;
+        width: 20px;
+        padding: 3px 0 0;
+        font-size: .7rem;
     }
-    display: inline-block;
-    height: 27px;
-    width: 27px;
-    margin: 3px 0 0 0;
-    background-color: transparent;
-    border: 2px solid #7B7A8E;
-    border-radius: 5px;
     position: relative;
     display: inline-block;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    width: 30px;
+    height: 25px;
+    padding: 5px 0 0;
+    margin: 3px 0 0 0;
+    border: 1px solid #7B7A8E;
+    border-radius: 7px;
+    background-color: transparent;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
     box-sizing: border-box;
-    -moz-transition: border-color ease .2s;
-    -o-transition: border-color ease .2s;
-    -webkit-transition: border-color ease .2s;
-    transition: border-color ease .2s;
     cursor:pointer;
 
     transition-property: transform;
@@ -465,131 +421,32 @@ export const LabelStyle = styled('label')`
     &:hover {
 
         + .tooltip {
-            width: 32px;
-            top: -30px;
+            // mobile_view
+            @media (max-width: 480px) {
+                top: -20px;
+            }
+            top: -23px;
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
             color: #c97874;
             z-index: 0;
-
-            &::before {
-                left: 35%;
-            }
         }
-    }
-
-    &::before, &::after {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        position: absolute;
-        height: 0;
-        width: 4px;
-        background-color: #ffffff;
-        display: inline-block;
-        -moz-transform-origin: left top;
-        -ms-transform-origin: left top;
-        -o-transform-origin: left top;
-        -webkit-transform-origin: left top;
-        transform-origin: left top;
-        border-radius: 5px;
-        content: '';
-        -webkit-transition: opacity ease .5;
-        -moz-transition: opacity ease .5;
-        transition: opacity ease .5;
-    }
-
-    &::before {
-        @media (max-width: 768px) {
-            top: 15px;
-            left: 10px;
-        }
-        top: 17px;
-        left: 12px;
-        -moz-transform: rotate(-135deg);
-        -ms-transform: rotate(-135deg);
-        -o-transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-        transform: rotate(-135deg);
-    }
-
-    &::after {
-        @media (max-width: 768px) {
-            top: 5px;
-            left: -1px;
-        }
-        top: 7px;
-        left: 1px;
-        -moz-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }
-
-    @-moz-keyframes dothabottomcheck{
-      0% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 10px;
-        }
-        height: 14px; }
-    } 
-    @-webkit-keyframes dothabottomcheck{
-      0% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 10px;
-        }
-        height: 14px; }
-    }
-    @keyframes dothabottomcheck{
-      0% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 10px;
-        }
-        height: 14px; }
-    }
-    @keyframes dothatopcheck{
-      0% { height: 0; }
-      50% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 20px;
-        }
-        height: 25px; }
-    }
-    @-webkit-keyframes dothatopcheck{
-      0% { height: 0; }
-      50% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 20px;
-        }
-        height: 25px; }
-    }
-    @-moz-keyframes dothatopcheck{
-      0% { height: 0; }
-      50% { height: 0; }
-      100% { 
-        @media (max-width: 768px) {
-            height: 20px;
-        }
-        height: 25px; }
     }
 `;
 
 export const SelectStyle = styled('select')`
+    @media (max-width: 1024px) {
+        font-size: 1.2rem;
+    }
     @media (max-width: 768px) {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     // mobile_view
     @media (max-width: 480px) {
         font-size: .9rem;
-        padding: 5px 2px;
+        padding: 3px 2px;
     }
     padding: 5px;
     border: none;
@@ -602,32 +459,42 @@ export const SelectStyle = styled('select')`
 
     &:hover {
         + .tooltip {
-            width: 45px;
-            top: -32px;
+            // mobile_view
+            @media (max-width: 480px) {
+                top: -23px;
+            }
+            top: -25px;
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
             color: #c97874;
             z-index: 0;
-
-            &::before {
-                left: 30%;
-            }
         }
     }
 `;
 
 export const ToolTipStyle = styled('div')`
+    @media (max-width: 1024px) {
+        width: calc(100% + 5px);
+    }
+    // mobile_view
+    @media (max-width: 480px) {
+        height: 16px;
+        padding: 3px 7px;
+        font-size: .9rem;
+    }
     position: absolute;
-    top: 0;
-    height: 25px;
-    font-size: 11px;
-    font-weight: bold;
-    background: rgb(28 28 31 / 1);
-    color: #c97874;
-    padding: 5px 8px;
+    top: -13px;
+    width: 100%;
+    height: 18px;
+    padding: 3px 8px;
     border-radius: 10px;
+    background: white;
+    /* background: rgb(28 28 31 / 1); */
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c97874;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     opacity: 1;
     pointer-events: none;
@@ -635,14 +502,51 @@ export const ToolTipStyle = styled('div')`
     z-index: -1;
 
     &::before {
+        @media (max-width: 1024px) {
+            left: 42%;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
+            bottom: -2px;
+        }
         position: absolute;
         content: "";
         height: 8px;
         width: 8px;
-        background: rgb(28 28 31 / 1);
+        /* background: rgb(28 28 31 / 1); */
+        background: white;
         bottom: -3px;
-        left: 32%;
+        left: 40%;
         transform: translate(-50%) rotate(45deg);
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: -1;
+    }
+`;
+
+export const LoadingContainerStyle = styled('div')`
+	text-align: center;
+	width: 100%;
+	height: 2em;
+	margin-top: 1em;
+`;
+
+export const LoadingItemStyle = styled('div')<{$timing:number}>`
+    // mobile_view
+    @media (max-width: 480px) {
+        font-size: 1.3rem;
+    }
+    display: inline-block;
+    position: relative;
+    padding: 0 .2em;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    animation: bounce .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) infinite alternate;
+    animation-delay: ${({$timing}) => $timing * .06}s;
+
+    @keyframes bounce {
+        0%{transform: translateY(0px);}
+        100% {transform: translateY(-.8em);}
     }
 `;

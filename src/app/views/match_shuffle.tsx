@@ -16,6 +16,7 @@ import TeamRedIcon from "../icons/TeamRedIcon";
 const MatchShuffle = () => {
     const [playerCount, setPlayerCount] = useState<number>(10);
     const [teamCount, setTeamCount] = useState<number>(2);
+    const [shuffleProgress, setShuffleProgress] = useState<boolean>(false);
     const [shuffleCount, setShuffleCount] = useState<number>(0);
     const [shuffleTime, setShuffleTime] = useState<number>(5000);
     const [decrease, setDecrease] = useState<number>(200);
@@ -248,24 +249,28 @@ const MatchShuffle = () => {
     
     const onClickRandom = () => {
         setShuffleCount(shuffleCount+1);
+        setShuffleProgress(true);
         let intervalTime:number = shuffleTime;
         const interval = setInterval(() => {
             activeRandomData();    
             intervalTime -= decrease;
             if(intervalTime <= 0) {
                 clearInterval(interval);
+                setShuffleProgress(false);
             }
         }, decrease);
     }
 
     const onClickBalance = () => {
         setShuffleCount(shuffleCount+1);
+        setShuffleProgress(true);
         let intervalTime:number = shuffleTime;
         const interval = setInterval(() => {
             activeBalanceData();    
             intervalTime -= decrease;
             if(intervalTime <= 0) {
                 clearInterval(interval);
+                setShuffleProgress(false);
             }
         }, decrease);
     }
@@ -346,7 +351,9 @@ const MatchShuffle = () => {
                                     <div className="list_check">
                                         <Style.CheckStyle onChange={(e) => updateCheckData({checked:e.target.checked, index:child.id, arrNo:idx1, value:idx2})} 
                                                     checked={playerFix.some(data => data.id === child.id) ? true : false} type="checkbox" id={"chkbx" + child.id} />
-                                        <Style.LabelStyle htmlFor={"chkbx" + child.id} className="check-box" />
+                                        <Style.LabelStyle htmlFor={"chkbx" + child.id} className="check_box">
+                                            고정
+                                        </Style.LabelStyle>
                                         <Style.ToolTipStyle className="tooltip">
                                             Fix
                                         </Style.ToolTipStyle>
@@ -384,15 +391,29 @@ const MatchShuffle = () => {
                     </div>
                 </div>
                 <div className="btn_section">
-                    <Style.BtnStyle onClick={() => onClickRandom()}>
-                        <FontAwesomeIcon icon={icon_random} className="btn_icon"/>무작위
-                    </Style.BtnStyle>
-                    <Style.BtnStyle onClick={() => onClickBalance()}>
-                        <FontAwesomeIcon icon={icon_balance} className="btn_icon"/>밸런스
-                    </Style.BtnStyle>
-                    <Style.BtnStyle onClick={() => onClickRefresh()}>
-                        <FontAwesomeIcon icon={icon_refresh} className="btn_icon"/>초기화
-                    </Style.BtnStyle>
+                    {
+                        shuffleProgress ?
+                            <Style.LoadingContainerStyle>
+                                <Style.LoadingItemStyle $timing={1}>셔</Style.LoadingItemStyle>
+                                <Style.LoadingItemStyle $timing={2}>플</Style.LoadingItemStyle>
+                                <Style.LoadingItemStyle $timing={3}>중</Style.LoadingItemStyle>
+                                <Style.LoadingItemStyle $timing={4}>.</Style.LoadingItemStyle>
+                                <Style.LoadingItemStyle $timing={5}>.</Style.LoadingItemStyle>
+                                <Style.LoadingItemStyle $timing={6}>.</Style.LoadingItemStyle>
+                            </Style.LoadingContainerStyle>
+                            :
+                            <>
+                                <Style.BtnStyle onClick={() => onClickRandom()}>
+                                    <FontAwesomeIcon icon={icon_random} className="btn_icon"/>무작위
+                                </Style.BtnStyle>
+                                <Style.BtnStyle onClick={() => onClickBalance()}>
+                                    <FontAwesomeIcon icon={icon_balance} className="btn_icon"/>밸런스
+                                </Style.BtnStyle>
+                                <Style.BtnStyle onClick={() => onClickRefresh()}>
+                                    <FontAwesomeIcon icon={icon_refresh} className="btn_icon"/>초기화
+                                </Style.BtnStyle>
+                            </>
+                    }
                 </div>
             </div>
         </Style.MatchShuffle>
