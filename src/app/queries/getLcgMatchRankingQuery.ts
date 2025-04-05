@@ -6,6 +6,13 @@ export function getLcgPlayerStatisticsQuery(client:TypedSupabaseClient) {
     .select("*")
 }
 
+export function getLcgAllOverallQuery(client:TypedSupabaseClient) {
+  return client
+  .from("lcg_player_ranking")
+  .select("lcg_summoner_nickname, lcg_ranking_score, lcg_ranking_rank")
+  .order("lcg_ranking_rank", { ascending: true })
+}
+
 export function getLcgAllWinningRateQuery(client:TypedSupabaseClient) {
   return client.rpc('all_winningrate_rank')
 }
