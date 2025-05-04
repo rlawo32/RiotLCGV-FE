@@ -448,7 +448,7 @@ export const SelectStyle = styled('select')`
         font-size: .9rem;
         padding: 3px 2px;
     }
-    padding: 5px;
+    padding: 5px 7px 5px 5px;
     border: none;
     border-radius: 10px;
     background: rgb(68 68 71 / 1);
