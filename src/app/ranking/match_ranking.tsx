@@ -59,7 +59,8 @@ const MatchRanking = () => {
 
     const [rankSelectIdx, setRankSelectIdx] = useState<number>(0);
     const rankSelectArr:{key:string, name:string}[] = [
-        {key:"AA", name:"종합 랭킹"}, {key:"AW", name:"총 승률"}, {key:"AK", name:"총 킬"}, 
+        // {key:"AA", name:"종합 랭킹"}, 
+        {key:"AW", name:"총 승률"}, {key:"AK", name:"총 킬"}, 
         {key:"AD", name:"총 데스"}, {key:"AS", name:"총 어시스트"}, {key:"AC", name:"총 CS"}, 
         {key:"AT", name:"총 철거"}, {key:"AG", name:"총 골드"}, {key:"ADA", name:"총 피해량"}, 
         {key:"ATA", name:"총 받은피해량"}, {key:"AJ", name:"총 오브젝트"}, {key:"AM", name:"총 멀티킬"}, 
