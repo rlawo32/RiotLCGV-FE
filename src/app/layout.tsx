@@ -25,6 +25,9 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "Rabbit Gang LoL",
   description: "토끼파 롤 내전 전적",
+  icons: {
+    icon: "/rabbit.png",
+  },
 };
 
 export default function RootLayout({
