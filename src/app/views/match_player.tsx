@@ -36,6 +36,7 @@ const MatchPlayer = () => {
     const [selectPlayer, setSelectPlayer] = useState<string>("");
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
+    const [aiSummaryYn, setAiSummaryYn] = useState<string>("");
 
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -64,6 +65,24 @@ const MatchPlayer = () => {
 
         return result;
     }
+
+    const [aiInput, setAiInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
+    const [aiOutput, setOutInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
+
+    const aiSummaryHandler = async (flag:string, content:string) => {
+        if(flag === 'Y') {
+            setOutInput(content);
+        } else {
+            const res = await fetch('/api/openai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: aiInput }),
+            });
+        
+            const data = await res.json();
+            setOutInput(data.result);
+        }
+    };
 
     useEffect(() => {
         setPageChampion(1);
@@ -236,6 +255,9 @@ const MatchPlayer = () => {
                                             ACE 횟수
                                         </div>
                                     </div>
+                                    <button className="openai" onClick={() => aiSummaryHandler(!!selectPlayerData ? (selectPlayerData[0].lcg_ai_summary_verify, selectPlayerData[0].lcg_ai_summary_content) : "", "")}>
+                                        <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
+                                    </button>
                                 </div>
                             </div>
                             <div className="box_body">

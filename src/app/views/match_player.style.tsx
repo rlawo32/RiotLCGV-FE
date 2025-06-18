@@ -75,7 +75,7 @@ export const PlayerDataBox = styled('div')`
             width: 60px;
         }
         height: 80px;
-        height: 80px;
+        width: 80px;
         border-radius: 35px;
     }
 
@@ -86,7 +86,7 @@ export const PlayerDataBox = styled('div')`
             width: 60px;
         }
         height: 80px;
-        height: 80px;
+        width: 80px;
         object-fit: cover;
         transform: scale(1.4);
     }
@@ -98,7 +98,7 @@ export const PlayerDataBox = styled('div')`
             width: 30px;
         }
         height: 35px;
-        height: 35px;
+        width: 35px;
         border-radius: 15px;
         object-fit: cover;
     }
@@ -285,6 +285,7 @@ export const PlayerDataBox = styled('div')`
         }
 
         .head_bottom {
+            position: relative;
             display: flex;
             flex-wrap: wrap-reverse;
             justify-content: center;
@@ -324,6 +325,23 @@ export const PlayerDataBox = styled('div')`
                     font-size: 1.2rem;
                     font-weight: 700;
                     line-height: 16px;
+                }
+            }
+
+            .openai {
+                position: absolute;
+                top: -10px;
+                right: 0;
+                height: 20px;
+                width: 20px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;    
+
+                .openai_img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
                 }
             }
         }
