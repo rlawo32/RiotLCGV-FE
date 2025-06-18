@@ -20,7 +20,7 @@ export function getSelectLcgAllKdaQuery(client:TypedSupabaseClient, puuid:string
 export function getSelectLcgPlayerDataQuery(client:TypedSupabaseClient, puuid:string) {
   return client
     .from("lcg_player_data")
-    .select("lcg_summoner_puuid, lcg_summoner_nickname, lcg_summoner_icon, lcg_present_tier, lcg_rank_win, lcg_present_division, lcg_present_high_tier, lcg_present_high_division, lcg_previous_tier, lcg_previous_division, lcg_previous_high_tier, lcg_previous_high_division, lcg_rank_point")
+    .select("lcg_summoner_puuid, lcg_summoner_nickname, lcg_summoner_icon, lcg_present_tier, lcg_rank_win, lcg_present_division, lcg_present_high_tier, lcg_present_high_division, lcg_previous_tier, lcg_previous_division, lcg_previous_high_tier, lcg_previous_high_division, lcg_rank_point, lcg_ai_summary_content, lcg_ai_summary_verify")
     .eq("lcg_summoner_puuid", puuid)
 }
 
