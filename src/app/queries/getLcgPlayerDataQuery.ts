@@ -51,6 +51,19 @@ export function getSelectLcgPlayerRelativeQuery(client:TypedSupabaseClient, puui
   return client.rpc("player_relative").eq("lcg_person_puuid", puuid).range(0, (page * 10) - 1)
 }
 
+export function getSelectLcgPlayerPositionQuery(client:TypedSupabaseClient, puuid:string) {
+  return client
+    .from("lcg_player_position")
+    .select(`
+      lcg_position_top_count, lcg_position_top_win, 
+      lcg_position_jug_count, lcg_position_jug_win, 
+      lcg_position_mid_count, lcg_position_mid_win, 
+      lcg_position_adc_count, lcg_position_adc_win, 
+      lcg_position_sup_count, lcg_position_sup_win
+    `)
+    .eq("lcg_summoner_puuid", puuid)
+}
+
 export function getSelectLcgPlayerAvgDpmQuery(client:TypedSupabaseClient, puuid:string) {
   return client.rpc("all_avg_dpm_rank").eq("lcg_summoner_puuid", puuid)
 }
