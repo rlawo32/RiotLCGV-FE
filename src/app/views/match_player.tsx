@@ -9,11 +9,12 @@ import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionTotalQuery, getSelectLcgPlayerChampionQuery, 
     getSelectLcgAllKdaQuery, getSelectLcgWinningRateQuery, getSelectLcgPlayerDataQuery, 
-    getSelectLcgPlayerRelativeTotalQuery, getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerAvgDpmQuery, 
-    getSelectLcgPlayerAvgGpmQuery, getSelectLcgPlayerAvgDpgQuery, getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
+    getSelectLcgPlayerRelativeTotalQuery, getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerPositionQuery,
+    getSelectLcgPlayerAvgDpmQuery, getSelectLcgPlayerAvgGpmQuery, getSelectLcgPlayerAvgDpgQuery, 
+    getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
 } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
-import { getPlayerData } from "../component/match_tool";
+import { getWinningRateCalc, getPlayerData } from "../component/match_tool";
 
 import LoadingSpinner from "../component/loading_spinner";
 import LastUpdate from "../component/last_update";
@@ -45,6 +46,7 @@ const MatchPlayer = () => {
     const { data: playerRelativeTotal } = useQuery(getSelectLcgPlayerRelativeTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerChampion } = useQuery(getSelectLcgPlayerChampionQuery(supabase, selectPlayer, pageChampion), {enabled:!!lcgPlayerData});
     const { data: selectPlayerRelative } = useQuery(getSelectLcgPlayerRelativeQuery(supabase, selectPlayer, pageRelative), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerPostion } = useQuery(getSelectLcgPlayerPositionQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerDpm } = useQuery(getSelectLcgPlayerAvgDpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerGpm } = useQuery(getSelectLcgPlayerAvgGpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerDpg } = useQuery(getSelectLcgPlayerAvgDpgQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -66,6 +68,92 @@ const MatchPlayer = () => {
         return result;
     }
 
+    const lineDataExtraction = (flag:number):{play:number, win:number} => {
+        let result:{play:number, win:number};
+        if(flag === 0) {
+            result = {
+                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_top_count : 0, 
+                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_top_win : 0
+            }
+        } else if(flag === 1) {
+            result = {
+                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_jug_count : 0, 
+                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_jug_win : 0
+            }
+        } else if(flag === 2) {
+            result = {
+                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_mid_count : 0, 
+                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_mid_win : 0
+            }
+        } else if(flag === 3) {
+            result = {
+                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_adc_count : 0, 
+                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_adc_win : 0
+            }
+        } else {
+            result = {
+                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_sup_count : 0, 
+                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_sup_win : 0
+            }
+        }
+        return result;
+    }
+
+    const playerDataLine = ():any[] => {
+        let result:any[] = [];
+        // 0=top, 1=jug, 2=mid, 3=adc, 4=sup
+        for(let i=0; i<5; i++) {
+            result.push(<div className="line_data" key={"line_" + i}>
+                <div className="item_icon">
+                    {
+                        i === 0 ? <TopIcon /> :
+                        i === 1 ? <JugIcon /> :
+                        i === 2 ? <MidIcon /> : 
+                        i === 3 ? <AdcIcon /> : <SupIcon />
+                    }
+                </div>
+                <div className="item_figure"> 
+                    <div className="figure_graph">
+                        <div className="graph_gage">
+                            <strong>{getWinningRateCalc(lineDataExtraction(i).play, lineDataExtraction(i).win)}%</strong>
+                        </div>
+                        <svg viewBox="0 0 200 200" className="b_graph">
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#E84057" strokeWidth="30">
+                            </circle>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#5383E8" strokeWidth="30" 
+                            strokeDasharray={`${2 * Math.PI * 80 * (getWinningRateCalc(lineDataExtraction(i).play, lineDataExtraction(i).win) / 100)} ${
+                                2 * Math.PI * 80 * (Math.trunc((1 - (getWinningRateCalc(lineDataExtraction(i).play, lineDataExtraction(i).win) / 100)) * 100) / 100)
+                            }`}
+                            strokeDashoffset={2 * Math.PI * 80 * 0.25}>
+                            </circle>
+                        </svg>
+                        <svg viewBox="0 0 200 200" className="s_graph">
+                            <circle cx="100" cy="100" r="70" fill="none" stroke="#E84057" strokeWidth="20">
+                            </circle>
+                            <circle cx="100" cy="100" r="70" fill="none" stroke="#5383E8" strokeWidth="20" 
+                            strokeDasharray={`${2 * Math.PI * 70 * (getWinningRateCalc(lineDataExtraction(i).play, lineDataExtraction(i).win) / 100)} ${
+                                2 * Math.PI * 70 * (Math.trunc((1 - (getWinningRateCalc(lineDataExtraction(i).play, lineDataExtraction(i).win) / 100)) * 100) / 100)
+                            }`}
+                            strokeDashoffset={2 * Math.PI * 70 * 0.25}>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div className="figure_detail">
+                        <div className="detail_play">
+                            {lineDataExtraction(i).play} 게임
+                        </div>
+                        <div className="detail_wof">
+                            {lineDataExtraction(i).win}승&nbsp;{lineDataExtraction(i).play - lineDataExtraction(i).win}패
+                        </div>
+                    </div>
+                </div>
+            </div>)
+        }
+        return result;lcgPlayerData
+    }
+
+    // ai
+
     const [aiInput, setAiInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
     const [aiOutput, setOutInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
 
@@ -83,6 +171,8 @@ const MatchPlayer = () => {
             setOutInput(data.result);
         }
     };
+
+    // ai
 
     useEffect(() => {
         setPageChampion(1);
@@ -205,56 +295,63 @@ const MatchPlayer = () => {
                                 </div>
                                 <hr></hr>
                                 <div className="head_bottom">
-                                    <div className="bottom_item">
-                                        <div className="item_figure">
-                                            {
-                                                !!selectPlayerDpm ? selectPlayerDpm[0].avg : <></>
-                                            }
+                                    <div className="player_data_info">
+                                        <div className="info_item">
+                                            <div className="item_figure">
+                                                {
+                                                    !!selectPlayerDpm ? selectPlayerDpm[0].avg : <></>
+                                                }
+                                            </div>
+                                            <div className="item_title">
+                                                평균 분당 데미지
+                                            </div>
                                         </div>
-                                        <div className="item_title">
-                                            평균 분당 데미지
+                                        <div className="info_item">
+                                            <div className="item_figure">
+                                                {
+                                                    !!selectPlayerGpm ? selectPlayerGpm[0].avg : <></>
+                                                }
+                                            </div>
+                                            <div className="item_title">
+                                                평균 분당 골드 획득
+                                            </div>
+                                        </div>
+                                        <div className="info_item">
+                                            <div className="item_figure">
+                                                {
+                                                    !!selectPlayerDpg ? selectPlayerDpg[0].avg : <></>
+                                                }
+                                            </div>
+                                            <div className="item_title">
+                                                평균 골드당 데미지
+                                            </div>
+                                        </div>
+                                        <div className="info_item">
+                                            <div className="item_figure">
+                                                {
+                                                    !!selectPlayerMvp ? selectPlayerMvp[0].lcg_count_mvp : <></>
+                                                }
+                                            </div>
+                                            <div className="item_title">
+                                                MVP 횟수
+                                            </div>
+                                        </div>
+                                        <div className="info_item">
+                                            <div className="item_figure">
+                                                {
+                                                    !!selectPlayerAce ? selectPlayerAce[0].lcg_count_ace : <></>
+                                                }
+                                            </div>
+                                            <div className="item_title">
+                                                ACE 횟수
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="bottom_item">
-                                        <div className="item_figure">
-                                            {
-                                                !!selectPlayerGpm ? selectPlayerGpm[0].avg : <></>
-                                            }
-                                        </div>
-                                        <div className="item_title">
-                                            평균 분당 골드 획득
-                                        </div>
+                                    <hr></hr>
+                                    <div className="player_data_line">
+                                        {playerDataLine()}
                                     </div>
-                                    <div className="bottom_item">
-                                        <div className="item_figure">
-                                            {
-                                                !!selectPlayerDpg ? selectPlayerDpg[0].avg : <></>
-                                            }
-                                        </div>
-                                        <div className="item_title">
-                                            평균 골드당 데미지
-                                        </div>
-                                    </div>
-                                    <div className="bottom_item">
-                                        <div className="item_figure">
-                                            {
-                                                !!selectPlayerMvp ? selectPlayerMvp[0].lcg_count_mvp : <></>
-                                            }
-                                        </div>
-                                        <div className="item_title">
-                                            MVP 횟수
-                                        </div>
-                                    </div>
-                                    <div className="bottom_item">
-                                        <div className="item_figure">
-                                            {
-                                                !!selectPlayerAce ? selectPlayerAce[0].lcg_count_ace : <></>
-                                            }
-                                        </div>
-                                        <div className="item_title">
-                                            ACE 횟수
-                                        </div>
-                                    </div>
+                                    
                                     <button className="openai" onClick={() => aiSummaryHandler(!!selectPlayerData ? (selectPlayerData[0].lcg_ai_summary_verify, selectPlayerData[0].lcg_ai_summary_content) : "", "")}>
                                         <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
                                     </button>

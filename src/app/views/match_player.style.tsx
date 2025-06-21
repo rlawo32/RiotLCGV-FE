@@ -113,9 +113,28 @@ export const PlayerDataBox = styled('div')`
 
         hr {
             height: 0;
+            width: 100%;
             margin: 20px 0;
             border: .1rem solid #eaeaf1;
             opacity: .5;
+        }
+
+        
+        @media (min-width: 768px) {
+            .b_graph {
+                display: block;
+            }
+            .s_graph {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .b_graph {
+                display: none;
+            }
+            .s_graph {
+                display: block;
+            }
         }
 
         .head_top {
@@ -191,22 +210,6 @@ export const PlayerDataBox = styled('div')`
                 width: 220px;
 
                 .head_graph {
-                    @media (min-width: 768px) {
-                        .b_graph {
-                            display: block;
-                        }
-                        .s_graph {
-                            display: none;
-                        }
-                    }
-                    @media (max-width: 768px) {
-                        .b_graph {
-                            display: none;
-                        }
-                        .s_graph {
-                            display: block;
-                        }
-                    }
                     position: relative;
                     height: 108px;
                     width: 108px;
@@ -287,44 +290,131 @@ export const PlayerDataBox = styled('div')`
         .head_bottom {
             position: relative;
             display: flex;
-            flex-wrap: wrap-reverse;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
 
-            .bottom_item {
+            .player_data_info {
+                position: relative;
                 display: flex;
-                flex-direction: column;
+                flex-wrap: wrap-reverse;
+                justify-content: center;
                 align-items: center;
-                width: calc(100% / 4);
-                margin: 15px 5px;
+                width: 100%;
 
-                .item_figure {
-                    @media (max-width: 768px) {
-                        font-size: 1.5rem;
+                .info_item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: calc(100% / 4);
+                    margin: 15px 5px;
+
+                    .item_figure {
+                        @media (max-width: 768px) {
+                            font-size: 1.5rem;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            font-size: 1.2rem;
+                        }
+                        color: #ffffff;
+                        font-size: 1.7rem;
+                        font-weight: 700;
+                        line-height: 26px;
                     }
-                    // mobile_view
-                    @media (max-width: 480px) {
+                    
+                    .item_title {
+                        @media (max-width: 768px) {
+                            font-size: 1rem;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            font-size: .7rem;
+                        }
+                        padding-top: .125rem;
+                        color: #7B7A8E;
                         font-size: 1.2rem;
+                        font-weight: 700;
+                        line-height: 16px;
                     }
-                    color: #ffffff;
-                    font-size: 1.7rem;
-                    font-weight: 700;
-                    line-height: 26px;
                 }
-                
-                .item_title {
-                    @media (max-width: 768px) {
-                        font-size: 1rem;
+            }
+
+            .player_data_line {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+
+                .line_data {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: calc(100% / 5);
+                    margin: 5px;
+
+                    .item_icon {
+                        @media (max-width: 768px) {
+                            margin: 0 0 3px 0;
+                        }
+                        margin: 0 0 10px 0;
                     }
-                    // mobile_view
-                    @media (max-width: 480px) {
-                        font-size: .7rem;
+                    
+                    .item_figure {
+                        display: flex;
+                        @media (max-width: 768px) {
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        .figure_graph {
+                            position: relative;
+                            height: 54px;
+                            width: 54px;
+
+                            .graph_gage {
+                                @media (max-width: 768px) {
+                                    font-size: .7rem;
+                                }
+                                position: absolute;
+                                height: 54px;
+                                width: 54px;
+                                text-align: center;
+                                color: #3182ce;
+                                font-size: .9rem;
+                                line-height: 54px;
+                            }
+                        }
+
+                        .figure_detail {
+                            @media (max-width: 768px) {
+                                margin: 3px 0 0 0;
+                            }
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            margin-left: 10px;
+
+                            .detail_play {
+                                @media (max-width: 768px) {
+                                    font-size: .8rem;
+                                }
+                                font-size: 1rem;
+                                font-weight: 700;
+                            }
+
+                            .detail_wof {
+                                @media (max-width: 768px) {
+                                    font-size: .7rem;
+                                }
+                                padding-top: 2px;
+                                font-size: .8rem;
+                                font-weight: 400;
+                                color: rgb(123 122 142 / 1);
+                            }
+                        }
                     }
-                    padding-top: .125rem;
-                    color: #7B7A8E;
-                    font-size: 1.2rem;
-                    font-weight: 700;
-                    line-height: 16px;
                 }
             }
 
