@@ -1,6 +1,17 @@
 
-export const getCurrentTimeCalc = (time:string):string => {
+export const getWinningRateCalc = (play:number, win:number):number => {
+    let result:number = 0;
+    if(play === 0 || win === 0) {
+        result = 0;
+    } else if(play === win) {
+        result = 100;
+    } else {
+        result = Math.round(((win * 100) / play) * 10) / 10;
+    }
+    return result;
+}
 
+export const getCurrentTimeCalc = (time:string):string => {
     const currentTime:Date = new Date();
     const updateTime:Date = new Date(time);
     const calculationTime:number = Math.floor((currentTime.getTime() - updateTime.getTime()) / 1000);
