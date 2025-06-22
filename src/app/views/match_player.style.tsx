@@ -348,6 +348,7 @@ export const PlayerDataBox = styled('div')`
                 width: 100%;
 
                 .line_data {
+                    position: relative;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -357,6 +358,17 @@ export const PlayerDataBox = styled('div')`
                     .item_icon {
                         @media (max-width: 768px) {
                             margin: 0 0 3px 0;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            svg {
+                                height: 25px;
+                                width: 25px;
+                            }
+                        }
+                        svg {
+                            height: 35px;
+                            width: 35px;
                         }
                         margin: 0 0 10px 0;
                     }
@@ -398,18 +410,18 @@ export const PlayerDataBox = styled('div')`
 
                             .detail_play {
                                 @media (max-width: 768px) {
-                                    font-size: .8rem;
+                                    font-size: .9rem;
                                 }
-                                font-size: 1rem;
+                                font-size: 1.1rem;
                                 font-weight: 700;
                             }
 
                             .detail_wof {
                                 @media (max-width: 768px) {
-                                    font-size: .7rem;
+                                    font-size: .8rem;
                                 }
                                 padding-top: 2px;
-                                font-size: .8rem;
+                                font-size: .9rem;
                                 font-weight: 400;
                                 color: rgb(123 122 142 / 1);
                             }

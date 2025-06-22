@@ -295,6 +295,10 @@ const MatchPlayer = () => {
                                 </div>
                                 <hr></hr>
                                 <div className="head_bottom">
+                                    <div className="player_data_line">
+                                        {playerDataLine()}
+                                    </div>
+                                    <hr></hr>
                                     <div className="player_data_info">
                                         <div className="info_item">
                                             <div className="item_figure">
@@ -347,14 +351,10 @@ const MatchPlayer = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <hr></hr>
-                                    <div className="player_data_line">
-                                        {playerDataLine()}
-                                    </div>
                                     
-                                    <button className="openai" onClick={() => aiSummaryHandler(!!selectPlayerData ? (selectPlayerData[0].lcg_ai_summary_verify, selectPlayerData[0].lcg_ai_summary_content) : "", "")}>
+                                    {/* <button className="openai" onClick={() => aiSummaryHandler(!!selectPlayerData ? (selectPlayerData[0].lcg_ai_summary_verify, selectPlayerData[0].lcg_ai_summary_content) : "", "")}>
                                         <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             <div className="box_body">
