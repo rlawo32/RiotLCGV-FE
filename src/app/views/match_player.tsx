@@ -37,7 +37,6 @@ const MatchPlayer = () => {
     const [selectPlayer, setSelectPlayer] = useState<string>("");
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
-    const [aiSummaryYn, setAiSummaryYn] = useState<string>("");
 
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -100,7 +99,7 @@ const MatchPlayer = () => {
     }
 
     const playerDataLine = ():any[] => {
-        let result:any[] = [];
+        const result:any[] = [];
         // 0=top, 1=jug, 2=mid, 3=adc, 4=sup
         for(let i=0; i<5; i++) {
             result.push(<div className="line_data" key={"line_" + i}>
@@ -154,23 +153,24 @@ const MatchPlayer = () => {
 
     // ai
 
-    const [aiInput, setAiInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
-    const [aiOutput, setOutInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
+    // const [aiSummaryYn, setAiSummaryYn] = useState<string>("");
+    // const [aiInput, setAiInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
+    // const [aiOutput, setOutInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
 
-    const aiSummaryHandler = async (flag:string, content:string) => {
-        if(flag === 'Y') {
-            setOutInput(content);
-        } else {
-            const res = await fetch('/api/openai', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: aiInput }),
-            });
+    // const aiSummaryHandler = async (flag:string, content:string) => {
+    //     if(flag === 'Y') {
+    //         setOutInput(content);
+    //     } else {
+    //         const res = await fetch('/api/openai', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify({ message: aiInput }),
+    //         });
         
-            const data = await res.json();
-            setOutInput(data.result);
-        }
-    };
+    //         const data = await res.json();
+    //         setOutInput(data.result);
+    //     }
+    // };
 
     // ai
 
