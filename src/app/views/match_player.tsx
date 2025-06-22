@@ -148,7 +148,7 @@ const MatchPlayer = () => {
                 </div>
             </div>)
         }
-        return result;lcgPlayerData
+        return result;
     }
 
     // ai
