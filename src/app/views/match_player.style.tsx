@@ -346,6 +346,7 @@ export const PlayerDataBox = styled('div')`
                 justify-content: center;
                 align-items: center;
                 width: 100%;
+                padding: 5px 0 10px;
 
                 .line_data {
                     position: relative;
