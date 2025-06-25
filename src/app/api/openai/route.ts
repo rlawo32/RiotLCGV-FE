@@ -33,9 +33,9 @@ export async function POST(req: NextRequest) {
         max_completion_tokens: maxToken,
     });
 
-    return NextResponse.json({ result: completion.choices[0].message.content });
+    return NextResponse.json({ result: completion.choices[0].message.content, status: 200 });
   } catch (error) {
     console.error('OpenAI Error:', error);
-    return NextResponse.json({ error: 'OpenAI API Error' }, { status: 500 });
+    return NextResponse.json({ result: 'OpenAI API Error', status: 500 });
   }
 }
