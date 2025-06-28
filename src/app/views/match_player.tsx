@@ -24,6 +24,7 @@ import JugIcon from "../icons/JugIcon";
 import MidIcon from "../icons/MidIcon";
 import AdcIcon from "../icons/AdcIcon";
 import SupIcon from "../icons/SupIcon";
+import ModalView from "../component/modal_view";
 
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
@@ -37,6 +38,7 @@ const MatchPlayer = () => {
     const [selectPlayer, setSelectPlayer] = useState<string>("");
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
+    const [isSummaryModal, setIsSummaryModal] = useState<boolean>(false);
 
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -151,29 +153,6 @@ const MatchPlayer = () => {
         return result;
     }
 
-    // ai
-
-    // const [aiSummaryYn, setAiSummaryYn] = useState<string>("");
-    // const [aiInput, setAiInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
-    // const [aiOutput, setOutInput] = useState('2025년의 초복,중복,말복의 날짜를 알려줘');
-
-    // const aiSummaryHandler = async (flag:string, content:string) => {
-    //     if(flag === 'Y') {
-    //         setOutInput(content);
-    //     } else {
-    //         const res = await fetch('/api/openai', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify({ message: aiInput }),
-    //         });
-        
-    //         const data = await res.json();
-    //         setOutInput(data.result);
-    //     }
-    // };
-
-    // ai
-
     useEffect(() => {
         setPageChampion(1);
         setPageRelative(1);
@@ -201,6 +180,14 @@ const MatchPlayer = () => {
                             })}
                         </Style.PlayerSelectBox>
                         <Style.PlayerDataBox>
+                            {/* ai summary */}
+                            {
+                                !!selectPlayerData && isSummaryModal ? 
+                                    <ModalView isModal={isSummaryModal} setIsModal={setIsSummaryModal} 
+                                        aiSummaryVerify={selectPlayerData[0].lcg_ai_summary_verify} 
+                                        aiSummaryContent={selectPlayerData[0].lcg_ai_summary_content} /> 
+                                    : <></>
+                            }
                             <div className="box_head">
                                 <div className="head_top">
                                 </div>
@@ -352,9 +339,9 @@ const MatchPlayer = () => {
                                         </div>
                                     </div>
                                     
-                                    {/* <button className="openai" onClick={() => aiSummaryHandler(!!selectPlayerData ? (selectPlayerData[0].lcg_ai_summary_verify, selectPlayerData[0].lcg_ai_summary_content) : "", "")}>
+                                    <button className="openai" onClick={() => setIsSummaryModal(true)}>
                                         <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
-                                    </button> */}
+                                    </button>
                                 </div>
                             </div>
                             <div className="box_body">
