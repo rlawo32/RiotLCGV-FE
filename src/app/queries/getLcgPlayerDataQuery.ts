@@ -83,3 +83,7 @@ export function getSelectLcgPlayerMvpQuery(client:TypedSupabaseClient, puuid:str
 export function getSelectLcgPlayerAceQuery(client:TypedSupabaseClient, puuid:string) {
   return client.rpc("all_ace_rank").eq("lcg_summoner_puuid", puuid)
 }
+
+export function getSelectLcgPlayerAiSummaryDataQuery(client:TypedSupabaseClient, puuid:string) {
+  return client.rpc("ai_summary_data").eq("lcg_summoner_puuid", puuid)
+}
