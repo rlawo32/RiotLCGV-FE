@@ -11,7 +11,7 @@ import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionTotalQuery, getSelectL
     getSelectLcgAllKdaQuery, getSelectLcgWinningRateQuery, getSelectLcgPlayerDataQuery, 
     getSelectLcgPlayerRelativeTotalQuery, getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerPositionQuery,
     getSelectLcgPlayerAvgDpmQuery, getSelectLcgPlayerAvgGpmQuery, getSelectLcgPlayerAvgDpgQuery, 
-    getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery
+    getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery, getSelectLcgPlayerAiSummaryDataQuery
 } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getWinningRateCalc, getPlayerData } from "../component/match_tool";
@@ -31,6 +31,7 @@ const MatchPlayer = () => {
 
     let imageUrl1:string = "";
     let lastUpdate:string = "";
+    let aiSummaryPrompt:{prompt:string, maxToken:number} = {prompt:"", maxToken:0};
 
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {});
     const { data: lcgPlayerData, isLoading: loading1 } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
@@ -58,6 +59,40 @@ const MatchPlayer = () => {
         imageUrl1 = lcgMatchEtc[0].lcg_main_image;
         lastUpdate = lcgMatchEtc[0].lcg_update_player;
     }
+
+    // ai summary
+    const { data: aiSummaryData } = useQuery(getSelectLcgPlayerAiSummaryDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+
+    if(!!aiSummaryData) {
+        aiSummaryPrompt = {
+            prompt: `다음은 LOL 유저의 데이터입니다 :\n\n
+            ${JSON.stringify({
+                tier : aiSummaryData[0].tier + " " + aiSummaryData[0].division,
+                winRate : aiSummaryData[0].lcg_count_victory + "W/" + aiSummaryData[0].lcg_count_defeat + "L (" + aiSummaryData[0].winningrate + "%)",
+                avgKda : aiSummaryData[0].avgkda + " (avgKill " + aiSummaryData[0].avgkill + " / avgDeath " + aiSummaryData[0].avgdeath + " / avgAssist " + aiSummaryData[0].avgassist + ")",
+                avgVision : aiSummaryData[0].avgvision,
+                avgDamage : aiSummaryData[0].avgdamage,
+                avgTakenDamage : aiSummaryData[0].avgtaken,
+                countMvp : aiSummaryData[0].lcg_count_mvp,
+                countAce : aiSummaryData[0].lcg_count_ace,
+                positionWinRate : {
+                    top : aiSummaryData[0].topwin + "W/" + aiSummaryData[0].topfail + "L (" + aiSummaryData[0].toprate + "%)",
+                    jug : aiSummaryData[0].jugwin + "W/" + aiSummaryData[0].jugfail + "L (" + aiSummaryData[0].jugrate + "%)",
+                    mid : aiSummaryData[0].midwin + "W/" + aiSummaryData[0].midfail + "L (" + aiSummaryData[0].midrate + "%)",
+                    adc : aiSummaryData[0].adcwin + "W/" + aiSummaryData[0].adcfail + "L (" + aiSummaryData[0].adcrate + "%)",
+                    sup : aiSummaryData[0].supwin + "W/" + aiSummaryData[0].supfail + "L (" + aiSummaryData[0].suprate + "%)",
+                },
+                additionalData : {
+                    dpm : aiSummaryData[0].avgdpm,
+                    gpm : aiSummaryData[0].avggpm,
+                    dpg : aiSummaryData[0].avgdpg,         
+                }
+            })}
+            \n\n이 유저의 플레이 스타일, 강점, 약점을 요약해주고 평가해줘`,
+            maxToken: 700,
+        };
+    } 
+    // ai summary
 
     const playerData = (puuid:string, flag:string):string|undefined => {
         let result:string|undefined = "";
@@ -185,7 +220,8 @@ const MatchPlayer = () => {
                                 !!selectPlayerData && isSummaryModal ? 
                                     <ModalView isModal={isSummaryModal} setIsModal={setIsSummaryModal} 
                                         aiSummaryVerify={selectPlayerData[0].lcg_ai_summary_verify} 
-                                        aiSummaryContent={selectPlayerData[0].lcg_ai_summary_content} /> 
+                                        aiSummaryContent={selectPlayerData[0].lcg_ai_summary_content}
+                                        aiSummaryPrompt={aiSummaryPrompt} /> 
                                     : <></>
                             }
                             <div className="box_head">
