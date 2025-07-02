@@ -225,7 +225,7 @@ const MatchPlayer = () => {
                 loading1 && loading2 ? <LoadingSpinner /> :
                     <>
                         <Style.PlayerSelectBox>
-                            {lcgPlayerData?.map((data, idx) => {
+                            {lcgPlayerData?.filter((data) => data.lcg_player_hide === 'N').map((data, idx) => {
                                 return (
                                     <div className="select_item" onClick={() => setSelectPlayer(data.lcg_summoner_puuid)} key={"select_" + idx}>
                                         {data.lcg_summoner_nickname}
@@ -394,9 +394,9 @@ const MatchPlayer = () => {
                                         </div>
                                     </div>
                                     
-                                    <button className="openai" onClick={() => setIsSummaryModal(true)}>
+                                    {/* <button className="openai" onClick={() => setIsSummaryModal(true)}>
                                         <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             <div className="box_body">
