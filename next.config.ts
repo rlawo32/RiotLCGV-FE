@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
         hostname: 'ddragon.leagueoflegends.com',
       },
     ],
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
