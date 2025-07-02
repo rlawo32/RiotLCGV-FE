@@ -63,7 +63,7 @@ const MatchPlayer = () => {
     // ai summary
     const { data: aiSummaryData } = useQuery(getSelectLcgPlayerAiSummaryDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
 
-    if(!!aiSummaryData) {
+    if(!!aiSummaryData && aiSummaryData.length > 0) {
         aiSummaryPrompt = {
             prompt: `다음은 LOL 유저의 데이터입니다 :\n\n
             ${JSON.stringify({
@@ -106,30 +106,49 @@ const MatchPlayer = () => {
 
     const lineDataExtraction = (flag:number):{play:number, win:number} => {
         let result:{play:number, win:number};
-        if(flag === 0) {
-            result = {
-                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_top_count : 0, 
-                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_top_win : 0
-            }
-        } else if(flag === 1) {
-            result = {
-                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_jug_count : 0, 
-                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_jug_win : 0
-            }
-        } else if(flag === 2) {
-            result = {
-                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_mid_count : 0, 
-                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_mid_win : 0
-            }
-        } else if(flag === 3) {
-            result = {
-                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_adc_count : 0, 
-                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_adc_win : 0
+        if(!!selectPlayerPostion && selectPlayerPostion.length > 0) {
+            switch(flag) {
+                case 0:
+                    result = {
+                        play:selectPlayerPostion[0].lcg_position_top_count, 
+                        win:selectPlayerPostion[0].lcg_position_top_win
+                    }
+                    break;
+                case 1:
+                    result = {
+                        play:selectPlayerPostion[0].lcg_position_jug_count, 
+                        win:selectPlayerPostion[0].lcg_position_jug_win
+                    }
+                    break;
+                case 2:
+                    result = {
+                        play:selectPlayerPostion[0].lcg_position_mid_count, 
+                        win:selectPlayerPostion[0].lcg_position_mid_win
+                    }
+                    break;
+                case 3:
+                    result = {
+                        play:selectPlayerPostion[0].lcg_position_adc_count, 
+                        win:selectPlayerPostion[0].lcg_position_adc_win
+                    }
+                    break;
+                case 4:
+                    result = {
+                        play:selectPlayerPostion[0].lcg_position_sup_count, 
+                        win:selectPlayerPostion[0].lcg_position_sup_win
+                    }
+                    break;
+                default:
+                    result = {
+                        play:0, 
+                        win:0
+                    }
+                    break;
             }
         } else {
             result = {
-                play:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_sup_count : 0, 
-                win:!!selectPlayerPostion ? selectPlayerPostion[0].lcg_position_sup_win : 0
+                play:0, 
+                win:0
             }
         }
         return result;
