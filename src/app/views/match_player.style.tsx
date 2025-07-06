@@ -104,6 +104,7 @@ export const PlayerDataBox = styled('div')`
     }
 
     .box_head {
+        position: relative;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -285,6 +286,23 @@ export const PlayerDataBox = styled('div')`
                     }
                 }
             }
+
+            .openai {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                height: 20px;
+                width: 20px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;    
+
+                .openai_img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
         }
 
         .head_bottom {
@@ -428,23 +446,6 @@ export const PlayerDataBox = styled('div')`
                             }
                         }
                     }
-                }
-            }
-
-            .openai {
-                position: absolute;
-                top: -10px;
-                right: 0;
-                height: 20px;
-                width: 20px;
-                border: none;
-                background-color: transparent;
-                cursor: pointer;    
-
-                .openai_img {
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
                 }
             }
         }

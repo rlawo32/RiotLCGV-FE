@@ -40,7 +40,8 @@ const MatchPlayer = () => {
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
     const [isSummaryModal, setIsSummaryModal] = useState<boolean>(false);
-
+    const [isSummaryUpdate, setIsSummaryUpdate] = useState<boolean>(false);
+    
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerWinningRate } = useQuery(getSelectLcgWinningRateQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -61,7 +62,7 @@ const MatchPlayer = () => {
     }
 
     // ai summary
-    const { data: aiSummaryData } = useQuery(getSelectLcgPlayerAiSummaryDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: aiSummaryData } = useQuery(getSelectLcgPlayerAiSummaryDataQuery(supabase, selectPlayer), {enabled:!!selectPlayerData ? selectPlayerData[0].lcg_ai_summary_verify === 'N' : false});
 
     if(!!aiSummaryData && aiSummaryData.length > 0) {
         aiSummaryPrompt = {
@@ -91,7 +92,9 @@ const MatchPlayer = () => {
             \n\n이 유저의 플레이 스타일, 강점, 약점을 요약해주고 평가해줘`,
             maxToken: 700,
         };
-    } 
+    } else {
+        aiSummaryPrompt = {prompt:"", maxToken:0};
+    }
     // ai summary
 
     const playerData = (puuid:string, flag:string):string|undefined => {
@@ -210,6 +213,8 @@ const MatchPlayer = () => {
     useEffect(() => {
         setPageChampion(1);
         setPageRelative(1);
+        setIsSummaryUpdate(false);
+        aiSummaryPrompt = {prompt:"", maxToken:0};
     }, [selectPlayer])
 
     useEffect(() => {
@@ -238,6 +243,7 @@ const MatchPlayer = () => {
                             {
                                 !!selectPlayerData && isSummaryModal ? 
                                     <ModalView isModal={isSummaryModal} setIsModal={setIsSummaryModal} 
+                                        selectPlayer={selectPlayer}
                                         aiSummaryVerify={selectPlayerData[0].lcg_ai_summary_verify} 
                                         aiSummaryContent={selectPlayerData[0].lcg_ai_summary_content}
                                         aiSummaryPrompt={aiSummaryPrompt} /> 
@@ -334,6 +340,10 @@ const MatchPlayer = () => {
                                                 </div>
                                             </> : <></>
                                     }
+                                    
+                                    <button className="openai" onClick={() => setIsSummaryModal(true)}>
+                                        <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
+                                    </button>
                                 </div>
                                 <hr></hr>
                                 <div className="head_bottom">
@@ -393,10 +403,6 @@ const MatchPlayer = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    {/* <button className="openai" onClick={() => setIsSummaryModal(true)}>
-                                        <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
-                                    </button> */}
                                 </div>
                             </div>
                             <div className="box_body">
