@@ -87,3 +87,19 @@ export function getSelectLcgPlayerAceQuery(client:TypedSupabaseClient, puuid:str
 export function getSelectLcgPlayerAiSummaryDataQuery(client:TypedSupabaseClient, puuid:string) {
   return client.rpc("ai_summary_data").eq("lcg_summoner_puuid", puuid)
 }
+
+export function getUpdateLcgPlayerAiSummaryContentQuery(client:TypedSupabaseClient, puuid:string, content:string) {
+  return client
+    .from('lcg_player_data')
+    .update({ lcg_ai_summary_content: content })
+    .eq('lcg_summoner_puuid', puuid)
+    .select()
+}
+
+export function getUpdateLcgPlayerAiSummaryVerifyQuery(client:TypedSupabaseClient, puuid:string) {
+  return client
+    .from('lcg_player_data')
+    .update({ lcg_ai_summary_verify: 'Y' })
+    .eq('lcg_summoner_puuid', puuid)
+    .select()
+}
