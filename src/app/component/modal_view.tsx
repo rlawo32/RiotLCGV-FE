@@ -5,11 +5,10 @@ import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { useQuery, useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
-import { getSelectLcgPlayerDataQuery, 
-    getUpdateLcgPlayerAiSummaryVerifyQuery, 
-    getUpdateLcgPlayerAiSummaryContentQuery } from "../queries/getLcgPlayerDataQuery";
+import { getSelectLcgPlayerDataQuery } from "../queries/getLcgPlayerDataQuery";
 
 import LoadingSpinner from "./loading_spinner";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const ModalViewStyle = styled('div')`
     position: absolute;
@@ -92,6 +91,7 @@ interface ModalViewProps {
 
 const ModalView = (props: ModalViewProps ) => {
     const supabase = useSupabaseBrowser();
+    const queryClient = useQueryClient();
     const modalRef:any = useRef<any>(null);
     const textRef:any = useRef<any>([]);
     const hasSubmittedRef:any = useRef(false);
@@ -101,11 +101,8 @@ const ModalView = (props: ModalViewProps ) => {
     const [isProcess, setIsProcess] = useState<boolean>(false);
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
     const [hasSubmitted, setHasSubmitted] = useState(false); // 중복 호출 방지
-    
-    useQuery(getUpdateLcgPlayerAiSummaryVerifyQuery(supabase, props.selectPlayer), {enabled:props.isModal && isProcess});
-    useQuery(getUpdateLcgPlayerAiSummaryContentQuery(supabase, props.selectPlayer, "B"), {enabled:props.isModal && isProcess});
 
-    const updateVerifyMutation = useUpdateMutation(
+    const updateAiSummaryVerifyMutation = useUpdateMutation(
         supabase.from('lcg_player_data') as any,               
         ['lcg_summoner_puuid'],                         
         'lcg_summoner_puuid, lcg_ai_summary_verify',    
@@ -114,8 +111,18 @@ const ModalView = (props: ModalViewProps ) => {
             onError: (err) => console.error(err),
         }
     )
+
+    const updateAiSummaryContentMutation = useUpdateMutation(
+        supabase.from('lcg_player_data') as any,               
+        ['lcg_summoner_puuid'],                         
+        'lcg_summoner_puuid, lcg_ai_summary_content',    
+        {
+            onSuccess: () => console.log('Update successful'),
+            onError: (err) => console.error(err),
+        }
+    )
     
-    const handleSubmit = async () => {
+    const aiSummaryApiCall = async () => {
         setIsProcess(true);
 
         const res = await fetch('/api/openai', {
@@ -129,6 +136,14 @@ const ModalView = (props: ModalViewProps ) => {
         if(data.status === 200) {
             setIsSuccess(true);
             setSummaryContent(data.result);
+            updateAiSummaryVerifyMutation.mutate({
+                'lcg_summoner_puuid': props.selectPlayer,
+                'lcg_ai_summary_verify': 'Y'
+            });
+            updateAiSummaryContentMutation.mutate({
+                'lcg_summoner_puuid': props.selectPlayer,
+                'lcg_ai_summary_content': data.result
+            });
         }
     };
 
@@ -150,21 +165,15 @@ const ModalView = (props: ModalViewProps ) => {
     }
 
     useEffect(()=>{
-        if(props.isModal && !hasSubmittedRef.current) {
-            if(props.aiSummaryVerify === 'N') {
-                // handleSubmit();
-                setIsProcess(true);
-                hasSubmittedRef.current= true;
-
-                updateVerifyMutation.mutate({
-                    lcg_summoner_puuid: '1e062cfe-c62e-53ef-9145-ab0d6c76d40d',
-                    lcg_ai_summary_verify: 'Y'
-                })
+        if (props.isModal && !hasSubmittedRef.current) {
+            if (props.aiSummaryVerify === "N") {
+                hasSubmittedRef.current = true;
+                aiSummaryApiCall();
             } else {
+                hasSubmittedRef.current = true;
                 setIsSuccess(true);
             }
         }
-        console.log(props.aiSummaryPrompt);
     }, [props.isModal])
 
     useEffect(()=>{
@@ -226,6 +235,9 @@ const ModalView = (props: ModalViewProps ) => {
                             <LoadingSpinner />
                         </>
                 }
+                {/* {updatePending ? "업데이트 중..." : "업데이트하기"}
+                {updateSuccess && <p>업데이트 완료!</p>}
+                {updateError && <p style={{ color: "red" }}>에러 발생: {errorMessage?.message}</p>} */}
             </div>
             <button onClick={() => props.setIsModal(false)}>
                 닫기
