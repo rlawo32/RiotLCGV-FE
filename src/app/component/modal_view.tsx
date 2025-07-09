@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 import { useEffect, useRef, useState } from "react";
-import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import { useQuery, useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getSelectLcgPlayerDataQuery, 
     getUpdateLcgPlayerAiSummaryVerifyQuery, 
@@ -105,6 +105,16 @@ const ModalView = (props: ModalViewProps ) => {
     useQuery(getUpdateLcgPlayerAiSummaryVerifyQuery(supabase, props.selectPlayer), {enabled:props.isModal && isProcess});
     useQuery(getUpdateLcgPlayerAiSummaryContentQuery(supabase, props.selectPlayer, "B"), {enabled:props.isModal && isProcess});
 
+    const updateVerifyMutation = useUpdateMutation(
+        supabase.from('lcg_player_data') as any,               
+        ['lcg_summoner_puuid'],                         
+        'lcg_summoner_puuid, lcg_ai_summary_verify',    
+        {
+            onSuccess: () => console.log('Update successful'),
+            onError: (err) => console.error(err),
+        }
+    )
+    
     const handleSubmit = async () => {
         setIsProcess(true);
 
@@ -145,6 +155,11 @@ const ModalView = (props: ModalViewProps ) => {
                 // handleSubmit();
                 setIsProcess(true);
                 hasSubmittedRef.current= true;
+
+                updateVerifyMutation.mutate({
+                    lcg_summoner_puuid: '1e062cfe-c62e-53ef-9145-ab0d6c76d40d',
+                    lcg_ai_summary_verify: 'Y'
+                })
             } else {
                 setIsSuccess(true);
             }
