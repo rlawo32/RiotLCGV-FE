@@ -221,8 +221,16 @@ const ModalView = (props: ModalViewProps ) => {
                             {
                                 summaryContent.split(/[#-]/).map((data, idx) => {
                                     return (
-                                        <div ref={(te:any) => (textRef.current[idx] = te)} key={idx} className="content_item">
-                                        </div>
+                                        <> 
+                                            {
+                                                data.includes('**') ? 
+                                                    <div ref={(te:any) => (textRef.current[idx] = te)} key={idx} className="content_title">
+                                                    </div>
+                                                    :
+                                                    <div ref={(te:any) => (textRef.current[idx] = te)} key={idx} className="content_item">
+                                                    </div>
+                                            }
+                                        </>
                                     )
                                 })
                             }
