@@ -124,7 +124,7 @@ const ModalView = (props: ModalViewProps ) => {
         ['lcg_summoner_puuid'],                         
         'lcg_summoner_puuid, lcg_ai_summary_verify',    
         {
-            onSuccess: () => console.log('Update successful'),
+            // onSuccess: () => console.log('Update successful'),
             onError: (err) => console.error(err),
         }
     )
@@ -134,7 +134,7 @@ const ModalView = (props: ModalViewProps ) => {
         ['lcg_summoner_puuid'],                         
         'lcg_summoner_puuid, lcg_ai_summary_content',    
         {
-            onSuccess: () => console.log('Update successful'),
+            // onSuccess: () => console.log('Update successful'),
             onError: (err) => console.error(err),
         }
     )
@@ -147,7 +147,6 @@ const ModalView = (props: ModalViewProps ) => {
         });
         
         const data = await res.json();
-        console.log(data);
         if(data.status === 200) {
             setIsSuccess(true);
             setSummaryContent(data.result);
