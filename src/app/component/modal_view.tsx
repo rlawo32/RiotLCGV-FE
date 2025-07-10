@@ -179,10 +179,7 @@ const ModalView = (props: ModalViewProps ) => {
     useEffect(()=>{
         if(isSuccess) {
             const runTyping = async () => {
-                const dataArr:string[] = summaryContent
-                    .replaceAll("점:**", "점**")
-                    .replaceAll(":**", ":")
-                    .split("-");
+                const dataArr:string[] = summaryContent.split(/[#-]/);;
 
                 for (let i:number=0; i<dataArr.length; i++) {
                     const el:HTMLElement = textRef.current[i];
@@ -222,7 +219,7 @@ const ModalView = (props: ModalViewProps ) => {
                     isSuccess ? 
                         <>
                             {
-                                summaryContent.replaceAll("점:**", "점**").replaceAll(":**", ":").split("-").map((data, idx) => {
+                                summaryContent.split(/[#-]/).map((data, idx) => {
                                     return (
                                         <div ref={(te:any) => (textRef.current[idx] = te)} key={idx} className="content_item">
                                         </div>
