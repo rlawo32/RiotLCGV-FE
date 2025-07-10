@@ -40,7 +40,6 @@ const MatchPlayer = () => {
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
     const [isSummaryModal, setIsSummaryModal] = useState<boolean>(false);
-    const [isSummaryUpdate, setIsSummaryUpdate] = useState<boolean>(false);
     
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -213,7 +212,6 @@ const MatchPlayer = () => {
     useEffect(() => {
         setPageChampion(1);
         setPageRelative(1);
-        setIsSummaryUpdate(false);
         aiSummaryPrompt = {prompt:"", maxToken:0};
     }, [selectPlayer])
 
@@ -341,9 +339,14 @@ const MatchPlayer = () => {
                                             </> : <></>
                                     }
                                     
-                                    <button className="openai" onClick={() => setIsSummaryModal(true)}>
-                                        <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
-                                    </button>
+                                    <div className="openai">
+                                        <button onClick={() => setIsSummaryModal(true)}>
+                                            <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
+                                        </button>
+                                        <Style.ToolTipStyle className="tooltip">
+                                            AI 분석
+                                        </Style.ToolTipStyle>
+                                    </div>
                                 </div>
                                 <hr></hr>
                                 <div className="head_bottom">

@@ -291,16 +291,36 @@ export const PlayerDataBox = styled('div')`
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                height: 20px;
-                width: 20px;
-                border: none;
-                background-color: transparent;
-                cursor: pointer;    
 
-                .openai_img {
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
+                button {
+                    height: 20px;
+                    width: 20px;
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;    
+
+                    .openai_img {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+
+                    &:hover {
+
+                        + .tooltip {
+                            // mobile_view
+                            @media (max-width: 480px) {
+                                top: -20px;
+                            }
+                            top: -27px;
+                            opacity: 1;
+                            visibility: visible;
+                            pointer-events: auto;
+                            text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+                            color: #c97874;
+                            z-index: 0;
+                        }
+                    }
                 }
             }
         }
@@ -689,5 +709,52 @@ export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
             :
             "#9E9EB1"
         }
+    }
+`;
+
+export const ToolTipStyle = styled('div')`
+    // mobile_view
+    @media (max-width: 480px) {
+        height: 16px;
+        padding: 3px 7px;
+        font-size: .9rem;
+    }
+    position: absolute;
+    top: -13px;
+    left: -10px;
+    width: 48px;
+    height: 18px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: white;
+    /* background: rgb(28 28 31 / 1); */
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c97874;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: -1;
+
+    &::before {
+        @media (max-width: 1024px) {
+            left: 42%;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
+            bottom: -2px;
+        }
+        position: absolute;
+        content: "";
+        height: 8px;
+        width: 8px;
+        /* background: rgb(28 28 31 / 1); */
+        background: white;
+        bottom: -3px;
+        left: 40%;
+        transform: translate(-50%) rotate(45deg);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: -1;
     }
 `;
