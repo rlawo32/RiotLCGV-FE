@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       messages: [
         {
             role: 'system',
-            content: '너는 게임 분석 전문가야. 간결하고 핵심적으로 설명해. 설명해줄때 항목을 **로 나누어서 알려줘',
+            content: '너는 게임 분석 전문가야. 간결하고 핵심적으로 설명해. 결과 설명을 해줄 때 제목은 #** 형식으로 표시하고 설명은 - 표시로 구분해서 알려줘',
         },
         { 
             role: 'user', 
