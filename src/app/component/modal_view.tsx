@@ -2,39 +2,43 @@
 
 import styled from "styled-components";
 
-import { useEffect, useRef, useState } from "react";
-import { useQuery, useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query";
+import React, { useEffect, useRef, useState } from "react";
+import { useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
-import { getSelectLcgPlayerDataQuery } from "../queries/getLcgPlayerDataQuery";
 
 import LoadingSpinner from "./loading_spinner";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const ModalViewStyle = styled('div')`
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 400px;
+        height: 750px;
+    }
     width: 550px;
-    height: 600px;
+    height: 650px;
     padding: 15px 20px;
     border: 2px solid #3d96ff;
     border-radius: 17px;
     color: #fff;
     font-size: 1.3rem;
     line-height: 1.5rem;
+    letter-spacing: .02rem;
     background-color: rgba(18, 18, 11, 0.9);
     transform: translate(-50%, -15%);
     z-index: 99;
 
     .summary_title {
-        padding: 20px 0 10px;
+        padding: 15px 0;
         margin-bottom: 15px;
         font-size: 2.3rem;
         font-weight: 700;
+        letter-spacing: .2rem;
         text-align: center;
     }
 
@@ -44,6 +48,21 @@ const ModalViewStyle = styled('div')`
         .content_item {
             margin-bottom: 5px;
         }
+    }
+
+    .content_title {
+        margin: 20px 0 10px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #FF2E2E;
+    }
+
+    .content_item {
+        
+    }
+
+    .content_last {
+        line-height: 1.8rem;  
     }
 
     button {
@@ -91,16 +110,14 @@ interface ModalViewProps {
 
 const ModalView = (props: ModalViewProps ) => {
     const supabase = useSupabaseBrowser();
-    const queryClient = useQueryClient();
     const modalRef:any = useRef<any>(null);
     const textRef:any = useRef<any>([]);
     const hasSubmittedRef:any = useRef(false);
     
     const [summaryContent, setSummaryContent] = useState<string>(props.aiSummaryContent);
     //const [summaryContent, setSummaryContent] = useState<string>("이 유저는 전반적으로 볼 때, 여러 포지션을 고르게 플레이하는 다재다능한 플레이어로 보입니다. - **플레이 스타일:** 이 유저는 지원(서포트) 포지션에서 가장 높은 승률 (58.8%)을 기록하고 있으며, 평균 어시스트가 10.1로 높은 것을 볼 때 팀원과 협력해서 플레이하는 스타일을 선호할 가능성이 높습니다. 또한, 평균 비전 점수가 42.4로 이는 상대적으로 좋은 지도 능력을 보여주는 지표입니다. - **강점:** - **지원 능력:** 서포트 포지션에서 안정적이며 높은 승률을 보이고 있습니다. - **협력 플레이:** 평균 어시스트가 높고, 여러 포지션에서 일정한 승률을 유지해 팀원에게 기여하는 능력이 뛰어납니다. - **MVP와 ACE 횟수:** 8번의 MVP와 6번의 ACE를 기록한 것으로 보아, 결정적인 순간에 영향력을 행사할 수 있는 능력도 있다고 평가할 수 있습니다. - **약점:** - **중앙(미드) 포지션:** 미드에서 2승 5패로 낮은 승률을 기록하고 있어, 이 포지션에서의 플레이 개선이 필요합니다. - **데미지 기여:** 평균 피해량(18180.7)과 DPM(606.1)이 평균적인 수준으로, 직접적인 딜링에서 강력한 모습을 보이진 않습니다. - **평가:** 이 유저는 팀 플레이에 강점을 지닌 전형적인 팀플레이어로, 특히 서포트 포지션에서 두각을 나타냅니다. 미드 포지션의 부족한 경험 또는 기술을 보완한다면 더욱 균형 잡힌 플레이어가 될 수 있습니다. 각 포지션에 맞는 플레이 스타일을 더 발전시킨다면, 전반적인 승률 향상이 기대됩니다.");
-    const [isProcess, setIsProcess] = useState<boolean>(false);
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
-    const [hasSubmitted, setHasSubmitted] = useState(false); // 중복 호출 방지
+    const [lengthCheck, setLengthCheck] = useState<number>(0);
 
     const updateAiSummaryVerifyMutation = useUpdateMutation(
         supabase.from('lcg_player_data') as any,               
@@ -123,8 +140,6 @@ const ModalView = (props: ModalViewProps ) => {
     )
     
     const aiSummaryApiCall = async () => {
-        setIsProcess(true);
-
         const res = await fetch('/api/openai', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -179,7 +194,8 @@ const ModalView = (props: ModalViewProps ) => {
     useEffect(()=>{
         if(isSuccess) {
             const runTyping = async () => {
-                const dataArr:string[] = summaryContent.split(/[#-]/);;
+                const dataArr:string[] = summaryContent.split(/[#-]/);
+                setLengthCheck(dataArr.length);
 
                 for (let i:number=0; i<dataArr.length; i++) {
                     const el:HTMLElement = textRef.current[i];
@@ -211,7 +227,7 @@ const ModalView = (props: ModalViewProps ) => {
     return (
         <ModalViewStyle ref={modalRef}>
             <div className="summary_title">
-                유저 AI 요약
+                유저 AI 분석&요약
             </div>
             <hr/>
             <div className="summary_content">
@@ -221,16 +237,20 @@ const ModalView = (props: ModalViewProps ) => {
                             {
                                 summaryContent.split(/[#-]/).map((data, idx) => {
                                     return (
-                                        <> 
+                                        <React.Fragment key={idx}> 
                                             {
                                                 data.includes('**') ? 
-                                                    <div ref={(te:any) => (textRef.current[idx] = te)} key={idx} className="content_title">
+                                                    <div ref={(te:any) => (textRef.current[idx] = te)} className="content_title">
                                                     </div>
                                                     :
-                                                    <div ref={(te:any) => (textRef.current[idx] = te)} key={idx} className="content_item">
+                                                lengthCheck-1 === idx ? 
+                                                    <div ref={(te:any) => (textRef.current[idx] = te)} className="content_last">
+                                                    </div>
+                                                    :
+                                                    <div ref={(te:any) => (textRef.current[idx] = te)} className="content_item">
                                                     </div>
                                             }
-                                        </>
+                                        </React.Fragment>
                                     )
                                 })
                             }
@@ -240,9 +260,6 @@ const ModalView = (props: ModalViewProps ) => {
                             <LoadingSpinner />
                         </>
                 }
-                {/* {updatePending ? "업데이트 중..." : "업데이트하기"}
-                {updateSuccess && <p>업데이트 완료!</p>}
-                {updateError && <p style={{ color: "red" }}>에러 발생: {errorMessage?.message}</p>} */}
             </div>
             <button onClick={() => props.setIsModal(false)}>
                 닫기
