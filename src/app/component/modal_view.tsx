@@ -122,6 +122,29 @@ const ModalView = (props: ModalViewProps ) => {
     const [lengthCheck, setLengthCheck] = useState<number>(0);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
 
+    /*
+        게임시간 info - game_duration
+        경기유형(스크림) info - game_type
+        맵(협곡) info - game_map
+        승리팀/패배팀 team - team_win
+        게임버전 info - ver_main
+        
+        챔피언 구성(플레이어 이름, 라인 체크) main - champion_name
+        오브젝트 체크(용, 바론, 낑깡, 전령, 타워, 억제기) team - total_dragon/baron/horde/herald/tower/inhibitor
+        팀전체 시야 체크(전체 시야점수, 설치와드 수, 제거와드 수, 핑크와드 수) sub - vision_socre / normal_ward / destroy_ward / vision_ward
+        
+        퍼스트블러드 sub - first_kill
+        멀티킬 sub - double_kill / triple_kill / quadra_kill / penta_kill
+        
+        플레이어별 KDA main - kill_count / death_count / assist_count
+        딜량 main - damage_total
+        받은 피해량 main - damage_taken
+        MVP/ACE 여부 main - mvp_rank
+        골드량 - sub - gold_total
+        시야점수 - sub - vision_score 
+        DPM, GPM, DPG - sub - dpm / gpm / dpg
+    */
+
     const updateAiSummaryVerifyMutation = useUpdateMutation(
         supabase.from('lcg_player_data') as any,               
         ['lcg_summoner_puuid'],                         
