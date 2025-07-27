@@ -87,3 +87,7 @@ export function getSelectLcgPlayerAceQuery(client:TypedSupabaseClient, puuid:str
 export function getSelectLcgPlayerAiSummaryDataQuery(client:TypedSupabaseClient, puuid:string) {
   return client.rpc("ai_summary_data").eq("lcg_summoner_puuid", puuid)
 }
+
+export function getPlayerRankingQuery(client:TypedSupabaseClient, gameid:number) {
+  return client.rpc("latest_player_search").eq("lcg_game_id", gameid)
+}
