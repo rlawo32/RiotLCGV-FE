@@ -266,26 +266,30 @@ export const InputValueStyle = styled('input')`
 export const InputPlayerStyle = styled('input')<{$camp:number}>`
     @media (max-width: 1024px) {
         width: 240px;
-        padding: 10px 40px 10px 60px;
+        height: 46px;
+        padding: 10px 40px 14px 62px;
         font-size: 1.8rem;
     }
     @media (max-width: 768px) {
         width: 170px;
+        height: 42px;
         margin: 10px 2px;
-        padding: 10px 35px 10px 52px;
+        padding: 10px 35px 12px 55px;
         font-size: 1.5rem;
     }
     // mobile_view
     @media (max-width: 480px) {
         width: 130px;
+        height: 32px;
         margin: 5px 2px;
-        padding: 7px 25px 8px 42px;
+        padding: 7px 25px 9px 41px;
         border-radius: 10px;
         font-size: 1.3rem;
     }
     width: 300px;
+    height: 50px;
     margin: 10px 5px;
-    padding: 10px 45px 10px 60px;
+    padding: 10px 45px 15px 65px;
     border: 2px solid ${({$camp}) => $camp === 0 ? "#1F85FD" : "#F60C50"};
     border-radius: 15px;
     background: rgb(28 28 31 / 1);

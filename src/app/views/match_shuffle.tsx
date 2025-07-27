@@ -3,6 +3,10 @@
 import * as Style from "./match_shuffle.style";
 
 import { useEffect, useState } from "react";
+import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import useSupabaseBrowser from "../supabase-browser";
+import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
+import { getPlayerRankingQuery } from "../queries/getLcgPlayerDataQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPlus as icon_plus, faMinus as icon_minus,
@@ -14,6 +18,9 @@ import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
 
 const MatchShuffle = () => {
+    const supabase = useSupabaseBrowser();
+    let gameId:number = 0;
+
     const [playerCount, setPlayerCount] = useState<number>(10);
     const [teamCount, setTeamCount] = useState<number>(2);
     const [shuffleProgress, setShuffleProgress] = useState<boolean>(false);
@@ -24,48 +31,75 @@ const MatchShuffle = () => {
     const [teams, setTeams] = useState<{id:number, lv:number, nm:string}[][]>([[]]);
     const [playerFix, setPlayerFix] = useState<{id:number, row:number, cell:number}[]>([]);
 
+    const { data: lcgMatchLog, isLoading: loading1, isError: dataError1, error: errorMsg1 } = useQuery(getLcgMatchLogLatestQuery(supabase));
+    if(!!lcgMatchLog) {
+        gameId = lcgMatchLog[0].lcg_game_id;
+    } 
+
+    const { data: lcgPlayerRanking } = useQuery(getPlayerRankingQuery(supabase, gameId), {enabled:!!lcgMatchLog});
+
     const createTeam = () => {
-        const realPlayerCount:number = playerCount;
-        const realTeamCount:number = teamCount;
-        const realComposition:number = realPlayerCount / realTeamCount;
 
-        let temp2DemList:{id:number, lv:number, nm:string}[][] = Array.from({length: realTeamCount}, () => Array.from({length: realComposition}));
+        if(!!lcgPlayerRanking) {
+            setTeams([
+                [
+                    {id:0, lv:lcgPlayerRanking[0].lcg_ranking_grade, nm:lcgPlayerRanking[0].lcg_player}, 
+                    {id:1, lv:lcgPlayerRanking[1].lcg_ranking_grade, nm:lcgPlayerRanking[1].lcg_player}, 
+                    {id:2, lv:lcgPlayerRanking[2].lcg_ranking_grade, nm:lcgPlayerRanking[2].lcg_player}, 
+                    {id:3, lv:lcgPlayerRanking[3].lcg_ranking_grade, nm:lcgPlayerRanking[3].lcg_player}, 
+                    {id:4, lv:lcgPlayerRanking[4].lcg_ranking_grade, nm:lcgPlayerRanking[4].lcg_player}
+                ],
+                [
+                    {id:5, lv:lcgPlayerRanking[5].lcg_ranking_grade, nm:lcgPlayerRanking[5].lcg_player}, 
+                    {id:6, lv:lcgPlayerRanking[6].lcg_ranking_grade, nm:lcgPlayerRanking[6].lcg_player}, 
+                    {id:7, lv:lcgPlayerRanking[7].lcg_ranking_grade, nm:lcgPlayerRanking[7].lcg_player}, 
+                    {id:8, lv:lcgPlayerRanking[8].lcg_ranking_grade, nm:lcgPlayerRanking[8].lcg_player}, 
+                    {id:9, lv:lcgPlayerRanking[9].lcg_ranking_grade, nm:lcgPlayerRanking[9].lcg_player}
+                ]
+            ]);
+        } else {
+            const realPlayerCount:number = playerCount;
+            const realTeamCount:number = teamCount;
+            const realComposition:number = realPlayerCount / realTeamCount;
 
-        if(realPlayerCount % realTeamCount !== 0) {
-            let tempComposition:number = Math.ceil(realPlayerCount/realTeamCount);
-            let tempPersonnel:number = realPlayerCount;
-            const cellArray:number[] = [];
-            let idx:number = 0;
-            
-            for(let i=1; i<=realTeamCount; i++) {
-                cellArray[idx++] = tempComposition;
-                tempPersonnel -= tempComposition;
-                if((realTeamCount - i) === 2 && tempPersonnel % 2 === 0) {
-                    tempComposition = tempPersonnel / 2;
-                } else if((realTeamCount - i) === 3 && tempPersonnel % 3 === 0) {
-                    tempComposition = tempPersonnel / 3;
-                } else if((realTeamCount - i) === 1) {
-                    tempComposition = tempPersonnel;
+            let temp2DemList:{id:number, lv:number, nm:string}[][] = Array.from({length: realTeamCount}, () => Array.from({length: realComposition}));
+
+            if(realPlayerCount % realTeamCount !== 0) {
+                let tempComposition:number = Math.ceil(realPlayerCount/realTeamCount);
+                let tempPersonnel:number = realPlayerCount;
+                const cellArray:number[] = [];
+                let idx:number = 0;
+                
+                for(let i=1; i<=realTeamCount; i++) {
+                    cellArray[idx++] = tempComposition;
+                    tempPersonnel -= tempComposition;
+                    if((realTeamCount - i) === 2 && tempPersonnel % 2 === 0) {
+                        tempComposition = tempPersonnel / 2;
+                    } else if((realTeamCount - i) === 3 && tempPersonnel % 3 === 0) {
+                        tempComposition = tempPersonnel / 3;
+                    } else if((realTeamCount - i) === 1) {
+                        tempComposition = tempPersonnel;
+                    }
+                }
+
+                temp2DemList = [];
+                temp2DemList = Array.from({length: realTeamCount});
+
+                for(let i=0; i<realTeamCount; i++) {
+                    temp2DemList[i] = Array.from({length: cellArray[i]});
                 }
             }
 
-            temp2DemList = [];
-            temp2DemList = Array.from({length: realTeamCount});
+            for(let i=0; i<temp2DemList.length; i++) {
+                let plus:number = 1;
+                for(let j=0; j<temp2DemList[i].length; j++) {
+                    temp2DemList[i][j] = {id:i+plus, lv:5, nm:''};
+                    plus += realTeamCount;
+                }
+            }    
 
-            for(let i=0; i<realTeamCount; i++) {
-                temp2DemList[i] = Array.from({length: cellArray[i]});
-            }
+            setTeams(temp2DemList);
         }
-
-        for(let i=0; i<temp2DemList.length; i++) {
-            let plus:number = 1;
-            for(let j=0; j<temp2DemList[i].length; j++) {
-                temp2DemList[i][j] = {id:i+plus, lv:5, nm:''};
-                plus += realTeamCount;
-            }
-        }    
-
-        setTeams(temp2DemList);
     }
 
     const updateInputData = (data:{index:number; arrNo:number; value:string;}) => {
@@ -319,6 +353,10 @@ const MatchShuffle = () => {
         setTeamCount(2);
         createTeam();
     }, [])
+
+    useEffect(() => {
+        createTeam();
+    }, [lcgPlayerRanking])
 
     return (
         <Style.MatchShuffle>
