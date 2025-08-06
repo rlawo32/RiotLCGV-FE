@@ -40,15 +40,27 @@ export function getSelectLcgPlayerChampionQuery(client:TypedSupabaseClient, puui
     .range(0, (page * 10) - 1)
 }
 
-export function getSelectLcgPlayerRelativeTotalQuery(client:TypedSupabaseClient, puuid:string) {
-  return client
+export function getSelectLcgPlayerRelativeTotalQuery(client:TypedSupabaseClient, puuid:string, oppid:string) {
+  let query = client
     .from("lcg_player_relative")
     .select("row_num")
     .eq("lcg_person_puuid", puuid)
+
+  if(oppid.length > 0) {
+    query = query.eq("lcg_opponent_puuid", oppid)
+  }
+
+  return query;
 }
 
-export function getSelectLcgPlayerRelativeQuery(client:TypedSupabaseClient, puuid:string, page:number) {
-  return client.rpc("player_relative").eq("lcg_person_puuid", puuid).range(0, (page * 10) - 1)
+export function getSelectLcgPlayerRelativeQuery(client:TypedSupabaseClient, puuid:string, oppid:string, page:number) {
+  let query = client.rpc("player_relative").eq("lcg_person_puuid", puuid).range(0, (page * 10) - 1)
+
+  if(oppid.length > 0) {
+    query = query.eq("lcg_opponent_puuid", oppid)
+  }
+
+  return query;
 }
 
 export function getSelectLcgPlayerPositionQuery(client:TypedSupabaseClient, puuid:string) {
