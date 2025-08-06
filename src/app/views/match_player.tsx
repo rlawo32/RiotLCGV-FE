@@ -18,6 +18,7 @@ import { getWinningRateCalc, getPlayerData } from "../component/match_tool";
 
 import LoadingSpinner from "../component/loading_spinner";
 import LastUpdate from "../component/last_update";
+import SelectBox from "../component/select_box_relative";
 
 import TopIcon from "../icons/TopIcon";
 import JugIcon from "../icons/JugIcon";
@@ -37,6 +38,7 @@ const MatchPlayer = () => {
     const { data: lcgPlayerData, isLoading: loading1 } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
 
     const [selectPlayer, setSelectPlayer] = useState<string>("");
+    const [selectOpponent, setSelectOpponent] = useState<string>("");
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
     const [isSummaryModal, setIsSummaryModal] = useState<boolean>(false);
@@ -45,9 +47,9 @@ const MatchPlayer = () => {
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerWinningRate } = useQuery(getSelectLcgWinningRateQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: playerChampionTotal } = useQuery(getSelectLcgPlayerChampionTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
-    const { data: playerRelativeTotal } = useQuery(getSelectLcgPlayerRelativeTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: playerRelativeTotal } = useQuery(getSelectLcgPlayerRelativeTotalQuery(supabase, selectPlayer, selectOpponent), {enabled:!!lcgPlayerData});
     const { data: selectPlayerChampion } = useQuery(getSelectLcgPlayerChampionQuery(supabase, selectPlayer, pageChampion), {enabled:!!lcgPlayerData});
-    const { data: selectPlayerRelative } = useQuery(getSelectLcgPlayerRelativeQuery(supabase, selectPlayer, pageRelative), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerRelative } = useQuery(getSelectLcgPlayerRelativeQuery(supabase, selectPlayer, selectOpponent, pageRelative), {enabled:!!lcgPlayerData});
     const { data: selectPlayerPostion } = useQuery(getSelectLcgPlayerPositionQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerDpm } = useQuery(getSelectLcgPlayerAvgDpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerGpm } = useQuery(getSelectLcgPlayerAvgGpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -230,7 +232,7 @@ const MatchPlayer = () => {
                         <Style.PlayerSelectBox>
                             {lcgPlayerData?.filter((data) => data.lcg_player_hide === 'N').map((data, idx) => {
                                 return (
-                                    <div className="select_item" onClick={() => setSelectPlayer(data.lcg_summoner_puuid)} key={"select_" + idx}>
+                                    <div className="select_item" onClick={() => {setSelectPlayer(data.lcg_summoner_puuid); setSelectOpponent("");}} key={"select_" + idx}>
                                         {data.lcg_summoner_nickname}
                                     </div>
                                 )
@@ -410,33 +412,23 @@ const MatchPlayer = () => {
                             </div>
                             <div className="box_body">
                                 <div className="body_section body_left">
+                                    {
+                                        !!lcgPlayerData ? <SelectBox playerList={lcgPlayerData} selectOpponent={selectOpponent} setSelectOpponent={setSelectOpponent} /> : <></>
+                                    }
                                     <div className="relative_head">
+                                        <div className="head_matchLine">
+                                            포지션
+                                        </div>
                                         <div className="head_opponent">
                                             상대
                                         </div>
                                         <div className="head_winningRate">
                                             승률
                                         </div>
-                                        <div className="head_matchLine">
-                                            포지션
-                                        </div>
                                     </div>
                                     {selectPlayerRelative?.map((data, idx) => {
                                         return (
                                             <div className="relative_item" key={"champ_" + idx}>
-                                                <div className="player_opponent">
-                                                    {playerData(data.lcg_opponent_puuid, "name")}
-                                                </div>
-                                                <div className="player_winningRate">
-                                                    <div className="match_detail">
-                                                        <span>{data.lcg_play_count}전</span>
-                                                        <span>{data.lcg_win_count}승</span>
-                                                        <span>{data.lcg_fail_count}패</span>
-                                                    </div>
-                                                    <div className="match_winning">
-                                                        {((data.lcg_win_count * 100) / data.lcg_play_count).toFixed(1)}%
-                                                    </div>
-                                                </div>
                                                 <div className="player_matchLine">
                                                     {
                                                         data.lcg_match_line === 'TOP' ? <TopIcon />
@@ -449,6 +441,19 @@ const MatchPlayer = () => {
                                                         :
                                                         <SupIcon />
                                                     }
+                                                </div>
+                                                <div className="player_opponent">
+                                                    {playerData(data.lcg_opponent_puuid, "name")}
+                                                </div>
+                                                <div className="player_winningRate">
+                                                    <div className="match_detail">
+                                                        <span>{data.lcg_play_count}전</span>
+                                                        <span>{data.lcg_win_count}승</span>
+                                                        <span>{data.lcg_fail_count}패</span>
+                                                    </div>
+                                                    <div className="match_winning">
+                                                        {((data.lcg_win_count * 100) / data.lcg_play_count).toFixed(1)}%
+                                                    </div>
                                                 </div>
                                             </div>
                                         )

@@ -500,7 +500,7 @@ export const PlayerDataBox = styled('div')`
         
         .body_section  {
             @media (max-width: 1024px) {
-                padding: 15px 12px;
+                padding: 38px 12px 15px;
             }
             @media (max-width: 768px) {
                 margin: 10px 0 0 0;
@@ -513,9 +513,9 @@ export const PlayerDataBox = styled('div')`
             min-width: calc(90% / 2);
             min-height: 550px;
             margin: 5px;
+            padding: 38px 25px 15px;
             border-radius: 10px;
             background-color: rgb(30 30 38 / 1);
-            padding: 15px 25px;
             text-align: center;
 
             .relative_head {
@@ -534,11 +534,12 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .head_winningRate {
-                    width: 120px;
+                    width: 110px;
                 }
 
                 .head_matchLine {
                     width: 40px;
+                    text-align: left;
                 }
             }
 
@@ -563,7 +564,7 @@ export const PlayerDataBox = styled('div')`
                     }
                     width: 100px;
                     font-size: 1.3rem;
-                    text-align: left;
+                    text-align: center;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -573,7 +574,7 @@ export const PlayerDataBox = styled('div')`
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 120px;
+                    width: 110px;
 
                     .match_detail {
                         // mobile_view
@@ -592,6 +593,7 @@ export const PlayerDataBox = styled('div')`
                         }
                     }
                     width: 40px;
+                    text-align: left;
                 }
             }
 
@@ -615,7 +617,7 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .head_winningRate {
-                    width: 120px;
+                    width: 110px;
                 }
             }
 
@@ -673,7 +675,7 @@ export const PlayerDataBox = styled('div')`
                 }
 
                 .player_winningRate {
-                    width: 120px;
+                    width: 110px;
 
                     .match_detail {
                         // mobile_view
