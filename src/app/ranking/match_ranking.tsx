@@ -19,7 +19,7 @@ import {
 } from "../queries/getLcgMatchRankingQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 
-import SelectBox from "../component/select_box";
+import SelectBox from "../component/select_box_rank";
 import LoadingSpinner from "../component/loading_spinner";
 
 import RankingViewOverall from "./rankingView_overall";
