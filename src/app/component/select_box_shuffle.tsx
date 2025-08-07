@@ -242,8 +242,6 @@ const SelectBoxShuffle = (props : SelectBoxShuffleProps) => {
 
     const onClickSelectItem = (idx:number, level:number) => {
         setIsSelectBoxShow(false);
-        console.log(idx)
-        console.log(level)
         props.updateSelectData({index:props.inputData.id, arrNo:props.inputIdx, value:level});
 
         selectItem.current[idx].className = selectItem.current[idx].className.replace('rs_active', '');
