@@ -7,7 +7,7 @@ export const MatchShuffle = styled('div')`
         padding: 50px 15px;
     }
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
         padding: 50px 5px;
     }
     position: relative;
@@ -45,7 +45,7 @@ export const MatchShuffle = styled('div')`
                         font-size: 1.8rem;
                     }
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 500px) {
                         font-size: 1.5rem;
                     }
                     display: flex;
@@ -56,7 +56,7 @@ export const MatchShuffle = styled('div')`
                     margin-bottom: 10px;
                     svg {
                         // mobile_view
-                        @media (max-width: 480px) {
+                        @media (max-width: 500px) {
                             height: 25px; 
                             width: 25px;
                         }
@@ -83,7 +83,7 @@ export const MatchShuffle = styled('div')`
                             left: 10px;
                         }
                         // mobile_view
-                        @media (max-width: 480px) {
+                        @media (max-width: 500px) {
                             top: 13px;
                             left: 7px;
                         }
@@ -98,7 +98,7 @@ export const MatchShuffle = styled('div')`
                             right: 9px;
                         }
                         // mobile_view
-                        @media (max-width: 480px) {
+                        @media (max-width: 500px) {
                             top: 11px;
                             right: 6px;
                         }
@@ -126,7 +126,7 @@ export const MatchShuffle = styled('div')`
             margin-top: 40px;
         }
         // mobile_view
-        @media (max-width: 480px) {
+        @media (max-width: 500px) {
             height: 180px;
         }
         width: 560px;
@@ -152,7 +152,7 @@ export const MatchShuffle = styled('div')`
                     font-size: 1.4rem;
                 }
                 // mobile_view
-                @media (max-width: 480px) {
+                @media (max-width: 500px) {
                     font-size: 1.2rem;
                 }
                 font-size: 1.8rem;
@@ -165,7 +165,7 @@ export const MatchShuffle = styled('div')`
                     font-size: 1rem;
                 }
                 // mobile_view
-                @media (max-width: 480px) {
+                @media (max-width: 500px) {
                     font-size: .9rem;
                 }
                 display: flex;
@@ -177,7 +177,7 @@ export const MatchShuffle = styled('div')`
                         font-size: .8rem;
                     }
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 500px) {
                         font-size: .6rem;
                     }
                     padding: 3px 4px;
@@ -206,7 +206,7 @@ export const MatchShuffle = styled('div')`
                             font-size: 1.1rem;
                         }
                         // mobile_view
-                        @media (max-width: 480px) {
+                        @media (max-width: 500px) {
                             font-size: 1rem;
                         }
                         font-size: 1.4rem;
@@ -267,29 +267,29 @@ export const InputPlayerStyle = styled('input')<{$camp:number}>`
     @media (max-width: 1024px) {
         width: 240px;
         height: 46px;
-        padding: 10px 40px 14px 62px;
+        padding: 10px 40px 14px 65px;
         font-size: 1.8rem;
     }
     @media (max-width: 768px) {
         width: 170px;
         height: 42px;
         margin: 10px 2px;
-        padding: 10px 35px 12px 55px;
+        padding: 10px 35px 12px 60px;
         font-size: 1.5rem;
     }
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
         width: 130px;
         height: 32px;
         margin: 5px 2px;
-        padding: 7px 25px 9px 41px;
+        padding: 7px 25px 9px 45px;
         border-radius: 10px;
         font-size: 1.3rem;
     }
     width: 300px;
     height: 50px;
     margin: 10px 5px;
-    padding: 10px 45px 15px 65px;
+    padding: 10px 45px 15px 70px;
     border: 2px solid ${({$camp}) => $camp === 0 ? "#1F85FD" : "#F60C50"};
     border-radius: 15px;
     background: rgb(28 28 31 / 1);
@@ -314,7 +314,7 @@ export const BtnStyle= styled('button')`
         font-size: 1.3rem;
     }
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
         padding: 7px 18px;
         margin: 5px;
         font-size: 1.1rem;
@@ -376,7 +376,7 @@ export const CheckStyle = styled('input')`
                 padding: 5px 0 0;
             }
             // mobile_view
-            @media (max-width: 480px) {
+            @media (max-width: 500px) {
                 padding: 4px 0 0;
             }
             padding: 6px 0 0;
@@ -399,7 +399,8 @@ export const LabelStyle = styled('label')`
         font-size: .8rem;
     }
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
+        top: -1px;
         height: 17px;
         width: 20px;
         padding: 3px 0 0;
@@ -426,7 +427,7 @@ export const LabelStyle = styled('label')`
 
         + .tooltip {
             // mobile_view
-            @media (max-width: 480px) {
+            @media (max-width: 500px) {
                 top: -20px;
             }
             top: -23px;
@@ -448,10 +449,14 @@ export const SelectStyle = styled('select')`
         font-size: 1rem;
     }
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
         font-size: .9rem;
         padding: 3px 2px;
     }
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 50px;
     padding: 5px 7px 5px 5px;
     border: none;
     border-radius: 10px;
@@ -464,7 +469,7 @@ export const SelectStyle = styled('select')`
     &:hover {
         + .tooltip {
             // mobile_view
-            @media (max-width: 480px) {
+            @media (max-width: 500px) {
                 top: -23px;
             }
             top: -25px;
@@ -483,7 +488,7 @@ export const ToolTipStyle = styled('div')`
         width: calc(100% + 5px);
     }
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
         height: 16px;
         padding: 3px 7px;
         font-size: .9rem;
@@ -510,7 +515,7 @@ export const ToolTipStyle = styled('div')`
             left: 42%;
         }
         // mobile_view
-        @media (max-width: 480px) {
+        @media (max-width: 500px) {
             bottom: -2px;
         }
         position: absolute;
@@ -536,7 +541,7 @@ export const LoadingContainerStyle = styled('div')`
 
 export const LoadingItemStyle = styled('div')<{$timing:number}>`
     // mobile_view
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
         font-size: 1.3rem;
     }
     display: inline-block;

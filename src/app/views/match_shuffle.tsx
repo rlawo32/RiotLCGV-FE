@@ -16,6 +16,7 @@ import {
 
 import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
+import SelectBoxShuffle from "../component/select_box_shuffle";
 
 const MatchShuffle = () => {
     const supabase = useSupabaseBrowser();
@@ -376,10 +377,7 @@ const MatchShuffle = () => {
                             {parent.map((child, idx2) => (
                                 <div key={idx2} className="list_child">
                                     <div className="list_select">
-                                        <Style.SelectStyle onChange={(e) => updateSelectData({index:child.id, arrNo:idx1, value:parseInt(e.target.value)})} 
-                                        value={child.lv} tabIndex={-1}>
-                                            {onActiveSelectBox()}
-                                        </Style.SelectStyle>    
+                                        <SelectBoxShuffle updateSelectData={updateSelectData} inputData={child} inputIdx={idx1} />
                                         <Style.ToolTipStyle className="tooltip">
                                             Level
                                         </Style.ToolTipStyle>
