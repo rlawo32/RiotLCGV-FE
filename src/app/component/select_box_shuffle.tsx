@@ -7,12 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faChevronDown as arrow} from "@fortawesome/free-solid-svg-icons";
 
 const SelectBoxShuffleStyle = styled('div')`
-    // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 1024px) {
         top: -3.5px;
     }
     position: absolute;
-    top: -3.7px;
+    top: -3.6px;
     left: 1px;
 
     button {
@@ -20,7 +19,6 @@ const SelectBoxShuffleStyle = styled('div')`
             width: 45px;
             height: 32px;
             padding: 4px 6px;
-            font-size: 1rem;
         }
         @media (max-width: 768px) {
             height: 29px;
@@ -29,20 +27,20 @@ const SelectBoxShuffleStyle = styled('div')`
         // mobile_view
         @media (max-width: 500px) {
             width: 36px;
-            height: 24px;
+            height: 23px;
             font-size: .8rem;
         }
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 57px;
+        width: 50px;
         height: 36px;
         padding: 5px 7px;
         border: 1px solid grey;
         border-radius: 7px;
         background: rgba(42,50,73, .5);
         color: rgb(255 255 255 / 1);
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 700;
         cursor: pointer;
     }
@@ -59,7 +57,7 @@ const SelectBoxShuffleStyle = styled('div')`
         top: 105%;
         left: 0;
         height: 0;
-        width: 57px;
+        width: 50px;
         padding: 0 3px;
         border: none;
         border-radius: 5px;
@@ -78,7 +76,7 @@ const SelectBoxShuffleStyle = styled('div')`
             width: 30px;
         }
         height: 0;
-        width: 51px;
+        width: 44px;
         padding: 0;
         border: none;
         border-radius: 5px;
@@ -142,9 +140,6 @@ const SelectBoxShuffleStyle = styled('div')`
         justify-content: center;
 
         .select_level {
-            @media (max-width: 1024px) {
-                font-size: 1.4rem;
-            }
             @media (max-width: 768px) {
                 font-size: 1.2rem;
             }
@@ -152,18 +147,15 @@ const SelectBoxShuffleStyle = styled('div')`
             @media (max-width: 500px) {
                 font-size: 1rem;
             }
-            font-size: 1.7rem;
+            font-size: 1.4rem;
         }
 
         .select_rank {
-            @media (max-width: 1024px) {
-                font-size: .8rem;
-            }
             // mobile_view
             @media (max-width: 500px) {
                 font-size: .7rem;
             }
-            font-size: .9rem;
+            font-size: .8rem;
             letter-spacing: -0.1rem;
         }
     }
@@ -177,7 +169,7 @@ const SelectBoxShuffleStyle = styled('div')`
             margin-left: 4px;
         }
         display: inline-block;
-        margin-left: 7px;
+        margin-left: 6px;
         color: rgb(255 255 255 / 1);
         font-weight: 700;
         transition: all .3s linear;
