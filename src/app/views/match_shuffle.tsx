@@ -2,7 +2,7 @@
 
 import * as Style from "./match_shuffle.style";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
@@ -11,14 +11,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPlus as icon_plus, faMinus as icon_minus,
     faRotate as icon_refresh, faShuffle as icon_random,
-    faScaleBalanced as icon_balance
+    faScaleBalanced as icon_balance, faCamera as icon_capture
 } from "@fortawesome/free-solid-svg-icons";
+import { toPng } from 'html-to-image';
 
 import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
 import SelectBoxShuffle from "../component/select_box_shuffle";
 
 const MatchShuffle = () => {
+    const captureRef = useRef<HTMLDivElement>(null);
+
     const supabase = useSupabaseBrowser();
     let gameId:number = 0;
 
@@ -27,6 +30,7 @@ const MatchShuffle = () => {
     const [shuffleProgress, setShuffleProgress] = useState<boolean>(false);
     const [shuffleCount, setShuffleCount] = useState<number>(0);
     const [shuffleTime, setShuffleTime] = useState<number>(5000);
+    const [oneShuffleChk, setOneShuffleChk] = useState<boolean>(false);
     const [decrease, setDecrease] = useState<number>(200);
 
     const [teams, setTeams] = useState<{id:number, lv:number, nm:string}[][]>([[]]);
@@ -40,7 +44,6 @@ const MatchShuffle = () => {
     const { data: lcgPlayerRanking } = useQuery(getPlayerRankingQuery(supabase, gameId), {enabled:!!lcgMatchLog});
 
     const createTeam = () => {
-
         if(!!lcgPlayerRanking) {
             setTeams([
                 [
@@ -125,17 +128,6 @@ const MatchShuffle = () => {
         } else {
             setPlayerFix(playerFix.filter((el) => el.id !== data.index));
         }
-    }
-
-    const onActiveSelectBox = ():any[] => {
-        const list:any[] = [];
-        const textBox:string[] = ["E", "D", "C", "B", "A"];
-
-        for(let i=4; i>=0; i--) {
-            list.push(<option key={i} value={i+1}>{textBox[i]}</option>);
-        }
-
-        return list;
     }
     
     const activeRandomData = () => {
@@ -283,11 +275,11 @@ const MatchShuffle = () => {
     }
     
     const onClickRandom = () => {
-        setShuffleCount(shuffleCount+1);
         setShuffleProgress(true);
         let intervalTime:number = shuffleTime;
         const interval = setInterval(() => {
-            activeRandomData();    
+            activeRandomData();
+            setShuffleCount(prevCnt => prevCnt+1);
             intervalTime -= decrease;
             if(intervalTime <= 0) {
                 clearInterval(interval);
@@ -297,11 +289,11 @@ const MatchShuffle = () => {
     }
 
     const onClickBalance = () => {
-        setShuffleCount(shuffleCount+1);
         setShuffleProgress(true);
         let intervalTime:number = shuffleTime;
         const interval = setInterval(() => {
-            activeBalanceData();    
+            activeBalanceData();
+            setShuffleCount(prevCnt => prevCnt+1);
             intervalTime -= decrease;
             if(intervalTime <= 0) {
                 clearInterval(interval);
@@ -318,12 +310,14 @@ const MatchShuffle = () => {
         setPlayerFix([]);
         setTeamCount(2);
         setPlayerCount(10);
+        setOneShuffleChk(false);
         createTeam();
     }
 
     const onClickShuffleTime = (type:boolean) => {
         const time:number = 1000;
 
+        if(!oneShuffleChk)
         if(type) {
             if(shuffleTime < 10000) {
                 setShuffleTime(shuffleTime+time)
@@ -338,6 +332,7 @@ const MatchShuffle = () => {
     const onClickShuffleSpeed = (type:boolean) => {
         const time:number = 100;
 
+        if(!oneShuffleChk)
         if(type) {
             if(decrease < 1000) {
                 setDecrease(decrease+time)
@@ -348,6 +343,82 @@ const MatchShuffle = () => {
             }
         }
     }
+
+    const onClickShuffleOption = () => {
+        setOneShuffleChk(!oneShuffleChk);
+        if(!oneShuffleChk) {
+            setShuffleTime(1000);
+            setDecrease(1000);
+        } else {
+            setShuffleTime(5000);
+            setDecrease(200);
+        }
+    }
+
+    const dataURLtoBlob = (dataurl: string): Blob => {
+        const arr = dataurl.split(',');
+        const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/png';
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    };
+
+    const sendImageToServer = async (imageBlob: Blob) => {
+        const NODEJS_URL = 'http://34.127.40.154:8080/send-image';
+        
+        const formData = new FormData();
+        formData.append('imageFile', imageBlob, 'capture.png');
+        formData.append('message', 'Shuffle result image');
+
+        try {
+            const response = await fetch(NODEJS_URL, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                //console.log('이미지 전송 성공!');
+            } else {
+                const errorData = await response.json();
+                console.error(`이미지 전송 실패: ${errorData.message}`);
+            }
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error(`이미지 전송 중 오류 발생: ${error.message}`);
+            } else {
+                console.error('이미지 전송 중 알 수 없는 오류 발생');
+            }
+        }
+    };
+
+    const onClickCapture = async () => {
+        if (captureRef.current) {
+            const section = captureRef.current;
+            
+            try {
+                const dataUrl = await toPng(section, {
+                    width: captureRef.current.offsetWidth, 
+                    height: captureRef.current.offsetHeight - 270,
+                    quality: 0.95,
+                    style: {
+                        margin: '0',
+                    },
+                });
+                const imageBlob = dataURLtoBlob(dataUrl); // Base64를 Blob으로 변환
+                await sendImageToServer(imageBlob);
+            } catch (error) {
+                if (error instanceof Error) {
+                    console.error(`캡처 또는 전송 중 오류 발생: ${error.message}`);
+                } else {
+                    console.error('캡처 또는 전송 중 알 수 없는 오류 발생');
+                }
+            } 
+        }
+    };
 
     useEffect(() => {
         setPlayerCount(10);
@@ -360,7 +431,7 @@ const MatchShuffle = () => {
     }, [lcgPlayerRanking])
 
     return (
-        <Style.MatchShuffle>
+        <Style.MatchShuffle ref={captureRef}>
             <div className="list_section">
                 {teams.map((parent, idx1) => (
                     <div key={idx1} className="list_wrap" id={parent.length + "_t"}>
@@ -378,9 +449,6 @@ const MatchShuffle = () => {
                                 <div key={idx2} className="list_child">
                                     <div className="list_select">
                                         <SelectBoxShuffle updateSelectData={updateSelectData} inputData={child} inputIdx={idx1} />
-                                        <Style.ToolTipStyle className="tooltip">
-                                            Level
-                                        </Style.ToolTipStyle>
                                     </div>
                                     <Style.InputPlayerStyle onChange={(e) => updateInputData({index:child.id, arrNo:idx1, value:e.target.value})} value={child.nm} 
                                                 type="text" id={"input_" + child.id} $camp={idx1}/>
@@ -390,9 +458,6 @@ const MatchShuffle = () => {
                                         <Style.LabelStyle htmlFor={"chkbx" + child.id} className="check_box">
                                             고정
                                         </Style.LabelStyle>
-                                        <Style.ToolTipStyle className="tooltip">
-                                            Fix
-                                        </Style.ToolTipStyle>
                                     </div>
                                 </div>
                             ))}
@@ -424,6 +489,14 @@ const MatchShuffle = () => {
                                 <button onClick={() => onClickShuffleSpeed(false)}><FontAwesomeIcon icon={icon_minus} className="btn_icon"/></button>
                             </div>
                         </div>
+                        <div className="control_item shuffle_option">
+                            <div className="control_title">
+                                1회 셔플
+                            </div>
+                            <div className="control_tool">
+                                <input type="checkbox" checked={oneShuffleChk} onChange={() => onClickShuffleOption()} />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="btn_section">
@@ -447,6 +520,9 @@ const MatchShuffle = () => {
                                 </Style.BtnStyle>
                                 <Style.BtnStyle onClick={() => onClickRefresh()}>
                                     <FontAwesomeIcon icon={icon_refresh} className="btn_icon"/>초기화
+                                </Style.BtnStyle>
+                                <Style.BtnStyle onClick={() => onClickCapture()}>
+                                    <FontAwesomeIcon icon={icon_capture} className="btn_icon"/>결과 캡쳐
                                 </Style.BtnStyle>
                             </>
                     }

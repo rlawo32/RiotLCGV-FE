@@ -168,6 +168,7 @@ export const MatchShuffle = styled('div')`
                 @media (max-width: 500px) {
                     font-size: .9rem;
                 }
+                position: relative;
                 display: flex;
                 justify-content: center;
                 font-size: 1.3rem;
@@ -223,6 +224,18 @@ export const MatchShuffle = styled('div')`
                             }
                             width: 35px;
                         }
+                    }
+                }
+
+                .shuffle_option {
+                    position: absolute;
+                    top: 4px;
+                    right: 20px;
+
+                    .control_title {
+                        font-size: .9rem;
+                        font-weight: 400;
+                        margin-bottom: 6px;
                     }
                 }
             }
@@ -320,16 +333,19 @@ export const BtnStyle= styled('button')`
         font-size: 1.1rem;
     }
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 0 10px;
-    padding: 10px 30px;
+    width: calc(100% / 3);
+    margin: 0 7px;
+    padding: 12px 15px;
     border: none;
     border-radius: 10px;
     box-shadow: 0 0 40px rgba(42,50,113, .68);
     background-color: rgb(28 28 31 / 1);
     color: #ffffff;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 700;
+    text-align: center;
     cursor: pointer;
     transition: 0.5s;
     transition-duration: .3s;
