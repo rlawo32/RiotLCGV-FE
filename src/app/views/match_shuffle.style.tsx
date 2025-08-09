@@ -121,7 +121,7 @@ export const MatchShuffle = styled('div')`
     .control_section {
         @media (max-width: 768px) {
             width: 100%;
-            height: 190px;
+            height: 250px;
             padding: 25px 0 20px;
             margin-top: 40px;
         }
@@ -228,6 +228,10 @@ export const MatchShuffle = styled('div')`
                 }
 
                 .shuffle_option {
+                    @media (max-width: 768px) {
+                        top: 0;
+                        right: 90px;
+                    }
                     position: absolute;
                     top: 4px;
                     right: 20px;
