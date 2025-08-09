@@ -125,10 +125,6 @@ export const MatchShuffle = styled('div')`
             padding: 25px 0 20px;
             margin-top: 40px;
         }
-        // mobile_view
-        @media (max-width: 480px) {
-            height: 180px;
-        }
         width: 560px;
         height: 210px;
         padding: 25px 45px;
@@ -231,6 +227,11 @@ export const MatchShuffle = styled('div')`
                     @media (max-width: 768px) {
                         top: 0;
                         right: 90px;
+                    }
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        top: -2px;
+                        right: 30px;
                     }
                     position: absolute;
                     top: 4px;
