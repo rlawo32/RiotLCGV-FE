@@ -368,14 +368,12 @@ const MatchShuffle = () => {
     };
 
     const sendImageToServer = async (imageBlob: Blob) => {
-        const NODEJS_URL = 'http://34.127.40.154:8080/send-image';
-        
         const formData = new FormData();
         formData.append('imageFile', imageBlob, 'capture.png');
         formData.append('message', 'Shuffle result image');
 
         try {
-            const response = await fetch(NODEJS_URL, {
+            const response = await fetch('/api/capture', {
                 method: 'POST',
                 body: formData,
             });
