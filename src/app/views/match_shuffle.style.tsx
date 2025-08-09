@@ -7,7 +7,7 @@ export const MatchShuffle = styled('div')`
         padding: 50px 15px;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         padding: 50px 5px;
     }
     position: relative;
@@ -45,7 +45,7 @@ export const MatchShuffle = styled('div')`
                         font-size: 1.8rem;
                     }
                     // mobile_view
-                    @media (max-width: 500px) {
+                    @media (max-width: 480px) {
                         font-size: 1.5rem;
                     }
                     display: flex;
@@ -56,7 +56,7 @@ export const MatchShuffle = styled('div')`
                     margin-bottom: 10px;
                     svg {
                         // mobile_view
-                        @media (max-width: 500px) {
+                        @media (max-width: 480px) {
                             height: 25px; 
                             width: 25px;
                         }
@@ -83,7 +83,7 @@ export const MatchShuffle = styled('div')`
                             left: 10px;
                         }
                         // mobile_view
-                        @media (max-width: 500px) {
+                        @media (max-width: 480px) {
                             top: 13px;
                             left: 7px;
                         }
@@ -98,7 +98,7 @@ export const MatchShuffle = styled('div')`
                             right: 9px;
                         }
                         // mobile_view
-                        @media (max-width: 500px) {
+                        @media (max-width: 480px) {
                             top: 11px;
                             right: 6px;
                         }
@@ -126,7 +126,7 @@ export const MatchShuffle = styled('div')`
             margin-top: 40px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             height: 180px;
         }
         width: 560px;
@@ -152,7 +152,7 @@ export const MatchShuffle = styled('div')`
                     font-size: 1.4rem;
                 }
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: 1.2rem;
                 }
                 font-size: 1.8rem;
@@ -165,7 +165,7 @@ export const MatchShuffle = styled('div')`
                     font-size: 1rem;
                 }
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: .9rem;
                 }
                 position: relative;
@@ -178,7 +178,7 @@ export const MatchShuffle = styled('div')`
                         font-size: .8rem;
                     }
                     // mobile_view
-                    @media (max-width: 500px) {
+                    @media (max-width: 480px) {
                         font-size: .6rem;
                     }
                     padding: 3px 4px;
@@ -207,7 +207,7 @@ export const MatchShuffle = styled('div')`
                             font-size: 1.1rem;
                         }
                         // mobile_view
-                        @media (max-width: 500px) {
+                        @media (max-width: 480px) {
                             font-size: 1rem;
                         }
                         font-size: 1.4rem;
@@ -291,7 +291,7 @@ export const InputPlayerStyle = styled('input')<{$camp:number}>`
         font-size: 1.5rem;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         width: 130px;
         height: 32px;
         margin: 5px 2px;
@@ -327,7 +327,7 @@ export const BtnStyle= styled('button')`
         font-size: 1.3rem;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         padding: 7px 18px;
         margin: 5px;
         font-size: 1.1rem;
@@ -392,7 +392,7 @@ export const CheckStyle = styled('input')`
                 padding: 5px 0 0;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 padding: 4px 0 0;
             }
             padding: 6px 0 0;
@@ -415,7 +415,7 @@ export const LabelStyle = styled('label')`
         font-size: .8rem;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         top: -1px;
         height: 17px;
         width: 20px;
@@ -443,7 +443,7 @@ export const LabelStyle = styled('label')`
 
         + .tooltip {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 top: -20px;
             }
             top: -23px;
@@ -465,7 +465,7 @@ export const SelectStyle = styled('select')`
         font-size: 1rem;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         font-size: .9rem;
         padding: 3px 2px;
     }
@@ -485,7 +485,7 @@ export const SelectStyle = styled('select')`
     &:hover {
         + .tooltip {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 top: -23px;
             }
             top: -25px;
@@ -504,7 +504,7 @@ export const ToolTipStyle = styled('div')`
         width: calc(100% + 5px);
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         height: 16px;
         padding: 3px 7px;
         font-size: .9rem;
@@ -531,7 +531,7 @@ export const ToolTipStyle = styled('div')`
             left: 42%;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             bottom: -2px;
         }
         position: absolute;
@@ -557,7 +557,7 @@ export const LoadingContainerStyle = styled('div')`
 
 export const LoadingItemStyle = styled('div')<{$timing:number}>`
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         font-size: 1.3rem;
     }
     display: inline-block;

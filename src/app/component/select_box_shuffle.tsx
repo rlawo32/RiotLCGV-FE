@@ -25,7 +25,7 @@ const SelectBoxShuffleStyle = styled('div')`
             padding: 3px 5px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 36px;
             height: 23px;
             font-size: .8rem;
@@ -50,7 +50,7 @@ const SelectBoxShuffleStyle = styled('div')`
             width: 45px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 36px;
         }
         position: absolute;
@@ -72,7 +72,7 @@ const SelectBoxShuffleStyle = styled('div')`
             width: 39px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 30px;
         }
         height: 0;
@@ -118,7 +118,7 @@ const SelectBoxShuffleStyle = styled('div')`
             font-size: .9rem;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 30px;
             padding: 4px;
             font-size: .7rem;
@@ -144,7 +144,7 @@ const SelectBoxShuffleStyle = styled('div')`
                 font-size: 1.2rem;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 font-size: 1rem;
             }
             font-size: 1.4rem;
@@ -152,7 +152,7 @@ const SelectBoxShuffleStyle = styled('div')`
 
         .select_rank {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 font-size: .7rem;
             }
             font-size: .8rem;
@@ -165,7 +165,7 @@ const SelectBoxShuffleStyle = styled('div')`
             margin-left: 5px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             margin-left: 4px;
         }
         display: inline-block;
@@ -181,7 +181,7 @@ const SelectBoxShuffleStyle = styled('div')`
             
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             
         }
         padding: 5px 3px;
@@ -193,7 +193,7 @@ const SelectBoxShuffleStyle = styled('div')`
             height: 100px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             
         }
         height: 120px;

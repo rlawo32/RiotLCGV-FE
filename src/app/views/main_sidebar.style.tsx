@@ -44,6 +44,7 @@ export const MainSidebar = styled('div')`
             position: relative;
             top: 1px;
             left: -7px;
+            margin: 0;
             font-size: 1.8rem;
         }
         @media (max-width: 1024px) {
@@ -51,15 +52,15 @@ export const MainSidebar = styled('div')`
             font-size: 1.5rem;
         }
         @media (max-width: 768px) {
-            font-size: 1rem;
+            width: 20px;
+            font-size: 1.2rem;
         }
         // mobile_view
         @media (max-width: 480px) {
             font-size: .9rem;
         }
-        position: absolute;
-        top: 10px;
-        left: 25px;
+        width: 30px;
+        margin-right: 20px;
         font-size: 2.5rem;
         color: white;
     }
@@ -76,20 +77,23 @@ export const MainSidebar = styled('div')`
             font-size: 1.2rem;
         }
         @media (max-width: 768px) {
-            padding: 5px 7px 5px 15px;
+            padding: 5px 7px 5px 10px;
             margin: 2px 3px;
             font-size: 1rem;
         }
         // mobile_view
         @media (max-width: 480px) {
+            justify-content: center;
             width: calc(calc(100% / 2) - 8px);
             padding: 5px;
             margin: 2px 3px;
             font-size: .9rem;
             text-align: center;
         }
+        display: flex;
+        align-items: center;
         position: relative;
-        padding: 15px 15px 10px 75px;
+        padding: 15px 15px 10px 45px;
         margin: 4px 0;
         border: none;
         border-radius: 10px;
