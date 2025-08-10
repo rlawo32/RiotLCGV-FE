@@ -9,7 +9,7 @@ const RankingViewOverall = (props : {data:{
             lcg_summoner_nickname: string
             lcg_ranking_score: number
             lcg_ranking_current: number
-        }[]}) => {
+        }[], imageUrl:string}) => {
 
     const calcRankTitle = (score:number):string => {
         let result:string = "";
@@ -37,8 +37,8 @@ const RankingViewOverall = (props : {data:{
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={2} $h={duplicationRank(arr.length)} $w={duplicationRank(arr.length)} key={"rank2_" + idx}>
                                 <div className="ranker_img_box">
-                                    <img src={"/img/border_silver_image.png"} alt={"ranking_border"} className="ranker_img" />
-                                    {/* <img src={"/img/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
+                                    <img src={props.imageUrl + "public/border_silver_image.png"} alt={"ranking_border"} className="ranker_img" />
+                                    {/* <img src={props.imageUrl + "public/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
                                     height={duplicationRank(arr.length)-10} width={duplicationRank(arr.length)-10} className="player_img" /> */}
                                 </div>
                                 <Style.RankerContent $ea={arr.length}>
@@ -61,8 +61,8 @@ const RankingViewOverall = (props : {data:{
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={1} $h={duplicationRank(arr.length)} $w={duplicationRank(arr.length)} key={"rank1_" + idx}>
                                 <div className="ranker_img_box">
-                                    <img src={"/img/border_gold_image.png"} alt={"ranking_border"} className="ranker_img" />
-                                    {/* <img src={"/img/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
+                                    <img src={props.imageUrl + "public/border_gold_image.png"} alt={"ranking_border"} className="ranker_img" />
+                                    {/* <img src={props.imageUrl + "public/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
                                     height={duplicationRank(arr.length)-10} width={duplicationRank(arr.length)-10} className="player_img" /> */}
                                 </div>
                                 <Style.RankerContent $ea={arr.length}>
@@ -85,8 +85,8 @@ const RankingViewOverall = (props : {data:{
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={3} $h={duplicationRank(arr.length)} $w={duplicationRank(arr.length)} key={"rank3_" + idx}>
                                 <div className="ranker_img_box">
-                                    <img src={"/img/border_bronze_image.png"} alt={"ranking_border"} className="ranker_img" />
-                                    {/* <img src={"/img/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
+                                    <img src={props.imageUrl + "public/border_bronze_image.png"} alt={"ranking_border"} className="ranker_img" />
+                                    {/* <img src={props.imageUrl + "public/" + item.lcg_summoner_puuid + ".jpg"} alt={"ranking_player"} 
                                     height={duplicationRank(arr.length)-10} width={duplicationRank(arr.length)-10} className="player_img" /> */}
                                 </div>
                                 <Style.RankerContent $ea={arr.length}>
