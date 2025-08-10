@@ -30,7 +30,7 @@ import ModalView from "../component/modal_view";
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
 
-    let imageUrl1:string = "";
+    let imageUrl:string = "";
     let lastUpdate:string = "";
     let aiSummaryPrompt:{prompt:string, maxToken:number} = {prompt:"", maxToken:0};
 
@@ -58,7 +58,7 @@ const MatchPlayer = () => {
     const { data: selectPlayerAce } = useQuery(getSelectLcgPlayerAceQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
 
     if(!!lcgMatchEtc) {
-        imageUrl1 = lcgMatchEtc[0].lcg_main_image;
+        imageUrl = lcgMatchEtc[0].lcg_r2_image;
         lastUpdate = lcgMatchEtc[0].lcg_update_player;
     }
 
@@ -257,7 +257,7 @@ const MatchPlayer = () => {
                                         !!lcgPlayerData && !!selectPlayerData ? 
                                             <div className="head_summoner">
                                                 <div className="head_section head_player">
-                                                    <img src={imageUrl1 + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
+                                                    <img src={imageUrl + "profileIcon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
                                                     alt={"profileIcon"} className="player_img" loading="lazy"/>
                                                     <Link href={"https://www.op.gg/summoners/kr/" + playerData(selectPlayerData[0].lcg_summoner_puuid, "opgg")} target="_blank">
                                                         <div className="player_name">
@@ -266,7 +266,7 @@ const MatchPlayer = () => {
                                                     </Link>
                                                 </div>
                                                 <div className="head_section head_rank">
-                                                    <img src={"/img/rank_" + selectPlayerData[0].lcg_present_tier + ".png"} 
+                                                    <img src={imageUrl + "public/rank_" + selectPlayerData[0].lcg_present_tier.toLowerCase() + ".png"} 
                                                     alt={"present_tier"} className="rank_img" loading="lazy"/>
                                                     {selectPlayerData[0].lcg_present_tier === 'NA' ? 
                                                         <div className="rank_desc">
@@ -343,7 +343,7 @@ const MatchPlayer = () => {
                                     
                                     <div className="openai">
                                         <button onClick={() => setIsSummaryModal(true)}>
-                                            <img src={"/img/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
+                                            <img src={imageUrl + "public/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
                                         </button>
                                         <Style.ToolTipStyle className="tooltip">
                                             AI 분석
@@ -486,7 +486,7 @@ const MatchPlayer = () => {
                                         return (
                                             <div className="champion_item" key={"relative_" + idx}>
                                                 <div className="player_champion">
-                                                    <img src={imageUrl1 + "champion/" + data.lcg_champion_name + ".png"} 
+                                                    <img src={imageUrl + "champion/" + data.lcg_champion_name + ".png"} 
                                                     alt={"champion"} className="champion_img" loading="lazy"/>
                                                 </div>
                                                 <div className="player_kda">

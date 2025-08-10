@@ -1,6 +1,7 @@
 'use client'
 
 import * as Style from "./match_analyze.stlye";
+import React from "react";
 
 import { getGameDuration } from "../component/match_tool";
 
@@ -107,7 +108,7 @@ const MatchAnalyze = (props : {
                         <div className="lcg_analyze_content">
                             {props.lcgMatchSub.map((lcgData, idx2) => {
                                     return (
-                                        <>
+                                        <React.Fragment key={"analyze_c_" + idx2}>
                                             {
                                                 arr.type === 'gold' ?
                                                     <>
@@ -261,7 +262,7 @@ const MatchAnalyze = (props : {
                                                     :
                                                     <></>
                                             }
-                                        </>
+                                        </React.Fragment>
                                     )
                             })}
                         </div>
