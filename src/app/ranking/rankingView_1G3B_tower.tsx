@@ -22,11 +22,9 @@ const RankingView1G3BTower = (props : {data:{
             lcg_item_id_6: number
             lcg_game_date: string
         }[], path:{
-            lcg_cdn: string
             lcg_lang: string
             lcg_main_ver: string
-            lcg_main_image: string
-            lcg_sub_image: string
+            lcg_r2_image: string
         }}) => {
 
     return (
@@ -35,7 +33,7 @@ const RankingView1G3BTower = (props : {data:{
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 2).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 2).map((item, idx) => {
                         return (
-                            <Style.HighRankingCard $rank={2} $image={props.path.lcg_cdn + "/img/champion/loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank2_" + idx}>
+                            <Style.HighRankingCard $rank={2} $image={props.path.lcg_r2_image + "loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank2_" + idx}>
                                 <div className="card_container">
                                     <div className="card_head">
                                         <div className="card_champion" />
@@ -43,45 +41,45 @@ const RankingView1G3BTower = (props : {data:{
                                     </div>
                                     <div className="card_body">
                                         <div className="card_perk">
-                                            <img src={props.path.lcg_sub_image + item.lcg_perk_name_1} 
+                                            <img src={props.path.lcg_r2_image + item.lcg_perk_name_1} 
                                             alt={"perk1"} className="perk_image1" />
-                                            <img src={props.path.lcg_sub_image + item.lcg_perk_name_2} 
+                                            <img src={props.path.lcg_r2_image + item.lcg_perk_name_2} 
                                             alt={"perk2"} className="perk_image2" />
                                         </div>
                                         <div className="card_item">
                                             {
                                                 item.lcg_item_id_1 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_1 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_1 + ".png"} 
                                                     alt={"item1"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_2 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_2 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_2 + ".png"} 
                                                     alt={"item2"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_3 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_3 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_3 + ".png"} 
                                                     alt={"item3"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_4 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_4 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_4 + ".png"} 
                                                     alt={"item4"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_5 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_5 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_5 + ".png"} 
                                                     alt={"item5"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_6 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_6 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_6 + ".png"} 
                                                     alt={"item6"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
@@ -107,7 +105,7 @@ const RankingView1G3BTower = (props : {data:{
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 1).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 1).map((item, idx) => {
                         return (
-                            <Style.HighRankingCard $rank={1} $image={props.path.lcg_cdn + "/img/champion/loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank1_" + idx}>
+                            <Style.HighRankingCard $rank={1} $image={props.path.lcg_r2_image + "loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank1_" + idx}>
                                 <div className="card_container">
                                     <div className="card_head">
                                         <div className="card_champion" />
@@ -115,45 +113,45 @@ const RankingView1G3BTower = (props : {data:{
                                     </div>
                                     <div className="card_body">
                                         <div className="card_perk">
-                                            <img src={props.path.lcg_sub_image + item.lcg_perk_name_1} 
+                                            <img src={props.path.lcg_r2_image + item.lcg_perk_name_1} 
                                             alt={"perk1"} className="perk_image1" />
-                                            <img src={props.path.lcg_sub_image + item.lcg_perk_name_2} 
+                                            <img src={props.path.lcg_r2_image + item.lcg_perk_name_2} 
                                             alt={"perk2"} className="perk_image2" />
                                         </div>
                                         <div className="card_item">
                                             {
                                                 item.lcg_item_id_1 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_1 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_1 + ".png"} 
                                                     alt={"item1"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_2 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_2 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_2 + ".png"} 
                                                     alt={"item2"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_3 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_3 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_3 + ".png"} 
                                                     alt={"item3"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_4 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_4 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_4 + ".png"} 
                                                     alt={"item4"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_5 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_5 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_5 + ".png"} 
                                                     alt={"item5"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_6 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_6 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_6 + ".png"} 
                                                     alt={"item6"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
@@ -179,7 +177,7 @@ const RankingView1G3BTower = (props : {data:{
                 <Style.RankingBox $ea={props.data.filter((item) => item.rank === 3).length}>
                     {props.data.filter((highRanking) => highRanking.rank === 3).map((item, idx) => {
                         return (
-                            <Style.HighRankingCard $rank={3} $image={props.path.lcg_cdn + "/img/champion/loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank3_" + idx}>
+                            <Style.HighRankingCard $rank={3} $image={props.path.lcg_r2_image + "loading/" + item.lcg_champion_name +"_0.jpg"} key={"rank3_" + idx}>
                                 <div className="card_container">
                                     <div className="card_head">
                                         <div className="card_champion" />
@@ -187,45 +185,45 @@ const RankingView1G3BTower = (props : {data:{
                                     </div>
                                     <div className="card_body">
                                         <div className="card_perk">
-                                            <img src={props.path.lcg_sub_image + item.lcg_perk_name_1} 
+                                            <img src={props.path.lcg_r2_image + item.lcg_perk_name_1} 
                                             alt={"perk1"} className="perk_image1" />
-                                            <img src={props.path.lcg_sub_image + item.lcg_perk_name_2} 
+                                            <img src={props.path.lcg_r2_image + item.lcg_perk_name_2} 
                                             alt={"perk2"} className="perk_image2" />
                                         </div>
                                         <div className="card_item">
                                             {
                                                 item.lcg_item_id_1 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_1 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_1 + ".png"} 
                                                     alt={"item1"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_2 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_2 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_2 + ".png"} 
                                                     alt={"item2"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_3 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_3 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_3 + ".png"} 
                                                     alt={"item3"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_4 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_4 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_4 + ".png"} 
                                                     alt={"item4"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_5 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_5 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_5 + ".png"} 
                                                     alt={"item5"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
                                             {
                                                 item.lcg_item_id_6 !== 0 ?
-                                                    <img src={props.path.lcg_main_image + "item/" + item.lcg_item_id_6 + ".png"} 
+                                                    <img src={props.path.lcg_r2_image + "item/" + item.lcg_item_id_6 + ".png"} 
                                                     alt={"item6"} className="item_image" />
                                                     :<div className="item_image empty_image"/>
                                             }
