@@ -4,8 +4,10 @@ import * as Style from "./match_shuffle.style";
 
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import { useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
+import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getPlayerRankingQuery } from "../queries/getLcgPlayerDataQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,14 +26,17 @@ const MatchShuffle = () => {
 
     const supabase = useSupabaseBrowser();
     let gameId:number = 0;
+    let etcVersion:string = "";
+    let cntCapture:number = 0;
 
     const [playerCount, setPlayerCount] = useState<number>(10);
     const [teamCount, setTeamCount] = useState<number>(2);
     const [shuffleProgress, setShuffleProgress] = useState<boolean>(false);
     const [shuffleCount, setShuffleCount] = useState<number>(0);
     const [shuffleTime, setShuffleTime] = useState<number>(5000);
-    const [oneShuffleChk, setOneShuffleChk] = useState<boolean>(false);
     const [decrease, setDecrease] = useState<number>(200);
+    const [oneShuffleChk, setOneShuffleChk] = useState<boolean>(false);
+    const [oneCaptureChk, setOneCaptureChk] = useState<boolean>(false);
 
     const [teams, setTeams] = useState<{id:number, lv:number, nm:string}[][]>([[]]);
     const [playerFix, setPlayerFix] = useState<{id:number, row:number, cell:number}[]>([]);
@@ -41,7 +46,22 @@ const MatchShuffle = () => {
         gameId = lcgMatchLog[0].lcg_game_id;
     } 
 
+    const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {enabled:!!lcgMatchLog});
     const { data: lcgPlayerRanking } = useQuery(getPlayerRankingQuery(supabase, gameId), {enabled:!!lcgMatchLog});
+    if(!!lcgMatchEtc) {
+        etcVersion = lcgMatchEtc[0].lcg_version;
+        cntCapture = lcgMatchEtc[0].lcg_ranking_count;
+    } 
+
+    const updateLcgCaptureCountMutation = useUpdateMutation(
+        supabase.from('lcg_match_etc') as any,               
+        ['lcg_version'],                         
+        'lcg_version, lcg_ranking_count',    
+        {
+            // onSuccess: () => console.log('Update successful'),
+            onError: (err) => console.error(err),
+        }
+    )
 
     const createTeam = () => {
         if(!!lcgPlayerRanking) {
@@ -378,14 +398,23 @@ const MatchShuffle = () => {
                 body: formData,
             });
 
-            if (response.ok) {
-                //console.log('이미지 전송 성공!');
+            console.log(response)
+
+            if(response.ok) {
+                updateLcgCaptureCountMutation.mutate({
+                    'lcg_version': etcVersion,
+                    'lcg_ranking_count': cntCapture-1
+                });
             } else {
                 const errorData = await response.json();
                 console.error(`이미지 전송 실패: ${errorData.message}`);
             }
+
+            if(response.statusText.length > 0) {
+                setOneCaptureChk(false);
+            } 
         } catch (error) {
-            if (error instanceof Error) {
+            if(error instanceof Error) {
                 console.error(`이미지 전송 중 오류 발생: ${error.message}`);
             } else {
                 console.error('이미지 전송 중 알 수 없는 오류 발생');
@@ -394,27 +423,34 @@ const MatchShuffle = () => {
     };
 
     const onClickCapture = async () => {
-        if (captureRef.current) {
-            const section = captureRef.current;
-            
-            try {
-                const dataUrl = await toPng(section, {
-                    width: captureRef.current.offsetWidth, 
-                    height: captureRef.current.offsetHeight - 270,
-                    quality: 0.95,
-                    style: {
-                        margin: '0',
-                    },
-                });
-                const imageBlob = dataURLtoBlob(dataUrl); // Base64를 Blob으로 변환
-                await sendImageToServer(imageBlob);
-            } catch (error) {
-                if (error instanceof Error) {
-                    console.error(`캡처 또는 전송 중 오류 발생: ${error.message}`);
-                } else {
-                    console.error('캡처 또는 전송 중 알 수 없는 오류 발생');
-                }
-            } 
+        if (captureRef.current && !oneCaptureChk) {
+            if(cntCapture > 0) {
+                const section = captureRef.current;
+                setOneCaptureChk(true);
+                
+                try {
+                    const dataUrl = await toPng(section, {
+                        width: captureRef.current.offsetWidth, 
+                        height: captureRef.current.offsetHeight - 270,
+                        quality: 0.95,
+                        style: {
+                            margin: '0',
+                        },
+                    });
+                    const imageBlob = dataURLtoBlob(dataUrl); // Base64를 Blob으로 변환
+                    await sendImageToServer(imageBlob);
+                } catch (error) {
+                    if (error instanceof Error) {
+                        console.error(`캡처 또는 전송 중 오류 발생: ${error.message}`);
+                    } else {
+                        console.error('캡처 또는 전송 중 알 수 없는 오류 발생');
+                    }
+                } 
+            } else {   
+                alert('금일 캡쳐 횟수가 모두 소진되었습니다.');
+            }
+        } else {
+            alert('잠시 후 시도해주세요');
         }
     };
 
