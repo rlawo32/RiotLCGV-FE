@@ -30,7 +30,9 @@ import ModalView from "../component/modal_view";
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
 
-    let imageUrl:string = "";
+    let imageUrl:string = ""; // R2
+    let imageUrl1:string = ""; // ddragon
+    let imageUrl2:string = ""; // ddragon
     let lastUpdate:string = "";
     let aiSummaryPrompt:{prompt:string, maxToken:number} = {prompt:"", maxToken:0};
 
@@ -59,6 +61,7 @@ const MatchPlayer = () => {
 
     if(!!lcgMatchEtc) {
         imageUrl = lcgMatchEtc[0].lcg_r2_image;
+        imageUrl1 = lcgMatchEtc[0].lcg_main_image;
         lastUpdate = lcgMatchEtc[0].lcg_update_player;
     }
 
@@ -257,7 +260,7 @@ const MatchPlayer = () => {
                                         !!lcgPlayerData && !!selectPlayerData ? 
                                             <div className="head_summoner">
                                                 <div className="head_section head_player">
-                                                    <img src={imageUrl + "profileIcon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
+                                                    <img src={imageUrl1 + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
                                                     alt={"profileIcon"} className="player_img" loading="lazy"/>
                                                     <Link href={"https://www.op.gg/summoners/kr/" + playerData(selectPlayerData[0].lcg_summoner_puuid, "opgg")} target="_blank">
                                                         <div className="player_name">

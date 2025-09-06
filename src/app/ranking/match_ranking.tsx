@@ -57,7 +57,7 @@ import RankingView1G3BDpg from "./rankingView_1G3B_dpg";
 const MatchRanking = () => {
     const supabase = useSupabaseBrowser();
 
-    let imageUrl:string = "";
+    let imageUrl:string = ""; // R2
 
     const [rankSelectIdx, setRankSelectIdx] = useState<number>(0);
     const rankSelectArr:{key:string, name:string}[] = [
