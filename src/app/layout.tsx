@@ -28,6 +28,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/rabbit.png",
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Teamzza - 팀짜',
+    description: '편리한 UI와 기능으로 팀을 구성하세요!',
+    images: ['/rabbit.png'],
+  },
 };
 
 export default function RootLayout({
