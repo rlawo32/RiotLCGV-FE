@@ -8,7 +8,7 @@ import useSupabaseBrowser from "../supabase-browser";
 import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
 import { getLcgMatchInfoQuery } from "../queries/getLcgMatchInfoQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
-import { getLcgMatchMainQuery } from "../queries/getLcgMatchMainQuery";
+import { getLcgMatchMainFearlessQuery } from "../queries/getLcgMatchMainQuery";
 
 const MatchFearless = () => {
 
@@ -23,11 +23,14 @@ const MatchFearless = () => {
     const { data: lcgMatchLog } = useQuery(getLcgMatchLogLatestQuery(supabase));
     if(!!lcgMatchLog) {
         gameId = lcgMatchLog[0].lcg_game_id;
+        const calcDay = new Date(new Date().getTime() - 4 * 60 * 60 * 1000);
+        gameSet = (calcDay.getMonth()+1) + "/" + calcDay.getDate();
+        // gameSet = "9/21";
         date = lcgMatchLog[0].lcg_game_date.split("/")[0];
     } 
 
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {enabled:!!lcgMatchLog});
-    const { data: lcgMatchMain } = useQuery(getLcgMatchMainQuery(supabase, gameId), {enabled:!!lcgMatchEtc});
+    const { data: lcgMatchMain } = useQuery(getLcgMatchMainFearlessQuery(supabase, gameSet), {enabled:!!lcgMatchEtc});
 
     if(!!lcgMatchEtc && !!lcgMatchMain) {
         gameSet = lcgMatchMain[0].lcg_game_set;
@@ -37,34 +40,52 @@ const MatchFearless = () => {
     }
 
     return (
+        
         <Style.MatchFearless>
             {
                 lcgMatchLog && lcgMatchMain ?
-                    <div>
-                        <div>
+                    <>
+                        <div className="fearless_date">
                             {date}
                         </div>
-                        <div>
+                        <div className="fearless_list">
                             {
-                                lcgMatchMain.map((lcgMain, idx) => {
+                                lcgMatchMain.map((gameSet, idx1) => {
                                     return (
-                                        <div>
+                                        <div className="fearless_box" key={idx1}>
                                             {
-                                                String(idx).includes("0") ?
-                                                    <div>
-                                                        {Number(lcgMain.lcg_game_set.split("_")[1])} 세트
-                                                    </div>
+                                                String(idx1).includes("0") ?
+                                                    <>
+                                                        <div className="game_set">
+                                                            {Number(gameSet.lcg_game_set.split("_")[1])} 세트
+                                                        </div>
+                                                        <div className="champion_list">
+                                                            {
+                                                                lcgMatchMain.filter((item) => item.lcg_game_set === gameSet.lcg_game_set)
+                                                                            .sort((a, b) => a.lcg_line_order - b.lcg_line_order)
+                                                                            .map((fearless, idx2) => {
+                                                                    return (
+                                                                        <div className="champion_item" key={idx2}>
+                                                                            <img src={imageUrl1 + "champion/" + fearless.lcg_champion_name + ".png"} 
+                                                                                alt={"champion"} className="champion_img" />
+                                                                            {
+                                                                                idx2 === 4 ? <div>/</div> : <></>
+                                                                            }
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </div>
+                                                    </>
                                                     :
                                                     <></>
                                             }
-                                            <div>
-                                            </div>
                                         </div>
                                     )
                                 })
                             }
                         </div>
-                    </div>
+                    </>
                     :
                     <></>
             }
