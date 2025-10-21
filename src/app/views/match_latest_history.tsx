@@ -38,7 +38,7 @@ const MatchLatestHistory = () => {
 
     const supabase = useSupabaseBrowser();
     let gameId:number = 0;
-    // let imageUrl:string = ""; // R2
+    let imageUrl:string = ""; // R2
     let imageUrl1:string = ""; // ddragon
     let imageUrl2:string = ""; // ddragon
     let lcgMaxDamageTotal:number = 0;
@@ -111,6 +111,7 @@ const MatchLatestHistory = () => {
         lcgGameDurationMin = getGameDuration(lcgGameDuration);
 
         if(!!lcgMatchEtc) {
+            imageUrl = lcgMatchEtc[0].lcg_r2_image;
             imageUrl1 = lcgMatchEtc[0].lcg_main_image;
             imageUrl2 = lcgMatchEtc[0].lcg_sub_image;
             // imageUrl = lcgMatchEtc[0].lcg_r2_image;
@@ -277,7 +278,7 @@ const MatchLatestHistory = () => {
                                                             lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
                                                                 const winningStreak = Number(playerData(lcgMain.lcg_summoner_puuid, 'streak'));
                                                                 return (
-                                                                    <tr key={"lcgMain" + idx}>
+                                                                    <Style.WinningStreakLine key={"lcgMain" + idx} $cnt={winningStreak} $url={imageUrl}>
                                                                         <td className="lcg_summoner">
                                                                             <div className="lcg_summoner_wrap">
                                                                                 <div className="lcg_summoner_info">
@@ -410,7 +411,7 @@ const MatchLatestHistory = () => {
                                                                                     :<div className="item_image empty_image"/>
                                                                             }
                                                                         </td>
-                                                                    </tr>
+                                                                    </Style.WinningStreakLine>
                                                                 )
                                                             })
                                                         }
