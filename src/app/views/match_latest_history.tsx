@@ -275,6 +275,7 @@ const MatchLatestHistory = () => {
                                                     <tbody>
                                                         {
                                                             lcgMatchMain?.filter((lcgFilter) => lcgFilter.lcg_team_id === lcgTeam.lcg_team_id).map((lcgMain, idx) => {
+                                                                const winningStreak = Number(playerData(lcgMain.lcg_summoner_puuid, 'streak'));
                                                                 return (
                                                                     <tr key={"lcgMain" + idx}>
                                                                         <td className="lcg_summoner">
@@ -287,6 +288,18 @@ const MatchLatestHistory = () => {
                                                                                         <div className="lcg_sub_data lcg_level">
                                                                                             {lcgMain.lcg_champion_level}
                                                                                         </div>
+                                                                                        {
+                                                                                            winningStreak > 1 ? 
+                                                                                                <Style.WinningStreakBox $cnt={winningStreak}>
+                                                                                                    {winningStreak}&nbsp;연승
+                                                                                                </Style.WinningStreakBox>
+                                                                                                : 
+                                                                                            winningStreak < -1 ? 
+                                                                                                <Style.WinningStreakBox $cnt={winningStreak}>
+                                                                                                    {Math.abs(winningStreak)}&nbsp;연패
+                                                                                                </Style.WinningStreakBox>
+                                                                                                : <></>
+                                                                                        }
                                                                                     </div>
                                                                                     <div className="lcg_spell">
                                                                                         <div className="skeleton_content" />
