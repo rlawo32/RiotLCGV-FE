@@ -43,6 +43,7 @@ export const getGameDuration = (lcg_game_duration:number):number => {
 }
 
 export const getPlayerData = (lcgPlayerData:{
+    lcg_winning_streak: number
     lcg_player: string
     lcg_summoner_name: string
     lcg_summoner_nickname: string
