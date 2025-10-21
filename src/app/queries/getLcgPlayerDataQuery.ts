@@ -34,7 +34,7 @@ export function getSelectLcgPlayerChampionTotalQuery(client:TypedSupabaseClient,
 export function getSelectLcgPlayerChampionQuery(client:TypedSupabaseClient, puuid:string, page:number) {
   return client
     .from("lcg_player_champion")
-    .select("lcg_champion_name, lcg_kill_count, lcg_death_count, lcg_assist_count, lcg_play_count, lcg_win_count, lcg_fail_count")
+    .select("lcg_champion_name, lcg_kill_count, lcg_death_count, lcg_assist_count, lcg_play_count, lcg_win_count, lcg_fail_count", {count: "exact"})
     .eq("lcg_puuid", puuid)
     .order("lcg_play_count", { ascending: false })
     .range(0, (page * 10) - 1)
