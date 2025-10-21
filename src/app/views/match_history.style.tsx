@@ -791,6 +791,59 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 `;
 
+export const WinningStreakLine = styled('tr')<{$cnt:number}>`
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        /* background-image: ${({$cnt}) => $cnt > 6 ? "url('/images/redbluefire.png')" : $cnt > 4 ? "url('/images/bluefire.png')" : $cnt > 2 ? "url('/images/redfire.png')" : ""}; */
+        /* background-size: ${({$cnt}) => $cnt > 6 ? 100 : 50}%; */
+        background-image: ${({$cnt}) => $cnt > 4 ? "url('/images/redbluefire.png')" : $cnt > 2 ? "url('/images/redfire.png')" : ""};
+        background-size: ${({$cnt}) => $cnt > 4 ? 100 : 50}%;
+        background-repeat: repeat-x;
+        background-position: 0 ${({$cnt}) => // red 50% -175, -210 / blue 50% -100, -120 / red&blue 100% -390, -430, -15
+                                    $cnt === 3 ? -175 : 
+                                    $cnt === 4 ? -210 :
+                                    // $cnt === 5 ? -100 : 
+                                    // $cnt === 6 ? -120 :
+                                    $cnt === 5 ? -390 :
+                                    $cnt === 6 ? -430 :
+                                    $cnt >= 7 ? -15 : 0}px;
+        opacity: 0.8;
+        z-index: -1; 
+        pointer-events: none;
+    }
+`;
+
+export const WinningStreakBox = styled('div')<{$cnt:number}>`
+    @media (max-width: 768px) {
+        height: 11px;
+        padding: 0 4px;
+        margin: 0 2px 1px 3px;
+        font-size: .75rem;
+        line-height: 11px;
+    }
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 14px;
+    padding: 0 4px;
+    margin: 2px auto 0;
+    border: none;
+    border-radius: 9px;
+    background-color: ${({$cnt}) => $cnt > 6 ? "#8B0000" : $cnt > 4 ? "#FF4500" : $cnt > 2 ? "#D4AF37" : "#9E9EB1"}; // #CD7F32
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 14px;
+    font-size: .8rem;
+    font-weight: 700;
+`;
+
 export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
     @media (max-width: 768px) {
         font-size: .9rem;
