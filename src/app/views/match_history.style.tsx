@@ -793,7 +793,6 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
 export const WinningStreakLine = styled('tr')<{$cnt:number, $url:string}>`
     position: relative;
-    z-index: 1;
     background-image: ${({$cnt, $url}) => $cnt > 4 ? "url('"+$url+"public/redbluefire.png')" : $cnt > 2 ? "url('"+$url+"public/redfire.png')" : ""};
     background-size: ${({$cnt}) => $cnt > 4 ? 100 : 50}%;
     background-repeat: repeat-x;
