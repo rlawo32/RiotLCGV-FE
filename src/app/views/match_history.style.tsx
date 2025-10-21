@@ -791,39 +791,38 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 `;
 
-export const WinningStreakLine = styled('tr')<{$cnt:number}>`
+export const WinningStreakLine = styled('tr')<{$cnt:number, $url:string}>`
     position: relative;
     z-index: 1;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        /* background-image: ${({$cnt}) => $cnt > 6 ? "url('/images/redbluefire.png')" : $cnt > 4 ? "url('/images/bluefire.png')" : $cnt > 2 ? "url('/images/redfire.png')" : ""}; */
-        /* background-size: ${({$cnt}) => $cnt > 6 ? 100 : 50}%; */
-        background-image: ${({$cnt}) => $cnt > 4 ? "url('/images/redbluefire.png')" : $cnt > 2 ? "url('/images/redfire.png')" : ""};
-        background-size: ${({$cnt}) => $cnt > 4 ? 100 : 50}%;
-        background-repeat: repeat-x;
-        background-position: 0 ${({$cnt}) => // red 50% -175, -210 / blue 50% -100, -120 / red&blue 100% -390, -430, -15
-                                    $cnt === 3 ? -175 : 
-                                    $cnt === 4 ? -210 :
-                                    // $cnt === 5 ? -100 : 
-                                    // $cnt === 6 ? -120 :
-                                    $cnt === 5 ? -390 :
-                                    $cnt === 6 ? -430 :
-                                    $cnt >= 7 ? -15 : 0}px;
-        opacity: 0.8;
-        z-index: -1; 
-        pointer-events: none;
+    background-image: ${({$cnt, $url}) => $cnt > 4 ? "url('"+$url+"public/redbluefire.png')" : $cnt > 2 ? "url('"+$url+"public/redfire.png')" : ""};
+    background-size: ${({$cnt}) => $cnt > 4 ? 100 : 50}%;
+    background-repeat: repeat-x;
+    @media (max-width: 768px) {
+        background-position: 0 ${({$cnt}) => // red 50% -60, -80 / blue 50% -100, -120 / red&blue 100% -160, -180, 0
+                                $cnt === 3 ? -60 : 
+                                $cnt === 4 ? -80 :
+                                // $cnt === 5 ? -100 : 
+                                // $cnt === 6 ? -120 :
+                                $cnt === 5 ? -160 :
+                                $cnt === 6 ? -180 :
+                                $cnt >= 7 ? 0: 0}px;
     }
+    background-position: 0 ${({$cnt}) => // red 50% -175, -210 / blue 50% -100, -120 / red&blue 100% -390, -430, -15
+                                $cnt === 3 ? -175 : 
+                                $cnt === 4 ? -210 :
+                                // $cnt === 5 ? -100 : 
+                                // $cnt === 6 ? -120 :
+                                $cnt === 5 ? -390 :
+                                $cnt === 6 ? -430 :
+                                $cnt >= 7 ? -15 : 0}px;
 `;
 
 export const WinningStreakBox = styled('div')<{$cnt:number}>`
     @media (max-width: 768px) {
+        transform: translateX(-47%);
+        width: 30px;
         height: 11px;
-        padding: 0 4px;
-        margin: 0 2px 1px 3px;
-        font-size: .75rem;
+        font-size: .7rem;
         line-height: 11px;
     }
     position: absolute;
