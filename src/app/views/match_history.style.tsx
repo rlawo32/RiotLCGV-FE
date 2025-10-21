@@ -836,7 +836,12 @@ export const WinningStreakBox = styled('div')<{$cnt:number}>`
     margin: 2px auto 0;
     border: none;
     border-radius: 9px;
-    background-color: ${({$cnt}) => $cnt > 6 ? "#8B0000" : $cnt > 4 ? "#FF4500" : $cnt > 2 ? "#D4AF37" : "#9E9EB1"}; // #CD7F32
+    background-color: ${({$cnt}) => 
+                            $cnt > 6 ? "#8B0000" : 
+                            $cnt > 4 ? "#FF4500" : 
+                            $cnt > 2 ? "#D4AF37" : // #CD7F32
+                            $cnt < -3 ? "#3A5F7D" : 
+                            $cnt < -1 ? "#5D6D7E" : "#9E9EB1"}; 
     color: #FFFFFF;
     text-align: center;
     line-height: 14px;
