@@ -56,7 +56,9 @@ export const getPlayerData = (lcgPlayerData:{
         result = nickname?.split("#")[0] + "-" + nickname?.split("#")[1];
     } else if(flag === 'nick') {
         result = lcgPlayerData?.find((data) => data.lcg_summoner_puuid === puuid)?.lcg_summoner_nickname;
-    } 
+    } else if(flag === 'streak') {
+        result = String(lcgPlayerData?.find((data) => data.lcg_summoner_puuid === puuid)?.lcg_winning_streak);
+    }
     return result;
 }
 
