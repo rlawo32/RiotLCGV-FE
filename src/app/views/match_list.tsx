@@ -1,7 +1,11 @@
 'use client';
 
 import * as Style from "./match_list.style";
-import * as MainStyle from "./main_view.style"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faAnglesLeft as arrow_left, faAnglesRight as arrow_right
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
@@ -23,9 +27,16 @@ const MatchList = () => {
     const [selectIdx, setSelectIdx] = useState<number>(-1);
     const [load, setLoad] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
+    const [entire, setEntire] = useState<number>(1);
+    const [size, setSize] = useState<number>(10);
 
     const { data: totalData } = useQuery(getLcgMatchLogTotalQuery(supabase));
     const { data: lcgMatchLog, isLoading: loading, isError: dataError, error: errorMsg } = useQuery(getLcgMatchLogPagingQuery(supabase, page));
+
+    let totalPage:number = 0;
+    if(!!totalData) {
+        totalPage = Math.ceil(totalData.length / size);
+    }
     
     useEffect(() => {
         let loadTime:number = 0;
@@ -61,12 +72,9 @@ const MatchList = () => {
 
     const pagination = ():any[] => {
         const result:any[] = [];
-
-        if(!!totalData) {
-            const totalPage:number = Math.ceil(totalData.length / 10);
-            for(let i:number=1; i<=totalPage; i++) {
-                result.push(<button onClick={() => setPage(i)} key={"btn_" + i} className="page_btn">{i}</button>)
-            }
+        
+        for(let i:number=entire; i<(totalPage-size > entire ? size+entire : totalPage+1); i++) {
+            result.push(<button onClick={() => setPage(i)} key={"btn_" + i} className="page_btn">{i}</button>)
         }
 
         return result;
@@ -126,9 +134,21 @@ const MatchList = () => {
                                 )
                             })}
                         </Style.ListContainer>
-                        <MainStyle.Pagination>
+                        <Style.Pagination>
+                            {
+                                totalPage > size && entire > size ?
+                                    <button onClick={() => setEntire(prev => prev-5)} key={"btn_arrow_left"} className="page_btn">
+                                        <FontAwesomeIcon icon={arrow_left} />
+                                    </button> : <></>
+                            }
                             {pagination()}
-                        </MainStyle.Pagination>
+                            {
+                                totalPage > size && entire < totalPage-size ?
+                                    <button onClick={() => setEntire(prev => prev+5)} key={"btn_arrow_right"} className="page_btn">
+                                        <FontAwesomeIcon icon={arrow_right} />
+                                    </button> : <></>
+                            }
+                        </Style.Pagination>
                     </>
             }
         </Style.MatchList>
