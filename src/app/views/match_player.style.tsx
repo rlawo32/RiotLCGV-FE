@@ -511,7 +511,8 @@ export const PlayerDataBox = styled('div')`
             align-items: center;
             width: 100%;
             min-width: calc(90% / 2);
-            min-height: 550px;
+            height: 100%;
+            min-height: 350px;
             margin: 5px;
             padding: 38px 25px 15px;
             border-radius: 10px;

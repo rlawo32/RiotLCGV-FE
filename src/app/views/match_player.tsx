@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
-import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionTotalQuery, getSelectLcgPlayerChampionQuery, 
+import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery, 
     getSelectLcgAllKdaQuery, getSelectLcgWinningRateQuery, getSelectLcgPlayerDataQuery, 
     getSelectLcgPlayerRelativeTotalQuery, getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerPositionQuery,
     getSelectLcgPlayerAvgDpmQuery, getSelectLcgPlayerAvgGpmQuery, getSelectLcgPlayerAvgDpgQuery, 
@@ -48,9 +48,8 @@ const MatchPlayer = () => {
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerWinningRate } = useQuery(getSelectLcgWinningRateQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
-    const { data: playerChampionTotal } = useQuery(getSelectLcgPlayerChampionTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: playerRelativeTotal } = useQuery(getSelectLcgPlayerRelativeTotalQuery(supabase, selectPlayer, selectOpponent), {enabled:!!lcgPlayerData});
-    const { data: selectPlayerChampion } = useQuery(getSelectLcgPlayerChampionQuery(supabase, selectPlayer, pageChampion), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerChampion, count: countChampion } = useQuery(getSelectLcgPlayerChampionQuery(supabase, selectPlayer, pageChampion), {enabled:!!lcgPlayerData});
     const { data: selectPlayerRelative } = useQuery(getSelectLcgPlayerRelativeQuery(supabase, selectPlayer, selectOpponent, pageRelative), {enabled:!!lcgPlayerData});
     const { data: selectPlayerPostion } = useQuery(getSelectLcgPlayerPositionQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerDpm } = useQuery(getSelectLcgPlayerAvgDpmQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -524,10 +523,10 @@ const MatchPlayer = () => {
                                         )
                                     })}
                                     {
-                                        !!playerChampionTotal && !!selectPlayerChampion ?
+                                        !!countChampion && !!selectPlayerChampion ?
                                             <>
                                                 {
-                                                    playerChampionTotal.length <= selectPlayerChampion.length ? <></> : 
+                                                    countChampion <= selectPlayerChampion.length ? <></> : 
                                                         <MainStyle.Pagination>
                                                             <button onClick={() => setPageChampion(pageChampion + 1)} className="more_btn">더보기</button>
                                                         </MainStyle.Pagination>
