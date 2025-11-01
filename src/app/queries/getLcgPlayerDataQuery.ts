@@ -24,20 +24,13 @@ export function getSelectLcgPlayerDataQuery(client:TypedSupabaseClient, puuid:st
     .eq("lcg_summoner_puuid", puuid)
 }
 
-export function getSelectLcgPlayerChampionTotalQuery(client:TypedSupabaseClient, puuid:string) {
-  return client
-    .from("lcg_player_champion")
-    .select("lcg_champion_name")
-    .eq("lcg_puuid", puuid)
-}
-
 export function getSelectLcgPlayerChampionQuery(client:TypedSupabaseClient, puuid:string, page:number) {
   return client
     .from("lcg_player_champion")
     .select("lcg_champion_name, lcg_kill_count, lcg_death_count, lcg_assist_count, lcg_play_count, lcg_win_count, lcg_fail_count", {count: "exact"})
     .eq("lcg_puuid", puuid)
     .order("lcg_play_count", { ascending: false })
-    .range(0, (page * 10) - 1)
+    .range(0, (page * 5) - 1)
 }
 
 export function getSelectLcgPlayerRelativeTotalQuery(client:TypedSupabaseClient, puuid:string, oppid:string) {
@@ -54,7 +47,7 @@ export function getSelectLcgPlayerRelativeTotalQuery(client:TypedSupabaseClient,
 }
 
 export function getSelectLcgPlayerRelativeQuery(client:TypedSupabaseClient, puuid:string, oppid:string, page:number) {
-  let query = client.rpc("player_relative").eq("lcg_person_puuid", puuid).range(0, (page * 10) - 1)
+  let query = client.rpc("player_relative").eq("lcg_person_puuid", puuid).range(0, (page * 5) - 1)
 
   if(oppid.length > 0) {
     query = query.eq("lcg_opponent_puuid", oppid)
