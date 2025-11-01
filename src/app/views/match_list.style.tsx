@@ -209,3 +209,44 @@ export const ListBox = styled('div')`
         font-size: .9rem;
     }
 `;
+
+export const Pagination = styled('div')`
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    button {
+        border: none;
+        border-radius: 8px;
+        background-color: rgb(70 70 88 / 1);
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(70 70 88 / .5);
+        }
+    }
+
+    .page_btn {
+        // mobile_view
+        @media (max-width: 480px) {
+            width: 19px;
+            font-size: .8rem;
+            padding: 3px 5px;
+            margin: 4px 2px 10px;
+        }
+        width: 35px;
+        padding: 5px 10px;
+        margin: 10px 5px 20px;
+        font-size: 1.3rem;
+    }
+
+    .more_btn {
+        width: 100%;
+        padding: .7rem 2rem;
+        margin: 2rem 0 1rem;
+        font-size: 1.2rem;
+    }
+`
