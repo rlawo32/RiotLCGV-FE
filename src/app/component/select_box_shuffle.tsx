@@ -147,7 +147,8 @@ const SelectBoxShuffleStyle = styled('div')`
             @media (max-width: 480px) {
                 font-size: 1rem;
             }
-            font-size: 1.4rem;
+            font-size: 1.3rem;
+            line-height: 13px;
         }
 
         .select_rank {
@@ -224,7 +225,7 @@ const SelectBoxShuffle = (props : SelectBoxShuffleProps) => {
 
     const [isSelectBoxShow, setIsSelectBoxShow] = useState<boolean>(false);
 
-    const selectItemList:string[] = ["E", "D", "C", "B", "A"];
+    const selectItemList:string[] = ["5 tier", "4 tier", "3 tier", "2 tier", "1 tier"];
         
     const customSelectBox = () => {
         const result:any[] = [];
@@ -234,7 +235,7 @@ const SelectBoxShuffle = (props : SelectBoxShuffleProps) => {
             result.push(<li key={"level_" + (i+props.inputData.id)} value={level}
                             onClick={() => onClickSelectItem(i, level)}
                             ref={(li:any) => (selectItem.current[i] = li)}>
-                {selectItemList[level-1]} RANK</li>)
+                {level} tier</li>)
         }
 
         return result;
@@ -280,9 +281,6 @@ const SelectBoxShuffle = (props : SelectBoxShuffleProps) => {
                 <div className="select_value">
                     <div className="select_level">
                         {selectItemList[props.inputData.lv-1]}
-                    </div>
-                    <div className="select_rank">
-                        RANK
                     </div>
                 </div>
                 <div className="select_arrow" ref={selectArrow}>

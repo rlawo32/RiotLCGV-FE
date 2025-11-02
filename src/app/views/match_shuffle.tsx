@@ -398,8 +398,6 @@ const MatchShuffle = () => {
                 body: formData,
             });
 
-            console.log(response)
-
             if(response.ok) {
                 updateLcgCaptureCountMutation.mutate({
                     'lcg_version': etcVersion,
