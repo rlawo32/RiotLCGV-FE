@@ -33,8 +33,9 @@ LCG 프로젝트 중 LCGV-FE는 LCGS 동작 완료 후 SUPABASE에 INSERT 된 �
 + API 통신을 통한 JSON 데이터 추출 및 분리 작업 ✅ <br/>
 + SUPABASE 데이터와 API 통신 결과 JSON 데이터를 기반으로 전적 UI 구성 ✅ <br/>
 + League of Legend 이미지 CDN 테스트 ✅ <br/>
-+ 플레이어 데이터 집계 후 항목별 랭킹 시스템 구성 ✅ <br/>
-+ 플레이어 데이터 집계 후 플레이어별 상세 데이터 View 구성 ✅ <br/>
++ Vercel 배포 완료 ✅ <br/>
++ 플레이어 데이터 집계 후 항목별 랭킹 시스템 추가 구성 ✅ <br/>
++ 플레이어 데이터 집계 후 플레이어별 상세 데이터 View 추가 구성 ✅ <br/>
 + 팀 섞기 페이지 추가 구성 ✅ <br/>
 + 사이트 전체 UI 재구성 및 반응형 도입 ✅ <br/>
 + 최신 전적 View와 오래된 전적 리스트 분리 View 도입 ✅ <br/>
