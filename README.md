@@ -57,3 +57,4 @@ LCG 프로젝트 중 LCGV-FE는 LCGS 동작 완료 후 SUPABASE에 INSERT 된 �
 
 + Vercel - [Vercel Deploy](https://vercel.com/)
 + SUPABASE - [SUPABASE Docs](https://supabase.com/docs/reference/javascript/introduction)
++ DDRAGON - [Riot Data Dragon](https://developer.riotgames.com/docs/lol)
