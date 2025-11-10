@@ -13,8 +13,9 @@ export const getWinningRateCalc = (play:number, win:number):number => {
 
 export const getCurrentTimeCalc = (time:string):string => {
     const currentTime:Date = new Date();
-    const updateTime:Date = new Date(time);
-    const calculationTime:number = Math.floor((currentTime.getTime() - updateTime.getTime()) / 1000);
+    const timezoneTime:number = new Date(time).getTime() + 9 * 60 * 60 * 1000;
+    const updateTime:Date = new Date(timezoneTime);
+    const calculationTime:number = Math.floor((currentTime.getTime() - timezoneTime) / 1000);
     let result:string = "";
 
     if(calculationTime < 60) {
