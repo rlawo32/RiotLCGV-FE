@@ -97,6 +97,15 @@ export function getPlayerRankingQuery(client:TypedSupabaseClient, gameid:number)
   return client.rpc("latest_player_search").eq("lcg_game_id", gameid)
 }
 
-export function getPlayerMatchQuery(client:TypedSupabaseClient, puuid:string) {
-  return client.rpc("player_record", {player_puuid: puuid})
+export function getPlayerMatchTotalQuery(client:TypedSupabaseClient, puuid:string) {
+  let query = client
+    .from("lcg_match_main")
+    .select("row_num")
+    .eq("lcg_summoner_puuid", puuid)
+
+  return query;
+}
+
+export function getPlayerMatchQuery(client:TypedSupabaseClient, puuid:string, page:number) {
+  return client.rpc("player_record", {player_puuid: puuid, page: page})
 }
