@@ -31,7 +31,7 @@ import TeamRedIcon from "../icons/TeamRedIcon";
 import ProhibitionIcon from "../icons/ProhibitionIcon";
 import GameTimeIcon from "../icons/GameTimeIcon";
 
-const MatchHistory = (props : {gameId:number}) => {
+const MatchHistory = (props : {gameId:number, type:string}) => {
     const selectRef:any = useRef<any>([]);
 
     const supabase = useSupabaseBrowser();
@@ -106,7 +106,7 @@ const MatchHistory = (props : {gameId:number}) => {
     }
     
     return (
-        <Style.MatchHistory $load={load} $type={"H"}>
+        <Style.MatchHistory $load={load} $type={props.type}>
             <div className="lcg_history_head">
                 <div className="lcg_history_duration">
                     <GameTimeIcon />&nbsp;{lcgGameDurationMin}:{String(lcgGameDuration % 60).padStart(2, '0')}
@@ -320,7 +320,7 @@ const MatchHistory = (props : {gameId:number}) => {
                                                             <td className="lcg_minion">
                                                                 {lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count}
                                                                 <div className="lcg_sub_data lcg_minute_cs">
-                                                                    분당 {((lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count) / lcgGameDuration).toFixed(1)}
+                                                                    분당 {((lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count) / lcgGameDurationMin).toFixed(1)}
                                                                 </div>
                                                             </td>
                                                             <td className="lcg_item">
