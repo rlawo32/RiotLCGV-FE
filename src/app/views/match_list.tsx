@@ -128,7 +128,7 @@ const MatchList = () => {
                                             </div>
                                         </Style.ListBox>
                                         <div className="matchHistory_box" ref={(mh:any) => (matchHistoryRef.current[idx] = mh)}>
-                                            {selectIdx === idx && <MatchHistory gameId={selectGameId} />}  
+                                            {selectIdx === idx && <MatchHistory gameId={selectGameId} type={"H"} />}  
                                         </div>
                                 </Style.ListItem>
                                 )
