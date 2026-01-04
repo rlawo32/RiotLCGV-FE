@@ -13,11 +13,11 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     @media (max-width: 480px) {
         padding: 7px 5px;
     }
-    width: 768px;
+    width: ${({$type}) => $type === 'P' ? "680px" : "768px"};
     height: 100%;
     min-height: ${({$type}) => $type === 'L' ? "860px" : "0"};
     margin: 0 auto;
-    padding: 7px 30px;
+    padding: ${({$type}) => $type === 'P' ? "7px 5px" : "7px 30px"};
     border: 1px solid #887d7d;
     border-radius: 10px;
     background-color: ${({$type}) => $type === 'L' ? "rgb(49 49 60 / .7)" : "rgb(49 49 60 / 1)"};
@@ -268,7 +268,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         @media (max-width: 480px) {
             width: 300px;
         }
-        width: 700px;
+        width: ${({$type}) => $type === 'P' ? "670px" : "700px"};
         margin: 5px 3px;
         border-collapse: collapse;
         color: white;
