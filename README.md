@@ -41,6 +41,8 @@ LCG 프로젝트 중 LCGV-FE는 LCGS 동작 완료 후 SUPABASE에 INSERT 된 �
 + 최신 전적 View와 오래된 전적 리스트 분리 View 도입 ✅ <br/>
 + 기본 데이터외 멀티킬, DPM, GPM 등 데이터 그래프 추가 ✅ <br/>
 + 팀 섞기 항목에 플레이어 자동 입력 추가 ✅ <br/>
++ 페이징 고도화 ✅ <br/>
++ 팀 섞기 결과 DISCORD 전송 ✅ <br/>
 
 <br/>
 
