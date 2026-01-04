@@ -2,33 +2,43 @@
 
 import * as Style from "./match_player.style";
 import * as MainStyle from "./main_view.style";
-import Link from "next/link";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery, 
     getSelectLcgAllKdaQuery, getSelectLcgWinningRateQuery, getSelectLcgPlayerDataQuery, 
     getSelectLcgPlayerRelativeTotalQuery, getSelectLcgPlayerRelativeQuery, getSelectLcgPlayerPositionQuery,
     getSelectLcgPlayerAvgDpmQuery, getSelectLcgPlayerAvgGpmQuery, getSelectLcgPlayerAvgDpgQuery, 
-    getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery, getSelectLcgPlayerAiSummaryDataQuery
+    getSelectLcgPlayerMvpQuery, getSelectLcgPlayerAceQuery, getSelectLcgPlayerAiSummaryDataQuery,
+    getPlayerMatchTotalQuery, getPlayerMatchQuery
 } from "../queries/getLcgPlayerDataQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
-import { getWinningRateCalc, getPlayerData } from "../component/match_tool";
+import { getWinningRateCalc, getPlayerData, getGameDuration, getCurrentTimeCalc } from "../component/match_tool";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faChevronDown as arrow} from "@fortawesome/free-solid-svg-icons";
 
 import LoadingSpinner from "../component/loading_spinner";
 import LastUpdate from "../component/last_update";
 import SelectBox from "../component/select_box_relative";
+import ModalView from "../component/modal_view";
+import MatchHistory from "./match_history";
 
 import TopIcon from "../icons/TopIcon";
 import JugIcon from "../icons/JugIcon";
 import MidIcon from "../icons/MidIcon";
 import AdcIcon from "../icons/AdcIcon";
 import SupIcon from "../icons/SupIcon";
-import ModalView from "../component/modal_view";
+import MvpIcon from "../icons/MvpIcon";
+import MultikillIcon from "../icons/MultikillIcon";
 
 const MatchPlayer = () => {
     const supabase = useSupabaseBrowser();
+    const matchListRef:any = useRef<any>([]);
+    const matchHistoryRef:any = useRef<any>([]);
+    const selectRef:any = useRef<any>([]);
 
     let imageUrl:string = ""; // R2
     let imageUrl1:string = ""; // ddragon
@@ -39,11 +49,16 @@ const MatchPlayer = () => {
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {});
     const { data: lcgPlayerData, isLoading: loading1 } = useQuery(getLcgPlayerDataQuery(supabase), {enabled:!!lcgMatchEtc});
 
+    const [selectTab, setSelectTab] = useState<string>("A");
     const [selectPlayer, setSelectPlayer] = useState<string>("");
     const [selectOpponent, setSelectOpponent] = useState<string>("");
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
+    const [pageMatch, setPageMatch] = useState<number>(1);
     const [isSummaryModal, setIsSummaryModal] = useState<boolean>(false);
+    
+    const [selectGameId, setSelectGameId] = useState<number>(0);
+    const [selectIdx, setSelectIdx] = useState<number>(-1);
     
     const { data: selectPlayerData, isLoading: loading2 } = useQuery(getSelectLcgPlayerDataQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAllKda } = useQuery(getSelectLcgAllKdaQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
@@ -57,10 +72,13 @@ const MatchPlayer = () => {
     const { data: selectPlayerDpg } = useQuery(getSelectLcgPlayerAvgDpgQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerMvp } = useQuery(getSelectLcgPlayerMvpQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAce } = useQuery(getSelectLcgPlayerAceQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: playerMatchTotal } = useQuery(getPlayerMatchTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerMatch } = useQuery(getPlayerMatchQuery(supabase, selectPlayer, pageMatch), {enabled:!!lcgPlayerData});
 
     if(!!lcgMatchEtc) {
         imageUrl = lcgMatchEtc[0].lcg_r2_image;
         imageUrl1 = lcgMatchEtc[0].lcg_main_image;
+        imageUrl2 = lcgMatchEtc[0].lcg_sub_image;
         lastUpdate = lcgMatchEtc[0].lcg_update_player;
     }
 
@@ -213,9 +231,47 @@ const MatchPlayer = () => {
         return result;
     }
 
+    const selectTabClick = (idx:number, tab:string) => {
+        setSelectTab(tab);
+
+        if(!selectRef.current[idx].className.includes('select_tab')) {
+            selectRef.current[idx].className += ' select_tab';
+        } 
+
+        for(let i:number=0; i<selectRef.current.length; i++) {
+            if(i !== idx) {
+                selectRef.current[i].className = selectRef.current[i].className.replace(' select_tab', '');
+            }
+        }
+    }
+
+    const matchListBoxClick = (gameId:number, idx:number) => {
+        setSelectGameId(gameId);
+        setSelectIdx(idx);
+
+        if(!matchListRef.current[idx].className.includes('viewList_active')) {
+            matchListRef.current[idx].className += ' viewList_active';
+            matchHistoryRef.current[idx].className += ' view_active';
+        } else {            
+            matchListRef.current[idx].className = matchListRef.current[idx].className.replace(' viewList_active', '');
+            matchHistoryRef.current[idx].className = matchHistoryRef.current[idx].className.replace(' view_active', '');
+        }
+
+        for(let i:number=0; i<matchListRef.current.length; i++) {
+            if(i !== idx) {
+                matchListRef.current[i].className = matchListRef.current[i].className.replace(' viewList_active', '');
+                matchHistoryRef.current[i].className = matchHistoryRef.current[i].className.replace(' view_active', '');
+            }
+        }
+    }
+
     useEffect(() => {
         setPageChampion(1);
         setPageRelative(1);
+        setPageMatch(1);
+        selectTabClick(0, "A");
+        setSelectGameId(0);
+        setSelectIdx(-1);
         aiSummaryPrompt = {prompt:"", maxToken:0};
     }, [selectPlayer])
 
@@ -413,127 +469,296 @@ const MatchPlayer = () => {
                                 </div>
                             </div>
                             <div className="box_body">
-                                <div className="body_section body_left">
-                                    {
-                                        !!lcgPlayerData ? <SelectBox playerList={lcgPlayerData} selectOpponent={selectOpponent} setSelectOpponent={setSelectOpponent} /> : <></>
-                                    }
-                                    <div className="relative_head">
-                                        <div className="head_matchLine">
-                                            포지션
+                                <div className="body_tab">
+                                    <button className="lcg_tab_item" onClick={() => selectTabClick(0, "A")} ref={(sl:any) => (selectRef.current[0] = sl)}>
+                                        최근 전적
+                                    </button>
+                                    <button className="lcg_tab_item" onClick={() => selectTabClick(1, "B")} ref={(sl:any) => (selectRef.current[1] = sl)}>
+                                        상대 전적
+                                    </button>
+                                    <button className="lcg_tab_item" onClick={() => selectTabClick(2, "C")} ref={(sl:any) => (selectRef.current[2] = sl)}>
+                                        챔피언 전적
+                                    </button>
+                                </div>
+                                {
+                                    selectTab === "A" ? 
+                                        <div className="body_section">
+                                            {selectPlayerMatch?.map((data, idx) => {
+                                                const gameDurationMin = getGameDuration(data.lcg_game_duration);
+                                                return (
+                                                    <React.Fragment key={"match_" + idx}>
+                                                        <Style.MatchItem $win={data.lcg_team_win} ref={(ml:any) => (matchListRef.current[idx] = ml)}>
+                                                            <div className="item_bar" />
+                                                            <div className="item_info">
+                                                                <div className="info_mode">{data.lcg_game_mode === 'CLASSIC' ? '소환사의 협곡' : '칼바람나락'}</div>
+                                                                <div className="info_date">{getCurrentTimeCalc(data.lcg_game_date).split('오')[0]}</div>
+                                                                <div className="info_win">{data.lcg_team_win === 'Y' ? '승리' : '패배'}</div>
+                                                                <div className="info_time">{gameDurationMin}분 {String(data.lcg_game_duration % 60).padStart(2, '0')}초</div>
+                                                            </div>
+                                                            <div className="item_main">
+                                                                <div className="main_top">
+                                                                    <div className="main_champion">
+                                                                        <img src={imageUrl1 + "champion/" + data.lcg_champion_name + ".png"}
+                                                                            alt={"champion"} className="champion_image"/>
+                                                                        <div className="champion_level">
+                                                                            {data.lcg_champion_level}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="main_spell">
+                                                                        <img src={imageUrl1 + "spell/" + data.lcg_spell_name_1 + ".png"} 
+                                                                        alt={"spell1"} className="lcg_image spell_image" />
+                                                                        <img src={imageUrl1 + "spell/" + data.lcg_spell_name_2 + ".png"} 
+                                                                        alt={"spell2"} className="lcg_image spell_image" />
+                                                                    </div>
+                                                                    <div className="main_perk">
+                                                                        <img src={imageUrl2 + data.lcg_perk_name_1} 
+                                                                        alt={"perk1"} className="lcg_image perk_image1" />
+                                                                        <img src={imageUrl2 + data.lcg_perk_name_2} 
+                                                                        alt={"perk2"} className="lcg_image perk_image2" />
+                                                                    </div>
+                                                                    <div className="main_kda">
+                                                                        <div className="kda_view">
+                                                                            {data.lcg_kill_count} / <span>{data.lcg_death_count}</span> / {data.lcg_assist_count}
+                                                                        </div>
+                                                                        <div className="kda_calc">
+                                                                            <Style.LcgKdaCalc $k={data.lcg_kill_count} $d={data.lcg_death_count} $a={data.lcg_assist_count}>
+                                                                                {data.lcg_death_count !== 0 ? ((data.lcg_kill_count + data.lcg_assist_count) / data.lcg_death_count).toFixed(2) + ":1" : "Perfect"}
+                                                                            </Style.LcgKdaCalc>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="main_bottom">
+                                                                    <div className="main_item">
+                                                                        {
+                                                                            data.lcg_item_id_1 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_1 + ".png"} 
+                                                                                alt={"item1"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                        {
+                                                                            data.lcg_item_id_2 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_2 + ".png"} 
+                                                                                alt={"item2"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                        {
+                                                                            data.lcg_item_id_3 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_3 + ".png"} 
+                                                                                alt={"item3"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                        {
+                                                                            data.lcg_item_id_4 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_4 + ".png"} 
+                                                                                alt={"item4"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                        {
+                                                                            data.lcg_item_id_5 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_5 + ".png"} 
+                                                                                alt={"item5"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                        {
+                                                                            data.lcg_item_id_6 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_6 + ".png"} 
+                                                                                alt={"item6"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                        {
+                                                                            data.lcg_item_id_7 !== 0 ?
+                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_7 + ".png"} 
+                                                                                alt={"item7"} className="item_image" />
+                                                                                :<div className="item_image empty_image"/>
+                                                                        }
+                                                                    </div>
+                                                                    <div className="main_mvp">
+                                                                        <MvpIcon rank={data.lcg_mvp_rank} />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="item_sub">
+                                                                <div className="sub_rate">
+                                                                    킬관여 {Math.round((data.lcg_kill_count + data.lcg_assist_count) / data.lcg_total_kill * 100)}%
+                                                                </div>
+                                                                <div className="sub_cs">
+                                                                    CS {data.cs}
+                                                                    <div className="cs_minute">
+                                                                        &nbsp;({((data.cs) / gameDurationMin).toFixed(1)})
+                                                                    </div>
+                                                                </div>
+                                                                <div className="sub_multikill">
+                                                                    {
+                                                                        data.lcg_penta_kill > 0 || data.lcg_quadra_kill > 0 || data.lcg_triple_kill > 0 || data.lcg_double_kill > 0 ? 
+                                                                            <MultikillIcon kill={
+                                                                                data.lcg_penta_kill > 0 ? '펜타킬' :
+                                                                                data.lcg_quadra_kill > 0 ? '쿼드라킬' :
+                                                                                data.lcg_triple_kill > 0 ? '트리플킬' :
+                                                                                data.lcg_double_kill > 0 ? '더블킬' : ''
+                                                                            } />
+                                                                            :
+                                                                            <></>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div className="item_players">
+                                                                {(data.player_list as any[]).sort((a, b) => a.team - b.team).map((player, idx2) => (
+                                                                    <div className="players_info" key={idx2}>
+                                                                        <img src={imageUrl1 + "champion/" + player.champion + ".png"}
+                                                                            alt={"champion"} className="champion_image"/>
+                                                                        <div className="info_name">{String(player.name)}</div>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                            <div className="item_detail" onClick={() => matchListBoxClick(Number(data.lcg_game_id), idx)}>
+                                                                <FontAwesomeIcon icon={arrow} className="arrow_icon" />
+                                                            </div>
+                                                        </Style.MatchItem>
+                                                        <div className="matchHistory_box" ref={(mh:any) => (matchHistoryRef.current[idx] = mh)}>
+                                                            {selectIdx === idx && <MatchHistory gameId={selectGameId} type={"P"} />}  
+                                                        </div>
+                                                    </React.Fragment>
+                                                )
+                                            })}
+                                            {
+                                                !!playerMatchTotal && !!selectPlayerMatch ?
+                                                    <>
+                                                        {
+                                                            playerMatchTotal.length <= selectPlayerMatch.length ? <></> : 
+                                                                <MainStyle.Pagination>
+                                                                    <button onClick={() => setPageMatch(pageMatch + 1)} className="more_btn">더보기</button>
+                                                                </MainStyle.Pagination>
+                                                        }
+                                                    </> : <LoadingSpinner />
+                                            }
                                         </div>
-                                        <div className="head_opponent">
-                                            상대
-                                        </div>
-                                        <div className="head_winningRate">
-                                            승률
-                                        </div>
-                                    </div>
-                                    {selectPlayerRelative?.map((data, idx) => {
-                                        return (
-                                            <div className="relative_item" key={"champ_" + idx}>
-                                                <div className="player_matchLine">
-                                                    {
-                                                        data.lcg_match_line === 'TOP' ? <TopIcon />
-                                                        :
-                                                        data.lcg_match_line === 'JUG' ? <JugIcon />
-                                                        :
-                                                        data.lcg_match_line === 'MID' ? <MidIcon />
-                                                        :
-                                                        data.lcg_match_line === 'ADC' ? <AdcIcon />
-                                                        :
-                                                        <SupIcon />
-                                                    }
+                                        :
+                                    selectTab === "B" ? 
+                                        <div className="body_section">
+                                            {
+                                                !!lcgPlayerData ? <SelectBox playerList={lcgPlayerData} selectOpponent={selectOpponent} setSelectOpponent={setSelectOpponent} /> : <></>
+                                            }
+                                            <div className="relative_head">
+                                                <div className="head_matchLine">
+                                                    포지션
                                                 </div>
-                                                <div className="player_opponent">
-                                                    {playerData(data.lcg_opponent_puuid, "name")}
+                                                <div className="head_opponent">
+                                                    상대
                                                 </div>
-                                                <div className="player_winningRate">
-                                                    <div className="match_detail">
-                                                        <span>{data.lcg_play_count}전</span>
-                                                        <span>{data.lcg_win_count}승</span>
-                                                        <span>{data.lcg_fail_count}패</span>
-                                                    </div>
-                                                    <div className="match_winning">
-                                                        {((data.lcg_win_count * 100) / data.lcg_play_count).toFixed(1)}%
-                                                    </div>
+                                                <div className="head_winningRate">
+                                                    승률
                                                 </div>
                                             </div>
-                                        )
-                                    })}
-                                    {
-                                        !!playerRelativeTotal && !!selectPlayerRelative ?
-                                            <>
-                                                {
-                                                    playerRelativeTotal.length <= selectPlayerRelative.length ? <></> : 
-                                                        <MainStyle.Pagination>
-                                                            <button onClick={() => setPageRelative(pageRelative + 1)} className="more_btn">더보기</button>
-                                                        </MainStyle.Pagination>
-                                                }
-                                            </> : <LoadingSpinner />
-                                    }
-                                </div>
-                                <div className="body_section body_right">
-                                    <div className="champion_head">
-                                        <div className="head_champion">
-                                            챔피언
-                                        </div>
-                                        <div className="head_kda">
-                                            KDA
-                                        </div>
-                                        <div className="head_winningRate">
-                                            승률
-                                        </div>
-                                    </div>
-                                    {selectPlayerChampion?.map((data, idx) => {
-                                        return (
-                                            <div className="champion_item" key={"relative_" + idx}>
-                                                <div className="player_champion">
-                                                    <img src={imageUrl + "champion/" + data.lcg_champion_name + ".png"} 
-                                                    alt={"champion"} className="champion_img" loading="lazy"/>
+                                            {selectPlayerRelative?.map((data, idx) => {
+                                                return (
+                                                    <div className="relative_item" key={"champ_" + idx}>
+                                                        <div className="player_matchLine">
+                                                            {
+                                                                data.lcg_match_line === 'TOP' ? <TopIcon />
+                                                                :
+                                                                data.lcg_match_line === 'JUG' ? <JugIcon />
+                                                                :
+                                                                data.lcg_match_line === 'MID' ? <MidIcon />
+                                                                :
+                                                                data.lcg_match_line === 'ADC' ? <AdcIcon />
+                                                                :
+                                                                <SupIcon />
+                                                            }
+                                                        </div>
+                                                        <div className="player_opponent">
+                                                            {playerData(data.lcg_opponent_puuid, "name")}
+                                                        </div>
+                                                        <div className="player_winningRate">
+                                                            <div className="match_detail">
+                                                                <span>{data.lcg_play_count}전</span>
+                                                                <span>{data.lcg_win_count}승</span>
+                                                                <span>{data.lcg_fail_count}패</span>
+                                                            </div>
+                                                            <div className="match_winning">
+                                                                {((data.lcg_win_count * 100) / data.lcg_play_count).toFixed(1)}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })}
+                                            {
+                                                !!playerRelativeTotal && !!selectPlayerRelative ?
+                                                    <>
+                                                        {
+                                                            playerRelativeTotal.length <= selectPlayerRelative.length ? <></> : 
+                                                                <MainStyle.Pagination>
+                                                                    <button onClick={() => setPageRelative(pageRelative + 1)} className="more_btn">더보기</button>
+                                                                </MainStyle.Pagination>
+                                                        }
+                                                    </> : <LoadingSpinner />
+                                            }
+                                        </div> 
+                                        :
+                                    selectTab === "C" ? 
+                                        <div className="body_section">
+                                            <div className="champion_head">
+                                                <div className="head_champion">
+                                                    챔피언
                                                 </div>
-                                                <div className="player_kda">
-                                                    <div className="kda_detail">
-                                                        <span>{(data.lcg_kill_count / data.lcg_play_count).toFixed(1)}</span>/
-                                                        <span>{(data.lcg_death_count / data.lcg_play_count).toFixed(1)}</span>/
-                                                        <span>{(data.lcg_assist_count / data.lcg_play_count).toFixed(1)}</span>
-                                                    </div>
-                                                    <div className="kda_calc">
-                                                        <Style.LcgKdaCalc $k={data.lcg_kill_count} $d={data.lcg_death_count} $a={data.lcg_assist_count}>
-                                                            {data.lcg_death_count !== 0 ? 
-                                                                <span>
-                                                                    KDA
-                                                                    <span className="kda">
-                                                                        {((data.lcg_kill_count + data.lcg_assist_count) / data.lcg_death_count).toFixed(2)}
-                                                                    </span>
-                                                                </span>: <span className="kda">Perfect</span>}
-                                                        </Style.LcgKdaCalc>
-                                                    </div>
+                                                <div className="head_kda">
+                                                    KDA
                                                 </div>
-                                                <div className="player_winningRate">
-                                                    <div className="match_detail">
-                                                        <span>{data.lcg_play_count}전</span>
-                                                        <span>{data.lcg_win_count}승</span>
-                                                        <span>{data.lcg_fail_count}패</span>
-                                                    </div>
-                                                    <div className="match_winning">
-                                                        {((data.lcg_win_count * 100) / data.lcg_play_count).toFixed(1)}%
-                                                    </div>
+                                                <div className="head_winningRate">
+                                                    승률
                                                 </div>
                                             </div>
-                                        )
-                                    })}
-                                    {
-                                        !!countChampion && !!selectPlayerChampion ?
-                                            <>
-                                                {
-                                                    countChampion <= selectPlayerChampion.length ? <></> : 
-                                                        <MainStyle.Pagination>
-                                                            <button onClick={() => setPageChampion(pageChampion + 1)} className="more_btn">더보기</button>
-                                                        </MainStyle.Pagination>
-                                                }
-                                            </> : <LoadingSpinner />
-                                    }
-                                </div>
+                                            {selectPlayerChampion?.map((data, idx) => {
+                                                return (
+                                                    <div className="champion_item" key={"relative_" + idx}>
+                                                        <div className="player_champion">
+                                                            <img src={imageUrl + "champion/" + data.lcg_champion_name + ".png"} 
+                                                            alt={"champion"} className="champion_img" loading="lazy"/>
+                                                        </div>
+                                                        <div className="player_kda">
+                                                            <div className="kda_detail">
+                                                                <span>{(data.lcg_kill_count / data.lcg_play_count).toFixed(1)}</span>/
+                                                                <span>{(data.lcg_death_count / data.lcg_play_count).toFixed(1)}</span>/
+                                                                <span>{(data.lcg_assist_count / data.lcg_play_count).toFixed(1)}</span>
+                                                            </div>
+                                                            <div className="kda_calc">
+                                                                <Style.LcgKdaCalc $k={data.lcg_kill_count} $d={data.lcg_death_count} $a={data.lcg_assist_count}>
+                                                                    {data.lcg_death_count !== 0 ? 
+                                                                        <span>
+                                                                            KDA
+                                                                            <span className="kda">
+                                                                                {((data.lcg_kill_count + data.lcg_assist_count) / data.lcg_death_count).toFixed(2)}
+                                                                            </span>
+                                                                        </span>: <span className="kda">Perfect</span>}
+                                                                </Style.LcgKdaCalc>
+                                                            </div>
+                                                        </div>
+                                                        <div className="player_winningRate">
+                                                            <div className="match_detail">
+                                                                <span>{data.lcg_play_count}전</span>
+                                                                <span>{data.lcg_win_count}승</span>
+                                                                <span>{data.lcg_fail_count}패</span>
+                                                            </div>
+                                                            <div className="match_winning">
+                                                                {((data.lcg_win_count * 100) / data.lcg_play_count).toFixed(1)}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })}
+                                            {
+                                                !!countChampion && !!selectPlayerChampion ?
+                                                    <>
+                                                        {
+                                                            countChampion <= selectPlayerChampion.length ? <></> : 
+                                                                <MainStyle.Pagination>
+                                                                    <button onClick={() => setPageChampion(pageChampion + 1)} className="more_btn">더보기</button>
+                                                                </MainStyle.Pagination>
+                                                        }
+                                                    </> : <LoadingSpinner />
+                                            }
+                                        </div>
+                                        : <></>
+                                }
                             </div>
                         </Style.PlayerDataBox>
                     </>
