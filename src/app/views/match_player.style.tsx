@@ -476,6 +476,7 @@ export const PlayerDataBox = styled('div')`
             flex-direction: column;
         }
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         height: 100%;
         width: 100%;
@@ -497,6 +498,45 @@ export const PlayerDataBox = styled('div')`
             font-weight: 700;
             color: rgb(123 122 142 / 1);
         }
+
+        .body_tab {
+            display: flex;
+            border: none;
+
+            button {
+                width: 100%;
+                margin: 3px 1px;
+                padding: 9px 7px;
+                border: none;
+                background-color: rgb(30 30 38 / 1);
+                font-size: 1.2rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgb(255 68 56 / 1);
+                }
+
+                &:nth-child(1) {
+                    border-radius: 10px 0 0 10px;
+                }
+
+                &:nth-child(3) {
+                    border-radius: 0 10px 10px 0;
+                }
+            }
+
+            .lcg_tab_item {
+                border: none;
+
+                &:hover {
+                    background-color: rgb(89 89 100 / 1);
+                }
+            }
+
+            .lcg_tab_item.select_tab {
+                background-color: rgb(255 68 56 / 1);
+            }
+        }
         
         .body_section  {
             @media (max-width: 1024px) {
@@ -513,11 +553,22 @@ export const PlayerDataBox = styled('div')`
             min-width: calc(90% / 2);
             height: 100%;
             min-height: 350px;
-            margin: 5px;
-            padding: 38px 25px 15px;
+            padding: 38px 7px 15px;
             border-radius: 10px;
             background-color: rgb(30 30 38 / 1);
             text-align: center;
+
+            .matchHistory_box {
+                width: 100%;
+                height: 0;
+                overflow: hidden;
+                transition: height .4s ease;
+            }
+            
+            .matchHistory_box.view_active {
+                height: 830px;
+                margin-bottom: 5px;
+            }
 
             .relative_head {
                 display: flex;
@@ -759,5 +810,242 @@ export const ToolTipStyle = styled('div')`
         transform: translate(-50%) rotate(45deg);
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         z-index: -1;
+    }
+`;
+
+export const MatchItem = styled('div')<{$win:string}>`
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    padding: 7px 20px 7px 10px;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: ${({$win}) => $win === 'Y' ? '#2F436E' : '#703C47'};
+    overflow: hidden;
+
+    .item_bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 100%;
+        background-color: ${({$win}) => $win === 'Y' ? '#5383E8' : '#E84057'};
+    }
+
+    .item_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100%;
+        font-size: 1.1rem;
+        color: #9E9EB1;
+
+        .info_mode {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: ${({$win}) => $win === 'Y' ? '#5383E8' : '#E84057'};
+        }
+
+        .info_date {
+            margin-bottom: 7px;
+            font-weight: 400;
+        }
+
+        .info_win {
+            font-weight: 700;
+        }
+
+        .info_time {
+            font-weight: 400;
+        }
+    }
+    
+    .item_main {
+        height: 100%;
+
+        .main_top {
+            display: flex;
+            align-items: center;
+
+            .main_champion {
+                position: relative;
+
+                .champion_image {
+                    height: 45px;
+                    width: 45px;
+                    margin: 0 3px 0 0;
+                    border-radius: 50%;
+                }
+
+                .champion_level {
+                    position: absolute;
+                    bottom: 3px;
+                    right: 3px;
+                    margin: 0;
+                    padding: 2px 4px 2px 2px;
+                    background-color: black;
+                    border-radius: 50%;
+                    font-size: 1rem;
+                }
+            }
+
+            .main_spell {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-right: 2px;
+
+                .spell_image {
+                    height: 20px;
+                    width: 20px;
+                    margin: 1px 0;
+                    border-radius: 7px;
+                }
+            }
+
+            .main_perk {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .perk_image1 {
+                    height: 22px;
+                    width: 22px;
+                    border-radius: 50%;
+                    background-color: #000000;
+                }
+
+                .perk_image2 {
+                    height: 16px;
+                    width: 16px;
+                    margin: 2px 0;
+                }
+            }
+
+            .main_kda {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0 0 3px 30px;
+
+                .kda_view {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+
+                    span {
+                        color: #E84057;
+                    }
+                }
+
+                .kda_calc {
+                    font-size: 1.1rem;
+                    font-weight: 400;
+                    color: #9E9EB1;
+                }
+            }
+        }
+
+        .main_bottom {
+            display: flex;
+            align-items: center;
+            padding-top: 3px;
+
+            .main_item {
+                display: flex;
+
+                .item_image {
+                    height: 22px;
+                    width: 22px;
+                    margin: 0 2px 0 0;
+                    border-radius: 7px;
+                }
+
+                .empty_image {
+                    height: 22px;
+                    width: 22px;
+                    border: 1px solid grey;
+                }
+            }
+
+            .main_mvp {
+                padding-bottom: 3px;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .item_sub {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+        padding-top: 3px;
+        font-weight: 700;
+        color: #9E9EB1;
+
+        .sub_rate {
+            margin-bottom: 3px;
+        }
+
+        .sub_cs {
+            display: flex;
+            margin-bottom: 3px;
+        }
+    }
+
+    .item_players {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+
+        .players_info {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            row-gap: 1;
+            margin-left: 7px;
+
+            .champion_image {
+                height: 15px;
+                width: 15px;
+                border-radius: 50%;
+            }
+
+            .info_name {
+                width: 50px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+            }
+        }
+    }
+
+    .item_detail {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 35px;
+        height: 100%;
+        padding-bottom: 10px;
+        background-color: ${({$win}) => $win === 'Y' ? '#28344E' : '#59343B'};
+        cursor: pointer;
+
+        .arrow_icon {
+            font-size: 1.2rem;
+        }
     }
 `;
