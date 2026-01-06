@@ -2,7 +2,8 @@
 
 import * as Style from "./main_view.style";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 import MatchList from "./match_list";
 import MatchRanking from "../ranking/match_ranking";
@@ -12,12 +13,30 @@ import MatchShuffle from "./match_shuffle";
 import MatchPlayer from "./match_player";
 
 const MainView = () => {
+    const searchParams = useSearchParams();
+    const viewPlayerParam = searchParams.get('player');
+    const viewShuffleParam = searchParams.get('shuffle');
+    
+    const getInitialView = () => {
+        if (viewPlayerParam !== null) return 3;
+        if (viewShuffleParam !== null) return 4;
+        return 0;
+    };
 
-    const [selectView, setSelectView] = useState<number>(0);
+    const [selectView, setSelectView] = useState<number>(getInitialView);
 
     const changeViewHandler = (select:number) => {
         setSelectView(select);
     }
+
+    useEffect(() => {
+        if (viewPlayerParam !== null) {
+            setSelectView(3);
+        }
+        if (viewShuffleParam !== null) {
+            setSelectView(4);
+        }
+    }, [viewPlayerParam, viewShuffleParam]);
 
     return (
         <Style.MainView>
@@ -28,7 +47,7 @@ const MainView = () => {
                     selectView === 0 ? <MatchLatestHistory /> :
                     selectView === 1 ? <MatchList /> :
                     selectView === 2 ? <MatchRanking /> : 
-                    selectView === 3 ? <MatchPlayer /> : 
+                    selectView === 3 ? <MatchPlayer directPlayer={viewPlayerParam} /> : 
                     selectView === 4 ? <MatchShuffle /> : <></>
                 }
             </div>
