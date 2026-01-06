@@ -34,7 +34,7 @@ import SupIcon from "../icons/SupIcon";
 import MvpIcon from "../icons/MvpIcon";
 import MultikillIcon from "../icons/MultikillIcon";
 
-const MatchPlayer = (props:{directPuuid:string}) => {
+const MatchPlayer = (props:{directPlayer:string}) => {
     const supabase = useSupabaseBrowser();
     const matchListRef:any = useRef<any>([]);
     const matchHistoryRef:any = useRef<any>([]);
@@ -277,13 +277,18 @@ const MatchPlayer = (props:{directPuuid:string}) => {
 
     useEffect(() => {
         if(!!lcgPlayerData) {
-            if(props.directPuuid.length > 0) {
-                setSelectPlayer(props.directPuuid);
+            if(props.directPlayer) {
+                const directPuuid:string|undefined = lcgPlayerData.find((item) => item.lcg_player === props.directPlayer)?.puuid;
+                if(directPuuid !== undefined) {
+                    setSelectPlayer(directPuuid);
+                } else {
+                    setSelectPlayer(lcgPlayerData[0].lcg_summoner_puuid);
+                }
             } else {
                 setSelectPlayer(lcgPlayerData[0].lcg_summoner_puuid);
             }
         }
-    }, [])
+    }, [lcgPlayerData, props.directPlayer])
 
     return (
         <Style.MatchPlayer>
