@@ -34,7 +34,7 @@ import SupIcon from "../icons/SupIcon";
 import MvpIcon from "../icons/MvpIcon";
 import MultikillIcon from "../icons/MultikillIcon";
 
-const MatchPlayer = () => {
+const MatchPlayer = (props:{directPuuid:string}) => {
     const supabase = useSupabaseBrowser();
     const matchListRef:any = useRef<any>([]);
     const matchHistoryRef:any = useRef<any>([]);
@@ -54,7 +54,7 @@ const MatchPlayer = () => {
     const [selectOpponent, setSelectOpponent] = useState<string>("");
     const [pageChampion, setPageChampion] = useState<number>(1);
     const [pageRelative, setPageRelative] = useState<number>(1);
-    const [pageMatch, setPageMatch] = useState<number>(1);
+    const [pageHistory, setPageHistory] = useState<number>(1);
     const [isSummaryModal, setIsSummaryModal] = useState<boolean>(false);
     
     const [selectGameId, setSelectGameId] = useState<number>(0);
@@ -73,7 +73,7 @@ const MatchPlayer = () => {
     const { data: selectPlayerMvp } = useQuery(getSelectLcgPlayerMvpQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: selectPlayerAce } = useQuery(getSelectLcgPlayerAceQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
     const { data: playerMatchTotal } = useQuery(getPlayerMatchTotalQuery(supabase, selectPlayer), {enabled:!!lcgPlayerData});
-    const { data: selectPlayerMatch } = useQuery(getPlayerMatchQuery(supabase, selectPlayer, pageMatch), {enabled:!!lcgPlayerData});
+    const { data: selectPlayerMatch } = useQuery(getPlayerMatchQuery(supabase, selectPlayer, pageHistory), {enabled:!!lcgPlayerData});
 
     if(!!lcgMatchEtc) {
         imageUrl = lcgMatchEtc[0].lcg_r2_image;
@@ -268,7 +268,7 @@ const MatchPlayer = () => {
     useEffect(() => {
         setPageChampion(1);
         setPageRelative(1);
-        setPageMatch(1);
+        setPageHistory(1);
         selectTabClick(0, "A");
         setSelectGameId(0);
         setSelectIdx(-1);
@@ -277,7 +277,11 @@ const MatchPlayer = () => {
 
     useEffect(() => {
         if(!!lcgPlayerData) {
-            setSelectPlayer(lcgPlayerData[0].lcg_summoner_puuid);
+            if(props.directPuuid.length > 0) {
+                setSelectPlayer(props.directPuuid);
+            } else {
+                setSelectPlayer(lcgPlayerData[0].lcg_summoner_puuid);
+            }
         }
     }, [])
 
@@ -626,7 +630,7 @@ const MatchPlayer = () => {
                                                         {
                                                             playerMatchTotal.length <= selectPlayerMatch.length ? <></> : 
                                                                 <MainStyle.Pagination>
-                                                                    <button onClick={() => setPageMatch(pageMatch + 1)} className="more_btn">더보기</button>
+                                                                    <button onClick={() => setPageHistory(pageHistory + 1)} className="more_btn">더보기</button>
                                                                 </MainStyle.Pagination>
                                                         }
                                                     </> : <LoadingSpinner />
