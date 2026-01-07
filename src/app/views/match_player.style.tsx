@@ -1039,8 +1039,8 @@ export const MatchItem = styled('div')<{$win:string}>`
                 .empty_image {
                     // mobile_view
                     @media (max-width: 768px) {
-                        height: 17px;
-                        width: 17px;
+                        height: 14px;
+                        width: 14px;
                     }
                     height: 22px;
                     width: 22px;
