@@ -983,7 +983,7 @@ export const MatchItem = styled('div')<{$win:string}>`
             .main_kda {
                 // mobile_view
                 @media (max-width: 768px) {
-                    padding: 0 0 3px 15px;
+                    padding: 0 0 3px 10px;
                 }
                 display: flex;
                 flex-direction: column;
@@ -1063,7 +1063,7 @@ export const MatchItem = styled('div')<{$win:string}>`
     .item_sub {
         // mobile_view
         @media (max-width: 768px) {
-            padding: 1px 7px 0 0;
+            padding: 3px 7px 0 0;
             font-size: 0.7rem;
         }
         display: flex;
