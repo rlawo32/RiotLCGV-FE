@@ -570,6 +570,10 @@ export const PlayerDataBox = styled('div')`
                 @media (max-width: 768px) {
                     height: 1050px;
                 }
+                // mobile_view
+                @media (max-width: 480px) {
+                    height: 900px;
+                }
                 height: 830px;
                 margin-bottom: 5px;
             }

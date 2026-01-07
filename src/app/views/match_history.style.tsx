@@ -460,6 +460,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             flex-wrap: wrap;
                             width: 150px;
                         }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            padding-right: 2px;
+                        }
                         display: flex;
                         align-items: center;
                         margin: 0 0 0 8px;
