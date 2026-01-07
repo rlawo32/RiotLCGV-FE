@@ -543,6 +543,7 @@ export const PlayerDataBox = styled('div')`
                 padding: 38px 12px 15px;
             }
             @media (max-width: 768px) {
+                padding: 38px 5px 15px;
                 margin: 10px 0 0 0;
             }
             position: relative;
@@ -814,6 +815,10 @@ export const ToolTipStyle = styled('div')`
 `;
 
 export const MatchItem = styled('div')<{$win:string}>`
+    // mobile_view
+    @media (max-width: 768px) {
+        height: 75px;
+    }
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -838,7 +843,10 @@ export const MatchItem = styled('div')<{$win:string}>`
 
     .item_info {
         // mobile_view
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            flex-shrink: 0;
+            align-items: center;
+            width: 40px;
             font-size: 0.8rem;
         }
         display: flex;
@@ -851,7 +859,7 @@ export const MatchItem = styled('div')<{$win:string}>`
 
         .info_mode {
             // mobile_view
-            @media (max-width: 480px) {
+            @media (max-width: 768px) {
                 font-size: 0.9rem;
             }
             font-size: 1.2rem;
@@ -874,6 +882,10 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
     
     .item_main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
         height: 100%;
 
         .main_top {
@@ -885,19 +897,20 @@ export const MatchItem = styled('div')<{$win:string}>`
 
                 .champion_image {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         height: 35px;
                         width: 35px;
                     }
                     height: 45px;
                     width: 45px;
                     margin: 0 3px 0 0;
+                    border: 1px solid red;
                     border-radius: 50%;
                 }
 
                 .champion_level {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         padding: 2px;
                         font-size: 0.8rem;
                     }
@@ -920,13 +933,14 @@ export const MatchItem = styled('div')<{$win:string}>`
 
                 .spell_image {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         height: 15px;
                         width: 15px;
                     }
                     height: 20px;
                     width: 20px;
                     margin: 1px 0;
+                    border: 1px solid red;
                     border-radius: 7px;
                 }
             }
@@ -938,29 +952,35 @@ export const MatchItem = styled('div')<{$win:string}>`
 
                 .perk_image1 {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         height: 17px;
                         width: 17px;
                     }
                     height: 22px;
                     width: 22px;
+                    border: 1px solid red;
                     border-radius: 50%;
                     background-color: #000000;
                 }
 
                 .perk_image2 {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         height: 11px;
                         width: 11px;
                     }
                     height: 16px;
                     width: 16px;
                     margin: 2px 0;
+                    border: 1px solid red;
                 }
             }
 
             .main_kda {
+                // mobile_view
+                @media (max-width: 768px) {
+                    padding: 0 0 3px 20px;
+                }
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -969,7 +989,7 @@ export const MatchItem = styled('div')<{$win:string}>`
 
                 .kda_view {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         font-size: 1.2rem;
                     }
                     font-size: 1.5rem;
@@ -982,7 +1002,7 @@ export const MatchItem = styled('div')<{$win:string}>`
 
                 .kda_calc {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         font-size: 0.8rem;
                     }
                     font-size: 1.1rem;
@@ -1002,19 +1022,20 @@ export const MatchItem = styled('div')<{$win:string}>`
 
                 .item_image {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         height: 17px;
                         width: 17px;
                     }
                     height: 22px;
                     width: 22px;
                     margin: 0 2px 0 0;
+                    border: 1px solid red;
                     border-radius: 7px;
                 }
 
                 .empty_image {
                     // mobile_view
-                    @media (max-width: 480px) {
+                    @media (max-width: 768px) {
                         height: 17px;
                         width: 17px;
                     }
@@ -1025,6 +1046,11 @@ export const MatchItem = styled('div')<{$win:string}>`
             }
 
             .main_mvp {
+                // mobile_view
+                @media (max-width: 768px) {
+                    padding: 0;
+                    margin-left: 1px;
+                }
                 padding-bottom: 3px;
                 margin-left: 5px;
             }
@@ -1032,6 +1058,11 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_sub {
+        // mobile_view
+        @media (max-width: 768px) {
+            padding: 1px 10px 0 0;
+            font-size: 0.8rem;
+        }
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -1052,6 +1083,10 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_players {
+        // mobile_view
+        @media (max-width: 768px) {
+            display: none;
+        }
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -1069,6 +1104,7 @@ export const MatchItem = styled('div')<{$win:string}>`
             .champion_image {
                 height: 15px;
                 width: 15px;
+                border: 1px solid red;
                 border-radius: 50%;
             }
 
@@ -1083,6 +1119,10 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_detail {
+        // mobile_view
+        @media (max-width: 768px) {
+            width: 25px;
+        }
         position: absolute;
         top: 0;
         right: 0;
