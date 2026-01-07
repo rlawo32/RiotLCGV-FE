@@ -833,6 +833,10 @@ export const MatchItem = styled('div')<{$win:string}>`
     overflow: hidden;
 
     .item_bar {
+        // mobile_view
+        @media (max-width: 768px) {
+            width: 6px;
+        }
         position: absolute;
         top: 0;
         left: 0;
@@ -904,7 +908,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                     height: 45px;
                     width: 45px;
                     margin: 0 3px 0 0;
-                    border: 1px solid red;
                     border-radius: 50%;
                 }
 
@@ -940,7 +943,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                     height: 20px;
                     width: 20px;
                     margin: 1px 0;
-                    border: 1px solid red;
                     border-radius: 7px;
                 }
             }
@@ -958,7 +960,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                     }
                     height: 22px;
                     width: 22px;
-                    border: 1px solid red;
                     border-radius: 50%;
                     background-color: #000000;
                 }
@@ -972,7 +973,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                     height: 16px;
                     width: 16px;
                     margin: 2px 0;
-                    border: 1px solid red;
                 }
             }
 
@@ -1029,7 +1029,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                     height: 22px;
                     width: 22px;
                     margin: 0 2px 0 0;
-                    border: 1px solid red;
                     border-radius: 7px;
                 }
 
@@ -1104,7 +1103,6 @@ export const MatchItem = styled('div')<{$win:string}>`
             .champion_image {
                 height: 15px;
                 width: 15px;
-                border: 1px solid red;
                 border-radius: 50%;
             }
 
@@ -1121,7 +1119,7 @@ export const MatchItem = styled('div')<{$win:string}>`
     .item_detail {
         // mobile_view
         @media (max-width: 768px) {
-            width: 25px;
+            width: 22px;
         }
         position: absolute;
         top: 0;
