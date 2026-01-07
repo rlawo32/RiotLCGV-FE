@@ -837,6 +837,10 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_info {
+        // mobile_view
+        @media (max-width: 480px) {
+            font-size: 0.8rem;
+        }
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -846,6 +850,10 @@ export const MatchItem = styled('div')<{$win:string}>`
         color: #9E9EB1;
 
         .info_mode {
+            // mobile_view
+            @media (max-width: 480px) {
+                font-size: 0.9rem;
+            }
             font-size: 1.2rem;
             font-weight: 700;
             color: ${({$win}) => $win === 'Y' ? '#5383E8' : '#E84057'};
@@ -876,6 +884,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 position: relative;
 
                 .champion_image {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        height: 35px;
+                        width: 35px;
+                    }
                     height: 45px;
                     width: 45px;
                     margin: 0 3px 0 0;
@@ -883,6 +896,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .champion_level {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        padding: 2px;
+                        font-size: 0.8rem;
+                    }
                     position: absolute;
                     bottom: 3px;
                     right: 3px;
@@ -901,6 +919,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 margin-right: 2px;
 
                 .spell_image {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        height: 15px;
+                        width: 15px;
+                    }
                     height: 20px;
                     width: 20px;
                     margin: 1px 0;
@@ -914,6 +937,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 align-items: center;
 
                 .perk_image1 {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        height: 17px;
+                        width: 17px;
+                    }
                     height: 22px;
                     width: 22px;
                     border-radius: 50%;
@@ -921,6 +949,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .perk_image2 {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        height: 11px;
+                        width: 11px;
+                    }
                     height: 16px;
                     width: 16px;
                     margin: 2px 0;
@@ -935,6 +968,10 @@ export const MatchItem = styled('div')<{$win:string}>`
                 padding: 0 0 3px 30px;
 
                 .kda_view {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        font-size: 1.2rem;
+                    }
                     font-size: 1.5rem;
                     font-weight: 700;
 
@@ -944,6 +981,10 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .kda_calc {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        font-size: 0.8rem;
+                    }
                     font-size: 1.1rem;
                     font-weight: 400;
                     color: #9E9EB1;
@@ -960,6 +1001,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 display: flex;
 
                 .item_image {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        height: 17px;
+                        width: 17px;
+                    }
                     height: 22px;
                     width: 22px;
                     margin: 0 2px 0 0;
@@ -967,6 +1013,11 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .empty_image {
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        height: 17px;
+                        width: 17px;
+                    }
                     height: 22px;
                     width: 22px;
                     border: 1px solid grey;
