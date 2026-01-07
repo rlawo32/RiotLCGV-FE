@@ -886,6 +886,10 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
     
     .item_main {
+        // mobile_view
+        @media (max-width: 768px) {
+            padding-left: 2px;
+        }
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1119,7 +1123,7 @@ export const MatchItem = styled('div')<{$win:string}>`
     .item_detail {
         // mobile_view
         @media (max-width: 768px) {
-            width: 22px;
+            width: 20px;
             padding-bottom: 7px;
         }
         position: absolute;
