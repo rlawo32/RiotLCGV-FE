@@ -278,7 +278,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
     useEffect(() => {
         if(!!lcgPlayerData) {
             if(props.directPlayer) {
-                const directPuuid:string|undefined = lcgPlayerData.find((item) => item.lcg_player === props.directPlayer)?.puuid;
+                const directPuuid:string|undefined = lcgPlayerData.find((item) => item.lcg_player === props.directPlayer)?.lcg_summoner_puuid;
                 if(directPuuid !== undefined) {
                     setSelectPlayer(directPuuid);
                 } else {
