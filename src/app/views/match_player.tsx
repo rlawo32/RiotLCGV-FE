@@ -34,7 +34,7 @@ import SupIcon from "../icons/SupIcon";
 import MvpIcon from "../icons/MvpIcon";
 import MultikillIcon from "../icons/MultikillIcon";
 
-const MatchPlayer = (props:{directPlayer:string}) => {
+const MatchPlayer = (props:{directPlayer:string|null}) => {
     const supabase = useSupabaseBrowser();
     const matchListRef:any = useRef<any>([]);
     const matchHistoryRef:any = useRef<any>([]);
