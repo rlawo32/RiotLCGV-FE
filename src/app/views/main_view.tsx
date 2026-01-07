@@ -29,6 +29,7 @@ const MainView = () => {
         setSelectView(select);
     }
 
+    /*
     useEffect(() => {
         if (viewPlayerParam !== null) {
             setSelectView(3);
@@ -37,11 +38,12 @@ const MainView = () => {
             setSelectView(4);
         }
     }, [viewPlayerParam, viewShuffleParam]);
+    */
 
     return (
         <Style.MainView>
             <div className="main_container">
-                <MainSidebar changeView={changeViewHandler} />
+                <MainSidebar selectView={selectView} changeView={changeViewHandler} />
                 {
                     // <ErrorPageRes errorCode={""} errorMessage={""} />
                     selectView === 0 ? <MatchLatestHistory /> :
