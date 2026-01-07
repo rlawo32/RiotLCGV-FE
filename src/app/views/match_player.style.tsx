@@ -567,6 +567,9 @@ export const PlayerDataBox = styled('div')`
             }
             
             .matchHistory_box.view_active {
+                @media (max-width: 768px) {
+                    height: 1050px;
+                }
                 height: 830px;
                 margin-bottom: 5px;
             }

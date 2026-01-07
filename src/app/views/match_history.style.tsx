@@ -24,7 +24,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
     .lcg_history_head {
         @media (max-width: 768px) {
-            width: 360px;
+            width: 340px;
         }
         // mobile_view
         @media (max-width: 480px) {
@@ -389,8 +389,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     width: 100%;
                     
                     .lcg_team_data {
-                        // mobile_view
-                        @media (max-width: 480px) {
+                        @media (max-width: 768px) {
                             flex-wrap: wrap;
                         }
                         display: flex;
@@ -399,7 +398,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                     .lcg_win {
                         @media (max-width: 768px) {
+                            width: 70px;
                             font-size: 1.3rem;
+                            text-align: left;
+                            line-height: 22px;
                         }
                         font-weight: bold;
                         font-size: 1.8rem;
@@ -415,8 +417,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         
                         .lcg_team_kda {
                             @media (max-width: 768px) {
-                                margin: 0 0 0 10px;
+                                margin: 0;
                                 font-size: 1.3rem;
+                                line-height: 22px;
                             }
                             // mobile_view
                             @media (max-width: 480px) {
@@ -461,8 +464,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                         .lcg_object_item {
                             @media (max-width: 768px) {
-                                font-size: 1.3rem;
-                                margin: 3px 5px 0 25px;
+                                width: 25px;
+                                margin: 3px 5px 0 10px;
+                                font-size: 1.3rem;                                
                             }
                             // mobile_view
                             @media (max-width: 480px) {
@@ -480,9 +484,14 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             font-size: 1.5rem;
 
                             .lcg_object_icon {
-                                position: absolute;
-                                top: -1px;
-                                left: -19px;
+                                @media (min-width: 768px) {
+                                    position: absolute;
+                                    top: -1px;
+                                    left: -19px;
+                                }
+                                @media (max-width: 768px) {
+                                    margin-right: 3px;
+                                }
                             }
 
                             .lcg_object_data {
