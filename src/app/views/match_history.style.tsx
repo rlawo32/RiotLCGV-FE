@@ -472,7 +472,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             }
                             // mobile_view
                             @media (max-width: 480px) {
-                                width: 22px;
+                                width: 18px;
                                 font-size: 1rem;
 
                                 svg {
