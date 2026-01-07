@@ -7,7 +7,7 @@ import LoadingSpinner from "./component/loading_spinner";
 export default function Home() {
   return (
     <div>
-      <MoveGithub />
+      {/* <MoveGithub /> */}
       <Suspense fallback={<LoadingSpinner />}>
         <MainView />
       </Suspense>
