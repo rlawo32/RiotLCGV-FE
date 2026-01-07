@@ -3,7 +3,7 @@
 import * as Style from "./main_view.style";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 import MatchList from "./match_list";
 import MatchRanking from "../ranking/match_ranking";
@@ -14,6 +14,8 @@ import MatchPlayer from "./match_player";
 
 const MainView = () => {
     const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
     const viewPlayerParam = searchParams.get('player');
     const viewShuffleParam = searchParams.get('shuffle');
     
@@ -27,6 +29,7 @@ const MainView = () => {
 
     const changeViewHandler = (select:number) => {
         setSelectView(select);
+        router.replace(pathname, { scroll: false });
     }
 
     /*
