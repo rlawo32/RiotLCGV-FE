@@ -851,7 +851,7 @@ export const MatchItem = styled('div')<{$win:string}>`
             flex-shrink: 0;
             align-items: center;
             width: 40px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
         display: flex;
         flex-direction: column;
