@@ -27,7 +27,7 @@ export const getCurrentTimeCalc = (time:string):string => {
     } else if(calculationTime < (60 * 60 * 24 * 7)) {
         result = Math.floor(calculationTime / (60 * 60 * 24)) + "일 전";
     } else {
-        result = updateTime.toLocaleString();
+        result = updateTime.toLocaleString().substring(2);
     }
     return result;
 }
