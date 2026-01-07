@@ -399,6 +399,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     .lcg_win {
                         @media (max-width: 768px) {
                             width: 70px;
+                            padding-left: 2px;
                             font-size: 1.3rem;
                             text-align: left;
                             line-height: 22px;
@@ -417,6 +418,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         
                         .lcg_team_kda {
                             @media (max-width: 768px) {
+                                padding-left: 2px;
                                 margin: 0;
                                 font-size: 1.3rem;
                                 line-height: 22px;
@@ -470,6 +472,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             }
                             // mobile_view
                             @media (max-width: 480px) {
+                                width: 22px;
                                 font-size: 1rem;
 
                                 svg {
