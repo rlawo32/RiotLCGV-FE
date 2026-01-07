@@ -850,7 +850,7 @@ export const MatchItem = styled('div')<{$win:string}>`
         @media (max-width: 768px) {
             flex-shrink: 0;
             align-items: center;
-            width: 40px;
+            width: 38px;
             font-size: 0.8rem;
         }
         display: flex;
@@ -979,7 +979,7 @@ export const MatchItem = styled('div')<{$win:string}>`
             .main_kda {
                 // mobile_view
                 @media (max-width: 768px) {
-                    padding: 0 0 3px 20px;
+                    padding: 0 0 3px 15px;
                 }
                 display: flex;
                 flex-direction: column;
@@ -1023,8 +1023,8 @@ export const MatchItem = styled('div')<{$win:string}>`
                 .item_image {
                     // mobile_view
                     @media (max-width: 768px) {
-                        height: 17px;
-                        width: 17px;
+                        height: 15px;
+                        width: 15px;
                     }
                     height: 22px;
                     width: 22px;
@@ -1120,6 +1120,7 @@ export const MatchItem = styled('div')<{$win:string}>`
         // mobile_view
         @media (max-width: 768px) {
             width: 22px;
+            padding-bottom: 7px;
         }
         position: absolute;
         top: 0;
