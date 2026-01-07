@@ -9,7 +9,7 @@ import {
     faScroll as icon_history, faTrophy as icon_ranking
 } from "@fortawesome/free-solid-svg-icons";
 
-const MainSidebar = (props : {changeView:any}) => {
+const MainSidebar = (props : {selectView:number, changeView:any}) => {
     const btnRef:any = useRef<any>([]);
 
     const btnClick = (idx:number) => {
@@ -29,8 +29,8 @@ const MainSidebar = (props : {changeView:any}) => {
     }
 
     useEffect(() => {
-        btnRef.current[0].className += ' select_active';
-    }, [])
+        btnRef.current[props.selectView].className += ' select_active';
+    }, [props.selectView])
 
     return (
         <Style.MainSidebar>
