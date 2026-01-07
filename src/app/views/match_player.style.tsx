@@ -1039,8 +1039,8 @@ export const MatchItem = styled('div')<{$win:string}>`
                 .empty_image {
                     // mobile_view
                     @media (max-width: 768px) {
-                        height: 14px;
-                        width: 14px;
+                        height: 15px;
+                        width: 15px;
                     }
                     height: 22px;
                     width: 22px;
@@ -1052,7 +1052,7 @@ export const MatchItem = styled('div')<{$win:string}>`
                 // mobile_view
                 @media (max-width: 768px) {
                     padding: 0;
-                    margin-left: 1px;
+                    margin: 0;
                 }
                 padding-bottom: 3px;
                 margin-left: 5px;
