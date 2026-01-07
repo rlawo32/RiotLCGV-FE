@@ -833,7 +833,6 @@ export const MatchItem = styled('div')<{$win:string}>`
     overflow: hidden;
 
     .item_bar {
-        // mobile_view
         @media (max-width: 768px) {
             width: 6px;
         }
@@ -846,8 +845,11 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_info {
-        // mobile_view
         @media (max-width: 768px) {
+            font-size: 0.9rem;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
             flex-shrink: 0;
             align-items: center;
             width: 40px;
@@ -862,7 +864,6 @@ export const MatchItem = styled('div')<{$win:string}>`
         color: #9E9EB1;
 
         .info_mode {
-            // mobile_view
             @media (max-width: 768px) {
                 font-size: 0.9rem;
             }
@@ -886,7 +887,6 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
     
     .item_main {
-        // mobile_view
         @media (max-width: 768px) {
             padding-left: 2px;
         }
@@ -904,7 +904,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 position: relative;
 
                 .champion_image {
-                    // mobile_view
                     @media (max-width: 768px) {
                         height: 35px;
                         width: 35px;
@@ -916,7 +915,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .champion_level {
-                    // mobile_view
                     @media (max-width: 768px) {
                         padding: 2px;
                         font-size: 0.8rem;
@@ -939,7 +937,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 margin-right: 2px;
 
                 .spell_image {
-                    // mobile_view
                     @media (max-width: 768px) {
                         height: 15px;
                         width: 15px;
@@ -957,7 +954,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 align-items: center;
 
                 .perk_image1 {
-                    // mobile_view
                     @media (max-width: 768px) {
                         height: 17px;
                         width: 17px;
@@ -969,7 +965,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .perk_image2 {
-                    // mobile_view
                     @media (max-width: 768px) {
                         height: 11px;
                         width: 11px;
@@ -981,7 +976,6 @@ export const MatchItem = styled('div')<{$win:string}>`
             }
 
             .main_kda {
-                // mobile_view
                 @media (max-width: 768px) {
                     padding: 0 0 3px 10px;
                 }
@@ -992,7 +986,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 padding: 0 0 3px 30px;
 
                 .kda_view {
-                    // mobile_view
                     @media (max-width: 768px) {
                         font-size: 1.2rem;
                     }
@@ -1005,7 +998,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .kda_calc {
-                    // mobile_view
                     @media (max-width: 768px) {
                         font-size: 0.8rem;
                     }
@@ -1025,7 +1017,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 display: flex;
 
                 .item_image {
-                    // mobile_view
                     @media (max-width: 768px) {
                         height: 15px;
                         width: 15px;
@@ -1037,7 +1028,6 @@ export const MatchItem = styled('div')<{$win:string}>`
                 }
 
                 .empty_image {
-                    // mobile_view
                     @media (max-width: 768px) {
                         height: 15px;
                         width: 15px;
@@ -1049,7 +1039,6 @@ export const MatchItem = styled('div')<{$win:string}>`
             }
 
             .main_mvp {
-                // mobile_view
                 @media (max-width: 768px) {
                     padding: 0;
                     margin: 0;
@@ -1061,8 +1050,12 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_sub {
-        // mobile_view
         @media (max-width: 768px) {
+            padding: 3px 3px 0 0;
+            font-size: 0.8rem;
+        }
+        // mobile_view
+        @media (max-width: 480px) {
             padding: 3px 7px 0 0;
             font-size: 0.7rem;
         }
@@ -1087,7 +1080,7 @@ export const MatchItem = styled('div')<{$win:string}>`
 
     .item_players {
         // mobile_view
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             display: none;
         }
         display: flex;
@@ -1098,6 +1091,9 @@ export const MatchItem = styled('div')<{$win:string}>`
         height: 100%;
 
         .players_info {
+            @media (max-width: 768px) {
+                margin-bottom: 1px;
+            }
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -1105,12 +1101,20 @@ export const MatchItem = styled('div')<{$win:string}>`
             margin-left: 7px;
 
             .champion_image {
+                @media (max-width: 768px) {
+                    height: 11px;
+                    width: 11px;
+                }
                 height: 15px;
                 width: 15px;
                 border-radius: 50%;
             }
 
             .info_name {
+                @media (max-width: 768px) {
+                    width: 40px;
+                    font-size: 0.8rem;
+                }
                 width: 50px;
                 white-space: nowrap;
                 overflow: hidden;
@@ -1121,7 +1125,6 @@ export const MatchItem = styled('div')<{$win:string}>`
     }
 
     .item_detail {
-        // mobile_view
         @media (max-width: 768px) {
             width: 20px;
             padding-bottom: 7px;

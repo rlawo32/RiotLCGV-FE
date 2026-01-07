@@ -10,7 +10,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         width: 100%;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         padding: 7px 5px;
     }
     width: ${({$type}) => $type === 'P' ? "680px" : "768px"};
@@ -27,7 +27,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 360px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 260px;
         }
         display: flex;
@@ -41,7 +41,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 font-size: 1.2rem;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 padding-left: 7px;
             }
             display: flex;
@@ -63,7 +63,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 360px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 290px;
         }
         position: relative;
@@ -79,7 +79,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_history_title_head {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 padding-bottom: 6px;
             }
             display: flex;
@@ -91,7 +91,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
             .lcg_history_date {
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: 1.2rem;
                 }
                 font-size: 1.4rem;
@@ -99,7 +99,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
             .lcg_history_ver {
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: 1rem;
                 }
                 font-size: 1.2rem; 
@@ -114,7 +114,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
             .lcg_history_duration {
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: 1.2rem;
                 }
                 display: flex;
@@ -126,7 +126,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
     .lcg_history_tab {
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             font-size: 1.1rem;
             line-height: 12px;
         }
@@ -151,7 +151,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_tab_item {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 padding: 3px 10px;
             }
             padding: 3px 15px;
@@ -171,7 +171,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
     .skeleton_title {
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             left: 8px;
             width: 95%;
         }
@@ -192,7 +192,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             height: 37px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             height: 43px;
         }
         display: ${({$load}) => $load ? "none" : "block"};
@@ -215,7 +215,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 80px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             top: -5px;
             left: -5px;
             height: 50px;
@@ -240,7 +240,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 73%;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             left: 43px;
             height: 90%;
             width: 70%;
@@ -265,7 +265,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             width: 360px;
         }
         // mobile_view
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             width: 270px;
         }
         width: ${({$type}) => $type === 'P' ? "670px" : "700px"};
@@ -285,7 +285,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     font-size: 1.2rem;
                 }
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: 1rem;
                 }
                 padding: 3px;
@@ -294,7 +294,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
             .aggregate {
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     padding: 0;
                 }
                 display: flex;
@@ -337,7 +337,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 height: 20px;
                             }
                             // mobile_view
-                            @media (max-width: 500px) {
+                            @media (max-width: 480px) {
                                 margin: 0 2px;
                             }
                             position: relative;
@@ -358,7 +358,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                     width: 25px;
                                 }
                                 // mobile_view
-                                @media (max-width: 500px) {
+                                @media (max-width: 480px) {
                                     height: 20px;
                                     width: 20px;
                                 }
@@ -390,7 +390,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     
                     .lcg_team_data {
                         // mobile_view
-                        @media (max-width: 500px) {
+                        @media (max-width: 480px) {
                             flex-wrap: wrap;
                         }
                         display: flex;
@@ -407,7 +407,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
                     .lcg_amount {
                         // mobile_view
-                        @media (max-width: 500px) {
+                        @media (max-width: 480px) {
                             margin: 5px 0 0;
                         }
                         display: flex;
@@ -419,7 +419,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 font-size: 1.3rem;
                             }
                             // mobile_view
-                            @media (max-width: 500px) {
+                            @media (max-width: 480px) {
                                 margin: 0;
                                 font-size: 1.2rem;
                             }
@@ -433,7 +433,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 margin: 0 0 0 30px;
                             }
                             // mobile_view
-                            @media (max-width: 500px) {
+                            @media (max-width: 480px) {
                                 font-size: 1.2rem;
                             }
                             position: relative;
@@ -465,7 +465,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 margin: 3px 5px 0 25px;
                             }
                             // mobile_view
-                            @media (max-width: 500px) {
+                            @media (max-width: 480px) {
                                 font-size: 1rem;
 
                                 svg {
@@ -499,7 +499,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     font-size: 1rem;
                 }
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: .9rem;
                 }
                 position: relative;
@@ -524,7 +524,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 font-size: .9rem;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 font-size: .75rem;
             }
             margin: 4px 0 0; 
@@ -533,7 +533,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_summoner {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 width: 100px;
             }
             width: 200px;
@@ -670,7 +670,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     font-size: .9rem;
                 }
                 // mobile_view
-                @media (max-width: 500px) {
+                @media (max-width: 480px) {
                     font-size: .75rem;
                 }
                 margin: 0 3px;
@@ -686,7 +686,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 width: 80px;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 width: 60px;
                 padding: 0;
                 font-size: .8rem;
@@ -710,7 +710,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 width: 40px;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 width: 30px;
             }
             width: 60px;
@@ -721,7 +721,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 width: 40px;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 width: 30px;
             }
             width: 60px;
@@ -732,7 +732,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 width: 60px;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 width: 42px;
             }
             display: flex;
@@ -747,7 +747,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 width: 20px;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 height: 15px;
                 width: 15px;
             }
@@ -763,7 +763,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 width: 20px;
             }
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 height: 15px;
                 width: 15px;
             }
@@ -774,7 +774,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
         .lcg_acc {
             // mobile_view
-            @media (max-width: 500px) {
+            @media (max-width: 480px) {
                 padding: 0;
             }
         }
@@ -856,7 +856,7 @@ export const LcgKdaCalc = styled('div')<{$k:number, $d:number, $a:number}>`
         font-size: .9rem;
     }
     // mobile_view
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
         font-size: .75rem;
     }
     margin: 4px 0 0; 
