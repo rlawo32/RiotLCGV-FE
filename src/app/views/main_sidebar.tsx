@@ -15,9 +15,7 @@ const MainSidebar = (props : {selectView:number, changeView:any}) => {
     const btnClick = (idx:number) => {
         props.changeView(idx);
 
-        if(!btnRef.current[idx].className.includes('select_active')) {
-            btnRef.current[idx].className += ' select_active';
-        } else {            
+        if(btnRef.current[idx].className.includes('select_active')) {
             btnRef.current[idx].className = btnRef.current[idx].className.replace(' select_active', '');
         }
 

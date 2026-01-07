@@ -402,6 +402,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             padding-left: 2px;
                             font-size: 1.3rem;
                             text-align: left;
+                            line-height: 22px;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
                             line-height: 15px;
                         }
                         font-weight: bold;
@@ -421,12 +425,13 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 padding-left: 2px;
                                 margin: 0;
                                 font-size: 1.3rem;
-                                line-height: 15px;
+                                line-height: 22px;
                             }
                             // mobile_view
                             @media (max-width: 480px) {
                                 margin: 0;
                                 font-size: 1.2rem;
+                                line-height: 15px;
                             }
                             margin: 0 16px;
                             font-size: 1.7rem;

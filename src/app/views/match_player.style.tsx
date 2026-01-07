@@ -572,7 +572,7 @@ export const PlayerDataBox = styled('div')`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    height: 870px;
+                    height: 880px;
                 }
                 height: 830px;
                 margin-bottom: 5px;
