@@ -850,7 +850,7 @@ export const MatchItem = styled('div')<{$win:string}>`
         @media (max-width: 768px) {
             flex-shrink: 0;
             align-items: center;
-            width: 38px;
+            width: 40px;
             font-size: 0.8rem;
         }
         display: flex;
@@ -1059,8 +1059,8 @@ export const MatchItem = styled('div')<{$win:string}>`
     .item_sub {
         // mobile_view
         @media (max-width: 768px) {
-            padding: 1px 10px 0 0;
-            font-size: 0.8rem;
+            padding: 1px 7px 0 0;
+            font-size: 0.7rem;
         }
         display: flex;
         flex-direction: column;
