@@ -452,6 +452,41 @@ const MatchShuffle = () => {
         }
     };
 
+    const onClickTeamResult = async () => {
+        const result = teams.map((parent, idx) => ({
+            team: (idx + 1) * 100,
+            list: parent.list.map(child => child.nm)
+        }));
+        
+        if (oneCaptureChk) {
+            alert('잠시 후 시도해주세요');
+            return;
+        }
+    
+        setOneCaptureChk(true);
+    
+        try {
+            const response = await fetch('/api/shuffle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(result),
+            });
+    
+            if (response.ok) {
+                console.log("전송 성공");
+            } else {
+                const errorData = await response.json();
+                console.error(`전송 실패: ${errorData.message}`);
+            }
+        } catch (error) {
+            const msg = error instanceof Error ? error.message : '알 수 없는 오류';
+            console.error(`오류 발생: ${msg}`);
+        } finally {
+            // 성공하든 실패하든 마지막에 체크를 풀어줍니다.
+            setOneCaptureChk(false);
+        }
+    };
+
     useEffect(() => {
         setPlayerCount(10);
         setTeamCount(2);
