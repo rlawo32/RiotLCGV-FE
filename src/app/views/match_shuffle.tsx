@@ -13,7 +13,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPlus as icon_plus, faMinus as icon_minus,
     faRotate as icon_refresh, faShuffle as icon_random,
-    faScaleBalanced as icon_balance, faCamera as icon_capture
+    faScaleBalanced as icon_balance, faCamera as icon_capture,
+    faPaperPlane as icon_send
 } from "@fortawesome/free-solid-svg-icons";
 import { toPng } from 'html-to-image';
 
@@ -455,7 +456,7 @@ const MatchShuffle = () => {
     const onClickTeamResult = async () => {
         const result = teams.map((parent, idx) => ({
             team: (idx + 1) * 100,
-            list: parent.list.map(child => child.nm)
+            list: parent.map((child) => child.nm)
         }));
         
         if (oneCaptureChk) {
@@ -588,8 +589,11 @@ const MatchShuffle = () => {
                                 <Style.BtnStyle onClick={() => onClickRefresh()}>
                                     <FontAwesomeIcon icon={icon_refresh} className="btn_icon"/>초기화
                                 </Style.BtnStyle>
-                                <Style.BtnStyle onClick={() => onClickCapture()}>
+                                {/* <Style.BtnStyle onClick={() => onClickCapture()}>
                                     <FontAwesomeIcon icon={icon_capture} className="btn_icon"/>결과 캡쳐
+                                </Style.BtnStyle> */}
+                                <Style.BtnStyle onClick={() => onClickTeamResult()}>
+                                    <FontAwesomeIcon icon={icon_send} className="btn_icon"/>전송
                                 </Style.BtnStyle>
                             </>
                     }
