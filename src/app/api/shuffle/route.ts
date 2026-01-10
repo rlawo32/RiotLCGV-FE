@@ -2,15 +2,15 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const captureUrl = 'https://riotlcgc-be.onrender.com/send-shuffle';
+    const teamResultUrl = 'https://riotlcgc-be.onrender.com/send-shuffle';
+    // const testResultUrl = 'http://localhost:8080/send-shuffle';
     
     const body = await request.json();
-    console.log("Next.js API 받은 데이터:", body);
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-    const response = await fetch(captureUrl, {
+    const response = await fetch(teamResultUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     if (!response.ok) {
       const errorMsg = await response.text();
       return NextResponse.json(
-        { status: 'error', message: `외부 서버 응답 에러: ${errorText}` },
+        { status: 'error', message: `외부 서버 응답 에러: ${errorMsg}` },
         { status: response.status }
       );
     }
