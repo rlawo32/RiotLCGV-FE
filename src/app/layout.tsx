@@ -51,7 +51,7 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8758982260086798"
           crossOrigin="anonymous"
-          strategy="afterInteractive
+          strategy="afterInteractive"
         />
       </head>
       <body className={pretendard.className}>
