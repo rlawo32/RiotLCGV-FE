@@ -92,6 +92,28 @@ export const MatchShuffle = styled('div')`
                         left: 15px;
                     }
 
+                    .list_lane {
+                        @media (max-width: 1024px) {
+                            top: 23px;
+                        }
+                        @media (max-width: 768px) {
+                            top: 20px;
+                            left: 10px;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            top: 13px;
+                            left: 7px;
+                        }
+                        position: absolute;
+                        top: 23px;
+                        left: 12px;
+                        width: 50px;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        text-align: center;
+                    }
+
                     .list_check {
                         @media (max-width: 768px) {
                             top: 17.5px;

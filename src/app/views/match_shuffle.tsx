@@ -515,8 +515,11 @@ const MatchShuffle = () => {
                             }
                             {parent.map((child, idx2) => (
                                 <div key={idx2} className="list_child">
-                                    <div className="list_select">
+                                    {/* <div className="list_select">
                                         <SelectBoxShuffle updateSelectData={updateSelectData} inputData={child} inputIdx={idx1} />
+                                    </div> */}
+                                    <div className="list_lane">
+                                        {idx2 === 0 ? 'TOP' : idx2 === 1 ? 'JUG' : idx2 === 2 ? 'MID' : idx2 === 3 ? 'ADC' : 'SUP'}:
                                     </div>
                                     <Style.InputPlayerStyle onChange={(e) => updateInputData({index:child.id, arrNo:idx1, value:e.target.value})} value={child.nm} 
                                                 type="text" id={"input_" + child.id} $camp={idx1}/>
