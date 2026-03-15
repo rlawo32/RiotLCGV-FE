@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from 'next/script';
 import localFont from "next/font/local"
 import "./globals.css";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
@@ -44,15 +45,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ReactQueryClientProvider> 
-      <html lang="en" className={`${pretendard.variable}`}>
-        <body className={pretendard.className}>
+    <html lang="en" className={`${pretendard.variable}`}>
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8758982260086798"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
+      <body className={pretendard.className}>
+        <ReactQueryClientProvider> 
           <StyledComponentsRegistry>
             {children}
             <Analytics />
           </StyledComponentsRegistry>
-        </body>
-      </html>
-    </ReactQueryClientProvider>
+        </ReactQueryClientProvider>
+      </body>
+    </html>
   );
 }
