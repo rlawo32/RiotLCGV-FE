@@ -185,10 +185,10 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
             result.push(<div className="line_data" key={"line_" + i}>
                 <div className="item_icon">
                     {
-                        i === 0 ? <TopIcon /> :
-                        i === 1 ? <JugIcon /> :
-                        i === 2 ? <MidIcon /> : 
-                        i === 3 ? <AdcIcon /> : <SupIcon />
+                        i === 0 ? <TopIcon type={"P"} /> :
+                        i === 1 ? <JugIcon type={"P"} /> :
+                        i === 2 ? <MidIcon type={"P"} /> : 
+                        i === 3 ? <AdcIcon type={"P"} /> : <SupIcon type={"P"} />
                     }
                 </div>
                 <div className="item_figure"> 
@@ -663,15 +663,15 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                                     <div className="relative_item" key={"champ_" + idx}>
                                                         <div className="player_matchLine">
                                                             {
-                                                                data.lcg_match_line === 'TOP' ? <TopIcon />
+                                                                data.lcg_match_line === 'TOP' ? <TopIcon type={"P"} />
                                                                 :
-                                                                data.lcg_match_line === 'JUG' ? <JugIcon />
+                                                                data.lcg_match_line === 'JUG' ? <JugIcon type={"P"} />
                                                                 :
-                                                                data.lcg_match_line === 'MID' ? <MidIcon />
+                                                                data.lcg_match_line === 'MID' ? <MidIcon type={"P"} />
                                                                 :
-                                                                data.lcg_match_line === 'ADC' ? <AdcIcon />
+                                                                data.lcg_match_line === 'ADC' ? <AdcIcon type={"P"} />
                                                                 :
-                                                                <SupIcon />
+                                                                <SupIcon type={"P"} />
                                                             }
                                                         </div>
                                                         <div className="player_opponent">

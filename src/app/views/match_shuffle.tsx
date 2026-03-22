@@ -21,6 +21,11 @@ import { toPng } from 'html-to-image';
 import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
 import SelectBoxShuffle from "../component/select_box_shuffle";
+import TopIcon from "../icons/TopIcon";
+import JugIcon from "../icons/JugIcon";
+import MidIcon from "../icons/MidIcon";
+import AdcIcon from "../icons/AdcIcon";
+import SupIcon from "../icons/SupIcon";
 
 const MatchShuffle = () => {
     const captureRef = useRef<HTMLDivElement>(null);
@@ -454,9 +459,12 @@ const MatchShuffle = () => {
     };
 
     const onClickTeamResult = async () => {
-        const result = teams.map((parent, idx) => ({
-            team: (idx + 1) * 100,
-            list: parent.map((child) => child.nm)
+        const result = teams.map((parent, idx1) => ({
+            team: (idx1 + 1) * 100,
+            list: parent.map((child, idx2) => idx2 === 0 ? 'TOP-' + child.nm :
+                                              idx2 === 1 ? 'JUG-' + child.nm :
+                                              idx2 === 2 ? 'MID-' + child.nm :
+                                              idx2 === 3 ? 'ADC-' + child.nm : 'SUP-' + child.nm)
         }));
         
         if (oneCaptureChk) {
@@ -519,7 +527,10 @@ const MatchShuffle = () => {
                                         <SelectBoxShuffle updateSelectData={updateSelectData} inputData={child} inputIdx={idx1} />
                                     </div> */}
                                     <div className="list_lane">
-                                        {idx2 === 0 ? 'TOP' : idx2 === 1 ? 'JUG' : idx2 === 2 ? 'MID' : idx2 === 3 ? 'ADC' : 'SUP'}:
+                                        {idx2 === 0 ? <TopIcon type={"S"} /> :
+                                         idx2 === 1 ? <JugIcon type={"S"} /> : 
+                                         idx2 === 2 ? <MidIcon type={"S"} /> : 
+                                         idx2 === 3 ? <AdcIcon type={"S"} /> : <SupIcon type={"S"} />}
                                     </div>
                                     <Style.InputPlayerStyle onChange={(e) => updateInputData({index:child.id, arrNo:idx1, value:e.target.value})} value={child.nm} 
                                                 type="text" id={"input_" + child.id} $camp={idx1}/>

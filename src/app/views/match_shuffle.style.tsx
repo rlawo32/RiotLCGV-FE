@@ -94,19 +94,31 @@ export const MatchShuffle = styled('div')`
 
                     .list_lane {
                         @media (max-width: 1024px) {
-                            top: 23px;
+                            top: 17px;
+                            svg {
+                                height: 35px;
+                                width: 35px;
+                            }
                         }
                         @media (max-width: 768px) {
-                            top: 20px;
-                            left: 10px;
+                            top: 17px;
+                            left: 4px;
+                            svg {
+                                height: 30px;
+                                width: 30px;
+                            }
                         }
                         // mobile_view
                         @media (max-width: 480px) {
-                            top: 13px;
-                            left: 7px;
+                            top: 11px;
+                            left: -5px;
+                            svg {
+                                height: 23px;
+                                width: 23px;
+                            }
                         }
                         position: absolute;
-                        top: 23px;
+                        top: 18px;
                         left: 12px;
                         width: 50px;
                         font-size: 1.5rem;
