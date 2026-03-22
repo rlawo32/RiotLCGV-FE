@@ -1,8 +1,13 @@
 
-const JugIcon = () => {
+const JugIcon = (props : {type:string}) => {
+
+    const customWidth:string = props.type === 'P' ? "28" : "38";
+    const customHeight:string = props.type === 'P' ? "28" : "38";
+    const customMainColor:string = props.type === 'P' ? "#54C8E8" : "#C1A371";
+    const customSubColor:string = props.type === 'P' ? "#515163" : "#6E5A2F";
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#54c8e8" width="28" height="28" viewBox="0 0 26 26">
+        <svg xmlns="http://www.w3.org/2000/svg" fill={customMainColor} width={customWidth} height={customHeight} viewBox="0 0 26 26">
             <path d="M12.116 22s1.396-5.116 0-10.046S6.721 3.209 5.14 2c0 0 2.418 6.698 2.79 11.07 0 0-1.394-3.412-4.93-4.28 0 0 2.45 5.024 2.916 7.815 
             0 0 3.317 2.077 6.2 5.395m2.318-7.237a27.5 27.5 0 0 1 .207 5.335c1.644-1.282 3.382-3.679 3.382-3.679S18 14.5 18.5 12.5C19.04 10.34 21 8 21 
             8c-3.92.98-5.571 4.59-6.509 6.64zm.438-4.463c-.379.584-.73 1.166-1.05 1.733l-.037-.15q-.027-.112-.058-.225a21 21 0 0 0-1.16-3.08l.023-.062c.045-.125.09-.25.147-.376 
