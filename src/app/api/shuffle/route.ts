@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const teamResultUrl = 'https://riotlcgc-be.onrender.com/send-shuffle';
-    // const testResultUrl = 'http://localhost:8080/send-shuffle';
-    
+    // const teamResultUrl = 'https://riotlcgc-be.onrender.com/send-shuffle';
+    // const teamResultUrl = 'http://localhost:8080/send-shuffle';
+    const teamResultUrl = 'https://ocp-dudu.duckdns.org/lcg/send-shuffle';
+
     const body = await request.json();
 
     const controller = new AbortController();
