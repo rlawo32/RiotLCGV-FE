@@ -52,10 +52,8 @@ export const MainView = styled('div')`
 
     .main_container {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        @media (max-width: 1280px) {
-            flex-direction: column;
-        }
         @media (max-width: 768px) {
             padding: 25px 10px;
         }

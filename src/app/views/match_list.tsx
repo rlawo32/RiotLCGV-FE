@@ -72,9 +72,9 @@ const MatchList = () => {
 
     const pagination = ():any[] => {
         const result:any[] = [];
-        
+
         for(let i:number=entire; i<(totalPage-size > entire ? size+entire : totalPage+1); i++) {
-            result.push(<button onClick={() => setPage(i)} key={"btn_" + i} className="page_btn">{i}</button>)
+            result.push(<button onClick={() => setPage(i)} key={"btn_" + i} className="page_btn" style={ page === i ? { border: '2px solid #FF4438' } : {} }>{i}</button>)
         }
 
         return result;
@@ -137,14 +137,14 @@ const MatchList = () => {
                         <Style.Pagination>
                             {
                                 totalPage > size && entire > size ?
-                                    <button onClick={() => setEntire(prev => prev-5)} key={"btn_arrow_left"} className="page_btn">
+                                    <button onClick={() => setEntire(prev => prev-10)} key={"btn_arrow_left"} className="page_btn">
                                         <FontAwesomeIcon icon={arrow_left} />
                                     </button> : <></>
                             }
                             {pagination()}
                             {
                                 totalPage > size && entire < totalPage-size ?
-                                    <button onClick={() => setEntire(prev => prev+5)} key={"btn_arrow_right"} className="page_btn">
+                                    <button onClick={() => setEntire(prev => prev+10)} key={"btn_arrow_right"} className="page_btn">
                                         <FontAwesomeIcon icon={arrow_right} />
                                     </button> : <></>
                             }

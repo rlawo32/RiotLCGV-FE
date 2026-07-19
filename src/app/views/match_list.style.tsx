@@ -241,6 +241,8 @@ export const Pagination = styled('div')`
         padding: 5px 10px;
         margin: 10px 5px 20px;
         font-size: 1.3rem;
+        color: #ffffff;
+        background-color: rgb(70 70 88 / 1);
     }
 
     .more_btn {
