@@ -8,7 +8,7 @@ import { useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
 import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
-import { getPlayerRankingQuery } from "../queries/getLcgPlayerDataQuery";
+import { getPlayerRankingQuery, getPlayerRankingUpdateQuery } from "../queries/getLcgPlayerDataQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPlus as icon_plus, faMinus as icon_minus,
@@ -26,6 +26,8 @@ import JugIcon from "../icons/JugIcon";
 import MidIcon from "../icons/MidIcon";
 import AdcIcon from "../icons/AdcIcon";
 import SupIcon from "../icons/SupIcon";
+import ModalLevel from "../component/modal_level";
+import { useIsMobile } from "../component/useIsMobile";
 
 const MatchShuffle = () => {
     const captureRef = useRef<HTMLDivElement>(null);
@@ -41,11 +43,13 @@ const MatchShuffle = () => {
     const [shuffleCount, setShuffleCount] = useState<number>(0);
     const [shuffleTime, setShuffleTime] = useState<number>(5000);
     const [decrease, setDecrease] = useState<number>(200);
-    const [oneShuffleChk, setOneShuffleChk] = useState<boolean>(false);
-    const [oneCaptureChk, setOneCaptureChk] = useState<boolean>(false);
+    const [oneShuffleChk, setOneShuffleChk] = useState<boolean>(true);
+    const [oneCaptureChk, setOneCaptureChk] = useState<boolean>(false)
+    const [isBalanceModal, setIsBalanceModal] = useState<boolean>(false)
 
-    const [teams, setTeams] = useState<{id:number, lv:number, nm:string}[][]>([[]]);
+    const [teams, setTeams] = useState<{id:number, puuid:string, lv:number, nm:string}[][]>([[]]);
     const [playerFix, setPlayerFix] = useState<{id:number, row:number, cell:number}[]>([]);
+    const [copyTeams, setCopyTeams] = useState<{puuid:string, lv:number, nm:string}[]>([]);
 
     const { data: lcgMatchLog, isLoading: loading1, isError: dataError1, error: errorMsg1 } = useQuery(getLcgMatchLogLatestQuery(supabase));
     if(!!lcgMatchLog) {
@@ -69,22 +73,22 @@ const MatchShuffle = () => {
         }
     )
 
-    const createTeam = () => {
-        if(!!lcgPlayerRanking) {
+    const createTeam = (teams: { puuid: string; lv: number; nm: string }[]) => {
+        if(!!lcgPlayerRanking && teams.length > 0) {
             setTeams([
                 [
-                    {id:0, lv:lcgPlayerRanking[0].lcg_ranking_grade, nm:lcgPlayerRanking[0].lcg_player}, 
-                    {id:1, lv:lcgPlayerRanking[1].lcg_ranking_grade, nm:lcgPlayerRanking[1].lcg_player}, 
-                    {id:2, lv:lcgPlayerRanking[2].lcg_ranking_grade, nm:lcgPlayerRanking[2].lcg_player}, 
-                    {id:3, lv:lcgPlayerRanking[3].lcg_ranking_grade, nm:lcgPlayerRanking[3].lcg_player}, 
-                    {id:4, lv:lcgPlayerRanking[4].lcg_ranking_grade, nm:lcgPlayerRanking[4].lcg_player}
+                    {id:0, puuid:teams[0].puuid, lv:teams[0].lv, nm:teams[0].nm}, 
+                    {id:1, puuid:teams[1].puuid, lv:teams[1].lv, nm:teams[1].nm}, 
+                    {id:2, puuid:teams[2].puuid, lv:teams[2].lv, nm:teams[2].nm}, 
+                    {id:3, puuid:teams[3].puuid, lv:teams[3].lv, nm:teams[3].nm}, 
+                    {id:4, puuid:teams[4].puuid, lv:teams[4].lv, nm:teams[4].nm}
                 ],
                 [
-                    {id:5, lv:lcgPlayerRanking[5].lcg_ranking_grade, nm:lcgPlayerRanking[5].lcg_player}, 
-                    {id:6, lv:lcgPlayerRanking[6].lcg_ranking_grade, nm:lcgPlayerRanking[6].lcg_player}, 
-                    {id:7, lv:lcgPlayerRanking[7].lcg_ranking_grade, nm:lcgPlayerRanking[7].lcg_player}, 
-                    {id:8, lv:lcgPlayerRanking[8].lcg_ranking_grade, nm:lcgPlayerRanking[8].lcg_player}, 
-                    {id:9, lv:lcgPlayerRanking[9].lcg_ranking_grade, nm:lcgPlayerRanking[9].lcg_player}
+                    {id:5, puuid:teams[5].puuid, lv:teams[5].lv, nm:teams[5].nm}, 
+                    {id:6, puuid:teams[6].puuid, lv:teams[6].lv, nm:teams[6].nm}, 
+                    {id:7, puuid:teams[7].puuid, lv:teams[7].lv, nm:teams[7].nm}, 
+                    {id:8, puuid:teams[8].puuid, lv:teams[8].lv, nm:teams[8].nm}, 
+                    {id:9, puuid:teams[9].puuid, lv:teams[9].lv, nm:teams[9].nm}
                 ]
             ]);
         } else {
@@ -92,7 +96,7 @@ const MatchShuffle = () => {
             const realTeamCount:number = teamCount;
             const realComposition:number = realPlayerCount / realTeamCount;
 
-            let temp2DemList:{id:number, lv:number, nm:string}[][] = Array.from({length: realTeamCount}, () => Array.from({length: realComposition}));
+            let temp2DemList:{id:number, puuid:string, lv:number, nm:string}[][] = Array.from({length: realTeamCount}, () => Array.from({length: realComposition}));
 
             if(realPlayerCount % realTeamCount !== 0) {
                 let tempComposition:number = Math.ceil(realPlayerCount/realTeamCount);
@@ -123,7 +127,7 @@ const MatchShuffle = () => {
             for(let i=0; i<temp2DemList.length; i++) {
                 let plus:number = 1;
                 for(let j=0; j<temp2DemList[i].length; j++) {
-                    temp2DemList[i][j] = {id:i+plus, lv:5, nm:''};
+                    temp2DemList[i][j] = {id:i+plus, puuid:'', lv:5, nm:''};
                     plus += realTeamCount;
                 }
             }    
@@ -133,16 +137,16 @@ const MatchShuffle = () => {
     }
 
     const updateInputData = (data:{index:number; arrNo:number; value:string;}) => {
-        const tempProduceTeam:{id:number, lv:number, nm:string}[][] = teams;
-        const copyTempDataList:{id:number, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
+        const tempProduceTeam:{id:number, puuid:string, lv:number, nm:string}[][] = teams;
+        const copyTempDataList:{id:number, puuid:string, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
         const index = copyTempDataList[data.arrNo].findIndex((item) => item.id === data.index);
         copyTempDataList[data.arrNo][index].nm = data.value;
         setTeams(copyTempDataList);
     }
 
     const updateSelectData = (data:{index:number; arrNo:number; value:number;}) => {
-        const tempProduceTeam:{id:number, lv:number, nm:string}[][] = teams;
-        const copyTempDataList:{id:number, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
+        const tempProduceTeam:{id:number, puuid:string, lv:number, nm:string}[][] = teams;
+        const copyTempDataList:{id:number, puuid:string, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
         const index = copyTempDataList[data.arrNo].findIndex((item) => item.id === data.index);
         copyTempDataList[data.arrNo][index].lv = data.value;
         setTeams(copyTempDataList);
@@ -157,9 +161,9 @@ const MatchShuffle = () => {
     }
     
     const activeRandomData = () => {
-        const tempProduceTeam:{id:number, lv:number, nm:string}[][] = teams;
+        const tempProduceTeam:{id:number, puuid:string, lv:number, nm:string}[][] = teams;
         const tempPlayerFix:{id:number, row:number, cell:number}[] = playerFix;
-        const copyTempDataList:{id:number, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
+        const copyTempDataList:{id:number, puuid:string, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
     
         for(let i=copyTempDataList.length-1; i>=0; i--) { 
             for(let j=copyTempDataList[i].length-1; j>=0; j--) {
@@ -174,7 +178,7 @@ const MatchShuffle = () => {
                 for(let j=0; j<copyTempDataList.length; j++) {
                     for(let x=0; x<copyTempDataList[j].length; x++) {
                         if(j === tempPlayerFix[i].row && x === tempPlayerFix[i].cell) {
-                            const tempBox:{id:number, lv:number, nm:string} = copyTempDataList[j][x];
+                            const tempBox:{id:number, puuid:string, lv:number, nm:string} = copyTempDataList[j][x];
                             let row:number = -1;
                             let cell:number = -1;
                             for(let y=0; y<copyTempDataList.length; y++) {
@@ -198,12 +202,12 @@ const MatchShuffle = () => {
         const realPersonnel:number = playerCount;
         const realTeamCount:number = teamCount;
         const realComposition:number = realPersonnel/realTeamCount;
-        const tempProduceTeam:{id:number, lv:number, nm:string}[][] = teams;
+        const tempProduceTeam:{id:number, puuid:string, lv:number, nm:string}[][] = teams;
         const tempPlayerFix:{id:number, row:number, cell:number}[] = playerFix;
 
-        const copyTempDataList:{id:number, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
-        const temp1DemList:{id:number, lv:number, nm:string}[] = [];
-        let temp2DemList:{id:number, lv:number, nm:string}[][] = Array.from({length: realTeamCount}, () => Array.from({length: realComposition}));
+        const copyTempDataList:{id:number, puuid:string, lv:number, nm:string}[][] = JSON.parse(JSON.stringify(tempProduceTeam));
+        const temp1DemList:{id:number, puuid:string, lv:number, nm:string}[] = [];
+        let temp2DemList:{id:number, puuid:string, lv:number, nm:string}[][] = Array.from({length: realTeamCount}, () => Array.from({length: realComposition}));
 
         for(let i=0; i<copyTempDataList.length; i++) {
             for(let j=0; j<copyTempDataList[i].length; j++) {
@@ -280,7 +284,7 @@ const MatchShuffle = () => {
                 for(let j=0; j<temp2DemList.length; j++) {
                     for(let x=0; x<temp2DemList[j].length; x++) {
                         if(j === tempPlayerFix[i].row && x === tempPlayerFix[i].cell) {
-                            const tempBox:{id:number, lv:number, nm:string} = temp2DemList[j][x];
+                            const tempBox:{id:number, puuid:string, lv:number, nm:string} = temp2DemList[j][x];
                             let row:number = -1;
                             let cell:number = -1;
                             for(let y=0; y<temp2DemList.length; y++) {
@@ -337,7 +341,7 @@ const MatchShuffle = () => {
         setTeamCount(2);
         setPlayerCount(10);
         setOneShuffleChk(false);
-        createTeam();
+        createTeam(copyTeams);
     }
 
     const onClickShuffleTime = (type:boolean) => {
@@ -496,18 +500,40 @@ const MatchShuffle = () => {
         }
     };
 
+    const onClickPlayerRankingUpdate = async (updatePlayer: {puuid:string, lv:number, nm:string}[]) => {
+        try {
+            const updatePromises = updatePlayer.map(data => getPlayerRankingUpdateQuery(supabase, data.puuid, data.lv));
+            await Promise.all(updatePromises);
+
+            const freshTeams: { puuid: string; lv: number; nm: string }[] = updatePlayer.map(player => ({ puuid: player.puuid, lv: player.lv, nm: player.nm }));
+            setCopyTeams(freshTeams);
+            createTeam(freshTeams);
+        } catch (error) {
+            console.error('Player ranking update failed:', error);
+        }
+    };
+
     useEffect(() => {
         setPlayerCount(10);
         setTeamCount(2);
-        createTeam();
-    }, [])
+
+        const freshTeams: { puuid: string; lv: number; nm: string }[] = lcgPlayerRanking?.map(player => ({ puuid: player.lcg_summoner_puuid, lv: player.lcg_ranking_grade, nm: player.lcg_player })) || [];
+        setCopyTeams(freshTeams);
+
+        createTeam(freshTeams);
+        onClickShuffleOption();
+    }, [lcgPlayerRanking])
 
     useEffect(() => {
-        createTeam();
-    }, [lcgPlayerRanking])
+        createTeam(copyTeams);
+    }, [copyTeams])
 
     return (
         <Style.MatchShuffle ref={captureRef}>
+            {
+                !!lcgPlayerRanking && isBalanceModal && teams.length > 0 ? 
+                    <ModalLevel isModal={isBalanceModal} setIsModal={setIsBalanceModal} initialData={copyTeams} updatePlayerRanking={onClickPlayerRankingUpdate} /> : <></>
+            }
             <div className="list_section">
                 {teams.map((parent, idx1) => (
                     <div key={idx1} className="list_wrap" id={parent.length + "_t"}>
@@ -549,6 +575,14 @@ const MatchShuffle = () => {
             </div>
             <div className="control_section">
                 <div className="info_section">
+                    {
+                        useIsMobile() ?
+                            <></>
+                            :
+                            <button className="shuffle_balanace" onClick={() => setIsBalanceModal(true)}>
+                                밸런스 조정
+                            </button>
+                    }
                     <div className="shuffle_count">셔플 횟수 {shuffleCount}회</div>
                     <div className="shuffle_control">
                         <div className="control_item shuffle_time">

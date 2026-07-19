@@ -527,6 +527,7 @@ export const PlayerDataBox = styled('div')`
 
             .lcg_tab_item {
                 border: none;
+                color: #ffffff;
 
                 &:hover {
                     background-color: rgb(89 89 100 / 1);

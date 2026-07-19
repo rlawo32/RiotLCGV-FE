@@ -170,12 +170,34 @@ export const MatchShuffle = styled('div')`
             @media (max-width: 768px) {
                 width: 100%;
             }
+            position: relative;
             display: flex;
             flex-direction: column;
             width: 300px;
             margin: 0 auto 35px;
             color: #ffffff;
             text-align: center;
+
+            .shuffle_balanace {
+                position: absolute;
+                top: -15px;
+                right: -120px;
+                padding: 5px 9px;
+                border: 1px solid #FF4438;
+                border-radius: 10px;
+                box-shadow: 0 0 40px rgba(42,50,113, .68);
+                background-color: rgb(28 28 31 / 1);
+                color: #ffffff;
+                font-size: 1rem;
+                font-weight: 700;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #FF4438;
+                    color: #e7e9ee;
+                }
+            }
 
             .shuffle_count {
                 @media (max-width: 768px) {
