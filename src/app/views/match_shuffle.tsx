@@ -462,13 +462,14 @@ const MatchShuffle = () => {
         }
     };
 
-    const onClickTeamResult = async () => {
+    const onClickTeamResult = async (type: string) => {
         const result = teams.map((parent, idx1) => ({
             team: (idx1 + 1) * 100,
-            list: parent.map((child, idx2) => idx2 === 0 ? 'TOP-' + child.nm :
-                                              idx2 === 1 ? 'JUG-' + child.nm :
-                                              idx2 === 2 ? 'MID-' + child.nm :
-                                              idx2 === 3 ? 'ADC-' + child.nm : 'SUP-' + child.nm)
+            list: type === "N" ? (parent.map((child) => '-' + child.nm))
+                               : (parent.map((child, idx2) => idx2 === 0 ? 'TOP-' + child.nm :
+                                                              idx2 === 1 ? 'JUG-' + child.nm :
+                                                              idx2 === 2 ? 'MID-' + child.nm :
+                                                              idx2 === 3 ? 'ADC-' + child.nm : 'SUP-' + child.nm))
         }));
         
         if (oneCaptureChk) {
@@ -640,7 +641,7 @@ const MatchShuffle = () => {
                                 {/* <Style.BtnStyle onClick={() => onClickCapture()}>
                                     <FontAwesomeIcon icon={icon_capture} className="btn_icon"/>결과 캡쳐
                                 </Style.BtnStyle> */}
-                                <Style.BtnStyle onClick={() => onClickTeamResult()}>
+                                <Style.BtnStyle onClick={() => onClickTeamResult("N")}>
                                     <FontAwesomeIcon icon={icon_send} className="btn_icon"/>전송
                                 </Style.BtnStyle>
                             </>
