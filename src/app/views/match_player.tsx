@@ -40,9 +40,9 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
     const matchHistoryRef:any = useRef<any>([]);
     const selectRef:any = useRef<any>([]);
 
-    let imageUrl:string = ""; // R2
-    let imageUrl1:string = ""; // ddragon
-    let imageUrl2:string = ""; // ddragon
+    let imageMainUrl:string = "";
+    let imageSubUrl:string = "";
+    let imageExtension:string = "";
     let lastUpdate:string = "";
     let aiSummaryPrompt:{prompt:string, maxToken:number} = {prompt:"", maxToken:0};
 
@@ -76,9 +76,9 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
     const { data: selectPlayerMatch } = useQuery(getPlayerMatchQuery(supabase, selectPlayer, pageHistory), {enabled:!!lcgPlayerData});
 
     if(!!lcgMatchEtc) {
-        imageUrl = lcgMatchEtc[0].lcg_r2_image;
-        imageUrl1 = lcgMatchEtc[0].lcg_main_image;
-        imageUrl2 = lcgMatchEtc[0].lcg_sub_image;
+        imageMainUrl = lcgMatchEtc[0].lcg_main_image;
+        imageSubUrl = lcgMatchEtc[0].lcg_sub_image;
+        imageExtension = lcgMatchEtc[0].lcg_image_extension;
         lastUpdate = lcgMatchEtc[0].lcg_update_player;
     }
 
@@ -324,7 +324,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                         !!lcgPlayerData && !!selectPlayerData ? 
                                             <div className="head_summoner">
                                                 <div className="head_section head_player">
-                                                    <img src={imageUrl1 + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + ".png"} 
+                                                    <img src={imageMainUrl + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + imageExtension} 
                                                     alt={"profileIcon"} className="player_img" loading="lazy"/>
                                                     <Link href={"https://www.op.gg/summoners/kr/" + playerData(selectPlayerData[0].lcg_summoner_puuid, "opgg")} target="_blank">
                                                         <div className="player_name">
@@ -333,7 +333,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                                     </Link>
                                                 </div>
                                                 <div className="head_section head_rank">
-                                                    <img src={imageUrl + "public/rank_" + selectPlayerData[0].lcg_present_tier.toLowerCase() + ".png"} 
+                                                    <img src={imageMainUrl + "public/rank_" + selectPlayerData[0].lcg_present_tier.toLowerCase() + imageExtension} 
                                                     alt={"present_tier"} className="rank_img" loading="lazy"/>
                                                     {selectPlayerData[0].lcg_present_tier === 'NA' ? 
                                                         <div className="rank_desc">
@@ -410,7 +410,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                     
                                     <div className="openai">
                                         <button onClick={() => setIsSummaryModal(true)}>
-                                            <img src={imageUrl + "public/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
+                                            <img src={imageMainUrl + "public/openai.png"} alt={"openai_img"} className="openai_img" loading="lazy"/>
                                         </button>
                                         <Style.ToolTipStyle className="tooltip">
                                             AI 분석
@@ -507,22 +507,22 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                                             <div className="item_main">
                                                                 <div className="main_top">
                                                                     <div className="main_champion">
-                                                                        <img src={imageUrl1 + "champion/" + data.lcg_champion_name + ".png"}
+                                                                        <img src={imageMainUrl + "champion/" + data.lcg_champion_name + imageExtension}
                                                                             alt={"champion"} className="champion_image"/>
                                                                         <div className="champion_level">
                                                                             {data.lcg_champion_level}
                                                                         </div>
                                                                     </div>
                                                                     <div className="main_spell">
-                                                                        <img src={imageUrl1 + "spell/" + data.lcg_spell_name_1 + ".png"} 
+                                                                        <img src={imageMainUrl + "spell/" + data.lcg_spell_name_1 + imageExtension} 
                                                                         alt={"spell1"} className="lcg_image spell_image" />
-                                                                        <img src={imageUrl1 + "spell/" + data.lcg_spell_name_2 + ".png"} 
+                                                                        <img src={imageMainUrl + "spell/" + data.lcg_spell_name_2 + imageExtension} 
                                                                         alt={"spell2"} className="lcg_image spell_image" />
                                                                     </div>
                                                                     <div className="main_perk">
-                                                                        <img src={imageUrl2 + data.lcg_perk_name_1} 
+                                                                        <img src={imageSubUrl + data.lcg_perk_name_1 + imageExtension} 
                                                                         alt={"perk1"} className="lcg_image perk_image1" />
-                                                                        <img src={imageUrl2 + data.lcg_perk_name_2} 
+                                                                        <img src={imageSubUrl + data.lcg_perk_name_2 + imageExtension} 
                                                                         alt={"perk2"} className="lcg_image perk_image2" />
                                                                     </div>
                                                                     <div className="main_kda">
@@ -540,43 +540,43 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                                                     <div className="main_item">
                                                                         {
                                                                             data.lcg_item_id_1 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_1 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_1 + imageExtension} 
                                                                                 alt={"item1"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
                                                                         {
                                                                             data.lcg_item_id_2 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_2 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_2 + imageExtension} 
                                                                                 alt={"item2"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
                                                                         {
                                                                             data.lcg_item_id_3 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_3 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_3 + imageExtension} 
                                                                                 alt={"item3"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
                                                                         {
                                                                             data.lcg_item_id_4 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_4 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_4 + imageExtension} 
                                                                                 alt={"item4"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
                                                                         {
                                                                             data.lcg_item_id_5 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_5 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_5 + imageExtension} 
                                                                                 alt={"item5"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
                                                                         {
                                                                             data.lcg_item_id_6 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_6 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_6 + imageExtension} 
                                                                                 alt={"item6"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
                                                                         {
                                                                             data.lcg_item_id_7 !== 0 ?
-                                                                                <img src={imageUrl1 + "item/" + data.lcg_item_id_7 + ".png"} 
+                                                                                <img src={imageMainUrl + "item/" + data.lcg_item_id_7 + imageExtension} 
                                                                                 alt={"item7"} className="item_image" />
                                                                                 :<div className="item_image empty_image"/>
                                                                         }
@@ -613,7 +613,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                                             <div className="item_players">
                                                                 {(data.player_list as any[]).sort((a, b) => a.team - b.team).map((player, idx2) => (
                                                                     <div className="players_info" key={idx2}>
-                                                                        <img src={imageUrl1 + "champion/" + player.champion + ".png"}
+                                                                        <img src={imageMainUrl + "champion/" + player.champion + imageExtension}
                                                                             alt={"champion"} className="champion_image"/>
                                                                         <div className="info_name">{String(player.name)}</div>
                                                                     </div>
@@ -720,7 +720,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                                 return (
                                                     <div className="champion_item" key={"relative_" + idx}>
                                                         <div className="player_champion">
-                                                            <img src={imageUrl + "champion/" + data.lcg_champion_name + ".png"} 
+                                                            <img src={imageMainUrl + "champion/" + data.lcg_champion_name + imageExtension} 
                                                             alt={"champion"} className="champion_img" loading="lazy"/>
                                                         </div>
                                                         <div className="player_kda">

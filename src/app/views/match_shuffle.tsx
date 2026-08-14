@@ -4,19 +4,15 @@ import * as Style from "./match_shuffle.style";
 
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { useUpdateMutation } from "@supabase-cache-helpers/postgrest-react-query";
 import useSupabaseBrowser from "../supabase-browser";
 import { getLcgMatchLogLatestQuery } from "../queries/getLcgMatchLogQuery";
-import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getPlayerRankingQuery, getPlayerRankingUpdateQuery } from "../queries/getLcgPlayerDataQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPlus as icon_plus, faMinus as icon_minus,
     faRotate as icon_refresh, faShuffle as icon_random,
-    faScaleBalanced as icon_balance, faCamera as icon_capture,
-    faPaperPlane as icon_send
+    faScaleBalanced as icon_balance, faPaperPlane as icon_send
 } from "@fortawesome/free-solid-svg-icons";
-import { toPng } from 'html-to-image';
 
 import TeamBlueIcon from "../icons/TeamBlueIcon";
 import TeamRedIcon from "../icons/TeamRedIcon";
@@ -34,8 +30,6 @@ const MatchShuffle = () => {
 
     const supabase = useSupabaseBrowser();
     let gameId:number = 0;
-    let etcVersion:string = "";
-    let cntCapture:number = 0;
 
     const [playerCount, setPlayerCount] = useState<number>(10);
     const [teamCount, setTeamCount] = useState<number>(2);
@@ -56,22 +50,7 @@ const MatchShuffle = () => {
         gameId = lcgMatchLog[0].lcg_game_id;
     } 
 
-    const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {enabled:!!lcgMatchLog});
-    const { data: lcgPlayerRanking } = useQuery(getPlayerRankingQuery(supabase, gameId), {enabled:!!lcgMatchLog});
-    if(!!lcgMatchEtc) {
-        etcVersion = lcgMatchEtc[0].lcg_version;
-        cntCapture = lcgMatchEtc[0].lcg_ranking_count;
-    } 
-
-    const updateLcgCaptureCountMutation = useUpdateMutation(
-        supabase.from('lcg_match_etc') as any,               
-        ['lcg_version'],                         
-        'lcg_version, lcg_ranking_count',    
-        {
-            // onSuccess: () => console.log('Update successful'),
-            onError: (err) => console.error(err),
-        }
-    )
+    const { data: lcgPlayerRanking } = useQuery(getPlayerRankingQuery(supabase, gameId), {enabled:!!lcgMatchLog}); 
 
     const createTeam = (teams: { puuid: string; lv: number; nm: string }[]) => {
         if(!!lcgPlayerRanking && teams.length > 0) {
@@ -385,83 +364,6 @@ const MatchShuffle = () => {
         }
     }
 
-    const dataURLtoBlob = (dataurl: string): Blob => {
-        const arr = dataurl.split(',');
-        const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/png';
-        const bstr = atob(arr[1]);
-        let n = bstr.length;
-        const u8arr = new Uint8Array(n);
-        while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new Blob([u8arr], { type: mime });
-    };
-
-    const sendImageToServer = async (imageBlob: Blob) => {
-        const formData = new FormData();
-        formData.append('imageFile', imageBlob, 'capture.png');
-        formData.append('message', 'Shuffle result image');
-
-        try {
-            const response = await fetch('/api/capture', {
-                method: 'POST',
-                body: formData,
-            });
-
-            if(response.ok) {
-                updateLcgCaptureCountMutation.mutate({
-                    'lcg_version': etcVersion,
-                    'lcg_ranking_count': cntCapture-1
-                });
-            } else {
-                const errorData = await response.json();
-                console.error(`이미지 전송 실패: ${errorData.message}`);
-            }
-
-            if(response.statusText.length > 0) {
-                setOneCaptureChk(false);
-            } 
-        } catch (error) {
-            if(error instanceof Error) {
-                console.error(`이미지 전송 중 오류 발생: ${error.message}`);
-            } else {
-                console.error('이미지 전송 중 알 수 없는 오류 발생');
-            }
-        }
-    };
-
-    const onClickCapture = async () => {
-        if (captureRef.current && !oneCaptureChk) {
-            if(cntCapture > 0) {
-                const section = captureRef.current;
-                setOneCaptureChk(true);
-                
-                try {
-                    const dataUrl = await toPng(section, {
-                        width: captureRef.current.offsetWidth, 
-                        height: captureRef.current.offsetHeight - 270,
-                        quality: 0.95,
-                        style: {
-                            margin: '0',
-                        },
-                    });
-                    const imageBlob = dataURLtoBlob(dataUrl); // Base64를 Blob으로 변환
-                    await sendImageToServer(imageBlob);
-                } catch (error) {
-                    if (error instanceof Error) {
-                        console.error(`캡처 또는 전송 중 오류 발생: ${error.message}`);
-                    } else {
-                        console.error('캡처 또는 전송 중 알 수 없는 오류 발생');
-                    }
-                } 
-            } else {   
-                alert('금일 캡쳐 횟수가 모두 소진되었습니다.');
-            }
-        } else {
-            alert('잠시 후 시도해주세요');
-        }
-    };
-
     const onClickTeamResult = async (type: string) => {
         const result = teams.map((parent, idx1) => ({
             team: (idx1 + 1) * 100,
@@ -638,9 +540,6 @@ const MatchShuffle = () => {
                                 <Style.BtnStyle onClick={() => onClickRefresh()}>
                                     <FontAwesomeIcon icon={icon_refresh} className="btn_icon"/>초기화
                                 </Style.BtnStyle>
-                                {/* <Style.BtnStyle onClick={() => onClickCapture()}>
-                                    <FontAwesomeIcon icon={icon_capture} className="btn_icon"/>결과 캡쳐
-                                </Style.BtnStyle> */}
                                 <Style.BtnStyle onClick={() => onClickTeamResult("N")}>
                                     <FontAwesomeIcon icon={icon_send} className="btn_icon"/>전송
                                 </Style.BtnStyle>
