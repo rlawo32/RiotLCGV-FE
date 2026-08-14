@@ -178,7 +178,7 @@ const ModalLevel = (props: ModalLevelProps) => {
         <ModalLevelStyle ref={modalRef}>
             <h1 className="level_title">밸런스 설정</h1>
             <p className="level_desc">
-                플레이어 이름을 드래그해서 티어를 지정하세요.
+                플레이어 이름을 드래그해서 티어를 지정
             </p>
             
             <button type="button" onClick={handleReset} className="btn_control btn_reset">
