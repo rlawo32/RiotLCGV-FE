@@ -57,7 +57,8 @@ import RankingView1G3BDpg from "./rankingView_1G3B_dpg";
 const MatchRanking = () => {
     const supabase = useSupabaseBrowser();
 
-    let imageUrl:string = ""; // R2
+    let imageUrl:string = "";
+    let imageExtension:string = "";
 
     const [rankSelectIdx, setRankSelectIdx] = useState<number>(0);
     const rankSelectArr:{key:string, name:string}[] = [
@@ -76,7 +77,8 @@ const MatchRanking = () => {
     const { data: lcgMatchEtc, isLoading: loading1} = useQuery(getLcgMatchEtcQuery(supabase), {});
 
     if(!!lcgMatchEtc) {
-        imageUrl = lcgMatchEtc[0].lcg_r2_image;
+        imageUrl = lcgMatchEtc[0].lcg_main_image;
+        imageExtension = lcgMatchEtc[0].lcg_image_extension;
     }
     
     const { data: queryOverallResult } = useQuery(getLcgAllOverallQuery(supabase), {enabled: rankSelectArr[rankSelectIdx].key === 'AA'});
@@ -121,24 +123,24 @@ const MatchRanking = () => {
                         </div>
                         {
                             lcgMatchEtc ?
-                            queryOverallResult && rankSelectArr[rankSelectIdx].key === 'AA'                 ? <RankingViewOverall data={queryOverallResult} imageUrl={imageUrl}/>                       : 
-                            queryWinningRateResult && rankSelectArr[rankSelectIdx].key === 'AW'             ? <RankingViewWinningRate data={queryWinningRateResult} imageUrl={imageUrl}/>               : 
-                            queryAllKillResult && rankSelectArr[rankSelectIdx].key === 'AK'                 ? <RankingViewKill data={queryAllKillResult} imageUrl={imageUrl}/>                          : 
-                            queryAllDeathResult && rankSelectArr[rankSelectIdx].key === 'AD'                ? <RankingViewDeath data={queryAllDeathResult} imageUrl={imageUrl}/>                        : 
-                            queryAllAssistResult && rankSelectArr[rankSelectIdx].key === 'AS'               ? <RankingViewAssist data={queryAllAssistResult} imageUrl={imageUrl}/>                      : 
-                            queryAllCsResult && rankSelectArr[rankSelectIdx].key === 'AC'                   ? <RankingViewCs data={queryAllCsResult} imageUrl={imageUrl}/>                              : 
-                            queryAllDemolisherResult && rankSelectArr[rankSelectIdx].key === 'AT'           ? <RankingViewDemolisher data={queryAllDemolisherResult} imageUrl={imageUrl}/>              : 
-                            queryAllGoldResult && rankSelectArr[rankSelectIdx].key === 'AG'                 ? <RankingViewGold data={queryAllGoldResult} imageUrl={imageUrl}/>                          : 
-                            queryAllDamageResult && rankSelectArr[rankSelectIdx].key === 'ADA'              ? <RankingViewDamage data={queryAllDamageResult} imageUrl={imageUrl}/>                      : 
-                            queryAllTakenResult && rankSelectArr[rankSelectIdx].key === 'ATA'               ? <RankingViewTaken data={queryAllTakenResult} imageUrl={imageUrl}/>                        : 
-                            queryAllJungleObjectResult && rankSelectArr[rankSelectIdx].key === 'AJ'         ? <RankingViewJungleObject data={queryAllJungleObjectResult} imageUrl={imageUrl}/>          : 
-                            queryAllMultiKillResult && rankSelectArr[rankSelectIdx].key === 'AM'            ? <RankingViewMultiKill data={queryAllMultiKillResult} imageUrl={imageUrl}/>                : 
-                            queryAllVisionResult && rankSelectArr[rankSelectIdx].key === 'AV'               ? <RankingViewVision data={queryAllVisionResult} imageUrl={imageUrl}/>                      : 
-                            queryAllAvgDpmResult && rankSelectArr[rankSelectIdx].key === 'ADM'              ? <RankingViewAvgDpm data={queryAllAvgDpmResult} imageUrl={imageUrl}/>                      : 
-                            queryAllAvgGpmResult && rankSelectArr[rankSelectIdx].key === 'AGM'              ? <RankingViewAvgGpm data={queryAllAvgGpmResult} imageUrl={imageUrl}/>                      : 
-                            queryAllAvgDpgResult && rankSelectArr[rankSelectIdx].key === 'ADG'              ? <RankingViewAvgDpg data={queryAllAvgDpgResult} imageUrl={imageUrl}/>                      :
-                            queryAllMvpResult && rankSelectArr[rankSelectIdx].key === 'AMP'                 ? <RankingViewMvp data={queryAllMvpResult} imageUrl={imageUrl}/>                            : 
-                            queryAllAceResult && rankSelectArr[rankSelectIdx].key === 'AAE'                 ? <RankingViewAce data={queryAllAceResult} imageUrl={imageUrl}/>                            :
+                            queryOverallResult && rankSelectArr[rankSelectIdx].key === 'AA'                 ? <RankingViewOverall data={queryOverallResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                       : 
+                            queryWinningRateResult && rankSelectArr[rankSelectIdx].key === 'AW'             ? <RankingViewWinningRate data={queryWinningRateResult} imageUrl={imageUrl} imageExtension={imageExtension}/>               : 
+                            queryAllKillResult && rankSelectArr[rankSelectIdx].key === 'AK'                 ? <RankingViewKill data={queryAllKillResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                          : 
+                            queryAllDeathResult && rankSelectArr[rankSelectIdx].key === 'AD'                ? <RankingViewDeath data={queryAllDeathResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                        : 
+                            queryAllAssistResult && rankSelectArr[rankSelectIdx].key === 'AS'               ? <RankingViewAssist data={queryAllAssistResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                      : 
+                            queryAllCsResult && rankSelectArr[rankSelectIdx].key === 'AC'                   ? <RankingViewCs data={queryAllCsResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                              : 
+                            queryAllDemolisherResult && rankSelectArr[rankSelectIdx].key === 'AT'           ? <RankingViewDemolisher data={queryAllDemolisherResult} imageUrl={imageUrl} imageExtension={imageExtension}/>              : 
+                            queryAllGoldResult && rankSelectArr[rankSelectIdx].key === 'AG'                 ? <RankingViewGold data={queryAllGoldResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                          : 
+                            queryAllDamageResult && rankSelectArr[rankSelectIdx].key === 'ADA'              ? <RankingViewDamage data={queryAllDamageResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                      : 
+                            queryAllTakenResult && rankSelectArr[rankSelectIdx].key === 'ATA'               ? <RankingViewTaken data={queryAllTakenResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                        : 
+                            queryAllJungleObjectResult && rankSelectArr[rankSelectIdx].key === 'AJ'         ? <RankingViewJungleObject data={queryAllJungleObjectResult} imageUrl={imageUrl} imageExtension={imageExtension}/>          : 
+                            queryAllMultiKillResult && rankSelectArr[rankSelectIdx].key === 'AM'            ? <RankingViewMultiKill data={queryAllMultiKillResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                : 
+                            queryAllVisionResult && rankSelectArr[rankSelectIdx].key === 'AV'               ? <RankingViewVision data={queryAllVisionResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                      : 
+                            queryAllAvgDpmResult && rankSelectArr[rankSelectIdx].key === 'ADM'              ? <RankingViewAvgDpm data={queryAllAvgDpmResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                      : 
+                            queryAllAvgGpmResult && rankSelectArr[rankSelectIdx].key === 'AGM'              ? <RankingViewAvgGpm data={queryAllAvgGpmResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                      : 
+                            queryAllAvgDpgResult && rankSelectArr[rankSelectIdx].key === 'ADG'              ? <RankingViewAvgDpg data={queryAllAvgDpgResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                      :
+                            queryAllMvpResult && rankSelectArr[rankSelectIdx].key === 'AMP'                 ? <RankingViewMvp data={queryAllMvpResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                            : 
+                            queryAllAceResult && rankSelectArr[rankSelectIdx].key === 'AAE'                 ? <RankingViewAce data={queryAllAceResult} imageUrl={imageUrl} imageExtension={imageExtension}/>                            :
                             queryOneGameBest3KillResult && rankSelectArr[rankSelectIdx].key === '1GK'       ? <RankingView1G3BKill data={queryOneGameBest3KillResult} path={lcgMatchEtc[0]}/>           : 
                             queryOneGameBest3DeathResult && rankSelectArr[rankSelectIdx].key === '1GD'      ? <RankingView1G3BDeath data={queryOneGameBest3DeathResult} path={lcgMatchEtc[0]}/>         : 
                             queryOneGameBest3AssistResult && rankSelectArr[rankSelectIdx].key === '1GA'     ? <RankingView1G3BAssist data={queryOneGameBest3AssistResult} path={lcgMatchEtc[0]}/>       : 
