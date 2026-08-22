@@ -495,7 +495,7 @@ const MatchPlayer = (props:{directPlayer:string|null}) => {
                                             {selectPlayerMatch?.map((data, idx) => {
                                                 const gameDurationMin = getGameDuration(data.lcg_game_duration);
                                                 return (
-                                                    <React.Fragment key={"match_" + idx}>
+                                                    <React.Fragment key={"match_" + data.lcg_summoner_puuid + idx}>
                                                         <Style.MatchItem $win={data.lcg_team_win} ref={(ml:any) => (matchListRef.current[idx] = ml)}>
                                                             <div className="item_bar" />
                                                             <div className="item_info">

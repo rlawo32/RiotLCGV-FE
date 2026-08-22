@@ -15,6 +15,8 @@ export const MatchList = styled('div')`
     @media (max-width: 480px) {
         padding: 7px 2px;
     }
+    width: 100%;
+    max-width: 928px;
     min-width: 832px;
     height: 100%;
     min-height: 860px;
@@ -36,9 +38,7 @@ export const ListContainer = styled('div')`
 `
 
 export const ListItem = styled('div')`
-    @media (max-width: 1024px) {
-        width: 100%;
-    }
+    width: 100%;
     position: relative;
     bottom: 0;
     display: flex;
@@ -66,9 +66,6 @@ export const ListItem = styled('div')`
 `
 
 export const ListBox = styled('div')`
-    @media (max-width: 1024px) {
-        width: 100%;
-    }
     @media (max-width: 768px) {
         justify-content: space-around;
     }
@@ -76,7 +73,7 @@ export const ListBox = styled('div')`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 768px;
+    width: 100%;
     margin: 0 0 5px 0;
     padding: 10px 15px;
     border: none;

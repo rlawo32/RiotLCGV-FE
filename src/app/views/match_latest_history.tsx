@@ -365,50 +365,54 @@ const MatchLatestHistory = () => {
                                                                             </div>
                                                                         </td>
                                                                         <td className="lcg_item">
-                                                                            {
-                                                                                lcgMain.lcg_item_id_1 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_1 + imageExtension} 
-                                                                                    alt={"item1"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
-                                                                            {
-                                                                                lcgMain.lcg_item_id_2 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_2 + imageExtension} 
-                                                                                    alt={"item2"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
-                                                                            {
-                                                                                lcgMain.lcg_item_id_3 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_3 + imageExtension} 
-                                                                                    alt={"item3"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
-                                                                            {
-                                                                                lcgMain.lcg_item_id_4 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_4 + imageExtension} 
-                                                                                    alt={"item4"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
-                                                                            {
-                                                                                lcgMain.lcg_item_id_5 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_5 + imageExtension} 
-                                                                                    alt={"item5"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
-                                                                            {
-                                                                                lcgMain.lcg_item_id_6 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_6 + imageExtension} 
-                                                                                    alt={"item6"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
+                                                                            <div className="item_list">
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_1 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_1 + imageExtension} 
+                                                                                        alt={"item1"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_2 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_2 + imageExtension} 
+                                                                                        alt={"item2"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_3 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_3 + imageExtension} 
+                                                                                        alt={"item3"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_4 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_4 + imageExtension} 
+                                                                                        alt={"item4"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_5 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_5 + imageExtension} 
+                                                                                        alt={"item5"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_6 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_6 + imageExtension} 
+                                                                                        alt={"item6"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                            </div>
                                                                         </td>
                                                                         <td className="lcg_acc">
-                                                                            {
-                                                                                lcgMain.lcg_item_id_7 !== 0 ?
-                                                                                    <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_7 + imageExtension} 
-                                                                                    alt={"item7"} className="item_image" />
-                                                                                    :<div className="item_image empty_image"/>
-                                                                            }
+                                                                            <div className="acc_list">
+                                                                                {
+                                                                                    lcgMain.lcg_item_id_7 !== 0 ?
+                                                                                        <img src={imageMainUrl + "item/" + lcgMain.lcg_item_id_7 + imageExtension} 
+                                                                                        alt={"item7"} className="item_image" />
+                                                                                        :<div className="item_image empty_image"/>
+                                                                                }
+                                                                            </div>
                                                                         </td>
                                                                     </Style.WinningStreakLine>
                                                                 )

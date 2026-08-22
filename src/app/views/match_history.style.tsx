@@ -13,7 +13,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     @media (max-width: 480px) {
         padding: 7px 5px;
     }
-    width: ${({$type}) => $type === 'P' ? "680px" : "768px"};
+    width: ${({$type}) => $type === 'P' ? "680px" : "100%"};
+    max-width: 928px;
     height: 100%;
     min-height: ${({$type}) => $type === 'L' ? "860px" : "0"};
     margin: 0 auto;
@@ -250,7 +251,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         top: 0;
         left: -1px;
         height: 90%;
-        width: 93%;
+        width: 95%;
         margin: 3px 45px;
         border-radius: 10px;
         animation: pulse 2s infinite ease-in-out;
@@ -268,7 +269,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         @media (max-width: 480px) {
             width: 270px;
         }
-        width: ${({$type}) => $type === 'P' ? "670px" : "700px"};
+        width: ${({$type}) => $type === 'P' ? "670px" : "100%"};
         margin: 5px 3px;
         border-collapse: collapse;
         color: white;
@@ -564,7 +565,6 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     justify-content: center;
                 }
                 display: flex;
-                flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
@@ -749,20 +749,31 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
 
         .lcg_item {
-            @media (max-width: 768px) {
-                width: 60px;
+
+            .item_list {
+                @media (max-width: 1024px) {
+                    flex-wrap: wrap;
+                    width: 90px;
+                }
+                @media (max-width: 768px) {
+                    width: 60px;
+                }
+                // mobile_view
+                @media (max-width: 480px) {
+                    width: 42px;
+                }
+                width: 230px;
+                display: flex;
+                align-items: center;
+                justify-content: right;
             }
-            // mobile_view
-            @media (max-width: 480px) {
-                width: 42px;
-            }
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: right;
-            width: 90px;
         }
         
         .item_image {
+            @media (max-width: 1024px) {
+                height: 22px;
+                width: 22px;
+            }
             @media (max-width: 768px) {
                 height: 20px;
                 width: 20px;
@@ -772,13 +783,17 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 height: 15px;
                 width: 15px;
             }
-            height: 22px;
-            width: 22px;
+            height: 32px;
+            width: 32px;
             margin: 2px;
             border-radius: 10px;
         }
 
         .empty_image {
+            @media (max-width: 1024px) {
+                height: 22px;
+                width: 22px;
+            }
             @media (max-width: 768px) {
                 height: 20px;
                 width: 20px;
@@ -788,15 +803,20 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 height: 15px;
                 width: 15px;
             }
-            height: 22px;
-            width: 22px;
+            height: 32px;
+            width: 32px;
             border: 1px solid grey;
         }
 
         .lcg_acc {
-            // mobile_view
-            @media (max-width: 480px) {
-                padding: 0;
+
+            .acc_list {
+                // mobile_view
+                @media (max-width: 480px) {
+                    padding: 0;
+                }
+                display: flex;
+                align-items: center;
             }
         }
     }

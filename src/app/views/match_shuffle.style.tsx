@@ -15,7 +15,8 @@ export const MatchShuffle = styled('div')`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 768px;
+    width: 100%;
+    max-width: 928px;
     height: 100%;
     min-height: 860px;
     margin: 0 auto;
@@ -25,10 +26,14 @@ export const MatchShuffle = styled('div')`
     background-color: rgb(49 49 60 / .7);
 
     .list_section {
+        @media (max-width: 1024px) {
+            gap: 30px;
+        }
         position: relative;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        gap: 60px;
 
         .list_wrap {
             position: relative;
@@ -162,7 +167,7 @@ export const MatchShuffle = styled('div')`
         width: 560px;
         height: 210px;
         padding: 25px 45px;
-        margin-top: 60px;
+        margin-top: 70px;
         border-radius: 20px;
         background-color: rgb(30 30 38 / 1);
 
@@ -179,6 +184,9 @@ export const MatchShuffle = styled('div')`
             text-align: center;
 
             .shuffle_balanace {
+                @media (max-width: 768px) {
+                    display: none;
+                }
                 position: absolute;
                 top: -15px;
                 right: -120px;

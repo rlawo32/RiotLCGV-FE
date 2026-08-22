@@ -58,7 +58,7 @@ export const MainView = styled('div')`
             padding: 25px 10px;
         }
         height: 100%;
-        padding: 25px 40px;
+        padding: 5px 30px;
         border-radius: 7px;
         background: #0d0d25;
         z-index: 1;

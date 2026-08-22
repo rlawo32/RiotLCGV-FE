@@ -10,9 +10,10 @@ export const MainSidebar = styled('div')`
     justify-content: center;
     align-items: center;
     height: fit-content;
-    width: 768px;
-    padding: 10px 15px;
-    margin: 5px auto 25px;
+    width: 100%;
+    max-width: 960px;
+    padding: 10px 5px;
+    margin: 5px auto 10px;
     border: 1px solid #FF4438;
     border-radius: 10px;
     background-color: rgb(49 49 60 / .7);
@@ -24,7 +25,6 @@ export const MainSidebar = styled('div')`
         }
         position: relative;
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
         width: 100%;
         height: fit-content;
@@ -54,29 +54,28 @@ export const MainSidebar = styled('div')`
 
     button {
         @media (max-width: 1024px) {
-            padding: 5px 10px 5px 20px;
-            margin: 2px 7px;
+            padding: 2px 7px 3px 12px;
             font-size: 1.2rem;
         }
         @media (max-width: 768px) {
-            padding: 5px 7px 5px 10px;
-            margin: 2px 3px;
+            width: calc(100% / 5);
+            padding: 2px 7px 3px 10px;
             font-size: 1rem;
         }
         // mobile_view
         @media (max-width: 480px) {
             justify-content: center;
-            width: calc(calc(100% / 2) - 8px);
+            width: calc(100% / 3);
             padding: 5px;
-            margin: 2px 3px;
             font-size: .9rem;
             text-align: center;
         }
         display: flex;
+        justify-content: center;
         align-items: center;
         position: relative;
-        padding: 5px 15px 5px 25px;
-        margin: 0 5px;
+        width: calc(100% / 6);
+        padding: 5px 15px 8px 25px;
         border: none;
         border-radius: 10px;
         background: none;

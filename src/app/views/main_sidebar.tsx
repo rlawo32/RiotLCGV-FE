@@ -51,6 +51,10 @@ const MainSidebar = (props : {selectView:number, changeView:any}) => {
                 </button>
                 <button onClick={() => btnClick(4)} ref={(btn:any) => (btnRef.current[4] = btn)}>
                     <FontAwesomeIcon icon={icon_shuffle} className="btn_icon"/>
+                    패치 노트
+                </button>
+                <button onClick={() => btnClick(5)} ref={(btn:any) => (btnRef.current[5] = btn)}>
+                    <FontAwesomeIcon icon={icon_shuffle} className="btn_icon"/>
                     팀 섞기
                 </button>
             </div>
