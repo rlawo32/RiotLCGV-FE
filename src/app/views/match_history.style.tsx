@@ -752,7 +752,6 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
             .item_list {
                 @media (max-width: 1024px) {
-                    flex-wrap: wrap;
                     width: 90px;
                 }
                 @media (max-width: 768px) {
@@ -762,8 +761,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 @media (max-width: 480px) {
                     width: 42px;
                 }
-                width: 230px;
+                width: ${({$type}) => $type === 'P' ? "90px" : "230px"};
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: right;
             }
@@ -783,8 +783,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 height: 15px;
                 width: 15px;
             }
-            height: 32px;
-            width: 32px;
+            height: ${({$type}) => $type === 'P' ? "22px" : "32px"};
+            width: ${({$type}) => $type === 'P' ? "22px" : "32px"};
             margin: 2px;
             border-radius: 10px;
         }
@@ -803,8 +803,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 height: 15px;
                 width: 15px;
             }
-            height: 32px;
-            width: 32px;
+            height: ${({$type}) => $type === 'P' ? "22px" : "32px"};
+            width: ${({$type}) => $type === 'P' ? "22px" : "32px"};
             border: 1px solid grey;
         }
 
