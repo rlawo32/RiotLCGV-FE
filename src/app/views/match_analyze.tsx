@@ -7,6 +7,7 @@ import { getGameDuration } from "../component/match_tool";
 
 import DamageGraph from "../component/damage_graph";
 
+import WardIcon from "../icons/WardIcon";
 import DoubleKillIcon from "../icons/DoubleKillIcon";
 import TripleKillIcon from "../icons/TripleKillIcon";
 import QuadraKillIcon from "../icons/QuadraKillIcon";
@@ -82,7 +83,7 @@ const MatchAnalyze = (props : {
 
     const duration:number =  getGameDuration(props.lcgMatchInfo[0].lcg_game_duration);
     const analyzeArr:{type:string}[] = [
-        {type:"gold"}, {type:"crowd"}, {type:"dpm"}, {type:"gpm"}, {type:"dpg"}, {type:"multi"}
+        {type:"gold"}, {type:"crowd"}, {type:"dpm"}, {type:"gpm"}, {type:"vision"}, {type:"multi"}
     ];
 
     return (
@@ -102,11 +103,13 @@ const MatchAnalyze = (props : {
                                     :
                                 arr.type === 'dpg' ? <>DPG <span>({duration}분)</span></>
                                     : 
+                                arr.type === 'vision' ? "시야 통계"
+                                    : 
                                 arr.type === 'multi' ? "멀티킬"
                                     : ""
                             }
                         </div>
-                        <div className="lcg_analyze_content">
+                        <div className="lcg_analyze_content" id={"analyze_" + idx1}>
                             {props.lcgMatchSub.map((lcgData, idx2) => {
                                     return (
                                         <React.Fragment key={"analyze_c_" + idx2}>
@@ -122,7 +125,7 @@ const MatchAnalyze = (props : {
                                                                 :
                                                                 <></>
                                                         }
-                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                        <div className="lcg_analyze_data" id={"data_" + idx1} key={"data_" + idx2}>
                                                             <div className="lcg_analyze_champion">
                                                                 <img src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + props.imageExtension} 
                                                                 alt={"champion"} className="champion_image" />
@@ -147,7 +150,7 @@ const MatchAnalyze = (props : {
                                                                 :
                                                                 <></>
                                                         }
-                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                        <div className="lcg_analyze_data" id={"data_" + idx1} key={"data_" + idx2}>
                                                             <div className="lcg_analyze_champion">
                                                                 <img src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + props.imageExtension} 
                                                                 alt={"champion"} className="champion_image" />
@@ -172,7 +175,7 @@ const MatchAnalyze = (props : {
                                                                 :
                                                                 <></>
                                                         }
-                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                        <div className="lcg_analyze_data" id={"data_" + idx1} key={"data_" + idx2}>
                                                             <div className="lcg_analyze_champion">
                                                                 <img src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + props.imageExtension} 
                                                                 alt={"champion"} className="champion_image" />
@@ -197,7 +200,7 @@ const MatchAnalyze = (props : {
                                                                 :
                                                                 <></>
                                                         }
-                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                        <div className="lcg_analyze_data" id={"data_" + idx1} key={"data_" + idx2}>
                                                             <div className="lcg_analyze_champion">
                                                                 <img src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + props.imageExtension} 
                                                                 alt={"champion"} className="champion_image" />
@@ -236,6 +239,31 @@ const MatchAnalyze = (props : {
                                                         </div>  
                                                     </>      
                                                     :
+                                                arr.type === 'vision' ?   
+                                                    <>
+                                                        {
+                                                            idx2 === 0 || idx2 === 5 ? 
+                                                                props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_team_id === 100 ?
+                                                                    <div className="lcg_analyze_team"><div className="team_blue" />TeamBlue</div>
+                                                                    :
+                                                                    <div className="lcg_analyze_team"><div className="team_red" />TeamRed</div>
+                                                                :
+                                                                <></>
+                                                        }
+                                                        <div className="lcg_analyze_data" id={"data_" + idx1} key={"data_" + idx2}>
+                                                            <div className="lcg_analyze_champion">
+                                                                <img src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + props.imageExtension} 
+                                                                alt={"champion"} className="champion_image" />
+                                                            </div>
+                                                            <div className="lcg_analyze_addition">
+                                                                <div className="addition_item"><WardIcon type={"N"} /><div>{lcgData.lcg_normal_ward}</div></div>
+                                                                <div className="addition_item"><WardIcon type={"P"} /><div>{lcgData.lcg_vision_ward}</div></div>
+                                                                <div className="addition_item"><WardIcon type={"D"} /><div>{lcgData.lcg_destroy_ward}</div></div>
+                                                                <div className="addition_item"><WardIcon type={"V"} /><div>{lcgData.lcg_vision_score}</div></div>
+                                                            </div>
+                                                        </div>   
+                                                    </> 
+                                                    :
                                                 arr.type === 'multi' ?   
                                                     <>
                                                         {
@@ -247,7 +275,7 @@ const MatchAnalyze = (props : {
                                                                 :
                                                                 <></>
                                                         }
-                                                        <div className="lcg_analyze_data" key={"data_" + idx2}>
+                                                        <div className="lcg_analyze_data" id={"data_" + idx1} key={"data_" + idx2}>
                                                             <div className="lcg_analyze_champion">
                                                                 <img src={props.imageUrl + "champion/" + props.lcgMatchMain.find((data) => data.lcg_participant_id === lcgData.lcg_participant_id)?.lcg_champion_name + props.imageExtension} 
                                                                 alt={"champion"} className="champion_image" />

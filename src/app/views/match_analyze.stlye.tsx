@@ -48,6 +48,15 @@ export const MatchAnalyze = styled('div')`
             height: 200px;
             width: 100%;
 
+            &#analyze_4 {
+                align-items: flex-start;
+
+                > *:nth-child(1),
+                > *:nth-child(7) {
+                    align-self: center;
+                }
+            }
+
             .lcg_analyze_team {
                 // mobile_view
                 @media (max-width: 480px) {
@@ -86,6 +95,25 @@ export const MatchAnalyze = styled('div')`
                 justify-content: space-around;
                 height: 30px;
                 margin: 3px 5px;
+
+                &#data_4 {
+                    @media (max-width: 768px) {
+                        margin-left: 5px;
+                    }
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        margin-left: 20px;
+                    }
+                    margin-left: 25px;
+
+                    .lcg_analyze_addition {
+                        @media (min-width: 768px) and (max-width: 1024px) {
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            width: 80px;
+                        }
+                    }
+                }
 
                 .lcg_analyze_champion {
 
@@ -130,6 +158,7 @@ export const MatchAnalyze = styled('div')`
                         font-size: 1rem;
                     }
                     display: flex;
+                    align-items: center;
                     margin: 2px 4px;
                     font-size: 1.1rem;
 
@@ -138,7 +167,22 @@ export const MatchAnalyze = styled('div')`
                         @media (max-width: 480px) {
                             margin: 1px 3px;
                         }
+                        display: flex;
+                        align-items: center;
+                        gap: 2px;
+                        min-width: 22px;
                         margin: 0 3px;
+                    }
+
+                    svg {
+                        flex-shrink: 0;
+                        width: 12px;
+                        height: 12px;
+                    }
+
+                    // 숫자 들어가는 div
+                    > div:last-child {
+                        flex-shrink: 0;
                     }
                 }
             }

@@ -556,7 +556,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         .lcg_summoner {
             // mobile_view
             @media (max-width: 480px) {
-                width: 100px;
+                width: 80px;
             }
             width: 200px;
 
@@ -657,11 +657,21 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                         display: flex;
                         align-items: center;
                     }
+                    // mobile_view
+                    @media (max-width: 480px) {
+                        width: 100%;
+                        justify-content: space-around;
+                        padding: 0;
+                    }
                     padding: 0 5px;
 
                     .lcg_nickname {
                         @media (max-width: 1024px) {
                             width: 40px;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            padding-bottom: 2px;
                         }
                         width: 80px;
                         margin: 0 auto;
@@ -675,11 +685,19 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
 
         .lcg_kda {
+            // mobile_view
+            @media (max-width: 480px) {
+                padding: 0;  
+            }
             width: 180px;
 
             .lcg_kda_head {
                 @media (max-width: 768px) {
                     flex-direction: column;
+                }
+                // mobile_view
+                @media (max-width: 480px) {
+                    margin: 0;  
                 }
                 display: flex;
                 justify-content: center;
