@@ -563,6 +563,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             .lcg_summoner_wrap {
                 @media (max-width: 768px) {
                     justify-content: center;
+                    flex-wrap: wrap;
                 }
                 display: flex;
                 align-items: center;
@@ -674,7 +675,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
 
         .lcg_kda {
-            width: 140px;
+            width: 180px;
 
             .lcg_kda_head {
                 @media (max-width: 768px) {
@@ -712,7 +713,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 padding: 0;
                 font-size: .8rem;
             }
-            width: 130px;
+            width: 140px;
 
             .lcg_graph {
                 @media (max-width: 768px) {
@@ -721,7 +722,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 }
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: space-around;
                 padding-top: 4px;
             }
         }
@@ -743,9 +744,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                width: 30px;
+                width: 46px;
             }
-            width: 60px;
+            width: 80px;
         }
 
         .lcg_item {
@@ -759,7 +760,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 42px;
+                    width: 38px;
                 }
                 width: ${({$type}) => $type === 'P' ? "90px" : "230px"};
                 display: flex;
@@ -809,6 +810,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
 
         .lcg_acc {
+            // mobile_view
+            @media (max-width: 480px) {
+                padding: 0;
+            }
 
             .acc_list {
                 // mobile_view

@@ -267,7 +267,7 @@ const MatchLatestHistory = () => {
                                                             <th>소환사</th>
                                                             <th>KDA</th>
                                                             <th>피해량</th>
-                                                            <th className="lcg_ward_head">와드</th>
+                                                            {/* <th className="lcg_ward_head">와드</th> */}
                                                             <th>CS</th>
                                                             <th colSpan={2}>아이템</th>
                                                         </tr>
@@ -350,14 +350,14 @@ const MatchLatestHistory = () => {
                                                                                 </div>
                                                                             </div>
                                                                         </td>
-                                                                        <td className="lcg_ward">
+                                                                        {/* <td className="lcg_ward">
                                                                             {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_destroy_ward}
                                                                             <div className="lcg_sub_data lcg_ward_count">
                                                                                 {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_normal_ward}
                                                                                 &nbsp;/&nbsp;
                                                                                 {lcgMatchSub?.find((lcgSub) => lcgSub.lcg_participant_id === lcgMain.lcg_participant_id)?.lcg_vision_ward}
                                                                             </div>
-                                                                        </td>
+                                                                        </td> */}
                                                                         <td className="lcg_minion">
                                                                             {lcgMain.lcg_minion_count + lcgMain.lcg_jungle_count}
                                                                             <div className="lcg_sub_data lcg_minute_cs">
