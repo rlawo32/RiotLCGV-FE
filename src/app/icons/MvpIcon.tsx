@@ -14,6 +14,10 @@ const IconStyle = styled('div')<{$rank:string}>`
         font-size: .75rem;
         line-height: 11px;
     }
+    // mobile_view
+    @media (max-width: 480px) {
+        margin: 0;
+    }
     height: 15px;
     width: fit-content;
     padding: 0 8px;
