@@ -78,7 +78,8 @@ const MatchAnalyze = (props : {
         lcg_vision_ward: number
         row_num: number}[],
     imageUrl:string,
-    imageExtension:string
+    imageExtension:string,
+    type:string
 }) => {
 
     const duration:number =  getGameDuration(props.lcgMatchInfo[0].lcg_game_duration);
@@ -87,7 +88,7 @@ const MatchAnalyze = (props : {
     ];
 
     return (
-        <Style.MatchAnalyze>
+        <Style.MatchAnalyze $type={props.type}>
             {analyzeArr.map((arr, idx1) => {
                 return (
                     <div className="lcg_analyze_box" key={"analyze_" + idx1}>

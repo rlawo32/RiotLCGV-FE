@@ -190,18 +190,15 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
     .skeleton_header {
         @media (max-width: 768px) {
-            height: 37px;
-        }
-        // mobile_view
-        @media (max-width: 480px) {
-            height: 43px;
+            left: -1px;
+            height: 44px;
         }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
         top: 0;
-        left: 0;
+        left: -5px;
         height: 24px;
-        width: 100%;
+        width: 101%;
         margin: auto;
         border-radius: 10px;
         animation: pulse 2s infinite ease-in-out;
@@ -217,16 +214,16 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            top: -5px;
+            top: ${({$type}) => $type === 'L' ? "-10px" : "-5px"};
             left: -5px;
-            height: 50px;
+            height: ${({$type}) => $type === 'L' ? "60px" : "50px"};
             width: 70px;
         }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
-        top: -4px;
+        top: ${({$type}) => $type === 'L' ? "-8px" : "-4px"};
         left: 0;
-        height: 100%;
+        height: ${({$type}) => $type === 'L' ? "122%" : "100%"};
         width: 100%;
         margin: 3px auto;
         border-radius: 10px;
@@ -235,6 +232,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 
     .skeleton_content {
+        @media (max-width: 1024px) {
+            width: 93%;
+        }
         @media (max-width: 768px) {
             left: 50px;
             height: 90%;
@@ -242,7 +242,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            left: 43px;
+            left: 35px;
             height: 90%;
             width: 70%;
         }
@@ -251,7 +251,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         top: 0;
         left: -1px;
         height: 90%;
-        width: 95%;
+        width: ${({$type}) => $type === 'P' ? "93%" : "95%"};
         margin: 3px 45px;
         border-radius: 10px;
         animation: pulse 2s infinite ease-in-out;

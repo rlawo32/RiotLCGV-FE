@@ -388,7 +388,7 @@ const MatchHistory = (props : {gameId:number, type:string}) => {
                     <>
                         {
                             lcgMatchInfo && lcgMatchMain && lcgMatchSub ?
-                            <MatchAnalyze lcgMatchInfo={lcgMatchInfo} lcgMatchMain={lcgMatchMain} lcgMatchSub={lcgMatchSub} imageUrl={imageMainUrl} imageExtension={imageExtension} />
+                            <MatchAnalyze lcgMatchInfo={lcgMatchInfo} lcgMatchMain={lcgMatchMain} lcgMatchSub={lcgMatchSub} imageUrl={imageMainUrl} imageExtension={imageExtension} type={props.type} />
                             : <></>
                         }
                     </>

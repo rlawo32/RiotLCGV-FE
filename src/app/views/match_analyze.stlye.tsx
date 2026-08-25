@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MatchAnalyze = styled('div')`
+export const MatchAnalyze = styled('div')<{$type:string}>`
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -104,7 +104,7 @@ export const MatchAnalyze = styled('div')`
                     @media (max-width: 480px) {
                         margin-left: 20px;
                     }
-                    margin-left: 25px;
+                    margin-left: ${({$type}) => $type === 'H' ? "17px" : "25px"};;
 
                     .lcg_analyze_addition {
                         @media (min-width: 768px) and (max-width: 1024px) {
@@ -112,6 +112,9 @@ export const MatchAnalyze = styled('div')`
                             justify-content: center;
                             width: 80px;
                         }
+                        flex-wrap: ${({$type}) => $type === 'P' ? "wrap" : ""};
+                        justify-content: ${({$type}) => $type === 'P' ? "center" : ""};
+                        width: ${({$type}) => $type === 'P' ? "80px" : ""};
                     }
                 }
 

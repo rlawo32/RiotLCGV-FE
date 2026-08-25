@@ -429,7 +429,7 @@ const MatchLatestHistory = () => {
                                 <>
                                     {
                                         lcgMatchInfo && lcgMatchMain && lcgMatchSub ?
-                                        <MatchAnalyze lcgMatchInfo={lcgMatchInfo} lcgMatchMain={lcgMatchMain} lcgMatchSub={lcgMatchSub} imageUrl={imageMainUrl} imageExtension={imageExtension} />
+                                        <MatchAnalyze lcgMatchInfo={lcgMatchInfo} lcgMatchMain={lcgMatchMain} lcgMatchSub={lcgMatchSub} imageUrl={imageMainUrl} imageExtension={imageExtension} type={"L"} />
                                         : <></>
                                     }
                                 </>
