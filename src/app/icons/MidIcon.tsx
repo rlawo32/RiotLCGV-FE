@@ -3,8 +3,8 @@ const MidIcon = (props : {type:string}) => {
 
     const customWidth:string = props.type === 'P' ? "28" : "38";
     const customHeight:string = props.type === 'P' ? "28" : "38";
-    const customMainColor:string = props.type === 'P' ? "#54C8E8" : "#C1A371";
-    const customSubColor:string = props.type === 'P' ? "#515163" : "#6E5A2F";
+    const customMainColor:string = props.type === 'P' ? "#54C8E8" : props.type === 'L' ? "#7649ff" : "#C1A371";
+    const customSubColor:string = props.type === 'P' ? "#515163" : props.type === 'L' ? "#3c3d68" : "#6E5A2F";
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill={customMainColor} width={customWidth} height={customHeight} viewBox="0 0 26 26">
