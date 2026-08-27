@@ -6,7 +6,7 @@ import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faShuffle as icon_shuffle, faGamepad as icon_latest, faUsers as icon_player,
-    faScroll as icon_history, faTrophy as icon_ranking
+    faScroll as icon_history, faTrophy as icon_ranking, faClipboardList as icon_patch
 } from "@fortawesome/free-solid-svg-icons";
 
 const MainSidebar = (props : {selectView:number, changeView:any}) => {
@@ -50,7 +50,7 @@ const MainSidebar = (props : {selectView:number, changeView:any}) => {
                     플레이어
                 </button>
                 <button onClick={() => btnClick(4)} ref={(btn:any) => (btnRef.current[4] = btn)}>
-                    <FontAwesomeIcon icon={icon_shuffle} className="btn_icon"/>
+                    <FontAwesomeIcon icon={icon_patch} className="btn_icon"/>
                     패치 노트
                 </button>
                 <button onClick={() => btnClick(5)} ref={(btn:any) => (btnRef.current[5] = btn)}>
