@@ -12,6 +12,7 @@ import MainSidebar from "./main_sidebar";
 import MatchShuffle from "./match_shuffle";
 import MatchPlayer from "./match_player";
 import PatchNote from "./patch_note";
+import MatchPlayerV2 from "./match_player_v2";
 
 const MainView = () => {
     const searchParams = useSearchParams();
@@ -53,7 +54,7 @@ const MainView = () => {
                     selectView === 0 ? <MatchLatestHistory /> :
                     selectView === 1 ? <MatchList /> :
                     selectView === 2 ? <MatchRanking /> : 
-                    selectView === 3 ? <MatchPlayer directPlayer={viewPlayerParam} /> : 
+                    selectView === 3 ? <MatchPlayerV2 directPlayer={viewPlayerParam} /> : 
                     selectView === 4 ? <PatchNote /> : 
                     selectView === 5 ? <MatchShuffle /> : <></>
                 }
