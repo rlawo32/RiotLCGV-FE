@@ -267,7 +267,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 270px;
+            width: ${({$type}) => $type === 'V2' ? "300px" : "270px"};
         }
         width: ${({$type}) => $type === 'P' ? "670px" : "100%"};
         margin: 5px 3px;
@@ -687,6 +687,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         .lcg_kda {
             // mobile_view
             @media (max-width: 480px) {
+                width: 130px;
                 padding: 0;  
             }
             width: 180px;
@@ -830,6 +831,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         .lcg_acc {
             // mobile_view
             @media (max-width: 480px) {
+                width: 35px;
                 padding: 0;
             }
 

@@ -8,15 +8,15 @@ const IconStyle = styled('div')<{$rank:string}>`
         margin: 0 auto;
     }
     @media (max-width: 768px) {
-        height: 11px;
-        padding: 0 4px;
         margin: 0 2px 1px 3px;
-        font-size: .75rem;
-        line-height: 11px;
     }
     // mobile_view
     @media (max-width: 480px) {
+        height: 11px;
+        padding: 0 4px;
         margin: 0;
+        font-size: .75rem;
+        line-height: 11px;
     }
     height: 15px;
     width: fit-content;

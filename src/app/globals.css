@@ -17,6 +17,24 @@ body {
   overflow-x: hidden;
   color: white;
   font-size: 65%;
+  /* iOS landscape auto text inflation guard */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Keep body text legible on small screens */
+@media (max-width: 768px) {
+  html,
+  body {
+    font-size: 68%;
+  }
+}
+
+@media (max-width: 480px) {
+  html,
+  body {
+    font-size: 72%;
+  }
 }
 
 body {
@@ -49,4 +67,11 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }

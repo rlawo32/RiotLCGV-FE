@@ -39,10 +39,12 @@ const PlayerChampion = (props : PlayerChampionProps) => {
                                     <Tool.LcgRowNumCalc $idx={idx+1}>
                                         {idx+1}
                                     </Tool.LcgRowNumCalc>
-                                    <img src={"https://img.rabbitgang-img.shop/champion/" + name + ".webp"} 
-                                    alt={"champion"} className="champion_img" loading="lazy"/>
-                                    <div>
-                                        {name}
+                                    <div className="champion_info">
+                                        <img src={"https://img.rabbitgang-img.shop/champion/" + name + ".webp"} 
+                                        alt={"champion"} className="champion_img" loading="lazy"/>
+                                        <div>
+                                            {name}
+                                        </div>
                                     </div>
                                     {championInfoMessage(kill, death, assist, win, fail).map((info, index) => (
                                         <Tool.InfoMessageBox key={index} $flag={info.flag}>
@@ -73,7 +75,7 @@ const PlayerChampion = (props : PlayerChampionProps) => {
                                         <span>{play}전</span><span>{win}승</span><span>{fail}패</span>
                                     </div>
                                     <div className="match_calc">
-                                        <div>승률 - {rate}%</div>
+                                        <div><span>승률 - </span>{rate}%</div>
                                         <Tool.LcgWinningGraph $rate={rate}>
                                             <div className="rate_graph" />
                                         </Tool.LcgWinningGraph>

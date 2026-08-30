@@ -397,18 +397,20 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                                             <img src={imageMainUrl + "profileicon/" + item.icon + imageExtension} alt="opponent_icon" />
                                                             <div className="opponent_nickname">{item.nickname.split("#")[0]}</div>
                                                         </div>
-                                                        <div className="relative_item relative_center">
-                                                            <span><span className="relative_play">{item.play}</span>전</span>
-                                                            <span><span className="relative_win">{item.win}</span>승</span>
-                                                            <span><span className="relative_fail">{item.fail}</span>패</span>
-                                                        </div>
-                                                        <div className="relative_item relative_right">
-                                                            <div className="relative_rate">
-                                                                승률 {rate}%
+                                                        <div className="relative_info">
+                                                            <div className="relative_item relative_center">
+                                                                <span><span className="relative_play">{item.play}</span>전</span>
+                                                                <span><span className="relative_win">{item.win}</span>승</span>
+                                                                <span><span className="relative_fail">{item.fail}</span>패</span>
                                                             </div>
-                                                            <Style.LcgWinningGraph $rate={rate}>
-                                                                <div className="rate_graph" />
-                                                            </Style.LcgWinningGraph>
+                                                            <div className="relative_item relative_right">
+                                                                <div className="relative_rate">
+                                                                    승률 {rate}%
+                                                                </div>
+                                                                <Style.LcgWinningGraph $rate={rate}>
+                                                                    <div className="rate_graph" />
+                                                                </Style.LcgWinningGraph>
+                                                            </div>
                                                         </div>
                                                     </Style.MatchPlayerRelativeListBox>
                                                 )

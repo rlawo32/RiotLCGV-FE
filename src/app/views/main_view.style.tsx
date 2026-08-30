@@ -4,28 +4,15 @@ export const MainView = styled('div')`
     position: relative;
     // Main_Height
     @media (max-height: 910px) {
-        height: 100%;
+        min-height: 100%;
     }
     // Main_Height
 
     // Main_Width
-    @media (max-width: 1440px) {
-        width: 1280px;
-    }
-    @media (max-width: 1280px) {
-        width: 1024px;
-    }
-    @media (max-width: 1024px) {
-        width: 768px;
-    }
-    @media (max-width: 768px) {
-        width: 480px;
-    }
-    // mobile_view
+    width: min(calc(100% - 24px), 1440px);
     @media (max-width: 480px) {
-        width: 320px;
+        width: calc(100% - 12px);
     }
-    width: 1440px;
     // Main_Width
 
     margin: 0 auto;
@@ -54,14 +41,25 @@ export const MainView = styled('div')`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        @media (max-width: 768px) {
-            padding: 25px 10px;
-        }
-        height: 100%;
+        min-width: 0;
+        min-height: 100%;
         padding: 5px 30px;
         border-radius: 7px;
         background: #0d0d25;
         z-index: 1;
+
+        @media (max-width: 1024px) {
+            min-width: 1024px;
+            padding: 5px 20px;
+            overflow-x: auto;
+        }
+        @media (max-width: 768px) {
+            min-width: 0;
+            padding: 16px 12px;
+        }
+        @media (max-width: 480px) {
+            padding: 12px 8px;
+        }
     }
 
     @keyframes steam {

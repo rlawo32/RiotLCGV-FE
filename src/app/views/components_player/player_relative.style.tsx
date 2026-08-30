@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { textColors, purpleColors, bgColors, borderColors } from "./match_player_theme";
+import { textColors, purpleColors, bgColors, borderColors, media } from "./match_player_theme";
 
 export const PlayerRelative = styled('div')`
     position: relative;
@@ -72,6 +72,45 @@ export const PlayerRelative = styled('div')`
             }
         }
     }
+
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+        padding: 12px 16px;
+    }
+
+    ${media.tablet} {
+        height: auto;
+        padding: 10px 10px;
+        border-radius: 12px;
+
+        .relative_body {
+            height: auto;
+            gap: 8px;
+            padding: 12px 0;
+
+            .relative_one {
+                gap: 6px;
+
+                .one_center {
+                    width: 44px;
+                    font-size: 1.8rem;
+
+                    svg { width: 17px; height: 17px; }
+                }
+            }
+        }
+    }
+
+    ${media.mobile} {
+        padding: 8px 6px;
+
+        .relative_head .relative_select_lane { gap: 4px; }
+
+        .relative_body .relative_one .one_center {
+            width: 36px;
+            font-size: 1.5rem;
+        }
+    }
 `;
 
 export const RelativeSelectLaneBox = styled('div')<{$selected:boolean}>`
@@ -99,6 +138,32 @@ export const RelativeSelectLaneBox = styled('div')<{$selected:boolean}>`
 
     &:hover {
         border-color: ${borderColors.purple_blue};
+    }
+
+    /* ---------- responsive : 라인 6개를 한 줄 -> 3개씩 두 줄 ---------- */
+    ${media.laptop} {
+        height: 52px;
+        padding: 12px 16px;
+        font-size: 1.2rem;
+
+        svg { width: 21px; height: 21px; }
+    }
+
+    ${media.tablet} {
+        flex: 0 0 calc((100% - 10px) / 3);
+        height: 46px;
+        gap: 4px;
+        padding: 8px 6px;
+        font-size: 1.15rem;
+
+        svg { width: 19px; height: 19px; }
+    }
+
+    ${media.mobile} {
+        height: 42px;
+        font-size: 1.05rem;
+
+        svg { width: 16px; height: 16px; }
     }
 `;
 
@@ -136,42 +201,156 @@ export const RelativeListItem = styled('div')<{$type:string}>`
         display: flex;
         align-items: center;
         gap: 12px;
-        width: 450px;
+        width: 45%;
+        min-width: 0;
         font-size: 1.4rem;
         
         .item_rownum {
-            
+            flex-shrink: 0;
         }
 
-        img {
-            width: 40px;
-            height: 40px;
-            border: 2px solid ${borderColors.purple_default};
-            border-radius: 50%;
+        .relative_info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            img {
+                flex-shrink: 0;
+                width: 40px;
+                height: 40px;
+                border: 2px solid ${borderColors.purple_default};
+                border-radius: 50%;
+            }
+
+            .opponent_nickname {
+                min-width: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .relative_message {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
     }
 
-    .item_center {
-        position: relative;
+    .item_info {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-        gap: 6px;
-        width: 200px;
-        font-size: 1.4rem;
+        width: 100%;
 
-        .relative_play { color: ${textColors.default}; padding-right: 1px; }
-        .relative_win { color: ${textColors.win}; padding-right: 1px; }
-        .relative_fail { color: ${textColors.fail}; padding-right: 1px; }
+        .item_center {
+            position: relative;
+            display: flex;
+            width: 40%;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 6px;
+            font-size: 1.4rem;
+
+            .relative_play { color: ${textColors.default}; padding-right: 1px; }
+            .relative_win { color: ${textColors.win}; padding-right: 1px; }
+            .relative_fail { color: ${textColors.fail}; padding-right: 1px; }
+        }
+
+        .item_right {
+            display: flex;
+            width: 60%;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            font-size: 1.3rem;
+        }
     }
 
-    .item_right {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        width: 250px;
-        font-size: 1.3rem;
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+        gap: 16px;
+        padding: 8px 16px;
+
+        .item_left { width: 60%; font-size: 1.3rem; }
+        .item_center { font-size: 1.25rem; }
+        .item_right { font-size: 1.2rem; }
+    }
+
+    ${media.tablet} {
+        justify-content: space-between;
+        height: 75px;
+        gap: 6px 12px;
+        padding: 10px 14px;
+        border-radius: 12px;
+
+        .item_left {
+            gap: 2px;
+            width: 45%;
+            font-size: 1rem;
+
+            .relative_info {
+                flex-direction: column;
+                width: 70px;
+
+                .opponent_nickname {
+                    width: 100%;
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .relative_message {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 5px;
+            }
+        }
+
+        .item_info {
+            width: 60%;
+            gap: 8px;
+
+            .item_center {
+                justify-content: center;
+                gap: 3px;
+                width: 45%;
+                font-size: 1.2rem;
+            }
+
+            .item_right {
+                width: 50%;
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    ${media.mobile} {
+        padding: 10px;
+
+        .item_left {
+            width: 60%;
+            font-size: 1rem;
+
+            .relative_info { margin-left: 5px; }
+            img { width: 28px; height: 28px; }
+        }
+
+        .item_info {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 40%;
+        
+            .item_center { 
+                width: fit-content;
+                font-size: 1.1rem; 
+            }
+            .item_right { 
+                width: 100%;
+                font-size: 1.05rem; 
+            }
+        }
     }
 `;
 
@@ -181,7 +360,8 @@ export const RelativeListCard = styled('div')<{$type:string}>`
     align-items: center;
     justify-content: ${({$type}) => $type === 'P' ? "flex-end" : "flex-start"};
     gap: 30px;
-    width: 50%;
+    flex: 1 1 0;
+    min-width: 0;
     height: 80px;
     padding: 8px 24px;
     border: none;
@@ -191,17 +371,25 @@ export const RelativeListCard = styled('div')<{$type:string}>`
     font-size: 1.5rem;
     font-weight: 600;
 
-    img {
-        width: 50px;
-        height: 50px;
-        border-radius: 16px;
-    }
+    .one_player {
+        display: flex;
+        align-items: center;
+        justify-content: ${({$type}) => $type === 'P' ? "flex-end" : "flex-start"};
+        gap: 10px;
+        width: 50%;
 
-    .one_nickname {
-        width: 30%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+        }
+
+        .one_nickname {
+            text-align: ${({$type}) => $type === 'P' ? "right" : "left"};
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
     .one_win {
@@ -213,7 +401,54 @@ export const RelativeListCard = styled('div')<{$type:string}>`
     .one_compare {
         width: 15%;
         color: #FFD75C;
-        font-size: 2.5rem;
+        font-size: 2.3rem;
         text-align: center;
+    }
+
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+        gap: 16px;
+        padding: 8px 16px;
+        font-size: 1.3rem;
+
+        .one_win { font-size: 1.5rem; }
+        .one_compare { font-size: 2rem; }
+    }
+
+    ${media.tablet} {
+        justify-content: space-between;
+        gap: 5px;
+        height: 60px;
+        min-height: 64px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+
+        .one_player { 
+            flex-direction: ${({$type}) => $type === 'P' ? "column-reverse" : "column"};            
+            gap: 4px;
+            width: 60px;
+            font-size: 1rem;
+
+            img {
+                flex-shrink: 0;
+                width: 32px;
+                height: 32px;
+                border-radius: 12px;
+            }
+        }
+        .one_win { width: 50px; font-size: 1.4rem; }
+        .one_compare { width: 50px; font-size: 1.6rem; }
+    }
+
+    ${media.mobile} {
+        gap: 6px;
+        padding: 8px;
+        font-size: 1.05rem;
+
+        img { width: 30px; height: 30px; border-radius: 9px; }
+
+        .one_win { font-size: 1.2rem; }
+        .one_compare { font-size: 1.2rem; }
     }
 `;

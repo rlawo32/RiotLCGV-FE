@@ -36,3 +36,18 @@ export const purpleColors = {
     blue: "#6265f5",
     best: "#7649ff",
 };
+
+// ============================================================
+// Responsive breakpoints
+//   wide   : ~1280px  (small desktop)
+//   laptop : ~1024px  (large tablet / small laptop)
+//   tablet : ~768px   (tablet)
+//   mobile : ~480px   (phone)
+// ============================================================
+export const media = {
+    wide: "@media (max-width: 1280px)",
+    laptop: "@media (max-width: 1024px)",
+    tablet: "@media (max-width: 768px)",
+    mobile: "@media (max-width: 480px)",
+    hover: "@media (hover: hover) and (pointer: fine)",
+};

@@ -108,10 +108,12 @@ const PlayerRelative = (props : PlayerRelativeProps) => {
                                                 <div className="one_win">
                                                     {item.win}승
                                                 </div>
-                                                <div className="one_nickname">
-                                                    {props.personNickname.split("#")[0]}
+                                                <div className="one_player">
+                                                    <div className="one_nickname">
+                                                        {props.personNickname.split("#")[0]}
+                                                    </div>
+                                                    <img src={props.imageMainUrl + "profileicon/" + props.personIcon + props.imageExtension} alt="person_icon" />
                                                 </div>
-                                                <img src={props.imageMainUrl + "profileicon/" + props.personIcon + props.imageExtension} alt="person_icon" />
                                             </Style.RelativeListCard>
                                             <div className="one_center">
                                                 {LaneIcon(props.selectLane, false)}
@@ -123,9 +125,11 @@ const PlayerRelative = (props : PlayerRelativeProps) => {
                                                 </div>
                                             </div>
                                             <Style.RelativeListCard $type={"O"}>
-                                                <img src={props.imageMainUrl + "profileicon/" + item.lcg_opponent_icon + props.imageExtension} alt="opponent_icon" />
-                                                <div className="one_nickname">
-                                                    {item.lcg_opponent_nickname.split("#")[0]}
+                                                <div className="one_player">
+                                                    <img src={props.imageMainUrl + "profileicon/" + item.lcg_opponent_icon + props.imageExtension} alt="opponent_icon" />
+                                                    <div className="one_nickname">
+                                                        {item.lcg_opponent_nickname.split("#")[0]}
+                                                    </div>
                                                 </div>
                                                 <div className="one_win">
                                                     {item.fail}승
@@ -154,26 +158,32 @@ const PlayerRelative = (props : PlayerRelativeProps) => {
                                                 <Tool.LcgRowNumCalc $idx={idx+1}>
                                                     {idx+1}
                                                 </Tool.LcgRowNumCalc>
-                                                <img src={props.imageMainUrl + "profileicon/" + icon + props.imageExtension} alt="opponent_icon" />
-                                                <div className="opponent_nickname">
-                                                    {nickname.split("#")[0]}
+                                                <div className="relative_info">
+                                                    <img src={props.imageMainUrl + "profileicon/" + icon + props.imageExtension} alt="opponent_icon" />
+                                                    <div className="opponent_nickname">
+                                                        {nickname.split("#")[0]}
+                                                    </div>
                                                 </div>
-                                                {relativeInfoMessage(win, fail, props.totalGameCount).map((info, index) => (
-                                                    <Tool.InfoMessageBox key={index} $flag={info.flag}>
-                                                        {info.message}
-                                                    </Tool.InfoMessageBox>
-                                                ))}
+                                                <div className="relative_message">
+                                                    {relativeInfoMessage(win, fail, props.totalGameCount).map((info, index) => (
+                                                        <Tool.InfoMessageBox key={index} $flag={info.flag}>
+                                                            {info.message}
+                                                        </Tool.InfoMessageBox>
+                                                    ))}
+                                                </div>
                                             </div>
-                                            <div className="item_center">
-                                                <span><span className="relative_play">{item.play}</span>전</span>
-                                                <span><span className="relative_win">{item.win}</span>승</span>
-                                                <span><span className="relative_fail">{item.fail}</span>패</span>
-                                            </div>
-                                            <div className="item_right">
-                                                승률 - {rate}%
-                                                <Tool.LcgWinningGraph $rate={rate}>
-                                                    <div className="rate_graph" />
-                                                </Tool.LcgWinningGraph>
+                                            <div className="item_info">
+                                                <div className="item_center">
+                                                    <span><span className="relative_play">{item.play}</span>전</span>
+                                                    <span><span className="relative_win">{item.win}</span>승</span>
+                                                    <span><span className="relative_fail">{item.fail}</span>패</span>
+                                                </div>
+                                                <div className="item_right">
+                                                    승률 - {rate}%
+                                                    <Tool.LcgWinningGraph $rate={rate}>
+                                                        <div className="rate_graph" />
+                                                    </Tool.LcgWinningGraph>
+                                                </div>
                                             </div>
                                         </Style.RelativeListItem>
                                         {

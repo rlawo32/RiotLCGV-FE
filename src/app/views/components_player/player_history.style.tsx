@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { textColors, bgColors, borderColors } from "./match_player_theme";
+import { textColors, bgColors, borderColors, media } from "./match_player_theme";
 
 export const PlayerHistory = styled('div')`
     position: relative;
@@ -20,6 +20,23 @@ export const PlayerHistory = styled('div')`
         gap: 2px;
         width: 100%;
         height: 100%;
+    }
+
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+        padding: 12px 16px;
+    }
+
+    ${media.tablet} {
+        height: auto;
+        padding: 10px 10px;
+        border-radius: 8px;
+
+        .history_list { height: auto; }
+    }
+
+    ${media.mobile} {
+        padding: 8px 6px;
     }
 `;
 
@@ -78,6 +95,7 @@ export const PlayerHistoryListItem = styled('div')<{$result:boolean}>`
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
+        width: 270px;
         height: 100%;
 
         .history_summoner {
@@ -85,6 +103,7 @@ export const PlayerHistoryListItem = styled('div')<{$result:boolean}>`
             align-items: center;
             justify-content: flex-start;
             gap: 30px;
+            width: 100%;
             height: 100%;
 
             .summoner_info {
@@ -162,6 +181,7 @@ export const PlayerHistoryListItem = styled('div')<{$result:boolean}>`
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                width: 100px;
 
                 .kda_view {
                     font-size: 1.6rem;
@@ -187,6 +207,7 @@ export const PlayerHistoryListItem = styled('div')<{$result:boolean}>`
             display: flex;
             align-items: center;
             gap: 2px;
+            width: 270px;
             padding: 3px 0 0 3px;
 
             .item_image {
@@ -210,6 +231,9 @@ export const PlayerHistoryListItem = styled('div')<{$result:boolean}>`
     }
 
     .history_right {
+        @media (max-width: 580px) {
+            display: none;
+        }
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -287,18 +311,126 @@ export const PlayerHistoryListItem = styled('div')<{$result:boolean}>`
             pointer-events: none;
         }
     }
+
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+        gap: 10px;
+        padding: 6px 36px 6px 16px;
+
+        .history_player_list .players_info .info_name {
+            width: 44px;
+        }
+    }
+
+    ${media.tablet} {
+        min-height: 92px;
+        gap: 10px;
+        padding: 8px 30px 8px 20px;
+
+        .history_left {
+            width: auto;
+            min-width: 58px;
+
+            .history_result { font-size: 1.5rem; }
+            .history_date,
+            .history_duration { white-space: nowrap; }
+        }
+
+        .history_center .history_summoner { gap: 14px; }
+
+        .history_player_list { display: none; }
+
+        .history_right { width: 100px; }
+    }
+
+    ${media.mobile} {
+        height: auto;
+        gap: 12px;
+        padding: 4px 26px 4px 16px;
+
+        .item_detail { width: 22px; }
+
+        .history_left {
+            justify-content: space-between;
+            gap: 8px;
+            min-width: 54px;
+
+            .history_result { font-size: 1.35rem; }
+            .history_date { font-size: 1.05rem; }
+            .history_duration { font-size: 1rem; }
+        }
+
+        .history_center {
+            height: auto;
+
+            .history_summoner {
+                gap: 8px;
+
+                .summoner_info .history_champion {
+                    align-items: center;
+
+                    img {
+                        width: 45px;
+                        height: 45px;
+                    }
+
+                    .champion_level {
+                        font-size: .8rem;
+                    }
+                }
+
+                .summoner_info .history_spell {
+                    justify-content: center;
+
+                    img {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+
+                .summoner_info .history_perk {
+                    justify-content: center;
+
+                    .perk_image1 {
+                        height: 22px;
+                        width: 22px;
+                    }
+
+                    .perk_image2 {
+                        height: 18px;
+                        width: 18px;
+                    }
+                }
+
+                .history_kda {
+                    height: 100%;
+                }
+                .history_kda .kda_view { font-size: 1.35rem; }
+                .history_kda .kda_calc { font-size: 1rem; }
+            }
+
+            .history_item {
+                gap: 1px;
+
+                .item_image,
+                .empty_image {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .history_mvp { margin-left: 3px; }
+            }
+        }
+
+        .history_right {
+            display: none;
+        }
+    }
 `;
 
 export const PlayerHistoryBox = styled('div')<{$result:boolean}>`
-    @media (max-width: 768px) {
-        height: ${({$result}) => $result ? 1050 : 0}px;
-    }
-    // mobile_view
-    @media (max-width: 480px) {
-        height: ${({$result}) => $result ? 880 : 0}px;
-    }
-    margin-bottom: 5px;
     width: 100%;
-    height: ${({$result}) => $result ? 830 : 0}px;
+    margin-bottom: ${({$result}) => $result ? 5 : 0}px;
+    height: ${({$result}) => $result ? 'auto' : '0'};
     overflow: hidden;
 `;

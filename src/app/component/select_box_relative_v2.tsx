@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 
 import { PlayerListData } from "@/app/views/components_player/match_player_types";
-import { textColors, purpleColors, bgColors, borderColors } from "@/app/views/components_player/match_player_theme";
+import { textColors, purpleColors, bgColors, borderColors, media } from "@/app/views/components_player/match_player_theme";
 
 const SelectBoxRelativeV2Style = styled('div')`
     position: relative;
@@ -121,6 +121,36 @@ const SelectBoxRelativeV2Style = styled('div')`
         color: #ae90df;
         font-weight: 700;
         opacity: 1;
+    }
+
+    /* ---------- responsive ---------- */
+    ${media.tablet} {
+        button {
+            height: 38px;
+            padding: 6px 14px;
+            font-size: 1.15rem;
+        }
+
+        .select_box.show_select { height: 190px; }
+        .select_list.show_select { height: 172px; }
+
+        ul.select_list li {
+            padding: 6px 10px;
+            font-size: 1.15rem;
+        }
+    }
+
+    ${media.mobile} {
+        button {
+            height: 36px;
+            padding: 6px 12px;
+            font-size: 1.1rem;
+        }
+
+        .select_box.show_select { height: 168px; }
+        .select_list.show_select { height: 150px; }
+
+        ul.select_list li { font-size: 1.1rem; }
     }
 `;
 
