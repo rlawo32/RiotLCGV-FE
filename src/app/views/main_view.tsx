@@ -13,6 +13,7 @@ import MatchShuffle from "./match_shuffle";
 import MatchPlayer from "./match_player";
 import PatchNote from "./patch_note";
 import MatchPlayerV2 from "./match_player_v2";
+import MainHeader from "./main_header";
 
 const MainView = () => {
     const searchParams = useSearchParams();
@@ -48,7 +49,8 @@ const MainView = () => {
     return (
         <Style.MainView>
             <div className="main_container">
-                <MainSidebar selectView={selectView} changeView={changeViewHandler} />
+                {/* <MainSidebar selectView={selectView} changeView={changeViewHandler} /> */}
+                <MainHeader selectView={selectView} changeView={changeViewHandler} />
                 {
                     // <ErrorPageRes errorCode={""} errorMessage={""} />
                     selectView === 0 ? <MatchLatestHistory /> :

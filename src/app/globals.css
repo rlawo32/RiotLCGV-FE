@@ -14,7 +14,7 @@ html,
 body {
   height: 100%;
   /* max-width: 100vw; */
-  overflow-x: hidden;
+  overflow-x: auto;
   color: white;
   font-size: 65%;
   /* iOS landscape auto text inflation guard */
