@@ -98,15 +98,9 @@ const SelectBoxRelativeV2Style = styled('div')`
         padding: 6px 12px;
         margin: 3px 0;
         border-radius: 8px;
-        color: ${textColors.main};
         font-size: 1.2rem;
         text-align: left;
         line-height: 1.4em;
-        opacity: 0.7;
-
-        &:hover {
-            background-color: ${bgColors.card_hover};
-        }
     }
 
     .select_box.show_select {
@@ -128,10 +122,23 @@ const SelectBoxRelativeV2Style = styled('div')`
         font-weight: 700;
         opacity: 1;
     }
-`
+`;
+
+const RelativeListBox = styled('li')<{$result:boolean}>`
+    position: relative;
+    background-color: ${({$result}) => $result ? `${purpleColors.blue}` : `${bgColors.card_active}`};
+    color: ${({$result}) => $result ? `${textColors.main}` : `${textColors.default}`};
+    font-weight: ${({$result}) => $result ? 700 : 600};
+    opacity: ${({$result}) => $result ? 1 : 0.7};
+
+    &:hover {
+        background-color: ${({$result}) => $result ? `${purpleColors.blue}` : `${bgColors.card_hover}`};
+    }
+`;
 
 interface PlayerRelativeSelectBoxProps {
     playerList:PlayerListData[],
+    selectPlayer: string,
     selectOpponent: string,
     setSelectOpponent: React.Dispatch<React.SetStateAction<string>>,
     selectRelativeIdx: number,
@@ -141,42 +148,32 @@ interface PlayerRelativeSelectBoxProps {
 const SelectBoxRelativeV2 = (props : PlayerRelativeSelectBoxProps) => {
     const selectBox:any = useRef<any>(null);
     const selectList:any = useRef<any>(null);
-    const selectItem:any = useRef<any>([]);
 
     const [isSelectBoxShow, setIsSelectBoxShow] = useState<boolean>(false);
-        
+
     const customSelectBox = () => {
         const result:any[] = [];
 
-        for(let i:number=0; i<props.playerList.length; i++) {
+        for(let i:number=0; i<=props.playerList.length; i++) {
             if(i === 0) {
-                result.push(<li key={"player_all"} value={""}
-                                onClick={() => onClickSelectItem(i, "")}
-                                ref={(li:any) => (selectItem.current[i] = li)}>
-                    전체</li>)
+                result.push(<RelativeListBox key={"player_all"} value={""}
+                                onClick={() => props.setSelectOpponent("")}
+                                $result={props.selectOpponent === ""}>
+                    전체</RelativeListBox>)
             } else {
-                result.push(<li key={"player_" + i} value={props.playerList[i-1].lcg_summoner_puuid}
-                                onClick={() => onClickSelectItem(i, props.playerList[i-1].lcg_summoner_puuid)}
-                                ref={(li:any) => (selectItem.current[i] = li)}>
-                    {props.playerList[i-1].lcg_summoner_name}</li>)
+                if(props.selectPlayer !== props.playerList[i-1].lcg_summoner_puuid) {
+                    result.push(<RelativeListBox key={"player_" + i} value={props.playerList[i-1].lcg_summoner_puuid}
+                                    onClick={() => props.setSelectOpponent(props.playerList[i-1].lcg_summoner_puuid)}
+                                    $result={props.selectOpponent === props.playerList[i-1].lcg_summoner_puuid}>
+                        {props.playerList[i-1].lcg_summoner_name}</RelativeListBox>)
+                } 
             }
         }
         return result;
     }
 
-    const onClickSelectItem = (idx:number, oppid:string) => {
-        setIsSelectBoxShow(false);
-        props.setSelectRelativeIdx(idx);
-        props.setSelectOpponent(oppid);
-
-        selectItem.current[idx].className = selectItem.current[idx].className.replace('rs_active', '');
-        selectItem.current[idx].className += 'rs_active';
-
-        for(let i:number=0; i<selectItem.current.length; i++) {
-            if(i !== idx) {
-                selectItem.current[i].className = selectItem.current[i].className.replace('rs_active', '');
-            }
-        }
+    const opponentNickname = (oppid:string) => {
+        return props.playerList.find((item) => item.lcg_summoner_puuid === oppid)?.lcg_summoner_name;
     }
 
     useEffect(() => {
@@ -197,11 +194,15 @@ const SelectBoxRelativeV2 = (props : PlayerRelativeSelectBoxProps) => {
         }
     }, [isSelectBoxShow])
 
+    useEffect(() => {
+        setIsSelectBoxShow(false);
+    }, [props.selectOpponent])
+
     return (
         <SelectBoxRelativeV2Style>
             <button onClick={() => setIsSelectBoxShow(!isSelectBoxShow)}>
                 {
-                    props.selectRelativeIdx === 0 ? "전체" : props.playerList[props.selectRelativeIdx-1].lcg_summoner_name
+                    props.selectOpponent.length > 0 ? opponentNickname(props.selectOpponent) : "전체"
                 }
             </button>
             <div className="select_box" ref={selectBox}>

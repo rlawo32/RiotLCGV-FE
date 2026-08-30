@@ -133,7 +133,7 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                             <div className="info_left">
                                 <div className="info_left_a">
                                     <img src={imageMainUrl + "profileicon/" + selectPlayerData[0].lcg_summoner_icon + imageExtension} alt="player_icon" />
-                                    <div className="info_level"></div>
+                                    <div className="info_level">{selectPlayerData[0].lcg_summoner_level}</div>
                                 </div>
                                 <div className="info_left_b">
                                     <div className="info_name">
@@ -440,7 +440,7 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                         selectCategory === 'R' ? 
                             !!lcgPlayerData && !!selectPlayerData && !!selectPlayerRelative ?
                                 <PlayerRelative totalGameCount={totalGameCount} playerList={lcgPlayerData} dataList={selectPlayerRelative} 
-                                                selectOpponent={selectOpponent} setSelectOpponent={setSelectOpponent} 
+                                                selectPlayer={selectPlayer} selectOpponent={selectOpponent} setSelectOpponent={setSelectOpponent} 
                                                 selectLane={selectLane} setSelectLane={setSelectLane}
                                                 pageRelative={pageRelative} setPageRelative={setPageRelative}
                                                 selectRelativeIdx={selectRelativeIdx} setSelectRelativeIdx={setSelectRelativeIdx}
