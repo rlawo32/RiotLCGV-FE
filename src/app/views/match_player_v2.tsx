@@ -15,6 +15,7 @@ import { getLcgPlayerDataQuery, getSelectLcgPlayerChampionQuery,
 import { getLcgMatchLogTotalQuery } from "../queries/getLcgMatchLogQuery";
 
 import { getWinningRateCalc, getGameDuration, getCurrentTimeCalc } from "@/app/component/match_tool";
+import { scrollToTop } from "../component/useIsMobile";
 import { LaneIcon, LaneBest, unrankConv, lineDataExtract, RankIcon } from "./components_player/match_player_tool";
 import { CategoryData, PositionData, ChampionData, RelativeData } from "./components_player/match_player_types";
 
@@ -87,7 +88,8 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
         setSelectGameId(0);
         setSelectRelativeIdx(0);
         setSelectOpponent("");
-        setSelectLane("")
+        setSelectLane("");
+        scrollToTop();
     }, [selectCategory])
 
     useEffect(() => {
@@ -236,7 +238,7 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                 <div className="detail_item detail_history">
                                     <div className="detail_title">
                                         <div className="title">최근 전적</div>
-                                        <div className="more" onClick={() => setSelectCategory("H")}>더 보기</div>
+                                        <div className="more" onClick={() => {setSelectCategory("H");}}>더 보기</div>
                                     </div>
                                     <div className="history_list">
                                         {!!selectPlayerHistory ?
@@ -254,22 +256,22 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                                                 <div className="summoner_info">
                                                                     <div className="history_champion">
                                                                         <img src={imageMainUrl + "champion/" + item.lcg_champion_name + imageExtension}
-                                                                            alt={"champion"} className="champion_image"/>
+                                                                            alt={"champion"} className="champion_image" loading="lazy"/>
                                                                         <div className="champion_level">
                                                                             {item.lcg_champion_level}
                                                                         </div>
                                                                     </div>
                                                                     <div className="history_spell">
                                                                         <img src={imageMainUrl + "spell/" + item.lcg_spell_name_1 + imageExtension} 
-                                                                        alt={"spell1"} className="lcg_image spell_image" />
+                                                                        alt={"spell1"} className="lcg_image spell_image" loading="lazy" />
                                                                         <img src={imageMainUrl + "spell/" + item.lcg_spell_name_2 + imageExtension} 
-                                                                        alt={"spell2"} className="lcg_image spell_image" />
+                                                                        alt={"spell2"} className="lcg_image spell_image" loading="lazy" />
                                                                     </div>
                                                                     <div className="history_perk">
                                                                         <img src={imageSubUrl + item.lcg_perk_name_1 + imageExtension} 
-                                                                        alt={"perk1"} className="lcg_image perk_image1" />
+                                                                        alt={"perk1"} className="lcg_image perk_image1" loading="lazy" />
                                                                         <img src={imageSubUrl + item.lcg_perk_name_2 + imageExtension} 
-                                                                        alt={"perk2"} className="lcg_image perk_image2" />
+                                                                        alt={"perk2"} className="lcg_image perk_image2" loading="lazy" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="history_kda">
@@ -298,7 +300,8 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                                                     const itemId = item[`lcg_item_id_${idx + 1}` as keyof typeof item];
 
                                                                     return itemId !== 0 ? (
-                                                                        <img key={idx} src={imageMainUrl + "item/" + itemId + imageExtension} alt={`item${idx + 1}`} className="item_image" />
+                                                                        <img key={idx} src={imageMainUrl + "item/" + itemId + imageExtension} 
+                                                                             alt={`item${idx + 1}`} className="item_image" loading="lazy" />
                                                                     ) : (
                                                                         <div key={idx} className="item_image empty_image" />
                                                                     );
@@ -341,7 +344,7 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                 <div className="detail_item detail_champion">
                                     <div className="detail_title">
                                         <div className="title">모스트 챔피언</div>
-                                        <div className="more" onClick={() => setSelectCategory("C")}>더 보기</div>
+                                        <div className="more" onClick={() => {setSelectCategory("C");}}>더 보기</div>
                                     </div>
                                     <div className="champion_most">
                                         {!!championList ?
@@ -385,7 +388,7 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                 <div className="detail_item detail_relative">
                                     <div className="detail_title">
                                         <div className="title">상대 전적</div>
-                                        <div className="more" onClick={() => setSelectCategory("R")}>더 보기</div>
+                                        <div className="more" onClick={() => {setSelectCategory("R");}}>더 보기</div>
                                     </div>
                                     <div className="relative_most">
                                         {!!relativeList ?
@@ -394,7 +397,7 @@ const MatchPlayerV2 = (props:{directPlayer:string|null}) => {
                                                 return (
                                                     <Style.MatchPlayerRelativeListBox key={item.opponent}>
                                                         <div className="relative_item relative_left">
-                                                            <img src={imageMainUrl + "profileicon/" + item.icon + imageExtension} alt="opponent_icon" />
+                                                            <img src={imageMainUrl + "profileicon/" + item.icon + imageExtension} alt="opponent_icon" loading="lazy" />
                                                             <div className="opponent_nickname">{item.nickname.split("#")[0]}</div>
                                                         </div>
                                                         <div className="relative_info">

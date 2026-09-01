@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MainHeader = styled('div')`
     @media (max-width: 480px) {
         height: 42px;
+        margin: 0 auto 10px;
     }
     position: relative;
     width: 100%;

@@ -201,7 +201,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
         display: flex;
         align-items: center;
         gap: 12px;
-        width: 45%;
+        width: 50%;
         min-width: 0;
         font-size: 1.4rem;
         

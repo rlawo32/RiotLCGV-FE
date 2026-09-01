@@ -248,6 +248,10 @@ export const MatchPlayerHeader = styled('div')<{$most:string}>`
     ${media.mobile} {
         padding: 8px 6px 4px;
 
+        .player_list {
+            gap: 3px;
+        }
+
         .player_info {
             justify-content: flex-end;
             height: 220px;
@@ -339,20 +343,21 @@ export const MatchPlayerListBox = styled('div')<{$selected:boolean}>`
     }
 
     ${media.mobile} {
-        flex: 0 0 calc((100% - 5px) / 2);
-        width: calc(100% / 2);
-        gap: 6px;
+        flex: 0 0 calc((100% - 7px) / 3);
+        width: calc(100% / 3);
+        gap: 5px;
+        padding: 4px;
 
         img {
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
         }
 
         .box_right {
             gap: 2px;
 
-            .box_name { font-size: 1.15rem; }
-            .box_tier { font-size: .9rem; }
+            .box_name { font-size: .85rem; }
+            .box_tier { font-size: .7rem; }
         }
     }
 `;
@@ -397,7 +402,7 @@ export const MatchPlayerBody = styled('div')<{$category:string}>`
     .player_wrap {
         width: 100%;
         height: 100%;
-        min-height: ${({$category}) => $category === 'A' ? 450 : 780}px;
+        min-height: 450px;
     }
     
     .player_detail {
@@ -512,7 +517,6 @@ export const MatchPlayerBody = styled('div')<{$category:string}>`
 
         .player_wrap {
             height: auto;
-            min-height: 0;
         }
     }
 
@@ -655,8 +659,8 @@ export const MatchPlayerPosition = styled('div')<{$rate:number; $best:boolean;}>
     }
 
     ${media.tablet} {
-        flex: 0 0 calc((100% - 8px) / 3);
-        min-width: 0;
+        flex-wrap: wrap;
+        min-width: 200px;
         min-height: 78px;
         gap: 6px;
         padding: 6px 8px;
@@ -683,8 +687,16 @@ export const MatchPlayerPosition = styled('div')<{$rate:number; $best:boolean;}>
     }
 
     ${media.mobile} {
-        flex: 0 0 calc((100% - 4px) / 2);
+        min-width: 100px;
         min-height: 72px;
+
+        .position_rate .position_rate_info {
+            font-size: .9rem;
+        }
+
+        .position_info {
+            font-size: .9rem;
+        }
     }
 `;
 
@@ -901,7 +913,6 @@ export const MatchPlayerRelativeListBox = styled('div')`
 `;
 
 export const MatchPlayerHistoryListBox = styled('div')<{$result:boolean}>`
-    
     position: relative;
     display: flex;
     align-items: center;
@@ -1117,17 +1128,32 @@ export const MatchPlayerHistoryListBox = styled('div')<{$result:boolean}>`
     ${media.mobile} {
         gap: 6px;
 
-        .history_left { min-width: 52px; }
+        .history_left { 
+            min-width: 52px; 
+        
+            .history_result { font-size: 1.3rem; }
+            .history_date { font-size: .9rem; }
+            .history_duration { font-size: .8rem; }
+        }
 
         .history_center .history_summoner { gap: 8px; }
 
-        .history_center .history_item {
-            gap: 1px;
+        .history_center {
 
-            .item_image,
-            .empty_image {
-                width: 18px;
-                height: 18px;
+            .history_summoner .history_kda {
+
+                .kda_view { font-size: 1.2rem; }
+                .kda_calc { padding-top: 2px; font-size: .9rem; }
+            }
+
+            .history_item {
+                gap: 1px;
+
+                .item_image,
+                .empty_image {
+                    width: 18px;
+                    height: 18px;
+                }
             }
         }
 

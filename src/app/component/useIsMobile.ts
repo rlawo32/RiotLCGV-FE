@@ -12,3 +12,10 @@ export function useIsMobile() {
 
   return isMobile;
 }
+
+export const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+};

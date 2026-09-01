@@ -2,7 +2,7 @@
 
 import * as Style from "./main_header.style";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faShuffle as icon_shuffle, faGamepad as icon_latest, faUsers as icon_player,
