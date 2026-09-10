@@ -1232,7 +1232,7 @@ export const InfoMessageBox = styled('div')<{$flag:string}>`
     /* ---------- responsive ---------- */
     ${media.tablet} {
         padding: 3px 8px;
-        font-size: 1rem;
+        font-size: .9rem;
         white-space: nowrap;
     }
 `;

@@ -75,7 +75,7 @@ const PlayerChampion = (props : PlayerChampionProps) => {
                                         <span>{play}전</span><span>{win}승</span><span>{fail}패</span>
                                     </div>
                                     <div className="match_calc">
-                                        <div><span>승률 - </span>{rate}%</div>
+                                        <div className="rate_text"><span>승률 - </span>{rate}%</div>
                                         <Tool.LcgWinningGraph $rate={rate}>
                                             <div className="rate_graph" />
                                         </Tool.LcgWinningGraph>

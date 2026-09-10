@@ -218,10 +218,14 @@ export const PlayerChampionListItem = styled('div')`
 
         .item_center {
             width: 30%;
+            padding-top: 2px;
             margin-left: 30px;
 
             .kda_detail { font-size: 1.15rem; }
-            .kda_calc { font-size: 1.05rem; }
+            .kda_calc { 
+                padding-top: 4px;
+                font-size: 1.05rem; 
+            }
         }
 
         .item_right {
@@ -239,9 +243,15 @@ export const PlayerChampionListItem = styled('div')`
                 align-items: center;
                 gap: 5px;
                 width: 100%; 
-                font-size: 1rem; 
-                span {
-                    display: none;
+                padding-top: 2px;
+                font-size: .9rem; 
+
+                div { 
+                    width: 60%; 
+                }
+                .rate_text {
+                    width: 45%; 
+                    padding-bottom: 1px; 
                 }
             }
 

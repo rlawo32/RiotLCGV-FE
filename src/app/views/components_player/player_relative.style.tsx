@@ -201,7 +201,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
         display: flex;
         align-items: center;
         gap: 12px;
-        width: 50%;
+        width: 70%;
         min-width: 0;
         font-size: 1.4rem;
         
@@ -245,7 +245,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
         .item_center {
             position: relative;
             display: flex;
-            width: 40%;
+            width: 35%;
             align-items: center;
             justify-content: flex-start;
             gap: 6px;
@@ -258,7 +258,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
 
         .item_right {
             display: flex;
-            width: 60%;
+            width: 65%;
             flex-direction: column;
             align-items: flex-start;
             gap: 4px;
@@ -285,7 +285,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
 
         .item_left {
             gap: 2px;
-            width: 45%;
+            width: 48%;
             font-size: 1rem;
 
             .relative_info {
@@ -316,12 +316,12 @@ export const RelativeListItem = styled('div')<{$type:string}>`
                 justify-content: center;
                 gap: 3px;
                 width: 45%;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .item_right {
                 width: 50%;
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
         }
     }
@@ -330,7 +330,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
         padding: 10px;
 
         .item_left {
-            width: 60%;
+            width: 63%;
             font-size: 1rem;
 
             .relative_info { margin-left: 5px; }
@@ -340,7 +340,7 @@ export const RelativeListItem = styled('div')<{$type:string}>`
         .item_info {
             flex-direction: column;
             align-items: flex-start;
-            width: 40%;
+            width: 37%;
         
             .item_center { 
                 width: fit-content;
