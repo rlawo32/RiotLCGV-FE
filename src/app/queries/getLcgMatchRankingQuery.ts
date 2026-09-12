@@ -9,7 +9,7 @@ export function getLcgPlayerStatisticsQuery(client:TypedSupabaseClient) {
 export function getLcgAllOverallQuery(client:TypedSupabaseClient) {
   return client
   .from("lcg_player_ranking")
-  .select("lcg_summoner_nickname, lcg_ranking_score, lcg_ranking_current")
+  .select("lcg_summoner_nickname, lcg_ranking_current_score, lcg_ranking_current_rank")
   .order("lcg_ranking_current", { ascending: true })
 }
 

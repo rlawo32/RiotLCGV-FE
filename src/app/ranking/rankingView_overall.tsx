@@ -7,8 +7,8 @@ import { duplicationRank } from "../component/match_tool";
 
 const RankingViewOverall = (props : {data:{
             lcg_summoner_nickname: string
-            lcg_ranking_score: number
-            lcg_ranking_current: number
+            lcg_ranking_current_score: number
+            lcg_ranking_current_rank: number
         }[], imageUrl:string, imageExtension:string}) => {
 
     const calcRankTitle = (score:number):string => {
@@ -32,8 +32,8 @@ const RankingViewOverall = (props : {data:{
     return (
         <>
             <div className="ranking_top">    
-                <Style.RankingBox $ea={props.data.filter((item) => item.lcg_ranking_current === 2).length}>
-                    {props.data.filter((highRanking) => highRanking.lcg_ranking_current === 2).map((item, idx, arr) => {
+                <Style.RankingBox $ea={props.data.filter((item) => item.lcg_ranking_current_rank === 2).length}>
+                    {props.data.filter((highRanking) => highRanking.lcg_ranking_current_rank === 2).map((item, idx, arr) => {
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={2} $h={duplicationRank(arr.length)} $w={duplicationRank(arr.length)} key={"rank2_" + idx}>
                                 <div className="ranker_img_box">
@@ -46,18 +46,18 @@ const RankingViewOverall = (props : {data:{
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
                                     <div className="ranker_content_main">
-                                        <h4 className="a_rank_text">{calcRankTitle(item.lcg_ranking_score)} Rank</h4>
+                                        <h4 className="a_rank_text">{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4>
                                     </div>
                                     <div className="ranker_content_sub">
-                                        {item.lcg_ranking_score.toLocaleString()} 점
+                                        {item.lcg_ranking_current_score.toLocaleString()} 점
                                     </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
-                <Style.RankingBox $ea={props.data.filter((item) => item.lcg_ranking_current === 1).length}>
-                    {props.data.filter((highRanking) => highRanking.lcg_ranking_current === 1).map((item, idx, arr) => {
+                <Style.RankingBox $ea={props.data.filter((item) => item.lcg_ranking_current_rank === 1).length}>
+                    {props.data.filter((highRanking) => highRanking.lcg_ranking_current_rank === 1).map((item, idx, arr) => {
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={1} $h={duplicationRank(arr.length)} $w={duplicationRank(arr.length)} key={"rank1_" + idx}>
                                 <div className="ranker_img_box">
@@ -70,18 +70,18 @@ const RankingViewOverall = (props : {data:{
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
                                     <div className="ranker_content_main">
-                                        <h4 className="s_rank_text">{calcRankTitle(item.lcg_ranking_score)} Rank</h4>
+                                        <h4 className="s_rank_text">{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4>
                                     </div>
                                     <div className="ranker_content_sub">
-                                        {item.lcg_ranking_score.toLocaleString()} 점
+                                        {item.lcg_ranking_current_score.toLocaleString()} 점
                                     </div>
                                 </Style.RankerContent>
                             </Style.HighRankingItem>
                         )
                     })}
                 </Style.RankingBox>
-                <Style.RankingBox $ea={props.data.filter((item) => item.lcg_ranking_current === 3).length}>
-                    {props.data.filter((highRanking) => highRanking.lcg_ranking_current === 3).map((item, idx, arr) => {
+                <Style.RankingBox $ea={props.data.filter((item) => item.lcg_ranking_current_rank === 3).length}>
+                    {props.data.filter((highRanking) => highRanking.lcg_ranking_current_rank === 3).map((item, idx, arr) => {
                         return (
                             <Style.HighRankingItem $ea={arr.length} $rank={3} $h={duplicationRank(arr.length)} $w={duplicationRank(arr.length)} key={"rank3_" + idx}>
                                 <div className="ranker_img_box">
@@ -94,10 +94,10 @@ const RankingViewOverall = (props : {data:{
                                         <div className="ranker_name">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                     </Link>
                                     <div className="ranker_content_main">
-                                        <h4 className="a_rank_text">{calcRankTitle(item.lcg_ranking_score)} Rank</h4>
+                                        <h4 className="a_rank_text">{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4>
                                     </div>
                                     <div className="ranker_content_sub">
-                                        {item.lcg_ranking_score.toLocaleString()} 점
+                                        {item.lcg_ranking_current_score.toLocaleString()} 점
                                     </div>
                                 </Style.RankerContent>   
                             </Style.HighRankingItem>
@@ -106,7 +106,7 @@ const RankingViewOverall = (props : {data:{
                 </Style.RankingBox>
             </div>
             <div className="ranking_bottom">
-                {props.data.filter((lowRanking) => lowRanking.lcg_ranking_current > 3).map((item, idx) => {
+                {props.data.filter((lowRanking) => lowRanking.lcg_ranking_current_rank > 3).map((item, idx) => {
                     return (
                         <div key={"lowRank_" + idx}>    
                             {
@@ -120,20 +120,20 @@ const RankingViewOverall = (props : {data:{
                                         </div> : <></>
                             }
                             <Style.LowRankingItem $type={""}>
-                                <div className="item_rank">{item.lcg_ranking_current}<span>th</span></div>
+                                <div className="item_rank">{item.lcg_ranking_current_rank}<span>th</span></div>
                                 <Link href={"https://www.op.gg/summoners/kr/" + item.lcg_summoner_nickname.split('#')[0] + "-" + item.lcg_summoner_nickname.split('#')[1]} target="_blank">
                                     <div className="item_nickname">{item.lcg_summoner_nickname.split('#')[0]}</div>
                                 </Link>
                                 <div className="item_detail1"></div>
                                 <div className="item_detail2">
                                     {
-                                        calcRankTitle(item.lcg_ranking_score) === 'A' ? <h4 className="a_rank_text">{calcRankTitle(item.lcg_ranking_score)} Rank</h4> :
-                                        calcRankTitle(item.lcg_ranking_score) === 'B' ? <h4 className="b_rank_text">{calcRankTitle(item.lcg_ranking_score)} Rank</h4> :
-                                        calcRankTitle(item.lcg_ranking_score) === 'C' ? <h4 className="c_rank_text">{calcRankTitle(item.lcg_ranking_score)} Rank</h4> :
-                                        <h4>{calcRankTitle(item.lcg_ranking_score)} Rank</h4>
+                                        calcRankTitle(item.lcg_ranking_current_score) === 'A' ? <h4 className="a_rank_text">{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4> :
+                                        calcRankTitle(item.lcg_ranking_current_score) === 'B' ? <h4 className="b_rank_text">{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4> :
+                                        calcRankTitle(item.lcg_ranking_current_score) === 'C' ? <h4 className="c_rank_text">{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4> :
+                                        <h4>{calcRankTitle(item.lcg_ranking_current_score)} Rank</h4>
                                     }
                                 </div>
-                                <div className="item_detail3">{item.lcg_ranking_score.toLocaleString()} 점</div>
+                                <div className="item_detail3">{item.lcg_ranking_current_score.toLocaleString()} 점</div>
                             </Style.LowRankingItem>
                         </div>
                     )
