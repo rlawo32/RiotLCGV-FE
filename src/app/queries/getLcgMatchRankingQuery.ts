@@ -10,7 +10,23 @@ export function getLcgAllOverallQuery(client:TypedSupabaseClient) {
   return client
   .from("lcg_player_ranking")
   .select("lcg_summoner_nickname, lcg_ranking_current_score, lcg_ranking_current_rank")
-  .order("lcg_ranking_current", { ascending: true })
+  .order("lcg_ranking_current_rank", { ascending: true })
+}
+
+export function getLcgPowerRankingQuery(client:TypedSupabaseClient) {
+  return client.rpc('ranking_power_data')
+}
+
+export function getLcgWinningRateV2Query(client:TypedSupabaseClient) {
+  return client.rpc('ranking_record_winnning')
+}
+
+export function getLcgRankingRecordCountQuery(client:TypedSupabaseClient, type:string) {
+  return client.rpc('ranking_record_count', {p_type: type})
+}
+
+export function getLcgRankingRecordDetailQuery(client:TypedSupabaseClient, type:string) {
+  return client.rpc('ranking_record_detail', {p_type: type})
 }
 
 export function getLcgAllWinningRateQuery(client:TypedSupabaseClient) {
