@@ -5,6 +5,7 @@ export const bgColors = {
     card: "#131A28",
     card_hover: "#1d263a",
     card_active: "#17152B",
+    head: "#130d1d",
 };
 
 export const borderColors = {
@@ -24,6 +25,7 @@ export const textColors = {
     sub: "#918C97",
     win: "#45D6A0",
     fail: "#E85D75",
+    head: "#8d5ec4",
 };
 
 export const purpleColors = {
