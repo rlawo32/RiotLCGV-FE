@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { bgColors, borderColors, textColors, purpleColors, media } from "./components_player/match_player_theme";
 
-export const MatchRanking = styled('div')`
+export const MatchRankingV2 = styled('div')<{$more:string}>`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,7 @@ export const MatchRanking = styled('div')`
     max-width: 928px;
     height: 100%;
     min-height: 860px;
-    padding: 16px 16px 4px;
+    padding: 16px 16px 24px;
     margin: 0 auto;
     border: 1px solid ${borderColors.default};
     border-radius: 10px;    
@@ -46,13 +46,39 @@ export const MatchRanking = styled('div')`
         .box_header {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
             width: 100%;
             padding: 8px;
             margin-bottom: 8px;
             font-size: 1.8rem;
             font-weight: 600;
-            color: ${purpleColors.blue};
+            color: ${textColors.main};
+
+            .header_left {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+
+                .title_icon {
+                    font-size: 2.3rem;
+                    color: ${purpleColors.best};
+                }
+            }
+
+            .header_right {
+                display: ${({$more}) => $more === 'A' ? "none" : "flex"};
+                align-items: center;
+                gap: 4px;
+                font-size: 1.3rem;
+                font-weight: 400;
+                color: ${textColors.sub};
+                cursor: pointer;
+
+                .title_icon {
+                    font-size: 1.5rem;
+                }
+            }
         }
 
         .box_category {
@@ -142,31 +168,50 @@ export const MatchRanking = styled('div')`
         }
 
         .ranking_more {
-            display: flex;
+            display: ${({$more}) => $more === 'A' ? "flex" : "none"};
             align-items: center;
             justify-content: center;
             width: 100%;
             min-height: 30px;
-            margin-top: 5px;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: ${purpleColors.default};
-            opacity: 0.8;
-            text-align: center;
-            cursor: pointer;
+            margin-top: 10px;
+
+            button {
+                border: none;
+                background: none;
+                font-size: 1.3rem;
+                font-weight: 400;
+                color: ${purpleColors.default};
+                opacity: 0.8;
+                text-align: center;
+                cursor: pointer;
+            }
         }
     }
 
     .ranking_power {
-        min-height: 790px;
+        display: ${({$more}) => $more === 'R' ? "none" : "block"};
+        min-height: 780px;
     }
 
     .ranking_record {
+        display: ${({$more}) => $more === 'P' ? "none" : "block"};
         min-height: 440px;
+
+        .ranking_list {
+            min-height: ${({$more}) => $more === 'R' ? 680 : 240}px;
+        }
     }
 
     .ranking_onegame {
-        min-height: 540px;
+        display: ${({$more}) => $more === 'A' ? "block" : "none"};
+
+        .ranking_list {
+            flex-direction: row;
+            justify-content: space-evenly;
+            min-height: 510px;
+            padding-bottom: 32px;
+            margin: 0;
+        }
     }
 `;
 

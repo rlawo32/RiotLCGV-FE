@@ -5,7 +5,8 @@ import * as Style from './match_ranking_v2.style';
 import { useRef, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faCaretLeft as icon_left, faCaretRight as icon_right
+    faCaretLeft as icon_left, faCaretRight as icon_right, faLeftLong as icon_back,
+    faTrophy as icon_power, faMedal as icon_record, faRankingStar as icon_onegame
 } from "@fortawesome/free-solid-svg-icons";
 
 import useSupabaseBrowser from "../supabase-browser";
@@ -16,6 +17,7 @@ import { getLcgPowerRankingQuery } from "../queries/getLcgMatchRankingQuery";
 import { CategoryData } from "./components_ranking/match_ranking_types";
 import RankingRecordHead from './components_ranking/ranking_record_head';
 import RankingRecordBody from './components_ranking/ranking_record_body';
+import RankingOnegameBody from './components_ranking/ranking_onegame_body';
 
 const MatchRankingV2 = () => {
     const supabase = useSupabaseBrowser();
@@ -27,6 +29,7 @@ const MatchRankingV2 = () => {
     let imageExtension:string = "";
     let lastUpdate:string = "";
 
+    const [selectRankingMore, setSelectRankingMore] = useState<string>("A"); // A : ALL, P : PowerRanking, R : RecordRanking
     const [selectRecordCategory, setSelectRecordCategory] = useState<string>("AW"); 
     const [selectOnegameCategory, setSelectOnegameCategory] = useState<string>("1GK");
 
@@ -38,9 +41,9 @@ const MatchRankingV2 = () => {
     ];
     const onegameCategory:CategoryData[] = [
         {id: 1, title: '최다 킬', value: '1GK'}, {id: 2, title: '최다 데스', value: '1GD'}, {id: 3, title: '최다 어시스트', value: '1GA'},
-        {id: 4, title: '최다 CS', value: '1GC'}, {id: 5, title: '최다 골드', value: '1GG'}, {id: 6, title: '최다 철거', value: '1GT'}, 
-        {id: 7, title: '최고 가한 피해량', value: '1GDA'}, {id: 8, title: '최고 받은 피해량', value: '1GHT'}, {id: 9, title: '최저 받은 피해량', value: '1GLT'}, 
-        {id: 10, title: '최고 DPM', value: '1GDM'}, {id: 11, title: '최고 GPM', value: '1GGM'}, {id: 12, title: '최고 DPG', value: '1GDG'}, 
+        {id: 4, title: '최다 CS', value: '1GC'}, {id: 5, title: '최다 골드', value: '1GG'}, 
+        {id: 6, title: '최고 가한 피해량', value: '1GDA'}, {id: 7, title: '최고 받은 피해량', value: '1GHT'}, {id: 8, title: '최저 받은 피해량', value: '1GLT'}, 
+        {id: 9, title: '최고 DPM', value: '1GDM'}, {id: 10, title: '최고 GPM', value: '1GGM'}, {id: 11, title: '최고 DPG', value: '1GDG'}, 
     ];
     
     const { data: lcgMatchEtc } = useQuery(getLcgMatchEtcQuery(supabase), {});
@@ -54,7 +57,7 @@ const MatchRankingV2 = () => {
 
     const { data: lcgPowerRanking } = useQuery(getLcgPowerRankingQuery(supabase), {enabled: !!lcgMatchEtc});
     const lcgPowerRankingTop3 = lcgPowerRanking?.slice(0, 3) ?? [];
-    const lcgPowerRankingRemain = lcgPowerRanking?.slice(3, 10) ?? [];
+    const lcgPowerRankingRemain = selectRankingMore === 'P' ? (lcgPowerRanking?.slice(3) ?? []) : (lcgPowerRanking?.slice(3, 10) ?? []);
     if(lcgPowerRankingTop3.length >= 2) {
         [lcgPowerRankingTop3[0], lcgPowerRankingTop3[1]] = [lcgPowerRankingTop3[1], lcgPowerRankingTop3[0]];
     }
@@ -74,10 +77,17 @@ const MatchRankingV2 = () => {
     };
 
     return (
-        <Style.MatchRanking>
+        <Style.MatchRankingV2 $more={selectRankingMore}>
             <div className="ranking_box ranking_power">
                 <div className="box_header">
-                    <div className="box_title">Power Ranking</div>
+                    <div className="header_left">
+                        <FontAwesomeIcon icon={icon_power} className="title_icon"/>
+                        <div className="box_title">Power Ranking</div>
+                    </div>
+                    <div className="header_right" onClick={() => setSelectRankingMore("A")}>
+                        <FontAwesomeIcon icon={icon_back} className="title_icon"/>
+                        뒤로가기
+                    </div>
                 </div>
                 <div className="ranking_list">
                     <div className="list_top">
@@ -134,12 +144,21 @@ const MatchRankingV2 = () => {
                     </div>
                 </div>
                 <div className="ranking_more">
-                    전체 랭킹 보기 ⇾
+                    <button onClick={() => setSelectRankingMore("P")}>
+                        전체 랭킹 보기 ⇾
+                    </button>
                 </div>
             </div>
             <div className="ranking_box ranking_record">
                 <div className="box_header">
-                    <div className="box_title">Record Ranking</div>
+                    <div className="header_left">
+                        <FontAwesomeIcon icon={icon_record} className="title_icon"/>
+                        <div className="box_title">Record Ranking</div>
+                    </div>
+                    <div className="header_right" onClick={() => setSelectRankingMore("A")}>
+                        <FontAwesomeIcon icon={icon_back} className="title_icon"/>
+                        뒤로가기
+                    </div>
                 </div>
                 <div className="box_category">
                     <button className="category_arrow category_arrow_prev" onClick={() => handleRecordCategoryScroll('left')} aria-label="이전 카테고리">
@@ -160,14 +179,17 @@ const MatchRankingV2 = () => {
                 </div>
                 <div className="ranking_list">
                     <RankingRecordHead type={selectRecordCategory} />
-                    <RankingRecordBody type={selectRecordCategory} imageMainUrl={imageMainUrl} imageSubUrl={imageSubUrl} imageExtension={imageExtension} />
+                    <RankingRecordBody type={selectRecordCategory} more={selectRankingMore} imageMainUrl={imageMainUrl} imageSubUrl={imageSubUrl} imageExtension={imageExtension} />
                 </div>
                 <div className="ranking_more">
-                    더 많은 기록 보기 ⇾
+                    <button onClick={() => setSelectRankingMore("R")}>
+                        더 많은 기록 보기 ⇾
+                    </button>
                 </div>
             </div>
             <div className="ranking_box ranking_onegame">
                 <div className="box_header">
+                    <FontAwesomeIcon icon={icon_onegame} className="title_icon"/>
                     <div className="box_title">One Game Best</div>
                 </div>
                 <div className="box_category">
@@ -188,13 +210,10 @@ const MatchRankingV2 = () => {
                     </button>
                 </div>
                 <div className="ranking_list">
-
-                </div>
-                <div className="ranking_more">
-                    더 보기
+                    <RankingOnegameBody type={selectOnegameCategory} imageMainUrl={imageMainUrl} imageSubUrl={imageSubUrl} imageExtension={imageExtension} />
                 </div>
             </div>
-        </Style.MatchRanking>
+        </Style.MatchRankingV2>
     )
 }
 

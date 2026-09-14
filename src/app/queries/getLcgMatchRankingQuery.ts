@@ -25,6 +25,10 @@ export function getLcgRankingRecordCountQuery(client:TypedSupabaseClient, type:s
   return client.rpc('ranking_record_count', {p_type: type})
 }
 
+export function getLcgRankingOnegameDataQuery(client:TypedSupabaseClient, type:string) {
+  return client.rpc('ranking_onegame_data', {p_type: type})
+}
+
 export function getLcgRankingRecordDetailQuery(client:TypedSupabaseClient, type:string) {
   return client.rpc('ranking_record_detail', {p_type: type})
 }
