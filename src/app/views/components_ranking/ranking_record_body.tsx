@@ -3,12 +3,6 @@
 import * as Style from '../match_ranking_v2.style';
 import TurretIcon from '@/app/icons/TurretIcon';
 import InhibitorIcon from '@/app/icons/InhibitorIcon';
-
-import useSupabaseBrowser from "@/app/supabase-browser";
-import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { getLcgWinningRateV2Query, getLcgRankingRecordCountQuery, getLcgRankingRecordDetailQuery } from "@/app/queries/getLcgMatchRankingQuery";
-
-import { DemolisherData, VisionData, ObjectData, MultikillData } from "./match_ranking_types";
 import WardIcon from '@/app/icons/WardIcon';
 import HordeIcon from '@/app/icons/HordeIcon';
 import HeraldIcon from '@/app/icons/HeraldIcon';
@@ -19,18 +13,26 @@ import TripleKillIcon from '@/app/icons/TripleKillIcon';
 import QuadraKillIcon from '@/app/icons/QuadraKillIcon';
 import PentaKillIcon from '@/app/icons/PentaKillIcon';
 
-interface RankingRecordHeadProps {
+import useSupabaseBrowser from "@/app/supabase-browser";
+import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import { getLcgWinningRateV2Query, getLcgRankingRecordCountQuery, getLcgRankingRecordDetailQuery } from "@/app/queries/getLcgMatchRankingQuery";
+
+import { DemolisherData, VisionData, ObjectData, MultikillData } from "./match_ranking_types";
+
+interface RankingRecordBodyProps {
     type: string,
+    more: string,
     imageMainUrl: string,
     imageSubUrl: string,
     imageExtension: string,
 }
 
-const RankingRecordHead = (props: RankingRecordHeadProps) => {
+const RankingRecordBody = (props: RankingRecordBodyProps) => {
     const supabase = useSupabaseBrowser();
-    const type = props.type;
-    const imageMainUrl = props.imageMainUrl;
-    const imageExtension = props.imageExtension;
+    const type:string = props.type;
+    const more:boolean = props.more === 'R' ? true : false;
+    const imageMainUrl:string = props.imageMainUrl;
+    const imageExtension:string = props.imageExtension;
 
     const { data: queryRecordWinning } = useQuery(getLcgWinningRateV2Query(supabase), {enabled: type === 'AW'});
     const { data: queryRecordCount } = useQuery(getLcgRankingRecordCountQuery(supabase, type), {enabled: type === 'AMP' || type === 'AAE' || type === 'AK' || type === 'AD' || type === 'AA' || type === 'AC' || type === 'AG'});
@@ -39,7 +41,7 @@ const RankingRecordHead = (props: RankingRecordHeadProps) => {
     return (
         !!queryRecordWinning && type === 'AW' ?
             <>
-                {queryRecordWinning?.slice(0, 5).map((item, idx) => (
+                {(more ? queryRecordWinning : queryRecordWinning?.slice(0, 5))?.map((item, idx) => (
                     <Style.RecordRankingListBox $flag={"B"} $type={type} key={"winning_" + idx}>
                         <div className="row_1 body_rownum">
                             {item.rank}
@@ -67,7 +69,7 @@ const RankingRecordHead = (props: RankingRecordHeadProps) => {
         :
         !!queryRecordDetail && (type === 'AT' || type === 'AV' || type === 'AJ' || type === 'AM') ?
             <>
-                {queryRecordDetail?.slice(0, 5).map((item, idx) => (
+                {(more ? queryRecordDetail : queryRecordDetail?.slice(0, 5))?.map((item, idx) => (
                     <Style.RecordRankingListBox $flag={"B"} $type={type} key={"count_" + idx}>
                         <div className="row_1 body_rownum">
                             {item.rank}
@@ -133,7 +135,7 @@ const RankingRecordHead = (props: RankingRecordHeadProps) => {
         :
         !!queryRecordCount ?
             <>
-                {queryRecordCount?.slice(0, 5).map((item, idx) => (
+                {(more ? queryRecordCount : queryRecordCount?.slice(0, 5))?.map((item, idx) => (
                     <Style.RecordRankingListBox $flag={"B"} $type={type} key={"detail_" + idx}>
                         <div className="row_1 body_rownum">
                             {item.rank}
@@ -169,4 +171,4 @@ const RankingRecordHead = (props: RankingRecordHeadProps) => {
     )
 }
 
-export default RankingRecordHead;
+export default RankingRecordBody;

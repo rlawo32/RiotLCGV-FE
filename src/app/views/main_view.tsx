@@ -13,6 +13,7 @@ import MatchShuffle from "./match_shuffle";
 import MatchPlayer from "./match_player";
 import PatchNote from "./patch_note";
 import MatchPlayerV2 from "./match_player_v2";
+import MatchRankingV2 from "./match_ranking_v2";
 import MainHeader from "./main_header";
 
 const MainView = () => {
@@ -55,7 +56,7 @@ const MainView = () => {
                     // <ErrorPageRes errorCode={""} errorMessage={""} />
                     selectView === 0 ? <MatchLatestHistory /> :
                     selectView === 1 ? <MatchList /> :
-                    selectView === 2 ? <MatchRanking /> : 
+                    selectView === 2 ? <MatchRankingV2 /> : 
                     selectView === 3 ? <MatchPlayerV2 directPlayer={viewPlayerParam} /> : 
                     selectView === 4 ? <PatchNote /> : 
                     selectView === 5 ? <MatchShuffle /> : <></>

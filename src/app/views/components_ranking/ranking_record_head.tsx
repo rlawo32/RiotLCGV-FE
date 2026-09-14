@@ -2,8 +2,8 @@
 
 import * as Style from '../match_ranking_v2.style';
 
-const RankingRecordHeader = (props:{type:string}) => {
-    const type = props.type;
+const RankingRecordHead = (props:{type:string}) => {
+    const type:string = props.type;
 
     return (
         <Style.RecordRankingListBox $flag={"H"} $type={type}>
@@ -24,4 +24,4 @@ const RankingRecordHeader = (props:{type:string}) => {
     )
 }
 
-export default RankingRecordHeader;
+export default RankingRecordHead;
