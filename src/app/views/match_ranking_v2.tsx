@@ -189,8 +189,10 @@ const MatchRankingV2 = () => {
             </div>
             <div className="ranking_box ranking_onegame">
                 <div className="box_header">
-                    <FontAwesomeIcon icon={icon_onegame} className="title_icon"/>
-                    <div className="box_title">One Game Best</div>
+                    <div className="header_left">
+                        <FontAwesomeIcon icon={icon_onegame} className="title_icon"/>
+                        <div className="box_title">One Game Best</div>
+                    </div>
                 </div>
                 <div className="box_category">
                     <button className="category_arrow category_arrow_prev" onClick={() => handleOnegameCategoryScroll('left')} aria-label="이전 카테고리">
