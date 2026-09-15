@@ -85,45 +85,60 @@ const RankingRecordBody = (props: RankingRecordBodyProps) => {
                         <div className="row_3 body_info">
                             {type === 'AT' ? 
                                 <>
-                                    
-                                    <div className="info_score">
-                                        <div className="info_desc">누적 구조물 피해량</div>
-                                        {(item.lcg_detail as DemolisherData).towerDamage.toLocaleString()}
+                                    <div className="info_detail">
+                                        <div className="info_score">
+                                            <div className="info_desc">누적 구조물 피해량</div>
+                                            {(item.lcg_detail as DemolisherData).towerDamage.toLocaleString()}
+                                        </div>
+                                        <div className='icon_wrap'>
+                                            <div className="info_icon"><TurretIcon />{(item.lcg_detail as DemolisherData).tower.toLocaleString()}</div>
+                                            <div className="info_icon"><InhibitorIcon />{(item.lcg_detail as DemolisherData).inhibitor.toLocaleString()}</div>
+                                        </div>
                                     </div>
-                                    <div className="info_icon"><TurretIcon />{(item.lcg_detail as DemolisherData).tower.toLocaleString()}</div>
-                                    <div className="info_icon"><InhibitorIcon />{(item.lcg_detail as DemolisherData).inhibitor.toLocaleString()}</div>
                                 </> : 
                              type === 'AV' ? 
                                 <>
-                                    <div className="info_score">
-                                        <div className="info_desc">누적 시야 점수</div>
-                                        {(item.lcg_detail as VisionData).visionScore.toLocaleString()}
+                                    <div className="info_detail">
+                                        <div className="info_score">
+                                            <div className="info_desc">누적 시야 점수</div>
+                                            {(item.lcg_detail as VisionData).visionScore.toLocaleString()}
+                                        </div>
+                                        <div className='icon_wrap'>
+                                            <div className="info_icon"><WardIcon type={"N"} />{(item.lcg_detail as VisionData).wardPlaced.toLocaleString()}</div>
+                                            <div className="info_icon"><WardIcon type={"P"} />{(item.lcg_detail as VisionData).visionWard.toLocaleString()}</div>
+                                            <div className="info_icon"><WardIcon type={"D"} />{(item.lcg_detail as VisionData).wardKill.toLocaleString()}</div>
+                                        </div>
                                     </div>
-                                    <div className="info_icon"><WardIcon type={"N"} />{(item.lcg_detail as VisionData).wardPlaced.toLocaleString()}</div>
-                                    <div className="info_icon"><WardIcon type={"P"} />{(item.lcg_detail as VisionData).visionWard.toLocaleString()}</div>
-                                    <div className="info_icon"><WardIcon type={"D"} />{(item.lcg_detail as VisionData).wardKill.toLocaleString()}</div>
                                 </> : 
                              type === 'AJ' ? 
                                 <>
-                                    <div className="info_score">
-                                        <div className="info_desc">누적 오브젝트 점수</div>
-                                        {(item.lcg_detail as ObjectData).jungleObjectScore.toLocaleString()}
+                                    <div className="info_detail">
+                                        <div className="info_score">
+                                            <div className="info_desc">누적 오브젝트 점수</div>
+                                            {(item.lcg_detail as ObjectData).jungleObjectScore.toLocaleString()}
+                                        </div>
+                                        <div className='icon_wrap'>
+                                            <div className="info_icon"><DragonIcon />{(item.lcg_detail as ObjectData).dragon.toLocaleString()}</div>
+                                            <div className="info_icon"><BaronIcon />{(item.lcg_detail as ObjectData).baron.toLocaleString()}</div>
+                                            <div className="info_icon"><HeraldIcon />{(item.lcg_detail as ObjectData).herald.toLocaleString()}</div>
+                                            <div className="info_icon"><HordeIcon />{(item.lcg_detail as ObjectData).horde.toLocaleString()}</div>
+                                        </div>
                                     </div>
-                                    <div className="info_icon"><DragonIcon />{(item.lcg_detail as ObjectData).dragon.toLocaleString()}</div>
-                                    <div className="info_icon"><BaronIcon />{(item.lcg_detail as ObjectData).baron.toLocaleString()}</div>
-                                    <div className="info_icon"><HeraldIcon />{(item.lcg_detail as ObjectData).herald.toLocaleString()}</div>
-                                    <div className="info_icon"><HordeIcon />{(item.lcg_detail as ObjectData).horde.toLocaleString()}</div>
                                 </> : 
                              type === 'AM' ? 
                                 <>
-                                    <div className="info_score">
-                                        <div className="info_desc">누적 멀티킬 점수</div>
-                                        {(item.lcg_detail as MultikillData).multiKillScore.toLocaleString()}
+                                    <div className="info_detail">
+                                        <div className="info_score">
+                                            <div className="info_desc">누적 멀티킬 점수</div>
+                                            {(item.lcg_detail as MultikillData).multiKillScore.toLocaleString()}
+                                        </div>
+                                        <div className='icon_wrap'>
+                                            <div className="info_icon"><DoubleKillIcon />{(item.lcg_detail as MultikillData).doubleKill.toLocaleString()}</div>
+                                            <div className="info_icon"><TripleKillIcon />{(item.lcg_detail as MultikillData).tripleKill.toLocaleString()}</div>
+                                            <div className="info_icon"><QuadraKillIcon />{(item.lcg_detail as MultikillData).quadraKill.toLocaleString()}</div>
+                                            <div className="info_icon"><PentaKillIcon />{(item.lcg_detail as MultikillData).pentaKill.toLocaleString()}</div>
+                                        </div>
                                     </div>
-                                    <div className="info_icon"><DoubleKillIcon />{(item.lcg_detail as MultikillData).doubleKill.toLocaleString()}</div>
-                                    <div className="info_icon"><TripleKillIcon />{(item.lcg_detail as MultikillData).tripleKill.toLocaleString()}</div>
-                                    <div className="info_icon"><QuadraKillIcon />{(item.lcg_detail as MultikillData).quadraKill.toLocaleString()}</div>
-                                    <div className="info_icon"><PentaKillIcon />{(item.lcg_detail as MultikillData).pentaKill.toLocaleString()}</div>
                                 </> : <></>}
                         </div>
                         <div className="row_4 body_play">

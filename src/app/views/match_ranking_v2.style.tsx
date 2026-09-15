@@ -17,18 +17,6 @@ export const MatchRankingV2 = styled('div')<{$more:string}>`
     border-radius: 10px;    
     background: ${bgColors.main};
 
-    /* ---------- responsive ---------- */
-    ${media.laptop} {
-        min-width: 900px;
-        height: auto;
-        min-height: 0;
-        flex-shrink: 0;
-    }
-    ${media.tablet} {
-        min-width: 0;
-        border-radius: 8px;
-    }
-
     .ranking_box {
         position: relative;
         width: 100%;
@@ -85,6 +73,7 @@ export const MatchRankingV2 = styled('div')<{$more:string}>`
             position: relative;
             width: 100%;
             padding: 0 28px;
+            margin-top: 15px;
 
             .category_slider {
                 display: flex;
@@ -191,6 +180,10 @@ export const MatchRankingV2 = styled('div')<{$more:string}>`
     .ranking_power {
         display: ${({$more}) => $more === 'R' ? "none" : "block"};
         min-height: 780px;
+
+        .ranking_list {
+            margin-top: 32px;
+        }
     }
 
     .ranking_record {
@@ -213,6 +206,139 @@ export const MatchRankingV2 = styled('div')<{$more:string}>`
             margin: 0;
         }
     }
+
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+        min-width: 900px;
+        height: auto;
+        min-height: 0;
+        flex-shrink: 0;
+    }
+    ${media.tablet} {
+        min-width: 0;
+        padding: 10px 10px 16px;
+        border-radius: 8px;
+
+        .ranking_box {
+            padding: 8px 6px;
+
+            .box_category {
+                padding: 0 22px;
+
+                .category_arrow {
+                    width: 15px;
+                    height: 23px;
+                    border-radius: 6px;
+                    font-size: 1.4rem;
+                }
+                
+                .category_arrow_prev { left: 5px; }
+                .category_arrow_next { right: 5px; }
+            }
+        }
+
+        .ranking_power {
+            min-height: 580px;
+        }
+        
+        .ranking_record {
+            min-height: 380px;
+
+            .ranking_list {
+                min-height: ${({$more}) => $more === 'R' ? 580 : 280}px;
+                margin-top: 10px;
+            }
+        }
+
+        .ranking_onegame {
+
+            .ranking_list {
+                min-height: 430px;
+                padding-bottom: 12px;
+            }
+        }
+    }
+
+    ${media.mobile} {
+
+        .ranking_box {
+            padding: 4px 6px;
+
+            .box_header {
+                font-size: 1.3rem;
+
+                .header_left {
+
+                    .title_icon {
+                        font-size: 1.4rem;
+                    }
+                }
+
+                
+                .header_right {
+                    gap: 4px;
+                    font-size: .9rem;
+
+                    .title_icon {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+
+            .box_category {
+
+                .category_arrow {
+                    width: 15px;
+                    height: 20px;
+                    border-radius: 6px;
+                    font-size: 1.2rem;
+                }
+            }
+
+            .ranking_list {
+                padding: ${({$more}) => $more === 'A' ? "0 8px" : "0 8px 6px"};
+                margin-top: 24px;
+
+                .list_top {
+
+                    div:nth-child(1) { top: 10px; }
+                    div:nth-child(2) { top: -10px; }
+                    div:nth-child(3) { top: 15px; }
+                }
+
+                .list_bottom {
+                }
+            }
+
+            .ranking_more {
+                margin: 0;
+
+                button {
+                    font-size: .9rem;
+                }
+            }
+        }
+
+        .ranking_power {
+            min-height: 480px;
+        }
+        
+        .ranking_record {
+            min-height: 280px;
+
+            .ranking_list {
+                min-height: ${({$more}) => $more === 'R' ? 480 : 180}px;
+                margin-top: 10px;
+            }
+        }
+
+        .ranking_onegame {
+
+            .ranking_list {
+                min-height: 310px;
+            }
+        }
+    }
 `;
 
 export const MatchRankingRecordCategoryBox = styled('div')<{$selected:boolean}>`
@@ -233,23 +359,19 @@ export const MatchRankingRecordCategoryBox = styled('div')<{$selected:boolean}>`
         border-bottom: 3px solid ${bgColors.card_hover};
         background-color: ${bgColors.card_hover};
     }
-
+    
     /* ---------- responsive ---------- */
     ${media.laptop} {
-        padding: 4px 20px;
     }
 
     ${media.tablet} {
-        flex: 1 1 0;
-        width: auto;
-        padding: 4px 8px;
-        font-size: 1.15rem;
-        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 1rem;
     }
 
     ${media.mobile} {
-        padding: 4px 4px;
-        font-size: 1.05rem;
+        padding: 4px 10px;
+        font-size: .8rem;
     }
 `;
 
@@ -274,20 +396,16 @@ export const MatchRankingOnegameCategoryBox = styled('div')<{$selected:boolean}>
 
     /* ---------- responsive ---------- */
     ${media.laptop} {
-        padding: 4px 20px;
     }
 
     ${media.tablet} {
-        flex: 1 1 0;
-        width: auto;
-        padding: 4px 8px;
-        font-size: 1.15rem;
-        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 1rem;
     }
 
     ${media.mobile} {
-        padding: 4px 4px;
-        font-size: 1.05rem;
+        padding: 4px 10px;
+        font-size: .8rem;
     }
 `;
 
@@ -389,6 +507,68 @@ export const PowerRankingTop3Card = styled('div')<{$rank:number}>`
             opacity: 0.8;
         }
     }
+    
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+    }
+
+    ${media.tablet} {
+        width: calc(90% / 3);
+        min-height: 190px;
+        padding: 28px 4px 12px;
+
+        .card_top {
+
+            img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .card_middle {
+            font-size: 1.3rem;
+        }
+
+        .card_bottom {
+
+            .card_score {
+                font-size: 2.5rem;
+            }
+
+            .card_desc {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    ${media.mobile} {
+        width: 85px;
+        min-height: 150px;
+        padding: 24px 4px 12px;
+
+        .card_top {
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .card_middle {
+            font-size: 1.1rem;
+        }
+
+        .card_bottom {
+
+            .card_score {
+                font-size: 1.8rem;
+            }
+
+            .card_desc {
+                font-size: .6rem;
+            }
+        }
+    }
 `;
 
 export const PowerRankingRemainCard = styled('div')<{$change:number}>`
@@ -441,20 +621,26 @@ export const PowerRankingRemainCard = styled('div')<{$change:number}>`
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        width: 30%;    
+        width: 30%;  
 
-        .card_desc {
-            font-size: 1rem;
-            font-weight: 400;
-            color: ${textColors.sub};
-            opacity: 0.8;
-        }
+        .card_info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-        .card_score {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: ${purpleColors.light};
-        }
+            .card_desc {
+                font-size: 1rem;
+                font-weight: 400;
+                color: ${textColors.sub};
+                opacity: 0.8;
+            }
+
+            .card_score {
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: ${purpleColors.light};
+            }
+        }  
 
         .card_change {
             width: 25px;
@@ -463,6 +649,81 @@ export const PowerRankingRemainCard = styled('div')<{$change:number}>`
             font-weight: 400;
             color: ${({$change}) => $change > 0 ? `${textColors.win}` : $change < 0 ? `${textColors.fail}` : `${textColors.default}`};
             text-align: center;
+        }
+    }
+
+    
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+    }
+
+    ${media.tablet} {
+        padding: 6px 16px 6px 12px;
+
+        .card_right {
+            gap: 4px;
+            width: 45%;
+
+            .card_info {
+                flex-direction: column-reverse;
+                gap: 4px;
+
+                .card_desc {
+                    font-size: .8rem;
+                }
+            }
+
+            .card_change {
+                margin: 0;
+            }
+        }
+    }
+
+    ${media.mobile} {
+        min-height: 32px;
+        padding: 6px 12px 6px 8px;
+
+        .card_left {
+            width: 80%;
+
+            .card_rownum {
+                width: 14px;
+                margin-right: 6px;
+                font-size: 1.1rem;
+            }
+
+            .card_icon {
+                
+                img {
+                    width: 23px;
+                    height: 23px;
+                }
+            }
+
+            .card_nickname {
+                font-size: .9rem;
+            }
+        }
+
+        .card_right {
+            width: 40%;
+
+            .card_info {
+                flex-direction: column-reverse;
+
+                .card_desc {
+                    font-size: .6rem;
+                }
+
+                .card_score {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .card_change {
+                width: 20px;
+                font-size: .9rem;
+            }
         }
     }
 `;
@@ -524,28 +785,195 @@ export const RecordRankingListBox = styled('div')<{$flag:string, $type:string}>`
             font-weight: 600;
         }
 
-        .info_icon {
+        .info_detail {
             display: flex;
             align-items: center;
-            gap: 4px;
+            justify-content: space-around;
+            width: 100%;
 
-            svg {
-                flex-shrink: 0;
-                width: 18px;
-                height: 18px;
+            .info_score {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                width: 70%;
+                margin-right: 16px;
             }
-        }
 
-        .info_score {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-right: 16px;
+            .icon_wrap {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 100%;
+
+                .info_icon {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    svg {
+                        flex-shrink: 0;
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
         }
     }
 
     .body_play {
         color: ${textColors.sub};
+    }
+    
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+    }
+
+    ${media.tablet} {
+        gap: 6px;
+        padding: 4px 8px;
+        font-size: 1rem;
+
+        .row_1 { width: 7%; }
+        .row_2 { width: 33%; }
+        .row_3 { width: 45%; }
+        .row_4 { width: 15%; }
+
+        .body_rownum {
+            font-size: 1.1rem;
+        }
+
+        .body_summoner {
+            gap: 8px;
+            padding-left: 5px;
+            font-size: 1.1rem;
+
+            .summoner_nickname {
+                width: 75px;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            img {
+                width: 27px;
+                height: 27px;
+            }
+        }
+        
+        .body_info {
+            gap: ${({$type}) => $type === 'AW' ? 8 : 6}px;
+            font-size: 1.1rem;
+
+            .info_desc {
+                font-size: 1rem;
+            }
+
+            .info_detail {
+                flex-wrap: wrap;
+                gap: 6px;
+                width: 100%;
+                font-size: 1.1rem;
+                
+                .info_score {
+                    gap: 6px;
+                    width: fit-content;
+                    margin-right: 4px;
+
+                    .info_desc {
+                        font-size: 1rem;
+                    }
+                }
+
+                .icon_wrap {
+                    justify-content: space-evenly;
+                    gap: 4px;
+                    width: fit-content;
+
+                    .info_icon {
+                        gap: 2px;
+
+                        svg {
+                            flex-shrink: 0;
+                            width: 11px;
+                            height: 11px;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ${media.mobile} {
+        gap: 4px;
+        min-height: ${({$flag}) => $flag === 'H' ? 24 : 32}px;
+        padding: 4px 8px;
+        font-size: .8rem;
+
+        .row_1 { width: 7%; }
+        .row_2 { width: 35%; }
+        .row_3 { width: 43%; }
+        .row_4 { width: 15%; }
+
+        .body_rownum {
+            font-size: .9rem;
+        }
+
+        .body_summoner {
+            gap: 8px;
+            padding-left: 5px;
+            font-size: .9rem;
+
+            .summoner_nickname {
+                width: 60px;
+            }
+
+            img {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        .body_info {
+            gap: ${({$type}) => $type === 'AW' ? 8 : 6}px;
+            font-size: .9rem;
+
+            .info_desc {
+                font-size: .8rem;
+            }
+
+            .info_detail {
+                flex-direction: column;
+                gap: 4px;
+                font-size: .7rem;
+                
+                .info_score {
+                    gap: 6px;
+                    margin-right: 4px;
+
+                    .info_desc {
+                        font-size: .6rem;
+                    }
+                }
+
+                .icon_wrap {
+                    justify-content: space-evenly;
+                    gap: 4px;
+
+                    .info_icon {
+                        gap: 2px;
+
+                        svg {
+                            flex-shrink: 0;
+                            width: 9px;
+                            height: 9px;
+                            font-size: .6rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 `;
 
@@ -569,5 +997,16 @@ export const LcgWinningGraph = styled('div')<{$rate:number}>`
             #a64ff0 80%,
             #c36cff 100%
         );
+    }
+
+    /* ---------- responsive ---------- */
+    ${media.laptop} {
+    }
+
+    ${media.tablet} {
+    }
+
+    ${media.mobile} {
+        height: 6px;
     }
 `;

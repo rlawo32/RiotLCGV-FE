@@ -128,11 +128,13 @@ const MatchRankingV2 = () => {
                                         </div>
                                     </div>
                                     <div className="card_right">
-                                        <div className="card_desc">
-                                            POWER SCORE
-                                        </div>
-                                        <div className="card_score">
-                                            {item.lcg_ranking_current_score.toLocaleString()}
+                                        <div className='card_info'>
+                                            <div className="card_desc">
+                                                POWER SCORE
+                                            </div>
+                                            <div className="card_score">
+                                                {item.lcg_ranking_current_score.toLocaleString()}
+                                            </div>
                                         </div>
                                         <div className="card_change">
                                             {change > 0 ? `▲ ${Math.abs(change)}` : change < 0 ? `▼ ${Math.abs(change)}` : `-`}

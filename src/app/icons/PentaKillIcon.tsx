@@ -15,7 +15,7 @@ const IconStyle = styled('div')`
         width: 9px;
         height: 9px;
         padding: 0;
-        font-size: .7rem;
+        font-size: .6rem;
     }
     height: 12px;
     width: 12px;

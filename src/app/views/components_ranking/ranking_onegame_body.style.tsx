@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bgColors, borderColors, textColors, purpleColors, media } from "../components_player/match_player_theme";
+import { media } from "../components_player/match_player_theme";
 
 export const MatchRankingOnegameCard = styled('div')<{$rank:number, $image:string}>`
     position: relative;
@@ -130,6 +130,154 @@ export const MatchRankingOnegameCard = styled('div')<{$rank:number, $image:strin
                 font-size: 1.4rem;
                 line-height: 16px;
                 color: rgb(158 158 177 / 1);
+            }
+        }
+    }
+
+    ${media.laptop} {
+    }
+
+    ${media.tablet} {
+        top: ${({$rank}) => $rank === 1 ? "-40px" : 0};
+        width: calc(90% / 3);
+        height: 350px;
+        margin-top: 50px;
+
+        .card_container {
+
+            .card_body {
+
+                .card_perk {
+
+                    .perk_image1 {
+                        @media (min-width: 620px) {
+                            height: 45px;
+                            width: 45px;
+                        }
+                        height: 35px;
+                        width: 35px;
+                    }
+
+                    .perk_image2 {
+                        @media (min-width: 620px) {
+                            height: 18px;
+                            width: 18px;
+                        }
+                        bottom: 1px;
+                        right: 1px;
+                        height: 15px;
+                        width: 15px;
+                    }
+                }
+
+                .card_item {
+                    @media (min-width: 620px) {
+                        width: 80%;
+                    }
+                    width: 90%;
+                    margin-top: 5px;
+
+                    .item_image {
+                        @media (min-width: 620px) {
+                            height: 35px;
+                            width: 35px;
+                        }
+                        height: 27px;
+                        width: 27px;
+                        margin: 2px;
+                    }
+
+                    .empty_image {
+                        @media (min-width: 620px) {
+                            height: 35px;
+                            width: 35px;
+                        }
+                        height: 27px;
+                        width: 27px;
+                    }
+                }
+
+                .card_name {
+                    margin-top: 12px;
+                    font-size: 1.3rem;
+                    line-height: 12px;
+                }
+
+                .card_data {
+                    margin-top: 8px;
+                    padding: 4px 9px;
+                    font-size: 1.1rem;
+                    line-height: 8px;
+                }
+
+                .card_date {
+                    margin-top: 8px;
+                    font-size: 1.2rem;
+                    line-height: 12px;
+                }
+            }
+        }
+    }
+
+    ${media.mobile} {
+        top: ${({$rank}) => $rank === 1 ? "-30px" : 0};
+        width: 85px;
+        height: 250px;
+        margin-top: 10px;
+
+        .card_container {
+
+            .card_body {
+
+                .card_perk {
+
+                    .perk_image1 {
+                        height: 27px;
+                        width: 27px;
+                    }
+
+                    .perk_image2 {
+                        bottom: 1px;
+                        right: 1px;
+                        height: 11px;
+                        width: 11px;
+                    }
+                }
+
+                .card_item {
+                    width: 90%;
+                    margin-top: 5px;
+
+                    .item_image {
+                        height: 20px;
+                        width: 20px;
+                        margin: 2px;
+                    }
+
+                    .empty_image {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+
+                .card_name {
+                    margin-top: 12px;
+                    font-size: 1.1rem;
+                    line-height: 12px;
+                }
+
+                .card_data {
+                    margin-top: 8px;
+                    padding: 4px 9px;
+                    font-size: .9rem;
+                    line-height: 8px;
+                }
+
+                .card_date {
+                    margin-top: 8px;
+                    font-size: 1rem;
+                    line-height: 12px;
+                }
             }
         }
     }
