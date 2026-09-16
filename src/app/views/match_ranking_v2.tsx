@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCaretLeft as icon_left, faCaretRight as icon_right, faLeftLong as icon_back,
-    faTrophy as icon_power, faMedal as icon_record, faRankingStar as icon_onegame
+    faCrown as icon_power, faMedal as icon_record, faRankingStar as icon_onegame
 } from "@fortawesome/free-solid-svg-icons";
 
 import useSupabaseBrowser from "../supabase-browser";
