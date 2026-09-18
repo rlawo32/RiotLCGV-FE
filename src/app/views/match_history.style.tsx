@@ -854,6 +854,171 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     }
 `;
 
+
+export const MatchLatestSummary = styled('div')`
+
+    .summary_head {
+        position: relative;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        padding: 7px 15px;
+        border-radius: 10px;
+        background-color: rgb(30 30 38 / 1);
+
+        .summary_head_top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 4px;
+            font-weight: 700;
+
+            .lcg_history_date {
+                font-size: 1.4rem;
+            }
+
+            .lcg_history_ver {
+                font-size: 1.2rem; 
+            }
+        }
+
+        .summary_head_bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            .lcg_history_duration {
+                display: flex;
+                align-items: center;
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .summary_body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 550px;
+    }
+`;
+
+export const SummaryBox = styled('div')`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: calc(95% / 2);
+`;
+
+export const SummaryItem = styled('div')`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    height: 45px;
+
+    .lcg_image {
+        border-radius: 10px;
+    }
+
+    .lcg_info_wrap {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .lcg_champion {
+            position: relative;
+
+            .lcg_level {
+                position: absolute;
+                bottom: 1px;
+                right: 1px;
+                margin: 0;
+                padding: 2px 3px;
+                background-color: black;
+                border-radius: 50%;
+                font-size: 1rem;
+            }
+
+            .champion_image {
+                height: 45px;
+                width: 45px;
+                margin: 0 3px 0 0;
+            }
+        }
+
+        .lcg_spell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+
+            .spell_image {
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        .lcg_perk {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+
+            .perk_image1 {
+                height: 22px;
+                width: 22px;
+                margin-bottom: 4px;
+            }
+
+            .perk_image2 {
+                height: 16px;
+                width: 16px;
+                margin-bottom: 3px;
+            }
+        }
+    }
+
+    .lcg_summoner_nickname {
+
+        .lcg_nickname {
+            width: 80px;
+            margin: 0 auto;
+            padding-bottom: 3px;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+    }
+
+    .lcg_kda_wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80px;
+
+        .lcg_kda {
+            margin: 0 3px;  
+            font-size: 1.2rem;
+        }
+
+        .lcg_kda_calc {
+            margin: 3px 0; 
+        }
+    }
+`;
+
 export const WinningStreakLine = styled('tr')<{$cnt:number, $url:string}>`
     position: relative;
     background-image: ${({$cnt, $url}) => $cnt > 4 ? "url('"+$url+"public/redbluefire.png')" : $cnt > 2 ? "url('"+$url+"public/redfire.png')" : ""};
@@ -879,7 +1044,7 @@ export const WinningStreakLine = styled('tr')<{$cnt:number, $url:string}>`
                                 $cnt >= 7 ? -15 : 0}px;
 `;
 
-export const WinningStreakBox = styled('div')<{$cnt:number}>`
+export const WinningStreakBox = styled('div')<{$cnt:number; $type:string;}>`
     @media (max-width: 768px) {
         transform: translateX(-47%);
         width: 30px;

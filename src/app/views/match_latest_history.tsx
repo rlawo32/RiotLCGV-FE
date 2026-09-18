@@ -290,12 +290,12 @@ const MatchLatestHistory = () => {
                                                                                         </div>
                                                                                         {
                                                                                             winningStreak > 1 ? 
-                                                                                                <Style.WinningStreakBox $cnt={winningStreak}>
+                                                                                                <Style.WinningStreakBox $cnt={winningStreak} $type={"H"}>
                                                                                                     {winningStreak}&nbsp;연승
                                                                                                 </Style.WinningStreakBox>
                                                                                                 : 
                                                                                             winningStreak < -1 ? 
-                                                                                                <Style.WinningStreakBox $cnt={winningStreak}>
+                                                                                                <Style.WinningStreakBox $cnt={winningStreak} $type={"H"}>
                                                                                                     {Math.abs(winningStreak)}&nbsp;연패
                                                                                                 </Style.WinningStreakBox>
                                                                                                 : <></>
