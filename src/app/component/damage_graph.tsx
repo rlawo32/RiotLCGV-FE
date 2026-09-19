@@ -5,8 +5,7 @@ import styled from "styled-components";
 const GraphTotal = styled('div')<{$flag:string}>`
     // mobile_view
     @media (max-width: 480px) {
-        height: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "6px" : "11px"};
-        width: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "40px" : "60px"};
+        height: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "4px" : "11px"};
     }
     height: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "11px" : "16px"};
     width: ${({$flag}) => $flag === 'D' || $flag === 'T' ? "50px" : "100px"};

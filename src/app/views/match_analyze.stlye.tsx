@@ -102,15 +102,18 @@ export const MatchAnalyze = styled('div')<{$type:string}>`
                     }
                     // mobile_view
                     @media (max-width: 480px) {
-                        margin-left: 20px;
                     }
-                    margin-left: ${({$type}) => $type === 'H' ? "17px" : "25px"};;
+                    margin-left: ${({$type}) => $type === 'H' ? "17px" : "25px"};
 
                     .lcg_analyze_addition {
                         @media (min-width: 768px) and (max-width: 1024px) {
                             flex-wrap: wrap;
                             justify-content: center;
                             width: 80px;
+                        }
+                        // mobile_view
+                        @media (max-width: 480px) {
+                            justify-content: flex-start;
                         }
                         flex-wrap: ${({$type}) => $type === 'P' ? "wrap" : ""};
                         justify-content: ${({$type}) => $type === 'P' ? "center" : ""};
@@ -156,7 +159,7 @@ export const MatchAnalyze = styled('div')<{$type:string}>`
                     @media (max-width: 480px) {
                         flex-wrap: wrap;
                         justify-content: center;
-                        width: 70px;
+                        width: 140px;
                         margin: 2px;
                         font-size: 1rem;
                     }

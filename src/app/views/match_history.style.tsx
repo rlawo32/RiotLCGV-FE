@@ -29,7 +29,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 260px;
+            width: 100%;
         }
         display: flex;
         justify-content: space-between;
@@ -65,7 +65,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: 290px;
+            width: 100%;
         }
         position: relative;
         top: 0;
@@ -191,7 +191,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
     .skeleton_header {
         @media (max-width: 768px) {
             left: -1px;
-            height: 44px;
+            height: 40px;
         }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
@@ -214,9 +214,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            top: ${({$type}) => $type === 'L' ? "-10px" : "-5px"};
+            top: ${({$type}) => $type === 'L' ? "-7px" : "-5px"};
             left: -5px;
-            height: ${({$type}) => $type === 'L' ? "60px" : "50px"};
+            height: ${({$type}) => $type === 'L' ? "55px" : "50px"};
             width: 70px;
         }
         display: ${({$load}) => $load ? "none" : "block"};
@@ -244,7 +244,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         @media (max-width: 480px) {
             left: 35px;
             height: 90%;
-            width: 70%;
+            width: 78%;
         }
         display: ${({$load}) => $load ? "none" : "block"};
         position: absolute;
@@ -267,7 +267,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: ${({$type}) => $type === 'V2' ? "300px" : "270px"};
+            width: ${({$type}) => $type === 'V2' ? "300px" : "360px"};
         }
         width: ${({$type}) => $type === 'P' ? "670px" : "100%"};
         margin: 5px 3px;
@@ -360,8 +360,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                                 }
                                 // mobile_view
                                 @media (max-width: 480px) {
-                                    height: 20px;
-                                    width: 20px;
+                                    height: 22px;
+                                    width: 22px;
                                 }
                                 display: block;
                                 height: 30px;
@@ -482,8 +482,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                             }
                             // mobile_view
                             @media (max-width: 480px) {
-                                width: 18px;
-                                font-size: 1rem;
+                                gap: 3px;
+                                width: 36px;
+                                margin: 0 5px 0 0;
+                                font-size: 1.1rem;
 
                                 svg {
                                     height: 14px;
@@ -565,6 +567,10 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     justify-content: center;
                     flex-wrap: wrap;
                 }
+                // mobile_view
+                @media (max-width: 480px) {
+                    justify-content: flex-start;
+                }
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -584,6 +590,12 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                         .lcg_level {
                             @media (max-width: 768px) {
                                 font-size: .7rem;
+                            }
+                            // mobile_view
+                            @media (max-width: 480px) {
+                                bottom: 1px;
+                                left: -1px;
+                                font-size: .6rem;
                             }
                             position: absolute;
                             bottom: 3px;
@@ -660,18 +672,23 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                     // mobile_view
                     @media (max-width: 480px) {
                         width: 100%;
-                        justify-content: space-around;
+                        justify-content: flex-start;
                         padding: 0;
                     }
                     padding: 0 5px;
 
                     .lcg_nickname {
                         @media (max-width: 1024px) {
-                            width: 40px;
+                            width: 50px;
                         }
                         // mobile_view
                         @media (max-width: 480px) {
-                            padding-bottom: 2px;
+                            width: fit-content;
+                            max-width: 40px;
+                            margin-right: 4px;
+                            padding-top: 1px;
+                            font-size: .8rem;
+                            text-align: left;
                         }
                         width: 80px;
                         margin: 0 auto;
@@ -687,7 +704,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         .lcg_kda {
             // mobile_view
             @media (max-width: 480px) {
-                width: 130px;
+                width: 60px;
                 padding: 0;  
             }
             width: 180px;
@@ -728,7 +745,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                width: 60px;
+                width: 80px;
                 padding: 0;
                 font-size: .8rem;
             }
@@ -738,6 +755,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 @media (max-width: 768px) {
                     flex-direction: column;
                     justify-content: center;
+                    gap: 2px;
                 }
                 display: flex;
                 align-items: center;
@@ -763,7 +781,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                width: 46px;
+                width: 40px;
             }
             width: 80px;
         }
@@ -776,7 +794,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 38px;
+                    width: 80px;
                 }
                 width: ${({$type}) => $type === 'P' ? "90px" : "230px"};
                 display: flex;
@@ -793,8 +811,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                height: 15px;
-                width: 15px;
+                height: 22px;
+                width: 22px;
             }
             height: ${({$type}) => $type === 'P' ? "22px" : "32px"};
             width: ${({$type}) => $type === 'P' ? "22px" : "32px"};
@@ -813,8 +831,8 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                height: 15px;
-                width: 15px;
+                height: 22px;
+                width: 22px;
             }
             height: ${({$type}) => $type === 'P' ? "22px" : "32px"};
             width: ${({$type}) => $type === 'P' ? "22px" : "32px"};
@@ -830,6 +848,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             .acc_list {
                 // mobile_view
                 @media (max-width: 480px) {
+                    width: 25px;
                     padding: 0;
                 }
                 display: flex;
@@ -856,6 +875,9 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
 
 
 export const MatchLatestSummary = styled('div')`
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
 
     .summary_head {
         position: relative;
@@ -863,26 +885,42 @@ export const MatchLatestSummary = styled('div')`
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 60px;
+        justify-content: space-between;
+        height: 70px;
         width: 100%;
-        padding: 7px 15px;
-        border-radius: 10px;
-        background-color: rgb(30 30 38 / 1);
+        margin-bottom: 7px;
+        padding: 10px 12px;
+        border-radius: 5px;
+        background: linear-gradient(90deg, rgba(30, 100, 255, 0.32) 0%, rgba(35, 70, 170, 0.16) 42%, rgba(90, 45, 100, 0.12) 58%, rgba(255, 55, 80, 0.22) 100%),#10162a;
 
         .summary_head_top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            padding-bottom: 4px;
             font-weight: 700;
+            color: #b1c0d4;
 
-            .lcg_history_date {
+            .head_top_left {
+                display: flex;
+                align-items: center;
+                gap: 15px;
                 font-size: 1.4rem;
+
+                .lcg_date {
+                }
+
+                .lcg_duration {
+                    display: flex;
+                    align-items: center;
+                }
             }
 
-            .lcg_history_ver {
-                font-size: 1.2rem; 
+            .head_top_right {
+
+                .lcg_ver {
+                    font-size: 1.2rem; 
+                }
             }
         }
 
@@ -892,10 +930,11 @@ export const MatchLatestSummary = styled('div')`
             align-items: center;
             width: 100%;
 
-            .lcg_history_duration {
-                display: flex;
-                align-items: center;
-                font-size: 1.5rem;
+            .lcg_win {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #5bbcff;
+                text-shadow: 0 0 18px rgba(77, 184, 255, 0.25);
             }
         }
     }
@@ -904,16 +943,30 @@ export const MatchLatestSummary = styled('div')`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 550px;
+        width: 100%;
     }
 `;
 
-export const SummaryBox = styled('div')`
+export const SummaryBox = styled('div')<{$team:number}>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    width: calc(95% / 2);
+    gap: 14px;
+    width: calc(98% / 2);
+    padding-bottom: 14px;
+    border: 1px solid ${({$team}) => $team === 100 ? "rgba(0, 123, 255, 0.35)" : "rgba(255, 65, 90, 0.35)"};
+    border-radius: 5px;
+
+    .lcg_team {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 6px 8px;
+        font-size: 1.5rem;
+        background: linear-gradient(90deg, ${({$team}) => $team === 100 ? "rgba(0, 123, 255, 0.22), rgba(0, 123, 255, 0.04)" : "rgba(255, 65, 90, 0.22), rgba(255, 65, 90, 0.04)"});
+        border-bottom: 1px solid ${({$team}) => $team === 100 ? "rgba(0, 123, 255, 0.35)" : "rgba(255, 65, 90, 0.35)"};
+        color: ${({$team}) => $team === 100 ? "#5db7ff" : "#ff7185"};
+    }
 `;
 
 export const SummaryItem = styled('div')`
@@ -923,6 +976,7 @@ export const SummaryItem = styled('div')`
     gap: 5px;
     width: 100%;
     height: 45px;
+    padding: 0 6px;
 
     .lcg_image {
         border-radius: 10px;
