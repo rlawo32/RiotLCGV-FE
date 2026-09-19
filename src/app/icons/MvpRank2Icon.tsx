@@ -14,7 +14,7 @@ const BOX = {
     compactCrown: [36, 26, 248, 214],
 };
 
-const Rank2Icon = ({ size = 48, compact = false, crown = true, idPrefix = 'rank2', ...props }: Props) => {
+const MvpRank2Icon = ({ size = 48, compact = false, crown = true, idPrefix = 'rank2', ...props }: Props) => {
     const uid = idPrefix;
     const box = crown
         ? (compact ? BOX.compactCrown : BOX.fullCrown)
@@ -159,4 +159,4 @@ const Rank2Icon = ({ size = 48, compact = false, crown = true, idPrefix = 'rank2
     );
 };
 
-export default Rank2Icon;
+export default MvpRank2Icon;

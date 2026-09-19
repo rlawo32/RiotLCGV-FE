@@ -10,7 +10,7 @@ export const MainHeader = styled('div')`
     max-width: 1024px;
     height: 52px;
     padding: 4px 16px;
-    margin: 10px auto;
+    margin: 10px auto 9px;
     border-bottom: 1px solid rgba(98, 101, 245, 0.22);
     background: linear-gradient(
             180deg,

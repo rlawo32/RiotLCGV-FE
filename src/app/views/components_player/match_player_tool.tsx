@@ -1,9 +1,9 @@
 'use client'
 
-import Rank1Icon from "@/app/icons/Rank1Icon";
-import Rank2Icon from "@/app/icons/Rank2Icon";
-import Rank3Icon from "@/app/icons/Rank3Icon";
-import RankNIcon from "@/app/icons/RankNIcon";
+import MvpRank1Icon from "@/app/icons/MvpRank1Icon";
+import MvpRank2Icon from "@/app/icons/MvpRank2Icon";
+import MvpRank3Icon from "@/app/icons/MvpRank3Icon";
+import MvpRankNIcon from "@/app/icons/MvpRankNIcon";
 import TopIcon from "@/app/icons/TopIcon";
 import JugIcon from "@/app/icons/JugIcon";
 import MidIcon from "@/app/icons/MidIcon";
@@ -11,10 +11,10 @@ import AdcIcon from "@/app/icons/AdcIcon";
 import SupIcon from "@/app/icons/SupIcon";
 
 export const RankIcon = (rank:number) => {
-    if(rank === 1) {return <Rank1Icon />;} 
-    else if(rank === 2) {return <Rank2Icon />;} 
-    else if(rank === 3) {return <Rank3Icon />;} 
-    else {return <RankNIcon rank={rank} />;} 
+    if(rank === 1) {return <MvpRank1Icon />;} 
+    else if(rank === 2) {return <MvpRank2Icon />;} 
+    else if(rank === 3) {return <MvpRank3Icon />;} 
+    else {return <MvpRankNIcon rank={rank} />;} 
 }
 
 export const LaneIcon = (lane:string, best:boolean) => {

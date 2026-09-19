@@ -18,7 +18,7 @@ const ordinal = (n: number) => {
     return `${n}${suffix[(v - 20) % 10] ?? suffix[v] ?? suffix[0]}`;
 };
 
-const RankNIcon = ({ rank, label, size = 48, compact = false, idPrefix = 'rankn', ...props }: Props) => {
+const MvpRankNIcon = ({ rank, label, size = 48, compact = false, idPrefix = 'rankn', ...props }: Props) => {
     const uid = idPrefix;
     const box = compact ? COMPACT : FULL;
     const text = (label ?? ordinal(rank)).toUpperCase();
@@ -165,4 +165,4 @@ const RankNIcon = ({ rank, label, size = 48, compact = false, idPrefix = 'rankn'
     );
 };
 
-export default RankNIcon;
+export default MvpRankNIcon;
