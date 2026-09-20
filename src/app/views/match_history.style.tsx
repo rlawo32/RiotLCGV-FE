@@ -267,7 +267,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         }
         // mobile_view
         @media (max-width: 480px) {
-            width: ${({$type}) => $type === 'V2' ? "300px" : "360px"};
+            width: ${({$type}) => $type === 'V2' ? "300px" : "100%"};
         }
         width: ${({$type}) => $type === 'P' ? "670px" : "100%"};
         margin: 5px 3px;
@@ -704,7 +704,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
         .lcg_kda {
             // mobile_view
             @media (max-width: 480px) {
-                width: 60px;
+                width: 80px;
                 padding: 0;  
             }
             width: 180px;
@@ -745,7 +745,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                width: 80px;
+                width: 70px;
                 padding: 0;
                 font-size: .8rem;
             }
@@ -781,12 +781,13 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
             }
             // mobile_view
             @media (max-width: 480px) {
-                width: 40px;
+                width: 50px;
             }
             width: 80px;
         }
 
         .lcg_item {
+            width: 80px;
 
             .item_list {
                 @media (max-width: 768px) {
@@ -794,7 +795,7 @@ export const MatchHistory = styled('div')<{$load:boolean, $type:string}>`
                 }
                 // mobile_view
                 @media (max-width: 480px) {
-                    width: 80px;
+                    width: 78px;
                 }
                 width: ${({$type}) => $type === 'P' ? "90px" : "230px"};
                 display: flex;
