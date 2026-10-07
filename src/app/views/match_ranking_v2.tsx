@@ -15,9 +15,12 @@ import { getLcgMatchEtcQuery } from "../queries/getLcgMatchEtcQuery";
 import { getLcgPowerRankingQuery } from "../queries/getLcgMatchRankingQuery";
 
 import { CategoryData } from "./components_ranking/match_ranking_types";
+
 import RankingRecordHead from './components_ranking/ranking_record_head';
 import RankingRecordBody from './components_ranking/ranking_record_body';
 import RankingOnegameBody from './components_ranking/ranking_onegame_body';
+
+import { PowerRank1Icon, PowerRank2Icon, PowerRank3Icon } from "../icons/PowerRankIcon";
 
 const MatchRankingV2 = () => {
     const supabase = useSupabaseBrowser();
@@ -93,6 +96,15 @@ const MatchRankingV2 = () => {
                     <div className="list_top">
                         {lcgPowerRankingTop3.map((item, idx) => (
                             <Style.PowerRankingTop3Card key={item.lcg_summoner_puuid} $rank={item.lcg_ranking_current_rank}>
+                                <div className="card_rank">
+                                    {item.lcg_ranking_current_rank === 1 ? (
+                                        <PowerRank1Icon />
+                                    ) : item.lcg_ranking_current_rank === 2 ? (
+                                        <PowerRank2Icon />
+                                    ) : (
+                                        <PowerRank3Icon />
+                                    )}
+                                </div>
                                 <div className="card_top">
                                     <img src={imageMainUrl + "profileicon/" + item.lcg_summoner_icon + imageExtension} alt={"player_icon_" + idx} />
                                 </div>

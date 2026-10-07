@@ -473,6 +473,13 @@ export const PowerRankingTop3Card = styled('div')<{$rank:number}>`
                     `} transparent 75%);
     }
 
+    .card_rank {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-65%);
+    }
+
     .card_top {
 
         img {
@@ -545,6 +552,9 @@ export const PowerRankingTop3Card = styled('div')<{$rank:number}>`
         width: 85px;
         min-height: 150px;
         padding: 24px 4px 12px;
+        .card_rank {
+            transform: translateX(-50%) translateY(-60%);
+        }
 
         .card_top {
 
